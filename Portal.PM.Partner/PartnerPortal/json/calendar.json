@@ -1,0 +1,2284 @@
+{
+  "$id": "1",
+  "results": [
+    {
+      "$id": "2",
+      "reservationNumber": "RES-14540",
+      "stayDateRange": {
+        "$id": "3",
+        "startDate": "2019-02-26",
+        "endDate": "2019-03-05"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "4",
+        "firstName": "Vincent",
+        "middleName": "",
+        "lastName": "Schimizzi",
+        "addresses": [
+          {
+            "$id": "5",
+            "street1": "1213 Lobelia Lane",
+            "street2": "",
+            "city": "Dewitt",
+            "state": "MI",
+            "province": null,
+            "zip": "48820",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "6433319"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "6",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "15179277883",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          },
+          {
+            "$id": "7",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "15179277883",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone2"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "8",
+            "address": "vschimi221@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Schimizzi, Vincent",
+        "fullNameFirstMiddleLast": "Vincent  Schimizzi",
+        "fullNameFirstLast": "Vincent Schimizzi",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "7866283"
+      },
+      "guestCount": 2,
+      "reservationGroup": null,
+      "rent": 3300,
+      "total": 5208.18,
+      "paymentTotal": 5208.18,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 3300,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "7197391"
+    },
+    {
+      "$id": "9",
+      "reservationNumber": "RES-18185",
+      "stayDateRange": {
+        "$id": "10",
+        "startDate": "2019-03-09",
+        "endDate": "2019-03-17"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "11",
+        "firstName": "Teresa",
+        "middleName": "",
+        "lastName": "Phelps",
+        "addresses": [
+          {
+            "$id": "12",
+            "street1": "966 Summit Blvd",
+            "street2": "",
+            "city": "Springfield",
+            "state": "OR",
+            "province": null,
+            "zip": "97477",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "5987437"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "13",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "5419158465",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "14",
+            "address": "tasbury27@hotmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "10/27/50",
+        "fullNameLastCommaFirst": "Phelps, Teresa",
+        "fullNameFirstMiddleLast": "Teresa  Phelps",
+        "fullNameFirstLast": "Teresa Phelps",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "7324516"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 4700,
+      "total": 6285.27,
+      "paymentTotal": 6285.27,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 4700,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8528318"
+    },
+    {
+      "$id": "15",
+      "reservationNumber": "HLD-09127",
+      "stayDateRange": {
+        "$id": "16",
+        "startDate": "2019-03-17",
+        "endDate": "2019-03-18"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "17",
+        "firstName": "Teresa",
+        "middleName": null,
+        "lastName": "Phelps",
+        "addresses": [],
+        "phones": [],
+        "emails": [],
+        "isPrimaryGuest": true,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": null,
+        "fullNameLastCommaFirst": "Phelps, Teresa",
+        "fullNameFirstMiddleLast": "Teresa  Phelps",
+        "fullNameFirstLast": "Teresa Phelps",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": ""
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "SoftBlock",
+      "confirmed": false,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "NotPaid",
+      "marketingCategoryNativePMSID": "",
+      "reservationTypeNativePMSID": null,
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "13295402"
+    },
+    {
+      "$id": "18",
+      "reservationNumber": "RES-15625",
+      "stayDateRange": {
+        "$id": "19",
+        "startDate": "2019-03-20",
+        "endDate": "2019-04-04"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "20",
+        "firstName": "G&Olive,",
+        "middleName": "",
+        "lastName": "LLC (MCE864)",
+        "addresses": [
+          {
+            "$id": "21",
+            "street1": "50 Picardy Lane",
+            "street2": "",
+            "city": "Saint Louis",
+            "state": "MO",
+            "province": null,
+            "zip": "63124",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "6866320"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "22",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "3149971235",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "23",
+            "address": "kkranzberg@tricorbraun.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "LLC (MCE864), G&Olive,",
+        "fullNameFirstMiddleLast": "G&Olive,  LLC (MCE864)",
+        "fullNameFirstLast": "G&Olive, LLC (MCE864)",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "8370084"
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6704",
+      "reservationTypeNativePMSID": "16",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "7691231"
+    },
+    {
+      "$id": "24",
+      "reservationNumber": "HLD-09339",
+      "stayDateRange": {
+        "$id": "25",
+        "startDate": "2019-04-04",
+        "endDate": "2019-04-05"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "26",
+        "firstName": "erika bridal shower",
+        "middleName": null,
+        "lastName": "noon arrival",
+        "addresses": [],
+        "phones": [],
+        "emails": [],
+        "isPrimaryGuest": true,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": null,
+        "fullNameLastCommaFirst": "noon arrival, erika bridal shower",
+        "fullNameFirstMiddleLast": "erika bridal shower  noon arrival",
+        "fullNameFirstLast": "erika bridal shower noon arrival",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": ""
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "GuestOfOwner",
+      "confirmed": false,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "NotPaid",
+      "marketingCategoryNativePMSID": "",
+      "reservationTypeNativePMSID": null,
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "13427033"
+    },
+    {
+      "$id": "27",
+      "reservationNumber": "RES-19522",
+      "stayDateRange": {
+        "$id": "28",
+        "startDate": "2019-04-05",
+        "endDate": "2019-04-07"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "29",
+        "firstName": "Michael",
+        "middleName": "",
+        "lastName": "Flannery",
+        "addresses": [
+          {
+            "$id": "30",
+            "street1": "PO Box 2833",
+            "street2": "",
+            "city": "Palm Springs",
+            "state": "CA",
+            "province": null,
+            "zip": "92263",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "2049528"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "31",
+            "countryCode": "1",
+            "areaCode": "760",
+            "number": "8613771",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "32",
+            "address": "mike@acmehouseco.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Flannery, Michael",
+        "fullNameFirstMiddleLast": "Michael  Flannery",
+        "fullNameFirstLast": "Michael Flannery",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "2441223"
+      },
+      "guestCount": 7,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "13997",
+      "reservationTypeNativePMSID": "17",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9154901"
+    },
+    {
+      "$id": "33",
+      "reservationNumber": "HLD-09361",
+      "stayDateRange": {
+        "$id": "34",
+        "startDate": "2019-04-07",
+        "endDate": "2019-04-08"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "35",
+        "firstName": "Michael ",
+        "middleName": null,
+        "lastName": "Flannery",
+        "addresses": [],
+        "phones": [],
+        "emails": [],
+        "isPrimaryGuest": true,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": null,
+        "fullNameLastCommaFirst": "Flannery, Michael ",
+        "fullNameFirstMiddleLast": "Michael   Flannery",
+        "fullNameFirstLast": "Michael  Flannery",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": ""
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "SoftBlock",
+      "confirmed": false,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "NotPaid",
+      "marketingCategoryNativePMSID": "",
+      "reservationTypeNativePMSID": null,
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "13442871"
+    },
+    {
+      "$id": "36",
+      "reservationNumber": "RES-18978",
+      "stayDateRange": {
+        "$id": "37",
+        "startDate": "2019-04-11",
+        "endDate": "2019-04-15"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "38",
+        "firstName": "Johan",
+        "middleName": "",
+        "lastName": "Bondebjer",
+        "addresses": [
+          {
+            "$id": "39",
+            "street1": "Torstenssonsgatan 7",
+            "street2": "",
+            "city": "Stockholm",
+            "state": "xx",
+            "province": null,
+            "zip": "114 56",
+            "country": "Sweden",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9033583"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "40",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "46722537264",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "41",
+            "address": "Johan@innovationproperties.se",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "8/7/83",
+        "fullNameLastCommaFirst": "Bondebjer, Johan",
+        "fullNameFirstMiddleLast": "Johan  Bondebjer",
+        "fullNameFirstLast": "Johan Bondebjer",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10986900"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 4800,
+      "total": 6410.73,
+      "paymentTotal": 6410.73,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "11614",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 4800,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8892775"
+    },
+    {
+      "$id": "42",
+      "reservationNumber": "HLD-09429",
+      "stayDateRange": {
+        "$id": "43",
+        "startDate": "2019-04-15",
+        "endDate": "2019-04-16"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "44",
+        "firstName": "Johan",
+        "middleName": null,
+        "lastName": " Bondebjer",
+        "addresses": [],
+        "phones": [],
+        "emails": [],
+        "isPrimaryGuest": true,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": null,
+        "fullNameLastCommaFirst": " Bondebjer, Johan",
+        "fullNameFirstMiddleLast": "Johan   Bondebjer",
+        "fullNameFirstLast": "Johan  Bondebjer",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": ""
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "SoftBlock",
+      "confirmed": false,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "NotPaid",
+      "marketingCategoryNativePMSID": "",
+      "reservationTypeNativePMSID": null,
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "13488845"
+    },
+    {
+      "$id": "45",
+      "reservationNumber": "RES-19386",
+      "stayDateRange": {
+        "$id": "46",
+        "startDate": "2019-04-18",
+        "endDate": "2019-04-25"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "47",
+        "firstName": "Melinda",
+        "middleName": "",
+        "lastName": "Robinson",
+        "addresses": [
+          {
+            "$id": "48",
+            "street1": "P.O. Box 13173",
+            "street2": "",
+            "city": "Newport Beach",
+            "state": "CA",
+            "province": null,
+            "zip": "92658",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9206277"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "49",
+            "countryCode": "1",
+            "areaCode": "949",
+            "number": "7150445",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "50",
+            "address": "naturallight@cox.net",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Robinson, Melinda",
+        "fullNameFirstMiddleLast": "Melinda  Robinson",
+        "fullNameFirstLast": "Melinda Robinson",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "11192506"
+      },
+      "guestCount": 2,
+      "reservationGroup": null,
+      "rent": 7645,
+      "total": 10371.08,
+      "paymentTotal": 10371.08,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 7645,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9096426"
+    },
+    {
+      "$id": "51",
+      "reservationNumber": "RES-19097",
+      "stayDateRange": {
+        "$id": "52",
+        "startDate": "2019-04-25",
+        "endDate": "2019-04-29"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "53",
+        "firstName": "Jenifer",
+        "middleName": "",
+        "lastName": "Simons",
+        "addresses": [
+          {
+            "$id": "54",
+            "street1": "314 N. Vista st.",
+            "street2": "",
+            "city": "Los Angeles",
+            "state": "CA",
+            "province": null,
+            "zip": "90036",
+            "country": "US",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9003916"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "55",
+            "countryCode": "1",
+            "areaCode": "323",
+            "number": "2062614",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "56",
+            "address": "Jen@bolthouseproductions.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Simons, Jenifer",
+        "fullNameFirstMiddleLast": "Jenifer  Simons",
+        "fullNameFirstLast": "Jenifer Simons",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10951458"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 2800,
+      "total": 4069.76,
+      "paymentTotal": 4069.76,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6937",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 2800,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8964530"
+    },
+    {
+      "$id": "57",
+      "reservationNumber": "RES-19840",
+      "stayDateRange": {
+        "$id": "58",
+        "startDate": "2019-04-30",
+        "endDate": "2019-05-01"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "59",
+        "firstName": "Boris",
+        "middleName": "",
+        "lastName": "Stark",
+        "addresses": [
+          {
+            "$id": "60",
+            "street1": "",
+            "street2": "",
+            "city": "",
+            "state": "",
+            "province": null,
+            "zip": "",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9215469"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "61",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "17604490249",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "62",
+            "address": "boris@acmehouseco.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "AIRBNB",
+        "fullNameLastCommaFirst": "Stark, Boris",
+        "fullNameFirstMiddleLast": "Boris  Stark",
+        "fullNameFirstLast": "Boris Stark",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "11203209"
+      },
+      "guestCount": 2,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6705",
+      "reservationTypeNativePMSID": "19",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9241145"
+    },
+    {
+      "$id": "63",
+      "reservationNumber": "RES-16928",
+      "stayDateRange": {
+        "$id": "64",
+        "startDate": "2019-05-01",
+        "endDate": "2019-05-08"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "65",
+        "firstName": "Nicole",
+        "middleName": "",
+        "lastName": "Padmore",
+        "addresses": [
+          {
+            "$id": "66",
+            "street1": "9458, 203 St",
+            "street2": "",
+            "city": "Langley",
+            "state": "BC",
+            "province": null,
+            "zip": "V1M3Y8",
+            "country": "Canada",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "8314254"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "67",
+            "countryCode": "1",
+            "areaCode": "604",
+            "number": "7622232",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "68",
+            "address": "n_padmore@shaw.ca",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Padmore, Nicole",
+        "fullNameFirstMiddleLast": "Nicole  Padmore",
+        "fullNameFirstLast": "Nicole Padmore",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10123688"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 3000,
+      "total": 4843.57,
+      "paymentTotal": 4843.57,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 3000,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8110838"
+    },
+    {
+      "$id": "69",
+      "reservationNumber": "HLD-08931",
+      "stayDateRange": {
+        "$id": "70",
+        "startDate": "2019-05-15",
+        "endDate": "2019-05-16"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "71",
+        "firstName": "10 am ",
+        "middleName": null,
+        "lastName": "Check In",
+        "addresses": [],
+        "phones": [],
+        "emails": [],
+        "isPrimaryGuest": true,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": null,
+        "fullNameLastCommaFirst": "Check In, 10 am ",
+        "fullNameFirstMiddleLast": "10 am   Check In",
+        "fullNameFirstLast": "10 am  Check In",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": ""
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "Unavailable",
+      "confirmed": false,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "NotPaid",
+      "marketingCategoryNativePMSID": "",
+      "reservationTypeNativePMSID": null,
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "13038428"
+    },
+    {
+      "$id": "72",
+      "reservationNumber": "RES-18888",
+      "stayDateRange": {
+        "$id": "73",
+        "startDate": "2019-05-16",
+        "endDate": "2019-05-20"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "74",
+        "firstName": "Talon",
+        "middleName": "",
+        "lastName": "Brehm",
+        "addresses": [
+          {
+            "$id": "75",
+            "street1": "2310, Sunset Dr",
+            "street2": "",
+            "city": "San Luis Obispo",
+            "state": "CA",
+            "province": null,
+            "zip": "93401",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "8998790"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "76",
+            "countryCode": "1",
+            "areaCode": "805",
+            "number": "4414450",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "77",
+            "address": "talonbrehm@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Brehm, Talon",
+        "fullNameFirstMiddleLast": "Talon  Brehm",
+        "fullNameFirstLast": "Talon Brehm",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10945413"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 2520,
+      "total": 4237.35,
+      "paymentTotal": 4237.35,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 2520,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8850762"
+    },
+    {
+      "$id": "78",
+      "reservationNumber": "RES-19525",
+      "stayDateRange": {
+        "$id": "79",
+        "startDate": "2019-05-20",
+        "endDate": "2019-05-27"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "80",
+        "firstName": "Julia",
+        "middleName": "",
+        "lastName": "Prince",
+        "addresses": [
+          {
+            "$id": "81",
+            "street1": "541 Halsing Court",
+            "street2": "",
+            "city": "Carlsbad",
+            "state": "CA",
+            "province": null,
+            "zip": "92011",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9260659"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "82",
+            "countryCode": "1",
+            "areaCode": "615",
+            "number": "5210161",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "83",
+            "address": "julie.g.prince@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Prince, Julia",
+        "fullNameFirstMiddleLast": "Julia  Prince",
+        "fullNameFirstLast": "Julia Prince",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "11255554"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 4965,
+      "total": 6940.67,
+      "paymentTotal": 6940.67,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 4965,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9155792"
+    },
+    {
+      "$id": "84",
+      "reservationNumber": "RES-19185",
+      "stayDateRange": {
+        "$id": "85",
+        "startDate": "2019-06-06",
+        "endDate": "2019-06-09"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "86",
+        "firstName": "Mahisha",
+        "middleName": "",
+        "lastName": "Witwer",
+        "addresses": [
+          {
+            "$id": "87",
+            "street1": "46 W Julian St PH26",
+            "street2": "",
+            "city": "San Jose",
+            "state": "CA",
+            "province": null,
+            "zip": "95110",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9133448"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "88",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "6508626259",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "89",
+            "address": "mahishawitwer@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Witwer, Mahisha",
+        "fullNameFirstMiddleLast": "Mahisha  Witwer",
+        "fullNameFirstLast": "Mahisha Witwer",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "11105809"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 1428.39,
+      "total": 2201.9,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "11614",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 1428.39,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9010092"
+    },
+    {
+      "$id": "90",
+      "reservationNumber": "RES-18688",
+      "stayDateRange": {
+        "$id": "91",
+        "startDate": "2019-06-13",
+        "endDate": "2019-06-16"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "92",
+        "firstName": "Samantha",
+        "middleName": "",
+        "lastName": "Collings",
+        "addresses": [
+          {
+            "$id": "93",
+            "street1": "181 Paradise Cove Rd",
+            "street2": "",
+            "city": "Malibu",
+            "state": "CA",
+            "province": null,
+            "zip": "90265",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "8921140"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "94",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "8052007680",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "95",
+            "address": "samanthadeescott@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "11/4/82",
+        "fullNameLastCommaFirst": "Collings, Samantha",
+        "fullNameFirstMiddleLast": "Samantha  Collings",
+        "fullNameFirstLast": "Samantha Collings",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10852351"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 1395,
+      "total": 2315.2,
+      "paymentTotal": 2315.2,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "FullyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6903",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 1395,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8756113"
+    },
+    {
+      "$id": "96",
+      "reservationNumber": "RES-19496",
+      "stayDateRange": {
+        "$id": "97",
+        "startDate": "2019-07-12",
+        "endDate": "2019-07-21"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "98",
+        "firstName": "George",
+        "middleName": "",
+        "lastName": "Harper",
+        "addresses": [
+          {
+            "$id": "99",
+            "street1": "8120 32nd Ave sw",
+            "street2": "",
+            "city": "Seattle",
+            "state": "WA",
+            "province": null,
+            "zip": "98126",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "9249618"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "100",
+            "countryCode": "1",
+            "areaCode": "206",
+            "number": "7695706",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "101",
+            "address": "ge_harper@yahoo.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Harper, George",
+        "fullNameFirstMiddleLast": "George  Harper",
+        "fullNameFirstLast": "George Harper",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "11243071"
+      },
+      "guestCount": 8,
+      "reservationGroup": null,
+      "rent": 3330,
+      "total": 4731.62,
+      "paymentTotal": 1445.55,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 3330,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9146991"
+    },
+    {
+      "$id": "102",
+      "reservationNumber": "RES-19526",
+      "stayDateRange": {
+        "$id": "103",
+        "startDate": "2019-07-30",
+        "endDate": "2019-08-06"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "104",
+        "firstName": "Harold C.",
+        "middleName": "",
+        "lastName": "Dickinson",
+        "addresses": [
+          {
+            "$id": "105",
+            "street1": "1560 Circa Del Lago  D103",
+            "street2": "",
+            "city": "San Marcos",
+            "state": "CA",
+            "province": null,
+            "zip": "92078",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "1934482"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "106",
+            "countryCode": "1",
+            "areaCode": "760",
+            "number": "4719164",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          },
+          {
+            "$id": "107",
+            "countryCode": "1",
+            "areaCode": "760",
+            "number": "5606034",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone3"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "108",
+            "address": "hcdickinson@sbcglobal.net",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "Have DL",
+        "fullNameLastCommaFirst": "Dickinson, Harold C.",
+        "fullNameFirstMiddleLast": "Harold C.  Dickinson",
+        "fullNameFirstLast": "Harold C. Dickinson",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "2322292"
+      },
+      "guestCount": 2,
+      "reservationGroup": null,
+      "rent": 2490,
+      "total": 5527.64,
+      "paymentTotal": 1333.16,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6937",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 2490,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9156218"
+    },
+    {
+      "$id": "109",
+      "reservationNumber": "RES-18161",
+      "stayDateRange": {
+        "$id": "110",
+        "startDate": "2019-08-17",
+        "endDate": "2019-08-24"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "111",
+        "firstName": "Eric",
+        "middleName": "",
+        "lastName": "Peguero",
+        "addresses": [
+          {
+            "$id": "112",
+            "street1": "420 E 51st St., No. 5D",
+            "street2": "",
+            "city": "New York",
+            "state": "NY",
+            "province": null,
+            "zip": "10022",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "8712370"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "113",
+            "countryCode": "1",
+            "areaCode": "513",
+            "number": "4070962",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "114",
+            "address": "eric.n.peguero@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Peguero, Eric",
+        "fullNameFirstMiddleLast": "Eric  Peguero",
+        "fullNameFirstLast": "Eric Peguero",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "10602004"
+      },
+      "guestCount": 5,
+      "reservationGroup": null,
+      "rent": 2490,
+      "total": 3599.34,
+      "paymentTotal": 1249.87,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6979",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": false,
+      "isLockOff": false,
+      "netRentToOwner": 2490,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8516976"
+    },
+    {
+      "$id": "115",
+      "reservationNumber": "RES-19418",
+      "stayDateRange": {
+        "$id": "116",
+        "startDate": "2019-09-13",
+        "endDate": "2019-09-16"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "117",
+        "firstName": "Holly",
+        "middleName": "",
+        "lastName": "Ferris",
+        "addresses": [
+          {
+            "$id": "118",
+            "street1": "3112 Iroquois Avenue",
+            "street2": "",
+            "city": "Long Beach",
+            "state": "CA",
+            "province": null,
+            "zip": "90808",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "1982460"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "119",
+            "countryCode": "1",
+            "areaCode": "562",
+            "number": "7468461",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "120",
+            "address": "holly@ferriscomm.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "Have DL",
+        "fullNameLastCommaFirst": "Ferris, Holly",
+        "fullNameFirstMiddleLast": "Holly  Ferris",
+        "fullNameFirstLast": "Holly Ferris",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "2371688"
+      },
+      "guestCount": 4,
+      "reservationGroup": null,
+      "rent": 1283,
+      "total": 2108.34,
+      "paymentTotal": 1104.67,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 1283,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9116607"
+    },
+    {
+      "$id": "121",
+      "reservationNumber": "RES-19708",
+      "stayDateRange": {
+        "$id": "122",
+        "startDate": "2019-11-27",
+        "endDate": "2019-12-01"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "123",
+        "firstName": "Christopher",
+        "middleName": "",
+        "lastName": "Thomas",
+        "addresses": [
+          {
+            "$id": "124",
+            "street1": "931 Oxford Ave",
+            "street2": "",
+            "city": "Marina Del Ray",
+            "state": "CA",
+            "province": null,
+            "zip": "90292",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "1935551"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "125",
+            "countryCode": "1",
+            "areaCode": "310",
+            "number": "5024850",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          },
+          {
+            "$id": "126",
+            "countryCode": "1",
+            "areaCode": "310",
+            "number": "4004118",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone3"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "127",
+            "address": "deb@lac-group.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          },
+          {
+            "$id": "128",
+            "address": "deb@lac-group.com",
+            "emailContactTypeId": "0",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email2"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "Have DL",
+        "fullNameLastCommaFirst": "Thomas, Christopher",
+        "fullNameFirstMiddleLast": "Christopher  Thomas",
+        "fullNameFirstLast": "Christopher Thomas",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "2323459"
+      },
+      "guestCount": 6,
+      "reservationGroup": null,
+      "rent": 4060,
+      "total": 6125.12,
+      "paymentTotal": 1857.85,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 4060,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9205464"
+    },
+    {
+      "$id": "129",
+      "reservationNumber": "RES-18515",
+      "stayDateRange": {
+        "$id": "130",
+        "startDate": "2019-12-21",
+        "endDate": "2019-12-26"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "131",
+        "firstName": "Linda",
+        "middleName": "",
+        "lastName": "Adler",
+        "addresses": [
+          {
+            "$id": "132",
+            "street1": "3647 Sunset Drve",
+            "street2": "",
+            "city": "Santa Barbara",
+            "state": "CA",
+            "province": null,
+            "zip": "93105",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "7482790"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "133",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "7346788652",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "134",
+            "address": "adler.linda@gmail.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "Adler, Linda",
+        "fullNameFirstMiddleLast": "Linda  Adler",
+        "fullNameFirstLast": "Linda Adler",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "9116877"
+      },
+      "guestCount": 6,
+      "reservationGroup": null,
+      "rent": 4950,
+      "total": 7472.77,
+      "paymentTotal": 2045.9,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 4950,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8666953"
+    },
+    {
+      "$id": "135",
+      "reservationNumber": "RES-17586",
+      "stayDateRange": {
+        "$id": "136",
+        "startDate": "2019-12-26",
+        "endDate": "2019-12-30"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "137",
+        "firstName": "G&Olive,",
+        "middleName": "",
+        "lastName": "LLC (MCE864)",
+        "addresses": [
+          {
+            "$id": "138",
+            "street1": "50 Picardy Lane",
+            "street2": "",
+            "city": "Saint Louis",
+            "state": "MO",
+            "province": null,
+            "zip": "63124",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "6866320"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "139",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "3149971235",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "140",
+            "address": "kkranzberg@tricorbraun.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "LLC (MCE864), G&Olive,",
+        "fullNameFirstMiddleLast": "G&Olive,  LLC (MCE864)",
+        "fullNameFirstLast": "G&Olive, LLC (MCE864)",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "8370084"
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6704",
+      "reservationTypeNativePMSID": "16",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8313445"
+    },
+    {
+      "$id": "141",
+      "reservationNumber": "RES-19263",
+      "stayDateRange": {
+        "$id": "142",
+        "startDate": "2020-03-09",
+        "endDate": "2020-03-16"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "143",
+        "firstName": "Janette",
+        "middleName": "",
+        "lastName": "Woods",
+        "addresses": [
+          {
+            "$id": "144",
+            "street1": "105 Whirlwind Cove",
+            "street2": "",
+            "city": "Georgetown",
+            "state": "TX",
+            "province": null,
+            "zip": "78633",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "6643971"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "145",
+            "countryCode": "1",
+            "areaCode": "512",
+            "number": "7969974",
+            "extension": "",
+            "phoneContactTypeId": "1",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          },
+          {
+            "$id": "146",
+            "countryCode": "1",
+            "areaCode": "512",
+            "number": "7969974",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone2"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "147",
+            "address": "fjwoods@suddenlink.net",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          },
+          {
+            "$id": "148",
+            "address": "kblatta@aol.com",
+            "emailContactTypeId": "0",
+            "isPrimary": false,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email2"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "4/18/47",
+        "fullNameLastCommaFirst": "Woods, Janette",
+        "fullNameFirstMiddleLast": "Janette  Woods",
+        "fullNameFirstLast": "Janette Woods",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "8110240"
+      },
+      "guestCount": 6,
+      "reservationGroup": null,
+      "rent": 4100,
+      "total": 6010.92,
+      "paymentTotal": 1866.3,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "PartiallyPaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6935",
+      "reservationTypeNativePMSID": "0",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 4100,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "9039782"
+    },
+    {
+      "$id": "149",
+      "reservationNumber": "RES-18949",
+      "stayDateRange": {
+        "$id": "150",
+        "startDate": "2020-03-20",
+        "endDate": "2020-04-06"
+      },
+      "unitNativePMSID": "133161",
+      "primaryGuest": {
+        "$id": "151",
+        "firstName": "G&Olive,",
+        "middleName": "",
+        "lastName": "LLC (MCE864)",
+        "addresses": [
+          {
+            "$id": "152",
+            "street1": "50 Picardy Lane",
+            "street2": "",
+            "city": "Saint Louis",
+            "state": "MO",
+            "province": null,
+            "zip": "63124",
+            "country": "United States",
+            "addressContactTypeId": "Standard",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "6866320"
+          }
+        ],
+        "phones": [
+          {
+            "$id": "153",
+            "countryCode": "",
+            "areaCode": "",
+            "number": "3149971235",
+            "extension": "",
+            "phoneContactTypeId": "2",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Phone1"
+          }
+        ],
+        "emails": [
+          {
+            "$id": "154",
+            "address": "kkranzberg@tricorbraun.com",
+            "emailContactTypeId": "0",
+            "isPrimary": true,
+            "id": 0,
+            "pmcid": "1596",
+            "nativePMSID": "Email"
+          }
+        ],
+        "isPrimaryGuest": false,
+        "isVIP": false,
+        "isWarn": false,
+        "notes": "",
+        "fullNameLastCommaFirst": "LLC (MCE864), G&Olive,",
+        "fullNameFirstMiddleLast": "G&Olive,  LLC (MCE864)",
+        "fullNameFirstLast": "G&Olive, LLC (MCE864)",
+        "detailURL": null,
+        "id": 0,
+        "pmcid": "1596",
+        "nativePMSID": "8370084"
+      },
+      "guestCount": 1,
+      "reservationGroup": null,
+      "rent": 0,
+      "total": 0,
+      "paymentTotal": 0,
+      "holdType": "None",
+      "confirmed": true,
+      "paymentStatus": "Unpaid",
+      "depositStatus": "Paid",
+      "marketingCategoryNativePMSID": "6705",
+      "reservationTypeNativePMSID": "16",
+      "bookedByTravelAgent": true,
+      "isLockOff": false,
+      "netRentToOwner": 0,
+      "ownerNativePMSIDs": [
+        "8370084"
+      ],
+      "id": 0,
+      "pmcid": "1596",
+      "nativePMSID": "8877152"
+    }
+  ],
+  "totalCount": 27,
+  "pageSize": 100,
+  "pageNumber": 1,
+  "fromIndex": 1,
+  "toIndex": 27
+}

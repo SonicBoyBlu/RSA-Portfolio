@@ -1,0 +1,36 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@{
+    var p = Model.ContactDetail.Properties.FirstOrDefault();
+    var lists = Model.Lists;
+}
+
+<form data-form-type="property-logistics">
+    <h5>@p._titlePropertyLogistics</h5>
+    <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+    <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+    <div class="row">
+        <div class="col-sm">
+            <select class="form-control" name="PropertyTypeID" data-placeholder="Property Type">
+                @foreach (var i in lists.PropertyTypes)
+                {
+                    <option value="@i.PropertyTypeID" @(i.PropertyTypeID == p.PropertyTypeID ? " selected='selected'" : "")>@i.PropertyType</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm">
+            <input type="number" min="0" class="form-control" name="SquareFootage" placeholder="Square Footage" value="@p.SquareFootage" />
+        </div>
+
+        <div class="col">
+            <input type="number" min="0" class="form-control" name="NumBeds" placeholder="# Beds" value="@p.NumBeds" />
+        </div>
+        <div class="col">
+            <input type="number" min="0" class="form-control" name="NumBaths" placeholder="# Baths" value="@p.NumBaths" />
+        </div>
+        <div class="col">
+            <input type="number" min="0" class="form-control" name="NumHalfBaths" placeholder="# Half-Baths" value="@p.NumHalfBaths" />
+        </div>
+    </div>
+
+</form>

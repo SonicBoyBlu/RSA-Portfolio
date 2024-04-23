@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "My Account";
+    ViewBag.TitleIcon = "fa-cog";
+    ViewBag.Nav = "my-account";
+    var me = Identity.Current;
+}
+
+<div ng-app="account" ng-controller="MyAccount as accountCtl" ng-cloak>
+
+    <div class='text-center' ng-show="accountCtl.loading"><i class='fa fa-cog fa-spin fa-5x'></i></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="card">
+                    <h4 class="card-header"><i class="fa fa-user"></i> My Info</h4>
+                    <div class="card-body">
+                        <dl>
+                            <dt>ID</dt>
+                            <dd>@me.JitBitUserID</dd>
+                            <dt>Name</dt>
+                            <dd>@me.FullName</dd>
+                            <dt>Phone</dt>
+                            <dd>@(string.IsNullOrEmpty(me.Phone) ? "-" : me.Phone)</dd>
+                            <dt>Email</dt>
+                            <dd>@me.Email</dd>
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <div class="card">
+                    <h4 class="card-header"><i class="fa fa-comment-dots"></i> Notifications</h4>
+                    <div class="card-body">
+                        <dl>
+                            <dt>Email</dt>
+                            <dd><i class="fa fa-toggle-on"></i></dd>
+                            <dt>Text Messages</dt>
+                            <dd><i class="fa fa-toggle-on"></i></dd>
+                            <dt>Push</dt>
+                            <dd><i class="fa fa-toggle-off"></i></dd>
+                            <dt>Questions?</dt>
+                            <dd><div class="btn btn-sm btn-danger"><i class="fa fa-plus-circle"></i> Create Action Item</div></dd>
+                        </dl>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>

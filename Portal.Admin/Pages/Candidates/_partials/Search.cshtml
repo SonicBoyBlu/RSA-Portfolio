@@ -1,0 +1,42 @@
+﻿@model Global.Search.Models.KeywordSearch
+<div class="container" name="search-candidates">
+    <div class="row mb-1">
+        <div class="col">
+            <input type="search" name="Keywords" class="form-control" placeholder="Search by Name, ID, Phone, or Email" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="date" name="DateStart" class="form-control" placeholder="Date Start" value="@DateTime.Now.AddMonths(-3).ToString("yyyyy-MM-dd")" />
+        </div>
+        <div class="col">
+            <input type="date" name="DateEnd" class="form-control" placeholder="Date End" value="@DateTime.Now.ToString("yyyyy-MM-dd")" />
+        </div>
+        @*
+        <div class="col">
+        <select name="MarketID" class="form-control" data-placeholder="Market">
+        @foreach(var m in Model.Markets) {
+        <option value="@m.MarketID @(m.MarketID == 0 ? " selected" : "")")>@m.MarketCode</option>
+        }
+        </select>
+        </div>
+        *@
+        <div class="col">
+            <select name="QuickView" class="form-control" data-placeholder="Quick View">
+                <option value="custom">Custom</option>
+                <option value="new-reg" selected="selected">New Registants</option>
+                <option value="fsi-watch">FSI Watchlist</option>
+                <option value="fsi-incomp">FSI Incompleted</option>
+                <option value="fsi-missed">FSI Missed</option>
+                <option value="fsi-sched">FSI Scheduled</option>
+                <option value="fsi-comp">FSI Completed</option>
+            </select>
+        </div>
+        <div class="col">
+            <label>
+                <input type="checkbox" name="IsShowInactive" value="true" />  Show Inactive
+                <input type="hidden" name="IsActive" value="true" />
+            </label>
+        </div>
+    </div>
+</div>

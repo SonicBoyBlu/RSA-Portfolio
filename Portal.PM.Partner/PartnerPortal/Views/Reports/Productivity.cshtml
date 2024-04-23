@@ -1,0 +1,226 @@
+﻿@model Dictionary<string, Dictionary<string, dynamic>>
+@{
+    ViewBag.Title = "Productivity Report";
+    ViewBag.TitleIcon = "fa-tools";
+    ViewBag.Nav = "report-pc-tech";
+
+    DateTime now = DateTime.Now.AddMonths(-1);
+    DateTime dateStart = new DateTime(now.Year, now.Month, 1);
+    DateTime next = dateStart.AddMonths(1).AddDays(-1);
+    DateTime dateEnd = next.Date;
+}
+<div id="report-summary-wrapper">
+    <div id="report-summary"></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="input-group mb-">
+            <input type="text" class="form-control" placeholder="Team Member" data-filter="team-member" value="" />
+            <div class="input-group-append">
+                <span class="input-group-text btn btn-outline-success btn-search-invoices" id="basic-addon2"><i class="fa fa-search"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+            </div>
+            <input class="form-control date-range" value="@(dateStart.ToShortDateString() + " - " + dateEnd.ToShortDateString())" />
+        </div>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="btn btn-outline-info" onclick="javascript: Report.fetch.reload();"><i class="fa fa-sync"></i></div>
+    </div>
+</div>
+
+
+<nav class="nav nav-tabs" id="tabs-reports">
+    <a href="#report-tab-0" data-tab-id="0" data-toggle="tab" data-report="TabPropertyCare" class="nav-item nav-link text-success"><i class="fa fa-tools"></i><span class="d-none d-sm-inline"> Property Care</span></a>
+    <a href="#report-tab-1" data-tab-id="1" data-toggle="tab" data-report="TabInspections" class="nav-item nav-link text-info"><i class="fa fa-house-damage"></i><span class="d-none d-sm-inline"> Inspections</span></a>
+    <a href="#report-tab-4" data-tab-id="4" data-toggle="tab" data-report="TabCleanings" class="nav-item nav-link text-primary"><i class="fa fa-trash"></i><span class="d-none d-sm-inline"> Cleanings</span></a>
+    <a href="#report-tab-2" data-tab-id="2" data-toggle="tab" data-report="TabSupplies" class="nav-item nav-link text-warning"><i class="fa fa-shopping-bag"></i><span class="d-none d-sm-inline"> Labor & Supplies</span></a>
+    <a href="#report-tab-3" data-tab-id="3" data-toggle="tab" data-report="TabRawData" class="nav-item nav-link text-secondary"><i class="fa fa-dna"></i><span class="d-none d-sm-inline"> Raw Data</span></a>
+</nav>
+
+<div id="report-tabs" class="tab-content">
+    <div class="tab-pane fade container" id="report-tab-0"></div>
+    <div class="tab-pane fade container" id="report-tab-1"></div>
+    <div class="tab-pane fade container" id="report-tab-2"></div>
+    <div class="tab-pane fade container" id="report-tab-3"></div>
+    <div class="tab-pane fade container" id="report-tab-4"></div>
+</div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @* // Date Range Picker *@
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            console.warn("Init report tabs");
+            //Report.fetch.summary();
+            $("#tabs-reports a[href='#report-tab-0']").tab("show");
+            Report.fetch.reload();
+        }
+
+        // http://www.daterangepicker.com/#usage
+        $('.date-range').daterangepicker({
+            opens: 'left',
+            startDate: "@dateStart.ToShortDateString()",
+            endDate: "@dateEnd.ToShortDateString()",
+            showDropdowns: true,
+            autoApply: true
+        },
+        function (start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            Report.config.dates = {
+                start: start.format("M/D/YYYY"),
+                end: end.format("M/D/YYYY")
+            };
+            //window.location.reload();
+            Report.fetch.reload();
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        var Report = {
+            config: {
+                dates: {
+                    start: "@dateStart.ToShortDateString()",
+                    end: "@dateEnd.ToShortDateString()"
+                }
+            },
+            init: function () {
+
+            },
+            fetch: {
+                reload: function () {
+                    $("#report-tabs .tab-pane").empty();
+                    var tab = $("#tabs-reports .nav-item.active").data("report");
+                    Report.fetch.summary();
+                    Report.fetch.tab(tab, true);
+                },
+                tab: function (tab, reload) {
+                    var tabs = $("#tabs-reports"),
+                        t = $("[data-report='" + tab + "']", tabs),
+                        id = t.attr("href"),
+                        c = $(id);
+                    //debugger;
+                    if (!reload)
+                        reload = c.html().trim() === ""; 
+                    if (reload) {
+                        $.ajax({
+                            url: tab,
+                            data: {
+                                DateStart: Report.config.dates.start,
+                                DateEnd: Report.config.dates.end
+                            },
+                            success: function (d) {
+                                c.html(d);
+
+                                $("thead th", c).attr("data-sortable", true);
+                                TableSort.render.table(".table-sortable");
+                            },
+                            error: function (xhr) {
+                                c.html("Oops, an error has occured.");
+                                //toastr.error("Error", xhr.responseText);
+                                toastr.error("Please check the console log for details.", "Error: Summary", { timeOut: 100000 });
+                            },
+                            beforeSend: function () {
+                                c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                            }
+                        });
+                    }
+                },
+                summary: function () {
+                    var c = $("#report-summary");
+                    $.ajax({
+                        url: "@Url.Action("FetchSummary", "Reports")",
+                        data: {
+                            DateStart: Report.config.dates.start,
+                            DateEnd: Report.config.dates.end
+                        },
+                        success: function (d) {
+                            c.html(d);
+                        },
+                        error: function (xhr) {
+                            c.html("Oops, an error has occured.");
+                            //toastr.error("Error", xhr.responseText);
+                            toastr.error("Please check the console log for details.", "Error");
+                        },
+                        beforeSend: function () {
+                            c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                        }
+                    });
+                }
+            }
+        };
+
+        $(document).on("show.bs.tab", function (e) {
+            var i = $(e.target),
+                t = i.attr("href"),
+                tab = i.data("report"),
+                c = $("div[data-unit-id]:visible", t),
+                cnt = c.length;
+            if(tab)
+                Report.fetch.tab(tab);
+        });
+    </script>
+}
+
+@section Styles{
+    <style type="text/css">
+        table td, table th {
+            text-align: right;
+        }
+
+        table td:first-child, table th:first-child {
+            text-align: left
+        }
+
+        .tab-pane h3 {
+            border-bottom: 1px solid;
+            margin-top: 1.9rem;
+        }
+
+        .tab-pane .table td, .tab-pane .table th {
+            border-top: 0 none;
+        }
+
+        .tab-pane > div {
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab-pane > div > div.row {
+            margin-bottom: 0;
+        }
+
+        .tab-pane .table {
+            margin-bottom: 0;
+        }
+
+        .tab-content dl {
+            padding: 42px 10px 0;
+        }
+
+        .tab-pane dl dd:first-child {
+            border-top: 1px dotted;
+        }
+
+        .tab-pane dl dd:last-child {
+            border-bottom: 0 none;
+        }
+
+        #report-summary-wrapper {
+            overflow:hidden;
+        }
+    </style>
+}

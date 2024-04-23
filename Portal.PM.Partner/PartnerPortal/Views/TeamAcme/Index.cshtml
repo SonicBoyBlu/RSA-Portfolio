@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Team Acme";
+    ViewBag.TitleIcon = "fa-address-card";
+    ViewBag.Nav = "team";
+}
+@if (Identity.Current.IsAdmin)
+{
+<div class="text-right">
+    <div class="btn btn-outline-success" id="btn-sync-bamboo"><i class="fa fa-sync"></i> Sync With Bamboo</div>
+</div>
+}
+
+<div id="report-team-container"></div>
+
+@section scripts {
+<script type="text/javascript">
+    $(function () {
+        var c = $("#report-team-container")
+        $.ajax({
+            url:"@Url.Action("FetchTeamMembers", "TeamAcme")",
+            success: function (d) {
+                c.html(d);
+            },
+            beforeSend: function () {
+                c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+            }
+        });
+
+        $(document).on("click", "#btn-sync-bamboo", function () {
+            var i = $(this),
+                icn = $(".fa-sync", i);
+            $.ajax({
+                url: "@Url.Action("SyncWithBamboo", "TeamAcme")",
+                success: function (d) {
+                    toastr.success("Sync Complete", d.totals.updated + " of " + d.totals.total + " BambooHR employee details have been updated.")
+                },
+                beforeSend: function () {
+                    i.addClass("disabled");
+                    icn.addClass("fa-spin");
+                },
+                complete: function () {
+                    i.removeClass("disabled");
+                    icn.removeClass("fa-spin");
+                }
+            });
+        });
+    });
+</script>    
+}

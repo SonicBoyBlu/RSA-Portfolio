@@ -1,0 +1,60 @@
+﻿.tbl-billable {
+    td, th {
+        &:nth-child(1) {
+            width: 50px !important;
+        }
+        &:nth-child(2) {
+            width: 125px !important;
+        }
+        &:nth-child(3) {
+        }
+
+        &:nth-child(4) {
+        }
+
+        &:nth-child(5) {
+            width: 50px !important;
+            text-align: right !important;
+        }
+
+        &:nth-child(6) {
+            width: 125px !important;
+            text-align: right !important;
+        }
+    }
+}
+
+.tbl-non-billable {
+    td, th {
+        &:nth-child(1) {
+        }
+        &:nth-child(2) {
+            width: 50px !important;
+            text-align: right !important;
+        }
+        &:nth-child(3) {
+            width: 125px !important;
+            text-align: right !important;
+        }
+        &:nth-child(4) {
+            width: 125px !important;
+            text-align: right !important;
+        }
+    }
+}
+
+.tbl-hours {
+    td, th {
+        &:nth-child(1) {
+        }
+        &:nth-child(2) {
+            width: 50px !important;
+            text-align: right !important;
+        }
+        &:nth-child(3) {
+            width: 125px !important;
+            text-align: right !important;
+        }
+    }
+}
+

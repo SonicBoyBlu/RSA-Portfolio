@@ -1,0 +1,35 @@
+﻿<table class="table table-bordered">
+    <thead class="">
+        <tr>
+            <th scope="col">Month / Year</th>
+            <th scope="col" class="text-right"># of invoices</th>
+            <th scope="col" class="text-right">Total Amount Including Tax</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="invoiceCtl.loading">
+            <td colspan="3">
+                <div ng-show="invoiceCtl.loading">
+                    @Html.Partial("_LoadingIndicator", "Loading Invoices")
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat-start="workOrder in invoiceCtl.workOrders" ng-show="!invoiceCtl.loading">
+            <td style="font-size:medium;" class="selectable-cell" ng-click="workOrder.Expanded=!workOrder.Expanded">
+                <i ng-show="!workOrder.Expanded" class="fa fa-caret-right text-primary"></i>
+                <i ng-show="workOrder.Expanded" class="fa fa-caret-down text-danger"></i>
+                <Label class="selectable">{{workOrder.Month}}/{{workOrder.Year}}</Label>
+            </td>
+
+            @*<td style="font-size:medium;" class="selectable-cell" ng-click="workOrder.Expanded=!workOrder.Expanded">{{workOrder.Month}}/{{workOrder.Year}}</td>*@
+            <td style="font-size:medium;" class="text-right selectable-cell" ng-click="workOrder.Expanded=!workOrder.Expanded">{{workOrder.Count}}</td>
+            <td style="font-size:medium;" class="text-right selectable-cell" ng-click="workOrder.Expanded=!workOrder.Expanded">{{workOrder.TotalAmount | currency}}</td>
+        </tr>
+        <tr ng-repeat-end ng-show="workOrder.Expanded">
+            <td colspan="6">
+                @Html.Partial("PartialInvoiceHistoryList")
+            </td>
+        </tr>
+    </tbody>
+</table>
+

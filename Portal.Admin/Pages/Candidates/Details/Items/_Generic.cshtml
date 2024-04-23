@@ -1,0 +1,10 @@
+﻿@model Global.Candidates.Details.Models.CandidateEventItem
+@{
+    var i = Model;
+}
+<div class="text-default row">
+    <strong>
+        <i class="fa-regular fa-circle-question"></i>
+        @i.SystemEventName - @i.DateOccurred.ToString("MM/dd/yyyy hh:mmtt").ToLower()
+    </strong>
+</div>

@@ -1,0 +1,32 @@
+﻿<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th scope="col">Invoice #</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Error</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*| orderBy : 'CustomerName'*@
+        <tr ng-repeat-start="invoice in invoiceCtl.errorInvoices" ng-show="!invoiceCtl.loading" ng-click="invoice.Expanded=!invoice.Expanded">
+            <td class="selectable-cell" nowrap>
+                <i ng-show="!invoice.Expanded" class="fa fa-caret-right text-primary"></i>
+                <i ng-show="invoice.Expanded" class="fa fa-caret-down text-danger"></i>
+                <Label class="selectable">{{invoice.InvoiveNum}}</Label>
+            </td>
+            <td>{{invoice.CustomerName}}</td>
+            <td>{{invoice.DueDate | date : shortDate}}</td>
+            <td>{{invoice.LineItemsTotalTaxIncluded | currency}}</td>
+            <td>{{invoice.ErrorMessage}}</td>
+        </tr>
+        <tr ng-repeat-end ng-show="invoice.Expanded">
+            <td colspan="5">
+                @Html.Partial("PartialInvoice")
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

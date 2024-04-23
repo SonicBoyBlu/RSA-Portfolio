@@ -1,0 +1,28 @@
+﻿@page
+@model Jobs.Pages.JobsModel
+@{
+    ViewData["Title"] = "Jobs List";
+    int jobID = 0;
+    int.TryParse(Request.Query["id"], out jobID);
+    var _Jobs = Model.Jobs;
+}
+@if(_Jobs.Count == 1)
+{
+    var j = _Jobs.First();
+    <partial name="Partials/_JobDetail" model="j" />
+   
+} else {
+@*
+<span>
+    Jobs available: <strong>@Model.Jobs.Count</strong>
+</span>
+*@
+<ul id="tbl-job-list" class="list-unstyled">
+@{
+    foreach(var j in _Jobs)
+    {
+        <partial name="Partials/_JobListItem" model="j" />
+    }
+}
+</ul>
+}

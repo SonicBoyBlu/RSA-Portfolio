@@ -1,0 +1,18 @@
+﻿.flex-caption {
+    position:relative;
+    animation-name: slideIn;
+    animation-duration: 2.5s;
+    animation-fill-mode:forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        left: 9%;
+        opacity: 0;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}

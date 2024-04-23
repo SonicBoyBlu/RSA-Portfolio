@@ -1,0 +1,102 @@
+﻿<div ng-controller="InvoiceController as invoiceCtl" ng-cloak>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>
+                        <i ng-show="invoiceCtl.authenticated" class="fa fa-check-circle text-success"></i>
+                        <i ng-show="!invoiceCtl.authenticated" class="fa fa-times-circle text-danger"></i>
+                        Upload Invoices to QuickBooks Online - {{invoiceCtl.authenticated ? 'Connected' : 'NOT Connected'}}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info" ng-show="!invoiceCtl.authenticated">
+                        <h6>Before you can Select and Upload Invoices, you need to be connected to QuickBooks,  please click on the "Connect to QBO" button to connect.</h6>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Invoice # or Customer Name" ng-model="invoiceCtl.query" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+
+                                <input date-range-picker id="daterange" name="daterange" class="form-control date-picker" type="text"
+                                       ng-model="invoiceCtl.date"
+                                       options="invoiceCtl.dateRangePickerOptions" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <dl>
+                        <dt class="text-warning0">Selected Invoices</dt>
+                        <dd><a>{{invoiceCtl.selectedCount()}} / {{invoiceCtl.selectedTotal() | currency}}</a></dd>
+                        <dt class="text-warning0">Pending Amount (Including Tax)</dt>
+                        <dd><a>{{invoiceCtl.pendingTotal() | currency}}</a></dd>
+                        <dt class="text-warning0">Uploaded Amount (Including Tax)</dt>
+                        <dd><a>{{invoiceCtl.uploadedTotal() | currency}}</a></dd>
+                        <dd ng-show="invoiceCtl.uploading">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{invoiceCtl.uploadPercentage}}%" aria-valuemin="0" aria-valuemax="100">
+                                    {{invoiceCtl.uploadPercentage}}%
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                    <div class="text-right">
+                        <a href="@Url.Action("QuickBooksConnect", "QuickBooks" )" class="btn btn-outline-success" target="_self" ng-show="!invoiceCtl.authenticated">Connect to QBO </a>
+                        @*<button type="button" class="btn btn-outline-success" ng-click="invoiceCtl.verifyItems()" ng-show="invoiceCtl.authenticated" >Verify QBO Items</button>*@
+                        <button type="button" class="btn btn-outline-success" ng-click="invoiceCtl.uploadInvoices()" ng-show="!invoiceCtl.uploading" ng-disabled="invoiceCtl.selectedCount()==0">Upload Selected Invoices</button>
+                        <button type="button" class="btn btn-outline-danger" ng-click="invoiceCtl.cancelUpload()" ng-show="invoiceCtl.uploading">Cancel</button>
+                    </div>
+
+                    <div>
+                        <ul>
+                            <li ng-repeat="error in invoiceCtl.verifyErrors">
+                                <i ng-show="!error.OperationSucceeded" class="fa fa-times-circle text-danger">  {{error.ErrorMessage}}</i>
+                                <i ng-show="error.OperationSucceeded" class="fa fa-check-circle text-success">  {{error.ErrorMessage}}</i>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a data-toggle="tab" data-target="#Pending" class="nav-link active" href="#">Pending ({{invoiceCtl.pendingCount()}})</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" data-target="#Uploaded" class="nav-link" href="#">Uploaded ({{invoiceCtl.uploadedCount()}})</a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" data-target="#Errors" class="nav-link text-danger" href="#">Errors ({{invoiceCtl.errorCount()}})</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="Pending" class="tab-pane active">
+                            @Html.Partial("PartialInvoiceList")
+                        </div>
+                        <div id="Uploaded" class="tab-pane">
+                            @Html.Partial("PartialUploadedInvoiceList")
+                        </div>
+                        <div id="Errors" class="tab-pane">
+                            @Html.Partial("PartialErrorInvoiceList")
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

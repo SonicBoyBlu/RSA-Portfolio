@@ -1,0 +1,177 @@
+﻿@model Acme.ViewModels.CRM.ContactsView
+@{
+    DataTypes.CRM.ContactType contactTypeID = (DataTypes.CRM.ContactType)Model.Query.ContactTypeID;
+    string contactType = Model.View;
+    string icon = string.Empty;
+    string cssPrimary = string.Empty;
+    switch (contactTypeID)
+    {
+        case DataTypes.CRM.ContactType.Lead: icon = "fab fa-font-awesome-flag"; cssPrimary = "text-success"; break;
+        case DataTypes.CRM.ContactType.Potential: icon = "fa fa-funnel-dollar"; cssPrimary = "text-warning"; break;
+        case DataTypes.CRM.ContactType.Vendor: icon = "fa fa-toolbox"; cssPrimary = "text-dark"; break;
+        default: icon = "fa fa-address-card"; cssPrimary = "text-info"; break;
+    }
+
+    bool isShowFilter =
+        contactTypeID == DataTypes.CRM.ContactType.All ||
+        contactTypeID == DataTypes.CRM.ContactType.Owner ||
+        contactTypeID == DataTypes.CRM.ContactType.Vendor;
+}
+<h2 class="@cssPrimary  d-none"><i class="@icon"></i> @contactType</h2>
+<script type="text/javascript">
+    TableSort.config.queryParams = { ContactTypeID: @((int)contactTypeID) };
+</script>
+
+@if (isShowFilter)
+{
+    <a data-toggle="collapse" data-target="#crm-filter-result" class="float-right text-info"><i class="fa fa-filter"></i> Filter</a>
+    <fieldset class="crm-filters collapse" id="crm-filter-result">
+        <legend>Filters</legend>
+        <div class="row cmd-filters">
+            <div class="col-3">
+                <label><input type="checkbox" value="0" checked="checked" /> All</label>
+            </div>
+            @switch (contactTypeID)
+            {
+                case DataTypes.CRM.ContactType.All:
+                    foreach (var t in Model.Lists.ContactTypes)
+                    {
+                        <div class="col-3">
+                            <label><input type="checkbox" value="@t.ContactTypeID" checked="checked" data-type="ContactTypeID" /> @t.ContactType</label>
+                        </div>
+                    }
+                    break;
+                case DataTypes.CRM.ContactType.Owner:
+                    <div class="col-12">
+                        <strong>Owner Types</strong>
+                    </div>
+                    foreach (var t in Model.Lists.ContactSubTypes.Where(x => x.ContactTypeID == (int)DataTypes.CRM.ContactType.Owner))
+                    {
+                        <div class="col-3">
+                            <label><input type="checkbox" value="@t.ContactSubTypeID" checked="checked" data-type="ContactSubTypeID" /> @t.ContactSubType</label>
+                        </div>
+                    }
+                    <div class="col-12">
+                        <strong>Property Types</strong>
+                    </div>
+                    foreach (var t in Model.Lists.PropertyTypes)
+                    {
+                        <div class="col-3">
+                            <label><input type="checkbox" value="@t.PropertyTypeID" checked="checked" data-type="PropertyTypeID" /> @t.PropertyType</label>
+                        </div>
+                    }
+                    break;
+                case DataTypes.CRM.ContactType.Vendor:
+                    foreach (var t in Model.Lists.ContactSubTypes.Where(x => x.ContactTypeID == (int)DataTypes.CRM.ContactType.Vendor))
+                    {
+                        <div class="col-3">
+                            <label><input type="checkbox" value="@t.ContactSubTypeID" checked="checked" data-type="ContactSubTypeID" /> @t.ContactSubType</label>
+                        </div>
+                    }
+                    break;
+            }
+        </div>
+    </fieldset>
+}
+<div class="table-responsive">
+    <table id="tbl-@contactType-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="/CRM/ContactList/@contactType" data-row-attributes="Actions.rowAttributes">
+        <thead>
+            <tr>
+                @switch (contactTypeID)
+                {
+                    case DataTypes.CRM.ContactType.Owner:
+                        <th data-sortable="true" data-field="PersonID"><i class="fa fa-user"></i></th>
+                        <th data-sortable="true" data-field="PropertyID"><i class="fa fa-home"></i></th>
+                        <th data-sortable="true" data-field="FullName">Contacts</th>
+                        <th data-sortable="true" data-field="ContactSubTypeID" data-visible="false">Type ID</th>
+                        <th data-sortable="true" data-field="ContactSubType" data-formatter="TableSort.format.CRM.type">Type</th>
+                        <th data-sortable="true" data-field="AccountName">Property</th>
+                        <th data-sortable="true" data-field="PropertyTypeID">TypeID</th>
+                        <th data-sortable="true" data-field="PropertyType">Type</th>
+                        <th data-sortable="true" data-field="UrlPhoneNumber">Phone</th>
+                        <th data-sortable="true" data-field="UrlEmailAddress">Email</th>
+                        <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+                        break;
+
+                    case DataTypes.CRM.ContactType.Lead:
+                        <th data-sortable="true" data-field="PersonID"><i class="fa fa-user"></i></th>
+                        <th data-sortable="true" data-field="PropertyID"><i class="fa fa-home"></i></th>
+                        <th data-sortable="true" data-field="FullName">Contacts</th>
+                        <th data-sortable="true" data-field="PropertyAddress">Address</th>
+                        <th data-sortable="true" data-field="LeadSource">Source</th>
+                        <th data-sortable="true" data-field="Stage">Status</th>
+                        <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+                        break;
+
+                    case DataTypes.CRM.ContactType.Potential:
+                        <th data-sortable="true" data-field="PersonID"><i class="fa fa-user"></i></th>
+                        <th data-sortable="true" data-field="PropertyID"><i class="fa fa-home"></i></th>
+                        <th data-sortable="true" data-field="FullName">Contact</th>
+                        <th data-sortable="true" data-field="AccountName">Property</th>
+                        <th data-sortable="true" data-field="ExpectedRevenue" data-formatter="TableSort.format.currency" data-class="text-success">Expected $</th>
+                        <th data-sortable="true" data-field="Stage">Stage</th>
+                        <th data-sortable="true" data-field="LeadType">Type</th>
+                        <th data-sortable="true" data-field="LeadSource">Source</th>
+                        <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+                        break;
+
+                    case DataTypes.CRM.ContactType.Vendor:
+                        <th data-sortable="true" data-field="PersonID"><i class="fa fa-user"></i></th>
+                        <th data-sortable="true" data-field="VendorID">ID</th>
+                        <th data-sortable="true" data-field="Company">Name</th>
+                        <th data-sortable="true" data-field="ContactSubType">Type</th>
+                        <th data-sortable="true" data-field="Category">Category</th>
+                        <th data-sortable="true" data-field="UrlPhoneNumber" class="text-nowrap">Phone</th>
+                        <th data-sortable="true" data-field="UrlEmailAddress">Email</th>
+                        <th data-sortable="true" data-field="UrlWebsite">Website</th>
+                        break;
+
+                    default:
+                        <th data-sortable="true" data-field="PersonID"><i class="fa fa-user"></i></th>
+                        <th data-sortable="true" data-field="PropertyID"><i class="fa fa-home"></i></th>
+
+                        <th data-sortable="true" data-field="FullName">Contacts</th>
+                        <th data-sortable="true" data-field="ContactTypeID" class="d-none">Type ID</th>
+                        <th data-sortable="true" data-field="ContactType">Type</th>
+                        <th data-sortable="true" data-field="AccountName">Property</th>
+                        <th data-sortable="true" data-field="UrlPhoneNumber">Phone</th>
+                        <th data-sortable="true" data-field="UrlEmailAddress">Email</th>
+                        <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+                        break;
+                }
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var tableName = "#tbl-@contactType-list";
+    $(function () {
+        Actions.init();
+    });
+
+    var Actions = {
+        init: function () {
+            $(tableName).bootstrapTable("destroy");
+            CRM.render.table(tableName);
+            $(".fixed-table-toolbar:visible .btn-group:first").append("<button class='btn btn-secondary btn-export' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+            $(".fixed-table-toolbar:visible .btn-group:first").append("<button class='btn btn-info btn-contact-new' data-contact-id='0' type='button' name='new' title='Create New Contact'><i class='fa fa-plus-circle'></i></button>");
+            $(document).on("click", ".btn-export", function () {
+                $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                $("table-sortable").tableExport({
+                        type: 'excel'
+                });
+            });
+        },
+        rowAttributes: function (row, index) {
+            return {
+                "data-contact-id": row.PersonID,
+                "data-contact-type-id": row.ContactTypeID,
+                "data-contact-sub-type-id": row.ContactSubTypeID,
+                "data-property-id": row.PropertyID
+            }
+        }
+    }
+
+</script>

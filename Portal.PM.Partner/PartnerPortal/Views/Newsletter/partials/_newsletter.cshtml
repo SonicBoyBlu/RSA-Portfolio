@@ -1,0 +1,7 @@
+﻿@model Acme.Models.NewletterItem
+
+<h1>@Model.Subject</h1>
+
+@Html.Raw(Model.Body)
+
+<p class="text-right text-muted">@Model.DatePublished.ToShortDateString()</p>

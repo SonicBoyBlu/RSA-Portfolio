@@ -1,0 +1,289 @@
+﻿@{
+    ViewBag.Title = "Manage Users";
+    ViewBag.TitleIcon = "fa-users-cog";
+    ViewBag.Nav = "admin-users";
+}
+
+<div ng-app="user" ng-controller="UserController as userCtl" ng-cloak>
+
+<a class="btn btn-outline-success user-add">Add User</a>
+<a class="btn btn-success" ng-click="userCtl.newUser(null,userCtl.userTypes)">Add New User</a>
+
+<div class="row">
+
+    <div class="col-8">
+        <input type="text" class="form-control" placeholder="Users" ng-model="userCtl.userSearch"/>
+    </div>
+
+    <div class="col-2">
+        <select class="form-control"
+                    data-placeholder="User Type"
+                    ng-model="userCtl.userType"
+                    ng-change="gridFilter()"
+                    ng-options="item as item.name for item in userCtl.userTypes track by item.value"
+        >
+        </select>
+    </div>
+
+    <div class="col-2">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fa fa-sitemap"></i></span>
+            </div>
+            <select class="form-control"></select>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Contact</th>
+                <th>Department</th>
+                <th>Escapia</th>
+                <th>Tickets</th>
+                <th>Bamboo</th>
+                <th>Dpt Admin</th>
+                <th>SU</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-show="userCtl.loading">
+                            <td colspan="11">
+                                <div ng-show="userCtl.loading">
+                                    @Html.Partial("_LoadingIndicator", "Loading Users")
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-id="{{reservation.ReservationNumber}}" data-metaid="{{reservation.MetaID}}" ng-repeat="user in userCtl.users | filter: { FullName: userCtl.userSearch }" ng-show="!userCtl.loading">
+                            <td><img ng-src="{{user.PhotoUrl}}" class="img-fluid img-circle img-profile"  alt="{{user.FullName}}" /></td>
+                            <td>
+                                <a href="" ng-click="userCtl.editUser(user,userCtl.userTypes)">{{user.FullName}}</a>
+                                <br><small>{{user.Email}}</small>
+                            </td>
+                            <td>{{user.UserTypeName}}</td>
+                            <td>
+
+                                <div class="btn btn-info disabled" title="No phone on file" ng-show="!user.Phone"><i class="fas fa-phone-slash fa-sm"></i></div>
+
+                                <a class="btn btn-info"
+                                ng-href="tel:{{user.Phone}}"
+                                title="{{user.Phone}}" ng-show="user.Phone"><i class="fas fa-phone fa-sm"></i></a>
+
+                                <a class="btn btn-info"
+                                ng-href="mailto:{{user.Email}}"
+                                title="{{user.Email}}"><i class="fas fa-envelope fa-sm"></i></a>
+
+
+                            </td>
+                            <td>{{user.Department}} <br /><small>{{user.JobTitle}}</small></td>
+                            <td><i ng-class="getIconClass(user.ExternalApplications.Escapia)" title="{{user.ExternalApplications.Escapia.Id}}"></i></td>
+                            <td><i ng-class="getIconClass(user.ExternalApplications.JitBitUser)"></i></td>
+                            <td><i ng-class="getIconClass(user.ExternalApplications.BambooHR)"></i></td>
+                            <td><i ng-class="getIconClass(user.IsDepartmentAdmin)"></i></td>
+                            <td><i ng-class="getIconClass(user.IsAdmin)"></i></td>
+                        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+
+@section modals {
+
+<!-- Employee Edit -->
+<div class="modal fade" id="mdl-employee-edit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content-wrapper">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times"></i></span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body">
+                    <h1><i class="fa fa-id-card"></i> <span class="employee-name">User</span></h1>
+                    <form id="form-employee-edit" name="form-employee-edit">
+                        <div class="form-group">
+                            <select class="form-control" id="UserTypeID" name="UserTypeID" required>
+                                <option value>-- Select User Type --</option>
+                                <option value="1">Employee</option>
+                                <option value="2">Owner</option>
+                                <option value="3">Vendor</option>
+                            </select>
+
+                            <select class="form-control"
+                                    data-placeholder="User Type"
+                                    ng-model="userCtl.userType"
+                                    ng-change="gridFilter()"
+                                    ng-options="item as item.name for item in userCtl.userTypes track by item.value">
+                            </select>
+
+                        </div>
+
+                        <div class="form-group form-bamboo-list" style="display: none;">
+                            <div>
+                                <h4 class="float-left">Use Bamboo Users</h4>
+                                <span class="float-right" id="">[<a href="" id="form-secondary-show">new user</a>]</span>
+                            </div>
+                            <div id="rpt-bamboo"></div>
+                        </div>
+
+                        <div id="form-secondary" class="form-secondary" style="display: none;">
+                            <div class="form-group">
+                                <label for="FirstName">FirstName</label>
+                                <input type="text" class="form-control" id="FirstName" name="FirstName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="LastName">LastName</label>
+                                <input type="text" class="form-control" id="LastName" name="LastName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Email">Email</label>
+                                <input type="text" class="form-control" id="Email" name="Email" required>
+                            </div>
+
+
+                            <input type="hidden" name="BambooId" id="BambooId">
+                            <input type="hidden" name="UserID" id="UserId">
+                            <button type="submit" class="btn btn-primary btn-employee-edit">Submit</button>
+
+
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+}
+
+@section scripts {
+    <script type="text/javascript">
+    $(function(){
+        Users.fetch.clearUserForm();
+        Users.fetch.userBambooList();
+        // Users.fetch.userList();
+    });
+
+    var Users = {
+        fetch: {
+            @* userList: function () {
+                var c = $("#rpt-users");
+                $.ajax({
+                    url: "@Url.Action("FetchUsers", "Users")",
+                    data: { UserType: $("[name='filter-user-type']").val() },
+                    beforeSend: function () {
+                        c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                    },
+                    success: function (d) {
+                        c.html(d);
+                    }
+                });
+            }, *@
+            @* user: function (id) {
+                var mdl = $("#mdl-employee-detail"),
+                    title = $(".employee-name", mdl),
+                    body = $(".modal-body", mdl);
+                $.ajax({
+                    url: "@Url.Action("FetchUser", "Users")",
+                    data: { UserID: id },
+                    beforeSend: function () {
+                        body.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                        mdl.modal("show");
+                    },
+                    success: function (d) {
+                        body.html(d);
+                    }
+                });
+            }, *@
+            userUpdate: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdateUser", "Users")",
+                    data: $("#form-employee-edit").serialize(),
+                    success: function (d) {
+                        Users.fetch.clearUserForm();
+                        Users.fetch.userBambooList();
+                        // Users.fetch.userList();
+                    }
+                });
+            },
+            userUpdatePassword: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UpdatePassword", "Users")",
+                    data: $("#frm-pw-update").serialize(),
+                    success: function (d) {
+                        console.log('d: ',d);
+                    }
+                });
+            },
+            @* userActiveToggle: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("UserActiveToggle", "Users")",
+                    data: $("#form-employee-edit").serialize(),
+                    success: function (d) {
+                        // Users.fetch.userList();
+                    }
+                });
+            }, *@
+            userBambooList: function () {
+                $.ajax({
+                    url: "@Url.Action("FetchBambooUsersDropDown", "Users")",
+                    success: function (d) {
+                        var c = $("#rpt-bamboo");
+                        c.html(d);
+                    }
+                });
+            },
+            userBamboo: function (id) {
+                $.ajax({
+                    url: "@Url.Action("FetchBambooUser", "Users")",
+                    data: { id: id },
+                    success: function (d) {
+                        var emp = JSON.parse(d)
+                        Users.fetch.fillUserFormBamboo(emp)
+                    }
+                });
+            },
+            fillUserFormBamboo: function (emp) {
+                console.log(emp)
+                $("#FirstName").val(emp.FirstName);
+                $("#LastName").val(emp.LastName);
+                $("#Email").val(emp.WorkEmail);
+                $("#BambooId").val(emp.Id);
+            },
+            clearUserForm: function (emp) {
+                $(".form-bamboo-list, .form-secondary").hide();
+                $("#FirstName, #LastName, #Email, #UserId, #BambooId").val('');
+            }
+        }
+    };
+</script>
+
+
+
+    <style type="text/css">
+        #rpt-users .img-profile {
+            width: 6em;
+        }
+
+        #rpt-users tr {
+            vertical-align: middle;
+        }
+    </style>
+}

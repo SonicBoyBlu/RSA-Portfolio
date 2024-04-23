@@ -1,0 +1,26 @@
+﻿@model Acme.ViewModels.NewsletterViewModel
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tbody>
+
+            @if (Model.Articles.Count > 0)
+            {
+
+                foreach (var n in Model.Articles)
+                {
+                    <tr data-news-id="@n.NewsItemID" class="row-action">
+                        <td><strong>@n.Subject</strong></td>
+                        <td class="text-right text-muted">@n.DatePublished.ToString("MM/yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2">No archives yet.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

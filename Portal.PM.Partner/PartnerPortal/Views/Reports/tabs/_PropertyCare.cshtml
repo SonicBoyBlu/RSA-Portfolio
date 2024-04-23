@@ -1,0 +1,361 @@
+﻿@model Acme.ViewModels.Reports.PcTechsViewModel
+
+<h3 class="text-success">
+    <i class="fa fa-tools"></i> Property Care
+</h3>
+
+<div class="loading-report-charts text-center">
+    <i class="fa fa-cog fa-spin fa-5x"></i>
+</div>
+
+<ul class="nav nav-tabs" id="sub-report-tabs-techs">
+    <li class="nav-item">
+        <a class="nav-link text-success active" data-toggle="tab" href="#sub-tabs-techs-0">Summary</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-success" data-toggle="tab" href="#sub-tabs-techs-1">Efficency</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-success" data-toggle="tab" href="#sub-tabs-techs-2">Billable</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-success" data-toggle="tab" href="#sub-tabs-techs-3">Non-Billable</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane container active" id="sub-tabs-techs-0">
+
+        <div class="row">
+            <div class="col-6" id="chart-pie-pc-billable" style="width: 100%;"></div>
+            <div class="col-6" id="chart-pie-pc-parts-billed" style="width: 100%;"></div>
+
+            <div class="col-6" id="chart-pie-SummaryItemsByUser"></div>
+            <div class="col-6" id="chart-pie-Billables"></div>
+
+
+            <div class="col-6" id="chart-pie-pc-non-billable" style="width: 100%;"></div>
+            <div class="col-6" id="chart-pie-pc-non-billable-items" style="width: 100%;"></div>
+            @*
+            <div class="col-6">
+                <div id="chart-pie-pc-supplies" style="width: 100%;"></div>
+            </div>
+            *@
+        </div>
+
+    </div>
+    <div class="tab-pane container" id="sub-tabs-techs-1">
+
+        <h1>Coming Soon!</h1>
+
+        @{
+            var TeamItems = Model.SummaryItemsByUser.Where(x => x.CompletedByJobTitle.Contains("Property Care")).OrderBy(x => x.CompletedBy.Trim());
+            var TeamMembers = from m in TeamItems
+                                   group m by m.CompletedBy into Members
+                                   orderby Members.Key
+                                   select Members;
+            int ChartLaborUserIndex = 0;
+        }
+        @foreach(var m in TeamMembers)
+        {
+            var Items = TeamItems.Where(x => x.CompletedBy == m.Key).OrderByDescending(x => x.CompletedBy);
+            var FirstRow = Items.First();
+
+            var timeTotal = Model.TotalTimeBillable.Where(x => x.CompletedBy == FirstRow.CompletedBy).FirstOrDefault();
+            var timeBillable = Model.TimeBillable.Where(x => x.CompletedBy == FirstRow.CompletedBy).FirstOrDefault();
+            var timeNonBillable = Model.TimeNonBillable.Where(x => x.CompletedBy == FirstRow.CompletedBy).FirstOrDefault();
+            var timeGuestServices = Model.TimeGuestServices.Where(x => x.CompletedBy == FirstRow.CompletedBy).FirstOrDefault();
+
+    <div class="row">
+        <div class="col">
+            <h4 class="text-success">
+                <img src="@FirstRow.CompletedByPhotoUrl" class="grid-avatar" />
+                @FirstRow.CompletedBy
+            </h4>
+            <dl>
+                <dt>Billable</dt>
+                <dd>@timeBillable.TotalTimeBilled</dd>
+                <dt>Non-Billable</dt>
+                <dd>@timeNonBillable.TotalTimeBilled</dd>
+                <dt>Guest Services</dt>
+                <dd>@timeGuestServices.TotalTimeBilled</dd>
+                <dt><strong>Total WO Time</strong></dt>
+                <dd><strong class="text-info">@timeTotal.TotalTimeBilled</strong></dd>
+                <dt><strong>BW WO Efficiency</strong></dt>
+                <dd>
+                    <strong class="text-success">@(((timeTotal.TotalTimeChart - timeNonBillable.TotalTimeChart) / timeTotal.TotalTimeChart).ToString("p"))</strong><br />
+                    <small>(Billable + Guest Services - Non-Billable) / Total Work Order Hours %</small>
+                </dd>
+            </dl>
+        </div>
+        <div class="col">
+            <div class="chart-wrapper">
+                <div id="chart-tech-efficiency-@(ChartLaborUserIndex)" class="chart"></div>
+            </div>
+            <script type="text/javascript">
+                        $(function () {
+                            ReportPC.charts.options.title = "Utilization";
+                            ReportPC.charts.data = google.visualization.arrayToDataTable([
+                                ['Labor Type', 'Hours'],
+                                ['Billable', @timeBillable.TotalTimeChart],
+                                ['Guest Services', @timeGuestServices.TotalTimeChart],
+                                ['Non-Billable', @timeNonBillable.TotalTimeChart],
+
+                                @*foreach(var i in Items)
+                                {
+                                    <text>['@i.Supply', @i.Quantity],</text>
+                                }
+                                *@
+                            ]);
+                            var chart@(ChartLaborUserIndex) = new google.visualization.PieChart(document.getElementById('chart-tech-efficiency-@(ChartLaborUserIndex)'));
+                            chart@(ChartLaborUserIndex).draw(ReportPC.charts.data, ReportPC.charts.options);
+                        });
+            </script>
+
+        </div>
+    </div>
+            ChartLaborUserIndex++;
+        }
+
+    </div>
+    <div class="tab-pane container" id="sub-tabs-techs-2">
+
+        <h4 class="text-success">Billable Maintenance</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2">Team Member</th>
+                        <th>Department / Title</th>
+                        <th># WO Created</th>
+                        <th># Vendor Dispatch</th>
+                        <th># Task Complete/Approve</th>
+                        <th># Assigned To</th>
+                        <th># Wo Completed</th>
+                        <th>Total Hours</th>
+                        <th>$ Billable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.BillableItems)
+                    {
+                        <tr>
+                            @if (!string.IsNullOrEmpty(i.ProfilePicUrl))
+                            {
+                                <td class="text-center"><img class="grid-avatar" src="@i.ProfilePicUrl" title="@i.TeamMember"></td>
+                            }
+                            else
+                            {
+                                <td class="text-center"><i class="fa fa-user" title="@i.TeamMember"></i></td>
+                            }
+                            <td class="text-right">@i.TeamMember</td>
+                            <td class="text-right"><strong>@i.Department</strong> <br /> <em>@i.JobTitle</em></td>
+                            <td>@i.WorkOrdersCreatedBy</td>
+                            <td>@i.VendorDispatch</td>
+                            <td>??</td>
+                            <td>@i.WorkOrdersAssignedTo</td>
+                            <td>@i.WorkOrdersCompletedBy</td>
+                            <td>@i.TotalHours</td>
+                            <td class="text-success">@i.TotalBillable.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Totals</th>
+                        <th>@Model.BillableItems.Sum(i => i.WorkOrdersCreatedBy).ToString("N0")</th>
+                        <th>@Model.BillableItems.Sum(i => i.VendorDispatch).ToString("N0")</th>
+                        <th>??</th>
+                        <th>@Model.BillableItems.Sum(i => i.WorkOrdersAssignedTo).ToString("N0")</th>
+                        <th>@Model.BillableItems.Sum(i => i.WorkOrdersCompletedBy).ToString("N0")</th>
+                        <th></th>
+                        <th class="text-success">@Model.BillableItems.Sum(i => i.TotalBillable).ToString("C")</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <div class="tab-pane container" id="sub-tabs-techs-3">
+
+        <h4 class="text-success">Non-Billable Maintenance</h4>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2">Team Member</th>
+                        <th>Guest Service WO</th>
+                        <th>Guest Damage WO</th>
+                        <th>Point Central</th>
+                        <th>Noise Aware</th>
+                        <th>Event Setup</th>
+                        <th>Warrenty Service</th>
+                        <th>Total Hours</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.NonBillableItems)
+                    {
+                    <tr>
+                        @if (!string.IsNullOrEmpty(i.ProfilePicUrl))
+                        {
+                            <td class="text-center"><img class="grid-avatar" src="@i.ProfilePicUrl" title="@i.CompletedBy"></td>
+                        }
+                        else
+                        {
+                            <td class="text-center"><i class="fa fa-user" title="@i.CompletedBy"></i></td>
+                        }
+                        <td class="text-left">@i.CompletedBy</td>
+                        <td>@i.GuestServices</td>
+                        <td>@i.GuestDamages</td>
+                        <td>@i.PointCentral</td>
+                        <td>@i.NoiseAware</td>
+                        <td>@i.EventSetup</td>
+                        <td>@i.WarrentyService</td>
+                        <td>@i.TotalHours</td>
+                        <td class="text-success">@i.TotalCost.ToString("C")</td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Totals</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.GuestServices)</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.GuestDamages)</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.PointCentral)</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.NoiseAware)</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.EventSetup)</th>
+                        <th>@Model.NonBillableItems.Sum(i => i.WarrentyService)</th>
+                        <th></th>
+                        <th class="text-success">@Model.NonBillableItems.Sum(i => i.TotalCost).ToString("C")</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    var ReportPC = {
+        charts: {
+            options: {
+                title: '',
+                width:'100%'
+            },
+            data:null
+        },
+        draw: {
+            charts: function () {
+                $(".loading-report-charts").hide();
+                var options = {
+                    title: '',
+                    //is3D: true,
+                    //pieHole:0.2
+                };
+                var data;
+
+                /*
+                options.title = "Billable Maintenance (Mock)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    ['Person 1', 11],
+                    ['Person 2', 8],
+                    ['Person 3', 4],
+                    ['Person 4', 2],
+                    ['Person 5', 3]
+                ]);
+                var chart = new google.visualization.PieChart(document.getElementById('chart-pie-pc-billable'));
+                chart.draw(data, options);
+                //*/
+
+
+                options.title = "Non-Billable Maintenane Labor $";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Tech Dollars'],
+                    @foreach (var i in Model.NonBillableItems.Where(x => x.TotalCost > 0))
+                    {
+                        <text>['@i.CompletedBy', @i.TotalCost],</text>
+                    }
+                ]);
+                var chart2 = new google.visualization.PieChart(document.getElementById('chart-pie-pc-non-billable'));
+                chart2.draw(data, options);
+
+
+                /*
+                options.title = "Parts Ordered (Top 5) (Mock)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Parts Ordered'],
+                    ['Part 1', 0],
+                    ['Part 2', 25],
+                    ['Part 3', 18],
+                    ['Part 4', 2],
+                    ['Part 5', 9]
+                ]);
+                var chart3 = new google.visualization.PieChart(document.getElementById('chart-pie-pc-parts-billed'));
+                chart3.draw(data, options);
+                //*/
+
+                options.title = "Non-Billable Labor Items";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Items'],
+                    ['Guest Services', @Model.NonBillableItems.Sum(i => i.GuestServices)],
+                    ['Guest Damages', @Model.NonBillableItems.Sum(i => i.GuestDamages)],
+                    ['Point Central', @Model.NonBillableItems.Sum(i => i.PointCentral)],
+                    ['Noise Aware', @Model.NonBillableItems.Sum(i => i.NoiseAware)],
+                    ['Event Setup',@Model.NonBillableItems.Sum(i => i.EventSetup)],
+                    ['Warrenty Service',@Model.NonBillableItems.Sum(i => i.WarrentyService)]
+                ]);
+                var chart4 = new google.visualization.PieChart(document.getElementById('chart-pie-pc-non-billable-items'));
+                chart4.draw(data, options);
+
+                @*
+                options.title = "Supplies Used (Top 5)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Supplies Used'],
+                    ['Supply 1', 2],
+                    ['Supply 2', 4],
+                    ['Supply 3', 10],
+                    ['Supply 4', 12],
+                    ['Supply 5', 7]
+                ]);
+                var chart4 = new google.visualization.PieChart(document.getElementById('chart-pie-pc-supplies'));
+                chart4.draw(data, options);
+                *@
+
+                // From Supplies
+                options.title = 'Total Work Orders';
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    @foreach(var w in Model.SummaryItemsByUser)
+                    {
+                        <text>['@w.CompletedBy', @w.WorkOrderTotal],</text>
+                    }
+                ]);
+                var chart0 = new google.visualization.PieChart(document.getElementById('chart-pie-SummaryItemsByUser'));
+                chart0.draw(data, options);
+
+
+                options.title = "Bill To Owner";
+                    data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    @foreach(var w in Model.SummaryItemsByUser)
+                    {
+                        <text>['@w.CompletedBy', @w.TotalCost],</text>
+                    }
+                ]);
+                var chart1 = new google.visualization.PieChart(document.getElementById('chart-pie-Billables'));
+                chart1.draw(data, options);
+            }
+        }
+    };
+
+    $(function () {
+        console.info("Loading tab: Property Care");
+        ReportPC.draw.charts();
+    });
+</script>

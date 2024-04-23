@@ -1,0 +1,17 @@
+﻿@import "_variables.scss";
+.iframe-loading {
+    background: url('/Content//images/loading.GIF') no-repeat center center;
+}
+
+.row-action {
+    cursor: pointer;
+}
+
+.ticket-status {
+    padding-bottom: 5px;
+    min-width: 110px;
+
+    input[type='checkbox'] {
+        padding: 3px;
+    }
+}

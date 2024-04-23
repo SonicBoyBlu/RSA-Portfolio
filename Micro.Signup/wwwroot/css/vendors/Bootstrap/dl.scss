@@ -1,0 +1,56 @@
+﻿dl {
+    width: 100%;
+    margin-bottom: 0;
+
+    dt {
+        cursor: default;
+        float: left;
+        clear: left;
+        text-align: left;
+        padding-top: 6px;
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+    }
+
+    &.dl-light {
+        dt {
+            font-weight: 100;
+        }
+    }
+
+    &.dl-medium {
+        dt {
+            font-weight: 400;
+        }
+
+        dd {
+            padding: 1px 0 !important;
+        }
+    }
+
+    dd {
+        /*border-bottom: 1px dotted #ddd;*/
+        padding: 5px 0;
+        text-align: right;
+
+        .form-control {
+            display: -webkit-inline-box;
+            width: auto;
+        }
+
+        select {
+            width: auto;
+
+            option {
+                text-align: right;
+            }
+        }
+
+        &:last-child {
+            border-bottom: 0 none;
+        }
+    }
+}

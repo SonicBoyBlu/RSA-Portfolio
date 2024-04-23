@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service contains methods that add, edit, or delete tasks within SmarterTrack.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx">
+      <s:element name="CreateTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTaskResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="parameters" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateTaskResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteTaskResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTaskByIDResult" type="tns:TaskInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TaskInfoResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Task" type="tns:TaskInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TaskID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskPriorityID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskStatusID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TicketID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChatID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReminderMinutes" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CallLogID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateStart" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateDue" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalEstimate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingEstimate" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalEstimateType" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingEstimateType" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTasksByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTasksByUserResult" type="tns:TaskInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TaskInfoResultArray">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tasks" type="tns:ArrayOfTaskInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaskInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskInfo" type="tns:TaskInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTasksByChatID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="chatID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByChatIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTasksByChatIDResult" type="tns:TaskInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByTicketID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ticketID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByTicketIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTasksByTicketIDResult" type="tns:TaskInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByCallLogID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="callLogID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksByCallLogIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTasksByCallLogIDResult" type="tns:TaskInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTask" />
+  </wsdl:message>
+  <wsdl:message name="CreateTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTask" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTask" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskByID" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByChatIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksByChatID" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByChatIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksByChatIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByTicketIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksByTicketID" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByTicketIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksByTicketIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByCallLogIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTasksByCallLogID" />
+  </wsdl:message>
+  <wsdl:message name="GetTasksByCallLogIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTasksByCallLogIDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="svcTasksSoap">
+    <wsdl:operation name="CreateTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a new task as if it was added from the management interface.</wsdl:documentation>
+      <wsdl:input message="tns:CreateTaskSoapIn" />
+      <wsdl:output message="tns:CreateTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Modifies the properties of an existing task.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateTaskSoapIn" />
+      <wsdl:output message="tns:UpdateTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a task from SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteTaskSoapIn" />
+      <wsdl:output message="tns:DeleteTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves details about a specific task.</wsdl:documentation>
+      <wsdl:input message="tns:GetTaskByIDSoapIn" />
+      <wsdl:output message="tns:GetTaskByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all tasks assigned to a specified agent.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksByUserSoapIn" />
+      <wsdl:output message="tns:GetTasksByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByChatID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all tasks associated to a specified live chat.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksByChatIDSoapIn" />
+      <wsdl:output message="tns:GetTasksByChatIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByTicketID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all tasks associated to a specified ticket.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksByTicketIDSoapIn" />
+      <wsdl:output message="tns:GetTasksByTicketIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByCallLogID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all tasks associated to a specified call log.</wsdl:documentation>
+      <wsdl:input message="tns:GetTasksByCallLogIDSoapIn" />
+      <wsdl:output message="tns:GetTasksByCallLogIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="svcTasksSoap" type="tns:svcTasksSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskByID">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTaskByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByChatID">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByChatID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByTicketID">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByTicketID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByCallLogID">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByCallLogID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="svcTasksSoap12" type="tns:svcTasksSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTask">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/CreateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskByID">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTaskByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByChatID">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByChatID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByTicketID">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByTicketID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasksByCallLogID">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx/GetTasksByCallLogID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="svcTasks">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service contains methods that add, edit, or delete tasks within SmarterTrack.</wsdl:documentation>
+    <wsdl:port name="svcTasksSoap" binding="tns:svcTasksSoap">
+      <soap:address location="https://help.acmehouseco.com/Services2/svcTasks.asmx" />
+    </wsdl:port>
+    <wsdl:port name="svcTasksSoap12" binding="tns:svcTasksSoap12">
+      <soap12:address location="https://help.acmehouseco.com/Services2/svcTasks.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

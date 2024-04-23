@@ -1,0 +1,149 @@
+﻿@page
+@model Signups.Pages.SignupModel
+@{
+    ViewBag.Title = "Signup Sheet";
+    var admins = Global.Admin.Users.Get.Users(new Global.Admin.Users.Models.User() /*{ DepartmentID = 5 }*/);
+}
+@section Title {
+<div class="text-center mb-5">
+    <h3 class="text-success">Signup Sheet</h3>
+    <strong id="event-name" class="text-primary"></strong>
+</div>
+}
+
+<div id="signup-form-intake" class="carousel slide" data-bs-touch="false" data-bs-wrap="false">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+
+            <form class="needs-validation">
+                <input type="hidden" name="EventID" placeholder="EventID" />
+                <input type="hidden" name="SignupSheetID" placeholder="SignupSheetID" />
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <input type="text" class="form-control" name="FirstName" placeholder="First Name" required />
+                    </div>
+                    <div class="col-6">
+                        <input type="text" class="form-control" name="LastName" placeholder="Last Name" required />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <input type="tel" class="form-control" name="Phone" placeholder="Phone"required  />
+                    </div>
+                    <div class="col-6">
+                        <input type="email" class="form-control" name="Email" placeholder="Email" required />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <fieldset class="mt-5">
+                            <legend>Optional</legend>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <input type="month" class="form-control" name="DateGrad" value="@(DateTime.Now.ToString("yyyy-06"))" placeholder="Graduation Date" />
+                                </div>
+                                <div class="col-6">
+                                    <datalist id="MajorDdata">
+                                        <select name="MajorSelect" class="form-select">
+                                            @foreach(var m in Model.Majors)
+                                            {
+                                                <option data-value="@m.MajorID">@m.MajorName</option>
+                                            }
+                                            @*<option></option>
+                                            <option>Afghanistan</option>
+                                            <option>Åland Islands</option>
+                                            <option>Albania</option>
+                                            <option>Algeria</option>
+                                            <option>American Samoa</option>
+                                            <option>Andorra</option>
+                                            <option>Angola</option>
+                                            <option>Anguilla</option>
+                                            <option>Antarctica</option>
+                                            *@
+                                        </select>
+
+                                        @*<label for="MajorName">or other</label>*@
+
+                                    </datalist>
+
+                                    <input type="text" class="form-control"
+                                           id="Major" name="MajorName"
+                                           size="50"
+                                           list="MajorDdata"
+                                           autocomplete="off" />
+                                    <label for="MajorName">Major</label>
+
+                                    <input type="text" name="MajorID" />
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <select class="form-select" name="CpUserID" data-placeholder="I spoke with">
+                                        @foreach (var a in admins)
+                                        {
+                                            <option value="@a.UserID">@a.FullName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label class="d-none">
+                                    <input type="checkbox" name="IsAccountCreate" checked="checked" value="true" />
+                                    Create Account?
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="row mb-3 area-admin d-none">
+                    <div class="col">
+                        <fieldset class="">
+                            <legend>- Admin Use Only -</legend>
+                            <div class=" row">
+                                <div class="col">
+                                    <textarea name="Notes" class="form-control" placeholder="Notes" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+                <div class="row mt-5">
+                    <div class="col d-grid">
+                        <button type="submit" class="btn btn-success d-none area-admin" id="btn-signup-admin-submit">Approve / Submit</button>
+                        <button type="submit" class="btn btn-outline-success area-candidate" id="btn-signup-submit" @*data-bs-target="#signup-form-intake" data-bs-slide="next"*@>Signup</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="carousel-item">
+            <h3 class="text-success">
+                <i class="fa-solid fa-circle-check"></i>
+                Thank you!
+            </h3>
+            <p>
+                Signup complete. Please hand this device back to <span id="cp-name"></span>.
+            </p>
+            <div class="btn btn-outline-warning" style="opacity:0" id="btn-signup-admin-review" @*data-bs-target="#signup-form-intake*@" data-bs-slide="prev">Review Signup</div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="col-md"></div>
+    <div class="col-auto">
+    </div>
+    <div class="col-md"></div>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $(function () {
+        System.init();
+    });
+</script>
+}

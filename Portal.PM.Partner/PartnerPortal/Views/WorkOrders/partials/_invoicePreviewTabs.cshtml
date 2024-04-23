@@ -1,0 +1,147 @@
+﻿<div class="d-none d-sm-flex">
+    <div class="container-fluid p-0">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-success">Billable <span class="float-right">{{ctl.lockedPercent | number:2 }}%</span></h3>
+                            <div class="card-text">
+                                <dl class="text-success">
+                                    <dt title="Invoicable / Total Owner Work Orders">Work Orders:</dt>
+                                    <dd class="font-weight-bold">{{ctl.lockedTotalCount}} / {{ctl.ownerTotalCount}}</dd>
+                                    <dt>w/ Bal:</dt>
+                                    <dd class="font-weight-bold">{{ctl.lockedTotalBillableCount}} / {{ctl.ownerTotalBillableCount}}</dd>
+                                    <dt>Total (including tax):</dt>
+                                    <dd class="font-weight-bold">{{ctl.lockedTotalAmount | currency}} / ({{ctl.ownerTotalAmount | currency}}) </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-info">No Charge</h3>
+                            <div class="card-text">
+                                <dl class="text-info">
+                                    <dt>Work Orders:</dt>
+                                    <dd class="font-weight-bold">{{ctl.compTotalCount}}</dd>
+                                    <dt>w/ Bal:</dt>
+                                    <dd class="font-weight-bold">{{ctl.compTotalBillableCount}}</dd>
+                                    <dt>Total (including tax):</dt>
+                                    <dd class="font-weight-bold">{{ctl.compTotalAmount | currency}}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title text-warning">Other</h3>
+                            <div class="card-text">
+                                <dl class="text-warning">
+                                    <dt>Work Orders:</dt>
+                                    <dd class="font-weight-bold">{{ctl.otherTotalCount}}</dd>
+                                    <dt>w/ Bal:</dt>
+                                    <dd class="font-weight-bold">{{ctl.otherTotalBillableCount}}</dd>
+                                    <dt>Total (including tax):</dt>
+                                    <dd class="font-weight-bold">{{ctl.otherTotalAmount | currency}}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm">
+        <input type="search" class="form-control" placeholder="Invoice #, Unit Code or Customer Name" ng-model="ctl.unitFilter" ng-change="ctl.filterWorkOrders()" />
+    </div>
+
+    <div class="col-sm">
+        <input date-range-picker id="daterange" name="daterange" class="form-control date-picker" type="text" placeholder="Date Range"
+               ng-model="ctl.date"
+               options="ctl.dateRangePickerOptions" />
+    </div>
+
+    <div class="col-sm">
+        <select class="form-control" ng-model="ctl.typeFilter" data-placeholder="Department">
+            <option value="Property Care" )>Property Care</option>
+            <option value="Housekeeping">Housekeeping</option>
+        </select>
+    </div>
+
+    <div class="col-sm">
+        <select class="form-control" ng-model="ctl.balanceFilter" ng-change="ctl.filterWorkOrders()" data-placeholder="Balance Filter">
+            <option value="All">All</option>
+            <option value="With Balance">With Balance</option>
+            <option value="Without Balance" )>Without Balance</option>
+        </select>
+    </div>
+
+    <div class="col-sm-1 col-1">
+        <span class="btn btn-outline-warning btn-report-refresh" ng-click="ctl.loadWorkOrders()"><i class="fa fa-sync-alt"></i></span>
+    </div>
+
+
+
+</div>
+
+<ul class="nav nav-tabs" ng-cloak>
+    <li class="nav-item text-primary" ng-repeat="tab in ctl.tabs">
+        <a data-toggle="tab" data-target="#{tab.id}" ng-click="ctl.selectedTab = tab.id" class="text-{{tab.color}} nav-link {{tab.id == ctl.selectedTab ? 'active' : ''}}" href="#"><i class="{{tab.icon}}"></i> {{tab.title}} {{tab.invoices.length}}</a>
+    </li>
+</ul>
+<div id="content-wrapper-main text-warning" class="tab-content container-fluid">
+    <div ng-repeat="tab in ctl.tabs" id="{{tab.id}}" class="tab-pane text-{{tab.color}} {{tab.id == ctl.selectedTab ? 'active' : ''}}" ng-if="ctl.selectedTab==tab.id">
+        <h5 class="text-{{tab.color}} text-right container">Tab Total: {{ctl.workOrdersSum(tab.invoices) | currency}}</h5>
+
+        <table id="tbl-reservation-list" class="table table-click table-sortable">
+            <thead>
+                <tr>
+                    <th scope="col">Invoice #</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Invoice Date</th>
+                    <th scope="col">Due Date</th>
+                    <th class="text-right" scope="col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="ctl.loading">
+                    <td colspan="5">
+                        <div>
+                            @Html.Partial("_LoadingIndicator", "Loading Work Orders...")
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-repeat-start="invoice in tab.invoices | orderBy : 'CustomerName'" ng-show="!ctl.loading">
+                    <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">
+                        <i ng-show="!invoice.Expanded" class="fa fa-caret-right text-primary"></i>
+                        <i ng-show="invoice.Expanded" class="fa fa-caret-down text-danger"></i>
+                        <Label class="selectable">{{invoice.InvoiveNum}}</Label>
+                    </td>
+                    <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.CustomerName}}</td>
+                    <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.TxnDate | date : shortDate}}</td>
+                    <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.DueDate | date : shortDate}}</td>
+                    <td class="text-right" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.LineItemsTotalTaxIncluded  | currency}}</td>
+                </tr>
+                <tr ng-repeat-end ng-if="invoice.Expanded">
+                    <td colspan="6">
+                        @Html.Partial("~/Views/QuickBooks/PartialInvoice.cshtml")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

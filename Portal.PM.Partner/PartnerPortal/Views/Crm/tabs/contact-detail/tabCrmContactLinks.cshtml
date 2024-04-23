@@ -1,0 +1,10 @@
+﻿@model List<Acme.Models.CRM.Contacts.Details.SocialMedia>
+<div class="tab-pane fade" id="tab-contact-links">
+    Social Media and Property Links
+    <ul>
+        @foreach(var s in Model)
+        {
+            <li>@s.SocialMediaType: @s.UserName (@s.ID)</li>
+        }
+    </ul>
+</div>

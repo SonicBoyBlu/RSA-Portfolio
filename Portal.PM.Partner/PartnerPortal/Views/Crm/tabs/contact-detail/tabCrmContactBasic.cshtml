@@ -1,0 +1,299 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@{ 
+    var c = Model.ContactDetail;
+    var lists = Model.Lists;
+    bool isVendor = c.ContactType == DataTypes.CRM.ContactType.Vendor;
+    var vendors = c.VendorDetail;
+    if (vendors.Count == 0) { vendors.Add(new Acme.Models.CRM.Contacts.Details.VendorDetail()); }
+    var v = vendors.FirstOrDefault();
+}
+    <div class="tab-pane fade show active" id="tab-contact-contact">
+        <div class="row">
+            <div class="col-sm-8">
+                <h5>Contact Details</h5>
+                <form data-form-type="contact-details">
+                    <input type="hidden" value="@c.PersonID" />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="hidden" name="PersonID" value="@c.PersonID" />
+                            <select name="ContactTypeID" data-placeholder="Contact Type" class="form-control" required>
+                                @foreach (var i in lists.ContactTypes)
+                                {
+                                    <option value="@i.ContactTypeID" @(c.ContactTypeID == i.ContactTypeID ? " selected='selected'" : "")>@i.ContactType</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select name="ContactSubTypeID" data-placeholder="Contact Sub-Type" class="form-control" required>
+                                @foreach (var s in lists.ContactSubTypes)
+                                {
+                                    <option value="@s.ContactSubTypeID" data-parent-id="@s.ContactTypeID" @(c.ContactSubTypeID == s.ContactSubTypeID ? " selected='selected'" : "")>@s.ContactSubType</option>
+                                }
+                            </select>
+                            @*
+                            <input type="text" name="auto-contact-sub-type" placeholder="Contact Sub-Type" class="form-control autocomplete" value="@c.ContactSubType" />
+                            <input type="hidden" name="ContactSubTypeID" value="@c.ContactSubTypeID" />
+                            <input type="hidden" name="ContactSubType" value="@c.ContactSubType" />
+                            *@
+                        </div>
+                        @*
+                        <div class="col-sm">
+                            <select name="VendorTypeID" data-placeholder="Vendor Type" class="form-control">
+                                @foreach (var i in lists.VendorTypes)
+                                {
+                                    <option value="@i.VendorTypeID" @(c.VendorTypeID == i.VendorTypeID ? " selected='selected'" : "")>@i.VendorType</option>
+                                }
+                            </select>
+
+                        </div>
+                        *@
+                    </div>
+                    @*
+                    <div class="row">
+                        <div class="col-sm">
+                            <select name="SalutationID" data-placeholder="Salutation" class="form-control">
+                                @foreach (var i in lists.SalutationType)
+                                {
+                                    <option value="@i.SalutationTypeID" @(c.Salutation == i.SalutationType ? " selected='selected'" : "")>@i.SalutationType</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm"><input type="text" name="FirstName" placeholder="First Name" class="form-control" value="@c.FirstName" required /></div>
+                        <div class="col-sm"><input type="text" name="LastName" placeholder="Last Name" class="form-control" value="@c.LastName" /></div>
+                    </div>
+                    *@
+                    <div class="row">
+                        <div class="col-sm">
+                            <input type="hidden" name="PartnerContactID" value="@c.PartnerContactID" />
+                            <input type="checkbox" name="IsPartnershipProperty" value="true" checked="@(c.IsPartnershipProperty ? true : false)" class="d-none" />
+                            <i class="fa fa-toggle-@(c.IsPartnershipProperty ? "on text-primary" : "off text-default") toggle" data-toggle="fields" data-target=".contact-is-partnership" data-check="IsPartnershipProperty"></i>
+                            Partnership Property
+                        </div>
+                        <div class="col-sm contact-is-partnership@(c.IsPartnershipProperty ? "" : " d-none")"><input type="text" name="PartnerFirstName" placeholder="Partner First Name" class="form-control" value="@c.PartnerFirstName" /></div>
+                        <div class="col-sm contact-is-partnership@(c.IsPartnershipProperty ? "" : " d-none")"><input type="text" name="PartnerLastName" placeholder="Partner Last Name" class="form-control" value="@c.PartnerLastName" /></div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-sm-4">
+                <h5>Snapshot</h5>
+                <ul>
+                    <li>Basic High-Level Contact/Status Details</li>
+                    <li>Insurance / Permit Status(es)</li>
+                    <li>Reminders</li>
+                    <li>Latest Tickets</li>
+                    <li>Latest Notes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="contact-vendor-detail" class="@(isVendor ? "" : "d-none")">
+            <h5>Vendor Details</h5>
+            <!-- Needs to be moved to VendorDetails-->
+            <form data-form-type="vendor-details">
+                <input name="PersonID" type="hidden" value="@c.PersonID" />
+
+                <div class="row">
+                    <div class="col-sm"><input type="text" name="Company" placeholder="Company Name" class="form-control" value="" /></div>
+                    <div class="col-sm"><input type="text" name="Title" placeholder="Title" class="form-control" value="" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm"><input type="text" name="Department" placeholder="Department" class="form-control" value="" /></div>
+                    <div class="col-sm"><input type="text" name="ReportingTo" placeholder="Reporting To" class="form-control" value="" /></div>
+                    <div class="col-sm"><input type="text" name="ReportsTo" placeholder="Reports To" class="form-control" value="" /></div>
+                </div>
+                <!-- /Needs to be moved to VendorDetails-->
+                <div class="row">
+                    <div class="col-sm"><input type="text" name="Category" placeholder="Category" class="form-control" value="@v.Category" /></div>
+                    <div class="col-sm"><input type="text" name="Website" placeholder="Website" class="form-control" value="@v.Website" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm"><textarea type="text" name="Description" placeholder="Description" class="form-control">@v.Description</textarea></div>
+                </div>
+            </form>
+        </div>
+
+        <h5>Phones</h5>
+        <ul class="list-unstyled" id="lst-contact-phones">
+            @if (c.PhoneNumbers.Count == 0)
+            {
+                <li>No Phone Numbers Found.</li>
+            }
+            @foreach (var p in c.PhoneNumbers)
+            {
+                string icon = "phone";
+                switch (p.PhoneNumberType.ToLower())
+                {
+                    case "mobile": icon = "mobile-alt"; break;
+                    case "fax": icon = "fax"; break;
+                }
+                <li>
+                    <form @(p.ID == 0 ? " class=d-none data-template=#contact-new-phone" : "") data-form-type="contact-phone">
+                        <input name="PersonID" type="hidden" value="@c.PersonID" />
+                        <input name="ID" type="hidden" value="@(p.ID > 0 ? p.ID.ToString() : "")" />
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <a class="btn btn-outline-info btn-block" href="tel:@p.Number" title="Call @c.FullName at @p.Number"><i class="fa fa-@icon"></i></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <select name="PhoneNumberTypeID" class="form-control" data-placeholder="Phone Type">
+                                    @if (p.ID == 0)
+                                    {
+                                        <option value="0">-- Select --</option>
+                                    }
+                                    @foreach (var t in lists.PhoneTypes)
+                                    {
+                                        <option value="@t.PhoneTypeID" @(p.PhoneNumberTypeID == t.PhoneTypeID ? " selected='selected'" : "")>@t.PhoneType</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="tel" name="Number" placeholder="Number" class="form-control" value="@p.Number" />
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="Label" placeholder="Label" class="form-control" value="@p.Label" />
+                            </div>
+                            <div class="col">
+                                <label><input type="checkbox" name="IsPrimary" value="true" @(p.IsPrimary ? " checked='checked'" : "") data-type="IsPrimary" /> Primary</label>
+                                <i class="text-danger fa fa-trash-alt close float-sm-right" data-action="remove-item"></i>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            }
+            <li>
+                <button class="btn btn-outline-warning" data-target="#contact-new-phone" data-toggle="collapse" data-action="new-item" data-form-type="contact-phone"><i class="fa fa-plus-circle"></i></button>
+            </li>
+        </ul>
+
+
+        <h5>Email</h5>
+        <ul class="list-unstyled" id="lst-contact-emails">
+
+            @if (c.EmailAddresses.Count == 0)
+            {
+                <li class="col">No Email Addresses Found.</li>
+            }
+            @foreach (var e in c.EmailAddresses)
+            {
+                <li>
+                    <form @(e.ID == 0 ? " class=d-none data-template=#contact-new-email" : "") data-form-type="contact-email">
+                        <input name="PersonID" type="hidden" value="@c.PersonID" />
+                        <input name="ID" type="hidden" value="@(e.ID > 0 ? e.ID.ToString() : "")" />
+
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <a class="btn btn-outline-info btn-block" href="mailto:@e.Address" title="Email @c.FullName at @e.Address"><i class="fa fa-envelope"></i></a>
+                            </div>
+                            <div class="col-sm-2">
+                                <select name="EmailTypeID" class="form-control" data-placeholder="Email Type">
+                                    @if (e.EmailTypeID > 0)
+                                    {
+                                        <option>-- Select --</option>
+                                    }
+                                    @foreach (var t in lists.EmailTypes)
+                                    {
+                                        <option value="@t.EmailTypeID" @(e.EmailTypeID == t.EmailTypeID ? " selected='selected'" : "")>@t.EmailType</option>
+                                    }
+                                </select>
+                                @*
+            <input type="text" name="auto-contact-email" placeholder="Email Type" class="form-control autocomplete" value="@e.EmailType" />
+            <input type="hidden" name="EmailType" placeholder="Email Type" class="form-control autocomplete" value="@e.EmailType" />
+            <input type="hidden" name="EmailTypeID" value="@e.EmailTypeID" />
+                                *@
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="email" name="Address" placeholder="Address" class="form-control" value="@e.Address" />
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" name="Label" placeholder="Label" class="form-control" value="@e.Label" />
+                            </div>
+                            <div class="col">
+                                <label><input type="checkbox" name="IsPrimary" value="true" @(e.IsPrimary ? " checked='checked'" : "") data-type="IsPrimary"/> Primary</label>
+                                <i class="text-danger fa fa-trash-alt close float-sm-right" data-action="remove-item"></i>
+                            </div>
+
+                        </div>
+                    </form>
+                </li>
+            }
+            <li>
+                <button class="btn btn-outline-warning" data-target="#contact-new-email" data-toggle="collapse" data-action="new-item" data-form-type="contact-email"><i class="fa fa-plus-circle"></i></button>
+            </li>
+
+        </ul>
+
+        <h5>Mailing Address</h5>
+        <form data-form-type="contact-address">
+            <input name="PersonID" type="hidden" value="@c.PersonID" />
+
+            <div class="row">
+                <div class="col-sm"><input type="text" name="Address1" placeholder="Street Address" class="form-control" value="@c.Address1" /></div>
+                <div class="col-sm"><input type="text" name="Address2" placeholder="Unti #" class="form-control" value="@c.Address2" /></div>
+            </div>
+            <div class="row">
+                <div class="col-sm"><input type="text" name="City" placeholder="City" class="form-control" value="@c.City" /></div>
+                <div class="col-sm">
+                    <select name="StateID" data-placeholder="State" class="form-control">
+                        <option>-- Select --</option>
+                        @foreach (var i in lists.States)
+                        {
+                            <option value="@i.StateID" @(c.State == i.StateCode ? " selected='selected'" : "")>@i.StateCode</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm"><input type="text" name="Zip" placeholder="Zip" class="form-control" value="@c.Zip" /></div>
+            </div>
+        </form>
+
+        <h5>Misc</h5>
+        <form data-form-type="contact-misc">
+            <input name="PersonID" type="hidden" value="@c.PersonID" />
+            <div class="row">
+                <div class="col-sm">
+                    <label>
+                        <input type="checkbox" name="IsActive" @(c.IsActive ? " checked='checked'" : "") /> Active
+                    </label>
+                </div>
+                <div class="col-sm"><input type="text" date-picker name="DateOfBirth" placeholder="Date of Birth" class="form-control" value="@GlobalUtilities.GetDateString(c.DateOfBirth)" /></div>
+                <div class="col-sm"><input type="text" name="ReferralGift" placeholder="Referral Gift" class="form-control" value="@c.ReferralGift" /></div>
+                <div class="col-sm"><input type="text" name="Tag" placeholder="Tags" class="form-control" value="@c.Tag" /></div>
+            </div>
+        </form>
+
+        <h5>Meta</h5>
+        <div class="row">
+            <div class="col-sm">
+                Person ID: @c.PersonID
+                @if (!string.IsNullOrEmpty(c.ZohoContactID))
+                {
+                    <br />
+                    <text>Zoho Contact ID:</text> @c.ZohoContactID
+                }
+                <br />
+            </div>
+            <div class="col-sm"><small class="font-italic">Last Activity: @(c.DateLastActive == DateTime.MinValue ? " -" : c.DateLastActive.ToString("G"))</small></div>
+        </div>
+        <div class="row">
+            <div class="col-sm"><small class="font-italic">Created by: @c.CreatedBy on @c.DateCreated.ToString("g")</small></div>
+            <div class="col-sm"><small class="font-italic">Modified by: @c.ModifiedBy on @c.DateModified.ToString("g")</small></div>
+        </div>
+        z-Account: @c.ZohoAccountID<br />
+        z-Contact: @c.ZohoContactID<br />
+        z-Lead: @c.ZohoLeadID<br />
+        z-Potential: @c.ZohoPotentialID<br />
+        z-Vendor: @c.ZohoVendorID<br />
+        z-SmOwner: @c.ZohoSmOwnerID
+    </div>
+
+<script type="text/javascript">
+    $(document).on("change click", "#lst-contact-phones [name='IsPrimary'], #lst-contact-emails [name='IsPrimary']", function () {
+        var i = $(this),
+            c = i.closest("ul");
+        console.log("Is primary: " + i.is(":checked"));
+        if (i.is(":checked")) {
+            $("[name='IsPrimary']", c).prop("checked", false);
+            i.prop("checked", true);
+        }
+    });
+</script>

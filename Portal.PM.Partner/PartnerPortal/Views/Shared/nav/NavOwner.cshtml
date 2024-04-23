@@ -1,0 +1,93 @@
+﻿@{ 
+    string nav = string.IsNullOrEmpty(ViewBag.Nav) ? "home" : ViewBag.Nav;
+}
+    <div ng-controller="NavigationController as navCtl">
+
+        <ul class="sidebar-nav">
+            <li class="nav-border-bottom mb-3">
+                <a class="btn btn-danger" ng-click="navCtl.createActionItem()"><i class="fa fa-plus-circle"></i>Create Action Item</a>
+            </li>
+            <li class="@(nav == "home" ? "active" : "")">
+                <a href="/"><i class="fa fa-tachometer-alt"></i> Dashboard</a>
+            </li>
+            <li class="@(nav == "statements" ? "active" : "" )">
+                <a href="@Url.Action("Index", "Statements" )"><i class="fa fa-file-invoice-dollar"></i> Statements</a>
+            </li>
+            <li class="@(nav == "booking" ? "active" : "")">
+                <a href="@Url.Action("index", "booking")"><i class="fa fa-book"></i> Bookings</a>
+            </li>
+            <li class="@(nav == "calendar" ? "active" : "" )">
+                <a href="@Url.Action("Index", "Calendar" )"><i class="fa fa-calendar-alt"></i> Calendar</a>
+            </li>
+
+
+            <li><hr /></li>
+
+            <li class="@(nav == "tickets" ? "active" : "")">
+                <a href="@Url.Action("Index", "ActionItems")" data-badge-id="tickets"><i class="fa fa-paper-plane"></i> Action Items</a>
+            </li>
+            <li class="@(nav == "messages" ? "active" : "")">
+                <a href="@Url.Action("Index", "Messages")"><i class="fa fa-envelope"></i> Messages</a>
+            </li>
+
+            <li class="@(nav == "team" ? "active" : "")">
+                <a href="@Url.Action("Index", "TeamAcme")"><i class="fa fa-address-card"></i> Team Acme</a>
+            </li>
+
+            @*
+        <li class="@(nav == "newsletter" ? "active" : "")">
+            <a href="@Url.Action("Index", "Newsletter")"><i class="fa fa-newspaper"></i> Newsletter</a>
+        </li>
+            *@
+
+            <li class="@(nav == "education" ? "active" : "" )">
+                <a href="@Url.Action("Index", "Education" )"><i class="fa fa-university"></i> Education</a>
+            </li>
+            <li class="@(nav == "ticket-bug" ? "active" : "" )">
+                <a class="dropdown-item" href="@Url.Action("Bugs", "Reports" )"><i class="fa fa-bug"></i><span> Report A Bug</span></a>
+            </li>
+
+            <li><hr /></li>
+            <li class="dropdown @(nav == "my-account" ? "active" : "")">
+                <a href="#nav-collapse-myaccount" data-toggle="collapse"><i class="fa fa-cog"></i> My Account</a>
+                <div class="collapse" id="nav-collapse-myaccount">
+                    <ul class="navbar-nav">
+                        <li class="">
+                            <a class="dropdown-item" href="@Url.Action("Index", "MyProperty" )"><i class="fa fa-home"></i> My Property</a>
+                        </li>
+                        <li class="">
+                            <a class="dropdown-item" href="@Url.Action("Index", "MyAccount")"><i class="fa fa-user"></i> My Info</a>
+                        </li>
+                        <li>
+                            <hr />
+                        </li>
+
+                        <li class="">
+                            <a class="dropdown-item" href="@Url.Action("Logout", "Authentication")"><i class="fa fa-power-off"></i> Signout</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </li>
+
+
+            <li><hr /></li>
+            <li class="@(nav == "homeswap" ? "active" : "")">
+                <a href="@Url.Action("Index", "ComingSoon", new { PageID = 9 })"><i class="fa fa-exchange-alt"></i> Home Swap</a>
+            </li>
+            <li class="@(nav == "preferredvendors" ? "active" : "")">
+                <a href="@Url.Action("Index", "ComingSoon", new { PageID = 14 })"><i class="fa fa-award"></i> Preferred Vendors</a>
+            </li>
+            <li class="@(nav == "feedback" ? "active" : "")">
+                <a href="@Url.Action("Index", "ComingSoon", new { PageID = 13 })"><i class="fa fa-comment"></i> Feedback</a>
+            </li>
+
+            <li class="@(nav == "localspots" ? "active" : "" )">
+                <a href="@Url.Action("Index", "ComingSoon" , new { PageID = 15 })"><i class="fa fa-utensils"></i> Local Spots</a>
+            </li>
+            <li class="@(nav == "annualreports" ? "active" : "")">
+                <a href="@Url.Action("Index", "ComingSoon", new { PageID = 16 })"><i class="fa fa-chart-bar"></i> Annual Reports</a>
+            </li>
+
+        </ul>
+</div>

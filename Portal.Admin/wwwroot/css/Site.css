@@ -1,0 +1,172 @@
+﻿/*$orange: #eb9316;*/
+/*$touch: #e1f1f5;*/
+dl {
+  width: 100%;
+  margin-bottom: 0;
+}
+dl dt {
+  cursor: default;
+  float: left;
+  clear: left;
+  text-align: left;
+  padding-top: 6px;
+}
+dl dt .title {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+dl.dl-light dt {
+  font-weight: 100;
+}
+dl.dl-medium dt {
+  font-weight: 400;
+}
+dl.dl-medium dd {
+  padding: 1px 0 !important;
+}
+dl dd {
+  /*border-bottom: 1px dotted #ddd;*/
+  padding: 5px 0;
+  text-align: right;
+}
+dl dd .form-control {
+  display: -webkit-inline-box;
+  width: auto;
+}
+dl dd select {
+  width: auto;
+}
+dl dd select option {
+  text-align: right;
+}
+dl dd:last-child {
+  border-bottom: 0 none;
+}
+
+/*$orange: #eb9316;*/
+/*$touch: #e1f1f5;*/
+.text-primary {
+  color: #007ec3 !important;
+}
+
+.text-warning {
+  color: #F99B1C !important;
+}
+
+.text-success {
+  color: #81c341 !important;
+}
+
+.text-danger {
+  color: #a94442;
+}
+
+.text-muted {
+  color: #aeaeae !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+h1, .h1 {
+  font-size: 1.65em;
+}
+h1.title, .h1.title {
+  margin-top: 0.25em;
+  margin-bottom: 0.45em;
+}
+
+h4 a {
+  color: #007ec3;
+}
+h4 a .af, h4 a fas, h4 a .far {
+  color: #007ec3;
+}
+
+.bg-warning {
+  background-color: #F99B1C !important;
+  color: #fff;
+}
+.bg-warning .fa, .bg-warning .fas {
+  color: #fff;
+}
+
+.bg-success {
+  background-color: #81c341 !important;
+  color: #fff;
+}
+.bg-success .fa, .bg-success .fas {
+  color: #fff;
+}
+
+.bg-danger {
+  background-color: #a94442 !important;
+  color: #fff;
+}
+.bg-danger .fa, .bg-danger .fas {
+  color: #fff;
+}
+
+.bg-primary {
+  background-color: #007ec3 !important;
+  color: #fff;
+}
+.bg-primary .fa, .bg-primary .fas {
+  color: #fff;
+}
+
+[data-candidate-user-id] {
+  cursor: help;
+}
+[data-candidate-user-id]:hover {
+  background-color: lightblue;
+}
+
+/*$orange: #eb9316;*/
+/*$touch: #e1f1f5;*/
+body {
+  color: #666;
+}
+body h1 {
+  color: #007ec3;
+}
+body a {
+  color: #FAAF49;
+  font-weight: bold;
+}
+body small {
+  font-size: 9pt;
+  color: #aaa;
+}
+body table thead, body table tfoot {
+  color: #007ec3;
+}
+
+html {
+  font-size: 14px;
+}
+html html {
+  position: relative;
+  min-height: 100%;
+}
+html html body {
+  margin-bottom: 60px;
+  color: orangered !important;
+}
+html html body p {
+  /*color: $ orange !important;*/
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+#logo-main {
+  max-height: 1.2em;
+}

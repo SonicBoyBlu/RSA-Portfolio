@@ -1,0 +1,74 @@
+﻿@import "../../_variables.scss";
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    color: $blue;
+    font-family: $catamaran-medium-font-family;
+    font-weight: 400 !important;
+    /*margin-bottom: 0.7rem;*/
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size:1.9rem;
+    line-height:2rem;
+}
+h2 {
+    font-size: 1.6rem;
+    line-height:1.6rem;
+    input[type='text'] {
+        font-size: 1.75rem;
+        color: #17a2b8 !important;
+    }
+}
+h3 {
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+    font-family: $catamaran-bold-font-family;
+}
+h4 {
+    font-size: 1.15rem;
+    line-height: 1.15rem;
+}
+h5 {
+    font-size: 1.1rem;
+    line-height: 1.1rem;
+}
+
+h1 + .row, h2 + .row, h3 + .row, h4 + .row, h5 + .row, h6 + .row {
+    margin-top:0;
+}
+
+p {
+    line-height: 1.4rem;
+    font-weight: normal;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+strong {
+    font-family: $catamaran-bold-font-family;
+}
+
+.text-primary {
+    color: $blue !important;
+}
+
+.text-warning {
+    color: $orange !important;
+}
+
+.text-danger {
+    color: $red !important;
+}
+
+.text-success {
+    color: $green !important;
+}
+
+.text-info {
+    color: $lightBlue;
+}
+.text-default {
+    color:$default;
+}
+
+.disabled { cursor:not-allowed; }

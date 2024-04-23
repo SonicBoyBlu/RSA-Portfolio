@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    @{
+        string title = ViewBag.Title;
+        if (Request.IsLocal) { title = "LOCAL* " + title; }
+        else if (GlobalSettings.ServerInfo.IsSandbox)
+        {
+            if (GlobalSettings.ServerInfo.IsInternal) { title = "BETA* " + title; }
+            else { title = "DEV* " + title; }
+        }
+    }
+
+    @*<script type="text/javascript">document.domain = "acmehouseco.com";</script>*@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@title - Acme House Co.</title>
+
+    <link rel="shortcut icon" href="~/Content/iconified/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="~/Content/iconified/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/iconified/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/iconified/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/iconified/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/iconified/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/iconified/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/iconified/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/iconified/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/iconified/apple-touch-icon-180x180.png" />
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />*@
+
+    <!-- CSS files-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.21/angular-material.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.5/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/css/tableexport.min.css" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.13/daterangepicker.min.css" />*@
+
+    @Styles.Render("~/sytles")
+
+    <!-- Javascript files -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.7.8/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.15.5/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- https://www.daterangepicker.com/#options -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/2.1.13/daterangepicker.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-mask/1.8.7/mask.min.js"></script>
+
+    <script type="text/javascript">
+        var Login = {
+            config: {
+                url: "@Url.Action("SetEscapiaToken", "Authentication")",
+                Escapia: {
+                    PMCID: @GlobalSettings.Escapia.PMCID,
+                    Encoded: "Basic @GlobalSettings.Escapia.HomeAwayCredentials.Encoded",
+                    Token: "@GlobalSettings.Escapia.HomeAwayCredentials.Token"
+                }
+            }
+        }
+    </script>
+
+    <script src="~/Content/plugins/ui-bootstrap-tpls-3.0.6.min.js"></script>
+
+    @*
+        @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
+    *@
+
+
+    @*<link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/plugins/datepicker/datepicker.min.css" rel="stylesheet" />
+    *@
+
+    <link rel="preload" href="/Content/images/Acme_logo.png" as="image" />
+
+</head>
+<body>
+    <div ng-app="partnerPortal">
+        @RenderBody()
+        @{
+            string url = HttpContext.Current.Request.Url.AbsoluteUri.ToLower();
+        }
+
+        @*if (!url.Contains("//staging.") && !url.Contains("//www.") && !url.Contains("//beta"))*@
+        @if (GlobalSettings.ServerInfo.IsSandbox)
+        {
+            <div id="alert-environment-notice" class="bg-danger text-white" title="click to dismiss">
+                <a href="/" class="text-white"><i class="fa fa-exclamation-triangle"></i></a> This is a TESTING environment and  NOT intended for production use, and should be used for testing ONLY.<br />
+                You are connected to SANDBOX database @GlobalSettings.DateStores.Breezeway.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $(document).on("click", "#alert-environment-notice", function () {
+                        var i = $(this);
+                        i.fadeOut().remove();
+                    });
+                });
+            </script>
+        }
+
+
+
+        @RenderSection("header", required: false)
+        @RenderSection("scripts", required: false)
+        @RenderSection("styles", required: false)
+        @RenderSection("modals", required: false)
+
+
+        <!-- Global site tag (gtag.js) - Google Analytics (Tracking ID:  UA-139422384-1) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139422384-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-139422384-1');
+        </script>
+
+        @Scripts.Render("~/bundles/plugins")
+        @Scripts.Render("~/bundles/app")
+
+        <noscript>You must enable javascript to view this site.</noscript>
+    </div>
+</body>
+</html>

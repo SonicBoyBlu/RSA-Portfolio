@@ -1,0 +1,33 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@{ 
+    if (Model.ContactDetail.Properties.Count == 0)
+    {
+        Model.ContactDetail.Properties.Add(new Acme.Models.CRM.Properties.Property());
+    }
+    var p = Model.ContactDetail.Properties.FirstOrDefault();
+    var lists = Model.Lists;
+}
+<form data-form-type="property-address">
+    <h5>@p._titlePropertyAddress</h5>
+    <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+    <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+    <div class="row">
+        <div class="col-sm"><input type="text" name="Address1" placeholder="Street Address" class="form-control" value="@p.Address1" /></div>
+        <div class="col-sm"><input type="text" name="Address2" placeholder="Unti #" class="form-control" value="@p.Address2" /></div>
+    </div>
+    <div class="row">
+        <div class="col-sm"><input type="text" name="City" placeholder="City" class="form-control" value="@p.City" /></div>
+        <div class="col-sm">
+            <select name="StateID" data-placeholder="State" class="form-control">
+                <option>-- Select --</option>
+                @foreach (var i in lists.States)
+                {
+                    <option value="@i.StateID" @(p.State == i.StateCode ? " selected='selected'" : "")>@i.StateCode</option>
+                }
+            </select>
+        </div>
+        <div class="col-sm"><input type="text" name="ZipCode" placeholder="Zip" class="form-control" value="@p.ZipCode" /></div>
+    </div>
+</form>
+

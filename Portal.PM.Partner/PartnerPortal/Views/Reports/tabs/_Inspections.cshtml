@@ -1,0 +1,242 @@
+﻿@model Acme.ViewModels.Reports.InspectionsViewModel
+@{ 
+    var Summary = Model.Summary;
+}
+
+
+<h3 class="text-info">
+    <i class="fa fa-house-damage"></i> Arrival / Departure Inspections
+</h3>
+
+<h1>Coming Soon!</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Arrivals</th>
+            <th>Arrival Fails</th>
+            <th>Departures</th>
+            <th>Departure Fails</th>
+            <th>Other</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Summary.Arrivals</td>
+            <td>@Summary.ArrivalFails</td>
+            <td>@Summary.Departures</td>
+            <td>@Summary.DepartureFails</td>
+            <td>@Summary.Other</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h4 class="text-info">HK Summary</h4>
+<div class="loading-report-charts text-center">
+    <i class="fa fa-cog fa-spin fa-5x"></i>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div id="chart-pie-hk-renter-type" style="width: 100%;"></div>
+    </div>
+    <div class="col-6">
+        <div id="chart-pie-hk-utilization" style="width: 100%;"></div>
+    </div>
+    <div class="col-6">
+        <div id="chart-pie-hk-ai-arrive" style="width: 100%;"></div>
+    </div>
+    <div class="col-6">
+        <div id="chart-pie-hk-ai-depart" style="width: 100%;"></div>
+    </div>
+    <div class="col-6">
+        <div id="chart-pie-hk-vendors" style="width: 100%;"></div>
+    </div>
+    <div class="col-6">
+        <div id="chart-pie-hk-supplies" style="width: 100%;"></div>
+    </div>
+</div>
+
+<h4 class="text-info">Inspections</h4>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Vendor/ Team Member</th>
+                <th colspan="2">Arrival Inspections</th>
+                <th colspan="2">Departure Inspections</th>
+                <th colspan="2">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i < 6; i++)
+            {
+                <tr>
+                    <td>
+                        <img class="grid-avatar" src="https://acmehouseco.bamboohr.com/employees/photos/?h=d3d7c83874dc55abd153be4312c4c07e" title="Ryan Alexander">
+                        Vendor @i
+                    </td>
+                    <td><span class="text-success"><i class="fa fa-thumbs-up"></i> ##</span></td>
+                    <td><span class="text-danger"><i class="fa fa-thumbs-down"></i> ##</span></td>
+
+                    <td><span class="text-success"><i class="fa fa-thumbs-up"></i> ##</span></td>
+                    <td><span class="text-danger"><i class="fa fa-thumbs-down"></i> ##</span></td>
+
+                    <td><span class="text-success"><i class="fa fa-thumbs-up"></i> ##</span></td>
+                    <td><span class="text-danger"><i class="fa fa-thumbs-down"></i> ##</span></td>
+
+                    @*
+                        <td>SS/FF/TT</td>
+                        <td>
+                            <dl>
+                                @{
+                                    int sMax = sx.Next(2, 5);
+                                }
+                                @for (var s = 1; s < sMax; s++)
+                                {
+                                    int sq = sx.Next(1, 30);
+                                    <dt> Cleaning Supply @s</dt>
+                                    <dd>@sq</dd>
+                                }
+                            </dl>
+                        </td>
+                    *@
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@*
+    <h4 class="text-info">Inspection Supplies</h4>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Vendor/ Team Member</th>
+                    @for (var i = 1; i < 10; i++)
+                    {
+                        <th>Cleaning Supply @i</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 1; i < 6; i++)
+                {
+                    <tr>
+                        <td>
+                            <img class="grid-avatar" src="https://acmehouseco.bamboohr.com/employees/photos/?h=d3d7c83874dc55abd153be4312c4c07e" title="Ryan Alexander">
+                            Vendor @i
+                        </td>
+                        @for (var v = 1; v < 10; v++)
+                        {
+                            int sq = sx.Next(0, 10);
+                            <td>@(sq == 0 ? "-" : sq.ToString())</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    @for (var i = 1; i < 10; i++)
+                    {
+                        <th>##</th>
+                    }
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <h4 class="text-info">Cleaning</h4>
+    <strong>TBD</strong>
+*@
+
+
+<script type="text/javascript">
+    var ReportInspections = {
+        draw: {
+            charts: function () {
+                $(".loading-report-charts").hide();
+                var options = {
+                    title: '',
+                    width:'100%'
+                    //is3D: true,
+                    //pieHole:0.2
+                };
+                var data;
+
+                // Housekeeping
+                options.title = "Rental Type (Mock)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Days per Period'],
+                    ['Guest', 20],
+                    ['Owner', 5],
+                    ['Guest of Owner', 3],
+                ]);
+                var chart5 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-renter-type'));
+                chart5.draw(data, options);
+
+                options.title = "Utilization";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    ['Arrival Inspections', @Summary.Arrivals],
+                    ['Departure Inspections', @Summary.Departures],
+                ]);
+                var chart6 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-utilization'));
+                chart6.draw(data, options);
+
+                options.title = "Vendors (Top 5) (Mock)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Vendors'],
+                    ['Vendor 1', 200],
+                    ['Vendor 2', 40],
+                    ['Vendor 3', 90],
+                    ['Vendor 4', 10],
+                    ['Vendor 5', 15],
+                ]);
+                var chart7 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-vendors'));
+                chart7.draw(data, options);
+
+                options.title = "Supplies (Top 5) (Mock)";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Supplies'],
+                    ['Supply 1', 150],
+                    ['Supply 2', 50],
+                    ['Supply 3', 90],
+                    ['Supply 4', 10],
+                    ['Supply 5', 25],
+                ]);
+                var chart8 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-supplies'));
+                chart8.draw(data, options);
+
+
+                // Inspections
+                options.title = "Arrivals";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Arrivals'],
+                    ['Success', @(Summary.Arrivals - Summary.ArrivalFails)],
+                    ['Fail', @Summary.ArrivalFails],
+                ]);
+                var chart9 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-ai-arrive'));
+                chart9.draw(data, options);
+
+                options.title = "Departures";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Departures'],
+                    ['Success', @(Summary.Departures - Summary.DepartureFails)],
+                    ['Fail', @Summary.DepartureFails],
+                ]);
+                var chart10 = new google.visualization.PieChart(document.getElementById('chart-pie-hk-ai-depart'));
+                chart10.draw(data, options);
+
+            }
+        }
+    };
+
+    $(function () {
+        console.info("Loading tab: Inspections");
+        ReportInspections.draw.charts();
+    });
+</script>

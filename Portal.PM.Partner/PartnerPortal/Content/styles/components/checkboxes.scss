@@ -1,0 +1,114 @@
+﻿@import "../_variables.scss";
+
+/* Checkbox UI */
+label {
+    display: inline-flex;
+
+    &:hover {
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    > span {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: .5rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        background: transparent;
+        border: 2px solid $bone;
+        border-radius: .3rem;
+        cursor: pointer;
+        transition: all 250ms cubic-bezier(.4,.0,.23,1);
+    }
+
+    > input[type='checkbox'] {
+        height: 0;
+        width: 0;
+        opacity:0;
+
+        &:checked + span {
+            border: .6rem solid $blue;
+            animation: shrink-bounce 200ms cubic-bezier(.4,.0,.23,1);
+
+            &:before {
+                content: "";
+                position: absolute;
+                /*
+                top:8px;
+                left:21px;
+                */
+                top: 1.6rem;
+                left: 1.1rem;
+                border-right: 3px solid transparent;
+                border-bottom: 3px solid transparent;
+                transform: rotate(45deg);
+                transform-origin: 0% 100%;
+                animation: checkbox-check 125ms 250ms cubic-bezier(.4,.0,.23,1) forwards;
+            }
+        }
+    }
+}
+
+@keyframes shrink-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    33% {
+        transform: scale(.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes checkbox-check {
+    0% {
+        width: 0;
+        height: 0;
+        border-color: #fff;
+        transform: translate3d(0,0,0) rotate(45deg);
+    }
+
+    33% {
+        width: .5rem;
+        height: 0;
+        transform: translate3d(0,0,0) rotate(45deg);
+    }
+
+    100% {
+        width: .5rem;
+        height: .8rem;
+        border-color: #fff;
+        transform: translate3d(0,-.8rem,0) rotate(45deg);
+    }
+}
+
+
+label {
+    &.alert {
+        &.alert-danger{
+            span{
+                border-color:$red;
+                background-color:#fff;
+            }
+        }
+        span {
+            width:1.5rem;
+        }
+        & > input[type='checkbox']{
+            &:checked {
+                & + span {
+                    width:1.2rem;
+                    &:before{
+                        top:0.8rem;
+                        left:0.4rem;
+                    }
+                }
+            }
+        }
+    }
+}

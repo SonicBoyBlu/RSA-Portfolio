@@ -1,0 +1,453 @@
+﻿@model Acme.Models.CRM.Properties.Property
+@{
+    var p = Model;
+}
+<div id="header-detail" class="d-none">
+    <h3 class="modal-title container"><i class="fa fa-home"></i> <span class="property-name">@(string.IsNullOrEmpty(p.PropertyName) ? p.AccountName : p.PropertyName)</span></h3>
+    <br />
+    <div class="container row details-cta">
+        <div class="col-sm-6">
+            <strong>Tags:</strong> @(string.IsNullOrEmpty(p.Tag) ? "-" : p.Tag)<br />
+            <strong>Status: </strong>@Html.Raw(p.RentalStatus == "Active" ? "<i class='fa fa-check-circle text-success'></i>" : "") @p.RentalStatus<br />
+            <a href="https://help.acmehouseco.com/Main" target="acme-tickets"><strong>Tickets</strong> <span class="badge badge-warning">3</span></a>
+        </div>
+        <div class="col-sm-6 text-sm-right text-nowrap">
+            <i class="fa fa-check-circle text-success"></i> Insurance Valid: @(DateTime.Now.AddMonths(6).ToShortDateString())<br />
+            <strong><i class="fa fa-exclamation-triangle text-warning"></i> Permit Expiring: @(DateTime.Now.AddMonths(1).ToShortDateString())</strong>
+        </div>
+    </div>
+
+</div>
+
+<h4 class='text-info'>Property Info</h4>
+<div class="row">
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Property Name</div>
+        <div class="col-sm-6">@p.PropertyName</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Account Name</div>
+        <div class="col-sm-6">@p.AccountName</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Property Identifier</div>
+        <div class="col-sm-6">@p.PropertyIdentifier</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Property Type</div>
+        <div class="col-sm-6">@p.PropertyType</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Neighborhood</div>
+        <div class="col-sm-6">@p.Neighborhood</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Misc Complexes</div>
+        <div class="col-sm-6">@(string.IsNullOrEmpty(p.MiscComplexes) ? "-" : p.MiscComplexes)</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Sqare Footage</div>
+        <div class="col-sm-6">@(p.SquareFootage == 0 ? "-" : p.SquareFootage.ToString("N0") + "sqft")</div>
+    </div>
+    <div class="col-6 row">
+    </div>
+
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Home Phone</div>
+        <div class="col-sm-6">@p.HousePhone</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Beds</div>
+        <div class="col-sm-6">@(p.NumBeds == 0 ? "-" : p.NumBeds.ToString("N0"))</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Baths</div>
+        <div class="col-sm-6">@(p.NumBaths == 0 ? "-" : p.NumBaths.ToString("N0"))</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Half Baths</div>
+        <div class="col-sm-6">@(p.NumHalfBaths == 0 ? "-" : p.NumHalfBaths.ToString("N0"))</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Street</div>
+        <div class="col-sm-6">@(string.IsNullOrEmpty(p.Street) ? "-" : p.Street)</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">City</div>
+        <div class="col-sm-6">@(string.IsNullOrEmpty(p.City) ? "-" : p.City)</div>
+    </div>
+
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">State</div>
+        <div class="col-sm-6">@(string.IsNullOrEmpty(p.State) ? "-" : p.State)</div>
+    </div>
+    <div class="col-6 row">
+        <div class="col-sm-6 text-muted text-right">Zip</div>
+        <div class="col-sm-6">@(string.IsNullOrEmpty(p.Zip) ? "-" : p.Zip)</div>
+    </div>
+
+    <p>
+        <div class="col-12">
+            <strong>Special Instructions 1</strong>
+            @(string.IsNullOrEmpty(p.SpecialInstructions1) ? "-" : p.SpecialInstructions1)
+        </div>
+    </p>
+    <p>
+        <div class="col-12">
+            <strong>Special Instructions 2</strong>
+            @(string.IsNullOrEmpty(p.SpecialInstructions2) ? "-" : p.SpecialInstructions2)
+        </div>
+    </p>
+</div>
+
+
+<h4 class='text-info'>Titled Owner Info</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Primary Owner</dt>
+            <dd>@(string.IsNullOrEmpty(p.Owner1) ? "-" : p.Owner1)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Joint Owner</dt>
+            <dd>@(string.IsNullOrEmpty(p.Owner2) ? "-" : p.Owner2)</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Codes & Passwords</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Point Central Lock</dt>
+            <dd>@Html.Raw(p.IsPointCentralLock ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+            <dt>Point Central Thermostat</dt>
+            <dd>@Html.Raw(p.IsPointCentralThermostat ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+            <dt>Noise Aware</dt>
+            <dd>@Html.Raw(p.IsNoiseAware ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>WiFi Name (SSID)</dt>
+            <dd>@(string.IsNullOrEmpty(p.WifiNameSSID) ? "-" : p.WifiNameSSID)</dd>
+            <dt>WiFi Password</dt>
+            <dd>@(string.IsNullOrEmpty(p.WifiPassword) ? "-" : p.WifiPassword)</dd>
+            <dt>GoZone Wifi</dt>
+            <dd>@Html.Raw(p.IsGoZoneWifi ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+        </dl>
+    </div>
+
+    <div class="col-6">
+        <dl>
+            <dt>Gate Code</dt>
+            <dd>@(string.IsNullOrEmpty(p.GarageCode) ? "-" : p.GarageCode)</dd>
+            <dt>Lock Box Code</dt>
+            <dd>@(string.IsNullOrEmpty(p.LockBoxCode) ? "-" : p.LockBoxCode)</dd>
+            <dt>Keyless Door Code</dt>
+            <dd>@(string.IsNullOrEmpty(p.KeylessDoorCode) ? "-" : p.KeylessDoorCode)</dd>
+            <dt>Garage Code</dt>
+            <dd>@(string.IsNullOrEmpty(p.GarageCode) ? "-" : p.GarageCode)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Alarm Company Contact</dt>
+            <dd>@(string.IsNullOrEmpty(p.AlarmCompanyContact) ? "-" : p.AlarmCompanyContact)</dd>
+            <dt>Alarm Code</dt>
+            <dd>@(string.IsNullOrEmpty(p.AlarmCode) ? "-" : p.AlarmCode)</dd>
+            <dt>Alarm Password</dt>
+            <dd>@(string.IsNullOrEmpty(p.AlarmPassword) ? "-" : p.AlarmPassword)</dd>
+            <dt>Misc Codes</dt>
+            <dd>@(string.IsNullOrEmpty(p.MiscCodes) ? "-" : p.MiscCodes)</dd>
+        </dl>
+    </div>
+</div>
+
+<h4 class='text-info'>Maintenance Items</h4>
+<div class="row">
+    <div class="col-6 ">
+        <dl>
+            <dt>PC Battery Change Date</dt>
+            <dd>@(p.DatePcBatteryChanged == DateTime.MinValue ? "-" : p.DatePcBatteryChanged.ToShortDateString())</dd>
+            <dt>Min Household Item Check Date</dt>
+            <dd>@(p.DateMinHouseholdItemCheck == DateTime.MinValue ? "-" : p.DateMinHouseholdItemCheck.ToShortDateString())</dd>
+            <dt>Earthquake Valve</dt>
+            <dd>@Html.Raw(p.IsEarthquakeValue ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Administrative Notes</h4>
+<div class="row">
+    <div class="col-6 ">
+        <dl>
+            <dt>Point Central Paid</dt>
+            <dd>@Html.Raw(p.IsPointCentralPaid ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+            <dt>City Property ID</dt>
+            <dd>@(string.IsNullOrEmpty(p.CityPropertyID) ? "-" : p.CityPropertyID)</dd>
+            <dt>Active Citations</dt>
+            <dd>@(p.ActiveCitations == 0 ? "-" : p.ActiveCitations.ToString())</dd>
+            <dt>Citation Dates</dt>
+            <dd>@(string.IsNullOrEmpty(p.CitationDates) ? "-" : p.CitationDates)</dd>
+        </dl>
+    </div>
+    <div class="col-6 ">
+        <dl>
+            <dt>Renewal Service Program</dt>
+            <dd>@(string.IsNullOrEmpty(p.RenewalServiceProgram) ? "-" : p.RenewalServiceProgram)</dd>
+            <dt>Permit Renewal Date</dt>
+            <dd>@(p.DatePermitRenewal == DateTime.MinValue ? "-" : p.DatePermitRenewal.ToShortDateString())</dd>
+            <dt>Application Submitted Date</dt>
+            <dd>@(p.DateApplicationSubmitted == DateTime.MinValue ? "-" : p.DateApplicationSubmitted.ToShortDateString())</dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>On-Board Date</dt>
+            <dd>@(p.DateOnBoard == DateTime.MinValue ? "-" : p.DateOnBoard.ToShortDateString())</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Off-Board Date</dt>
+            <dd>@(p.DateOffBoard == DateTime.MinValue ? "-" : p.DateOffBoard.ToShortDateString())</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Vendors</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Pool Contact</dt>
+            <dd>@(string.IsNullOrEmpty(p.PoolContact) ? "-" : p.PoolContact)</dd>
+            <dt>Pool Schedule</dt>
+            <dd>@(string.IsNullOrEmpty(p.PoolSchedule) ? "-" : p.PoolSchedule)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Landscaping  Contact</dt>
+            <dd>@(string.IsNullOrEmpty(p.LandscapingContact) ? "-" : p.LandscapingContact)</dd>
+            <dt>Landscaping  Schedule</dt>
+            <dd>@(string.IsNullOrEmpty(p.LandscapingSchedule) ? "-" : p.LandscapingSchedule)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Pest Contact</dt>
+            <dd>@(string.IsNullOrEmpty(p.PestContact) ? "-" : p.PestContact)</dd>
+            <dt>Handyman</dt>
+            <dd>@(string.IsNullOrEmpty(p.Handyman) ? "-" : p.Handyman)</dd>
+            <dt>TV/Internet</dt>
+            <dd>@(string.IsNullOrEmpty(p.TvInternet) ? "-" : p.TvInternet)</dd>
+        </dl>
+    </div>
+</div>
+
+<h4 class="text-info">Utilities (Placeholder)</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Electric</dt>
+            <dd>###</dd>
+            <dt>Gas</dt>
+            <dd>###</dd>
+            <dt>Water</dt>
+            <dd>###</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Sewage/Trash</dt>
+            <dd>###</dd>
+            <dt>Solar</dt>
+            <dd>###</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class="text-info">Requested Freeform Special Instructions (Placeholder)</h4>
+<div class="row">
+    <div class="col">
+        <textarea id="Freeform-editor"></textarea>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Inspection Information</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Do NOT Inspect</dt>
+            <dd>@Html.Raw(p.IsDoNotInspect ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+            <dt>Last Inspection Date</dt>
+            <dd>@(p.DateLastInspected == DateTime.MinValue ? "-" : p.DateLastInspected.ToShortDateString())</dd>
+            <dt>Inspector Name</dt>
+            <dd>@(string.IsNullOrEmpty(p.InspectorName) ? "-" : p.InspectorName)</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Appliance Information</h4>
+<div class="row">
+    <dl>
+        <dt>Appliances</dt>
+        <dd>@(string.IsNullOrEmpty(p.AppliancesName) ? "-" : p.AppliancesName)</dd>
+    </dl>
+</div>
+
+
+<h4 class='text-info'>Property Amenities</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Pool</dt>
+            <dd><i class="fa fa-toggle-@(p.IsPool ? " on text-success" : "off text-primary" )" data-toggle="@p.IsPool.ToString().ToLower()"></i></dd>
+            <dt>Pool Type</dt>
+            <dd>@(string.IsNullOrEmpty(p.PoolType) ? "-" : p.PoolType)</dd>
+            <dt>Pool Dimensions</dt>
+            <dd>@(string.IsNullOrEmpty(p.PoolDimensions) ? "-" : p.PoolDimensions)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Spa</dt>
+            <dd><i class="fa fa-toggle-@(p.IsSpa ? " on text-success" : "off text-primary" )" data-toggle="@p.IsSpa.ToString().ToLower()"></i></dd>
+            <dt>Spa Type</dt>
+            <dd>@(string.IsNullOrEmpty(p.SpaType) ? "-" : p.SpaType)</dd>
+            <dt>Spa Dimensions</dt>
+            <dd>@(string.IsNullOrEmpty(p.SpaDimensions) ? "-" : p.SpaDimensions)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Fire Feature</dt>
+            <dd><i class="fa fa-toggle-@(p.IsFireFeature ? "on text-success" : "off text-primary")" data-toggle="@p.IsFireFeature.ToString().ToLower()"></i></dd>
+            <dt>Water Features</dt>
+            <dd><i class="fa fa-toggle-@(p.IsWaterFeatures ? "on text-success" : "off text-primary")" data-toggle="@p.IsWaterFeatures.ToString().ToLower()"></i></dd>
+            <dt>Covered Patio</dt>
+            <dd><i class="fa fa-toggle-@(p.IsCoveredPatio ? "on text-success" : "off text-primary")" data-toggle="@p.IsCoveredPatio.ToString().ToLower()"></i></dd>
+            <dt>Pool Table</dt>
+            <dd><i class="fa fa-toggle-@(p.IsPoolTable ? "on text-success" : "off text-primary")" data-toggle="@p.IsPoolTable.ToString().ToLower()"></i></dd>
+            <dt>Ping Pong Table</dt>
+            <dd><i class="fa fa-toggle-@(p.IsPingPongTable ? "on text-success" : "off text-primary")" data-toggle="@p.IsPingPongTable.ToString().ToLower()"></i></dd>
+            <dt>Casita</dt>
+            <dd>@(string.IsNullOrEmpty(p.Casita) ? "-" : p.Casita)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Garage</dt>
+            <dd><i class="fa fa-toggle-@(p.IsGarage ? "on text-success" : "off text-primary")" data-toggle="@p.IsGarage.ToString().ToLower()"></i></dd>
+            <dt>Outdoor Kitchen</dt>
+            <dd><i class="fa fa-toggle-@(p.IsOutdoorKitchen ? "on text-success" : "off text-primary")" data-toggle="@p.IsOutdoorKitchen.ToString().ToLower()"></i></dd>
+            <dt>Outdoor Shower</dt>
+            <dd><i class="fa fa-toggle-@(p.IsOutdoorShower ? "on text-success" : "off text-primary")" data-toggle="@p.IsOutdoorShower.ToString().ToLower()"></i></dd>
+            <dt>Cabana</dt>
+            <dd><i class="fa fa-toggle-@(p.IsCabana ? "on text-success" : "off text-primary")" data-toggle="@p.IsCabana.ToString().ToLower()"></i></dd>
+            <dt>Putting Green</dt>
+            <dd><i class="fa fa-toggle-@(p.IsPuttingGreen ? "on text-success" : "off text-primary")" data-toggle="@p.IsPuttingGreen.ToString().ToLower()"></i></dd>
+            <dt>Other Amenities</dt>
+            <dd>@(string.IsNullOrEmpty(p.OtherAmenities) ? "-" : p.OtherAmenities)</dd>
+        </dl>
+    </div>
+</div>
+
+
+
+<h4 class='text-info'>Property Notes</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Expectations Goals</dt>
+            <dd>@(string.IsNullOrEmpty(p.ExpectationsGoals) ? "-" : p.ExpectationsGoals)</dd>
+            <dt>Incentives</dt>
+            <dd>@(string.IsNullOrEmpty(p.Incentives) ? "-" : p.Incentives)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Personal Usage</dt>
+            <dd>@(string.IsNullOrEmpty(p.PersonalUsage) ? "-" : p.PersonalUsage)</dd>
+            <dt>General Notes</dt>
+            <dd>@(string.IsNullOrEmpty(p.GeneralNotes) ? "-" : p.GeneralNotes)</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Marketing & Misc Admin Info</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Matterport Link</dt>
+            <dd>@(string.IsNullOrEmpty(p.MatterPortLink) ? "-" : p.MatterPortLink)</dd>
+            <dt>Systems Video</dt>
+            <dd>@Html.Raw(p.IsSystemVideo ? "<i class='fa fa-check-circle text-success'></i>" : "-")</dd>
+            <dt>
+                Escapia Prop ID
+            </dt>
+            <dd>@(string.IsNullOrEmpty(p.EscapiaID) ? "-" : p.EscapiaID)</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Website</dt>
+            <dd>@(string.IsNullOrEmpty(p.Website) ? "-" : p.Website)</dd>
+            <dt>Facebook</dt>
+            <dd>@(string.IsNullOrEmpty(p.SocialFacebook) ? "-" : p.SocialFacebook)</dd>
+            <dt>Instagram</dt>
+            <dd>@(string.IsNullOrEmpty(p.SocialInstagram) ? "-" : p.SocialInstagram)</dd>
+        </dl>
+    </div>
+</div>
+
+
+<h4 class='text-info'>Record Information</h4>
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Created By</dt>
+            <dd>@(string.IsNullOrEmpty(p.CreatedBy) ? "-" : p.CreatedBy)</dd>
+            <dt>Created On</dt>
+            <dd>@(p.DateCreated == DateTime.MinValue ? "-" : p.DateCreated.ToShortDateString())</dd>
+        </dl>
+    </div>    <div class="col-6">
+        <dl>
+            <dt>Owned By</dt>
+            <dd>@(string.IsNullOrEmpty(p.AccountOwner) ? "-" : p.AccountOwner)</dd>
+            <dt>Last Modified</dt>
+            <dd>@(p.DateModified == DateTime.MinValue ? "-" : p.DateModified.ToShortDateString())</dd>
+        </dl>
+    </div>
+</div>
+
+
+
+<script>
+    ClassicEditor
+        .create(document.querySelector('#Freeform-editor'))
+        .catch(error => {
+            console.error(error);
+        });
+</script>

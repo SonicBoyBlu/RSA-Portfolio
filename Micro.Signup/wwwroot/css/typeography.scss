@@ -1,0 +1,36 @@
+﻿@import "_variables";
+
+body {
+    color: $grey-dark;
+
+    h1 {
+        color: $blue;
+    }
+
+    a {
+        color: $orange-medium;
+        font-weight: bold;
+    }
+
+    small {
+        font-size: 9pt;
+        color: $grey-medium;
+        display:inline-flex;
+    }
+
+    table {
+        thead, tfoot {
+            color: $blue-medium;
+        }
+    }
+
+    fieldset {
+        /*border: 1px solid $grey-light;*/
+
+        legend {
+            color: $green;
+            font-size: 13pt;
+            font-weight:700;
+        }
+    }
+}

@@ -1,0 +1,192 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@*model Acme.Models.CRM.Contacts.Details.LeadDetail*@
+@{
+    var c = Model.ContactDetail;
+    if (c.LeadDetail.Count() == 0)
+    {
+        c.LeadDetail.Add(new Acme.Models.CRM.Contacts.Details.LeadDetail());
+    }
+    var ld = c.LeadDetail.FirstOrDefault();
+
+
+    if (c.Properties.Count() == 0)
+    {
+        c.Properties.Add(new Acme.Models.CRM.Properties.Property());
+    }
+    var p = c.Properties.FirstOrDefault();
+}
+    <div class="tab-pane fade" id="tab-contact-lead">
+        @if (c.ContactType != DataTypes.CRM.ContactType.Lead)
+        {
+            <div class="alert alert-warning mb-3">
+                This contact is a <strong>@(c.ContactType.ToString())</strong> and is no longer a <strong>Lead</strong>.
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $("input:visible, textarea, select", $("#tab-contact-lead")).attr("readonly", "readonly").addClass("readonly").attr("disabled", "disabled").addClass("disabled");
+                });
+            </script>
+        }
+        <form data-form-type="lead-details">
+            <h5>Lead Details</h5>
+            <input type="hidden" name="ExtendedLeadID" value="@ld.ExtendedLeadID" />
+            <input type="hidden" name="PersonID" value="@ld.PersonID" />
+            <div class="row">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="PropertyAddress" placeholder="Property Address" value="@ld.PropertyAddress" />
+                </div>
+                <div class="col-sm-3">
+                    @*<input type="hidden" name="PartnerContactID" value="@ld.PartnerContactID" />*@
+                    <label>
+                        <input type="checkbox" name="IsPartnershipProperty" value="true" checked="@(ld.IsPartnershipProperty ? true : false)" />
+                        <i class="fa fa-toggle-@(ld.IsPartnershipProperty ? "on text-primary" : "off text-default") toggle0 d-none" data-check="IsPartnershipProperty"></i>
+                        Partnership Property
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea name="MultipleDecisionMakers" placeholder="Multiple Decision Makers" class="form-control">@ld.MultipleDecisionMakers</textarea>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class=" col-sm">
+                    <input type="text" name="Lead" placeholder="Lead" class="form-control" value="@ld.Lead" />
+                </div>
+                <div class=" col-sm">
+                    <input type="text" name="LeadSource" placeholder="Lead Source" class="form-control" value="@ld.LeadSource" />
+                </div>
+                <div class=" col-sm">
+                    <input type="text" name="LeadStatus" placeholder="Lead Status" class="form-control" value="@ld.LeadStatus" />
+                </div>
+            </div>
+        </form>
+
+        @{
+            var prop = (Acme.Models.CRM.Properties.Property)p.Clone();
+            prop._titlePropertyFeatures = "Property " + prop._titlePropertyFeatures;
+            prop._titlePropertyAddress = "Property " + prop._titlePropertyAddress;
+            prop._titlePropertyLogistics = "Property" + prop._titlePropertyLogistics;
+            var model = (Acme.ViewModels.CRM.ContactDetailViewModel)Model.Clone();
+            model.ContactDetail.Properties.Clear();
+            model.ContactDetail.Properties.Add(prop);
+        }
+        @Html.Partial("formParts/_propertyAddress", model)
+        @Html.Partial("formParts/_propertyLogistics", model)
+        @Html.Partial("formParts/_propertyFeatures", prop)
+
+
+        <form data-form-type="lead-goals">
+            <h5>Financials, Goals & Planning</h5>
+            <input type="hidden" name="ExtendedLeadID" value="@ld.ExtendedLeadID" />
+            <input type="hidden" name="PersonID" value="@ld.PersonID" />
+            <div class="row">
+                <div class="col-sm">
+                    <input type="number" class="form-control" placeholder="($) Revenue Goals" name="RevenueGoals" value="@ld.RevenueGoals" />
+                </div>
+                <div class="col-sm">
+                    <input type="number" class="form-control" placeholder="($) Prediction" name="Prediction" value="@ld.Prediction" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="text" date-picker class="form-control" placeholder="Projected Launch Date" name="DateProjectedLaunch" value="@GlobalUtilities.GetDateString(ld.DateProjectedLaunch)" />
+                </div>
+                <div class="col-sm">
+                    <input type="text" maxlength="250" class="form-control" placeholder="Projected Launch Date Delay" name="ProjectedLaunchDateDelay" value="@ld.ProjectedLaunchDateDelay" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <input type="number" class="form-control" placeholder="($) Current Annual Revenue" name="CurrentAnnualRevenue" value="@ld.CurrentAnnualRevenue" />
+                </div>
+                <div class="col-sm">
+                    <input type="text" maxlength="250" class="form-control" placeholder="Currently Rented" name="CurrentlyRented" value="@ld.CurrentlyRented" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <textarea name="Objections" placeholder="Objections" class="form-control">@ld.Objections</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea name="Challenges" placeholder="Challenges" class="form-control">@ld.Challenges</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea name="Expectations" placeholder="Expectations" class="form-control">@ld.Expectations</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea name="Goals" placeholder="Goals" class="form-control">@ld.Goals</textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea name="RetirementPlans" placeholder="Retirement Plans" class="form-control">@ld.RetirementPlans</textarea>
+                </div>
+            </div>
+        </form>
+
+        <form data-form-type="lead-sites">
+            <h5>Marketing Sites (Move to it's own tab??)</h5>
+            <input type="hidden" name="ExtendedLeadID" value="@ld.ExtendedLeadID" />
+            <input type="hidden" name="PersonID" value="@ld.PersonID" />
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="url" name="UrlAirBnB" placeholder="AirBnB.com" class="form-control type-clone" data-target="#url-airbnb" data-prefix="https://www.airbnb.com/" value="@ld.UrlAirBnB" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-airbnb"></span>
+                </div>
+                <div class="col-sm-6">
+                    <input type="url" name="UrlFlipkey" placeholder="Flipkey.com" class="form-control type-clone" data-target="#url-flipkey" data-prefix="https://www.flipkey.com/" value="@ld.UrlFlipkey" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-flipkey"></span>
+                </div>
+                <div class=" col-sm-6">
+                    <input type="url" name="UrlHomeAway" placeholder="HomeAway.com" class="form-control type-clone" data-target="#url-homeaway" data-prefix="https://www.homeaway.com/" value="@ld.UrlHomeaway" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-homeaway"></span>
+                </div>
+
+                <div class="col-sm-6">
+                    <input type="url" name="UrlTripAdvisor" placeholder="TripAdvisor.com" class="form-control type-clone" data-target="#url-tripadvisor" data-prefix="https://www.TripAdvisor.com/" value="@ld.UrlTripAdvisor" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-tripadvisor"></span>
+                </div>
+                <div class="col-sm-6">
+                    <input type="url" name="UrlVacationRentals" placeholder="VacationRentals.com" class="form-control type-clone" data-target="#url-vacationrentals" data-prefix="https://www.VacationRentals.com/" value="@ld.UrlVacationRentals" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-vacationrentals"></span>
+                </div>
+                <div class=" col-sm-6">
+                    <input type="url" name="UrlVRBO" placeholder="VRBO.com" class="form-control type-clone" data-target="#url-vrbo" data-prefix="https://www.vrbo.com/" value="@ld.UrlVRBO" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-vrbo"></span>
+                </div>
+
+                <div class=" col-sm-6">
+                    <input type="url" name="UrlOtherListing" placeholder="Other Listing" class="form-control type-clone" data-target="#url-other" value="@ld.UrlOtherListing" />
+                </div>
+                <div class="col-sm-6">
+                    <span id="url-other"></span>
+                </div>
+            </div>
+        </form>
+
+        <h3>Journaled Notes</h3>
+        Coming soon!
+
+    </div>

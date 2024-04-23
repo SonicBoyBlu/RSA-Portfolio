@@ -1,0 +1,22 @@
+﻿@page
+@model Admin.Pages.Locations.List.StatesModel
+@{
+    Layout = null;
+    var states = Model.States;
+    var market = Model.Market;
+}
+<p>Hello States List!</p>
+@if(Model.StateID > 0){
+<p>
+    <strong>Selected Market:</strong> @market.MarketName: (Market: @market.MarketID - @market.StateCode: @market.StateID)
+</p>
+}
+<ol>
+    @foreach (var s in states)
+    {
+        string _state = string.Format("{0} ({1} - {2})", s.StateName, s.StateCode, s.StateID);
+        if (Model.StateID == s.StateID)
+            _state = string.Format("<strong>{0}</strong>", _state);
+        <li><a href="#" data-state-id="@s.StateID">@Html.Raw(_state)</a></li>
+    }
+</ol>

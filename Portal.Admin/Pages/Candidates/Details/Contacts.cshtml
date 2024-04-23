@@ -1,0 +1,9 @@
+﻿@page
+@model Admin.Pages.Candidates.Details.ContactsModel
+@{
+    Layout = null;
+}
+<h3 class="text-success">Contacts: @Model.Journal.Count</h3>
+{ @Model.UserID }
+<hr />
+<partial name="_journalLogs" model="Model.Journal" />

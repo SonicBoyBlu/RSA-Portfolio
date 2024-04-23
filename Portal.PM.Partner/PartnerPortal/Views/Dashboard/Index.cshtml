@@ -1,0 +1,249 @@
+﻿@model Acme.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.TitleIcon = "fa-tachometer-alt";
+    var t = Model.TicketCounts;
+    var me = Identity.Current;
+}
+    <div class="row">
+        <div class="col">
+
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                @Html.Raw(Model.WelcomeMessage.Message)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                @Html.Raw(Model.NewOwnerMessage.Message)
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 pr-5">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-paper-plane"></i> Action Items</h4>
+                <div class="card-body">
+                    <dl>
+                        @if (me.UserType == DataTypes.UserType.Employee)
+                        {
+                            <dt class="text-danger0">Active - Assigned To You</dt>
+                            <dd><a href="https://help.acmehouseco.com/Management/Root.aspx" target="_blank" class="badge badge-success">@t.TotalWaitingOnMe</a></dd>
+                            <dt class="text-warning0">Waiting On Customer</dt>
+                            <dd><a href="https://help.acmehouseco.com/Management/Root.aspx" target="_blank" class="badge badge-warning">@t.TotalWaitingOnAgent</a></dd>
+                        }
+                        else
+                        {
+                            <dt class="text-danger0">Waiting on You</dt>
+                            <dd><a href="@Url.Action("Index", "ActionItems")" class="badge badge-warning">@t.TotalWaitingOnMe</a></dd>
+                            <dt class="text-warning0">Waiting on Agent - Active</dt>
+                            <dd><a href="@Url.Action("Index", "ActionItems")" class="badge badge-success">@t.TotalWaitingOnAgent</a></dd>
+                        }
+                    </dl>
+                    <div class="text-right">
+                        @if (Identity.Current.UserType == DataTypes.UserType.Owner)
+                        {
+                            <a href="@Url.Action("Index", "ActionItems")">View All</a>
+                        }
+                        else
+                        {
+                            <a href="https://help.acmehouseco.com/Management/Root.aspx" class="btn btn-link">View All</a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-6 pl-5">
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-university"></i> @(me.UserType == DataTypes.UserType.Employee ? "Helpful Tips" : "Getting Started")</h4>
+                <div class="card-body" id="card-next-steps"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (me.UserType == DataTypes.UserType.Employee)
+        {
+        <div class="col-12 col-md-6 pr-5">
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-user"></i> Bamboo HR</h4>
+                <div class="card-body" id="card-staff"></div>
+            </div>
+        </div>
+        }
+    </div>
+
+@if (Identity.Current.UserType == DataTypes.UserType.Owner)
+{
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-home"></i> Occupancy (Coming Soon)</h4>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h5>Current Month</h5>
+                            <div class="progress" style="height:50px;">
+                                <div class="progress-bar bg-danger" style="width:5%">5%</div>
+                                <div class="progress-bar bg-warning" style="width:10%">10%</div>
+                                <div class="progress-bar bg-info" style="width:10%">10%</div>
+                                <div class="progress-bar bg-success" style="width:50%">50%</div>
+                                <div class="progress-bar bg-dark" style="width:25%">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Last Year This Month</h5>
+                            <div class="progress" style="height:30px; opacity:.6">
+                                <div class="progress-bar bg-danger" style="width:2%">2%</div>
+                                <div class="progress-bar bg-warning" style="width:13%">13%</div>
+                                <div class="progress-bar bg-info" style="width:20%">20%</div>
+                                <div class="progress-bar bg-success" style="width:80%">80%</div>
+                                <div class="progress-bar bg-dark" style="width:5%">5%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset>
+                        <legend></legend>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><span class="badge badge-danger">&nbsp;</span> Maint. Hold</li>
+                            <li class="list-inline-item"><span class="badge badge-warning">&nbsp;</span> Owner</li>
+                            <li class="list-inline-item"><span class="badge badge-info">&nbsp;</span> Owner Guest</li>
+                            <li class="list-inline-item"><span class="badge badge-success">&nbsp;</span> Occupied</li>
+                            <li class="list-inline-item"><span class="badge badge-dark">&nbsp;</span> Unoccupied</li>
+                        </ul>
+                    </fieldset>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-file-invoice-dollar"></i> Year to Date (Coming Soon)</h4>
+                <div class="card-body">
+                    <dl>
+                        <dt>Current Year</dt>
+                        <dd><strong class="text-success">$273,000</strong></dd>
+
+                        <dt>YTD in @DateTime.Now.AddYears(-1).Year</dt>
+                        <dd>$245,000</dd>
+
+                        <dt>Completed Stays</dt>
+                        <dd>300</dd>
+
+                        <dt>Upcoming Bookings</dt>
+                        <dd>84</dd>
+                    </dl>
+                    @*
+                    <p class="text-muted">$0.00 in same period </p>
+
+
+                    <strong class="col">2 Arrivals</strong>
+                    <strong class="col">1 Checkout</strong>
+                    <strong class="col">2 Bookings</strong>
+                    *@
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-chart-line"></i> Performance (Coming Soon)</h4>
+                <div class="card-body">
+                    <dl>
+                        <dt>Average Daily Rate</dt>
+                        <dd>$910</dd>
+
+                        <dt>Annual Projection</dt>
+                        <dd>$350,000</dd>
+
+                        <dt>Revenue YTD</dt>
+                        <dd>$273,000</dd>
+
+                        <dt>% of Projection</dt>
+                        <dd>78%</dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+}
+
+@section scripts {
+<script type="text/javascript">
+    $(function () {
+        Dashboard.init();
+        //FetchEscapiaOwner(escapiaOwnerId)
+    });
+
+    var Dashboard = {
+        init: function () {
+            Dashboard.fetch.cards.All();
+        },
+        fetch: {
+            cards: {
+                All: function () {
+                    Dashboard.fetch.cards.NextSteps();
+                    @if (me.UserType == DataTypes.UserType.Employee) {
+                        <text>
+                            Dashboard.fetch.cards.Staff();
+                    </text>
+                    }
+                },
+                NextSteps: function () {
+                    var c = $("#card-next-steps")
+                    $.ajax({
+                        url: "@(Url.Action("NextStep", "Dashboard"))",
+                        method: "post",
+                        data: { id: 1 },
+                        success: function (d) {
+                            c.html(d);
+                        },
+                        beforeSend: function () {
+                            c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                        }
+                    });
+                },
+                Staff: function () {
+                    var c = $("#card-staff")
+                    $.ajax({
+                        url: "@(Url.Action("Staff", "Dashboard"))",
+                        method: "post",
+                        data: { id: 1 },
+                        success: function (d) {
+                            c.html(d);
+                        },
+                        beforeSend: function () {
+                            c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                        }
+                    });
+                }
+            }
+        }
+    }
+</script>
+}

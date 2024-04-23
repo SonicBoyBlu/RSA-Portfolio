@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "QuickBooks Callback";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+
+@section Scripts {
+    <script type="text/javascript">
+        var companyid = 193514735847589,
+            ids = [76112];
+
+        /*
+        http://localhost:12333/
+        callback ?
+            state = 64a14754a6f8fc88fbaebf200f82649f48e118c2e6f549f0d0e8ea5f8fcbda7a &
+            code=Q011560234081t1T951uhriKbaFEPH0VOObm8o7fpO6mvL7qcC &
+            realmId=123146479423424
+        */
+
+        $(function () {
+            //debugger;
+            TokenUtils.save();
+
+            $.ajax({
+                url: "/QuickBooks/ApiCallService",
+                success: function (d) {
+                    debugger;
+                }
+            });
+
+            /*
+            $.each(ids, function () {
+                var id = this;
+                $.ajax({
+                    url: "https://qbonline.api.intuit.com/v3/company/193514735847589/invoice/" + id + "?minorversion=38",
+                    contentType: "application/json",
+                    headers: {
+                        Authorization: "Intuit_APIKey intuit_apikey=" + "prdakyrescqi1ceS8h6TNyUYcbPEFeXw0ZUI5tmH",
+                        "Intuit-Company-ID": companyid,
+                        Accept: "application/json"
+                    },
+                    success: function (d) {
+                        debugger;
+                    }
+                });
+            });
+            */
+        });
+    </script>
+}

@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Invoices Uploaded to QBO";
+    ViewBag.TitleIcon = "fa-upload";
+    ViewBag.Nav = "invoices";
+
+    var me = Identity.Current;
+}
+
+<script src="~/Content/scripts/invoice/invoicehistory.js"></script>
+<div ng-app="quickBooksHistory" ng-controller="InvoiceHistoryController as invoiceCtl" ng-cloak>
+
+
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-success">Total Uploaded Invoices<span class="float-right">{{invoiceCtl.uploadedCountTotal()}} / {{invoiceCtl.uploadedTotal() | currency}}</span></h3>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <a href="@Url.Action("Index", "WorkOrders")" class="btn btn-outline-primary">
+                                <i class="fas fa-level-down-alt fa-rotate-90 mr-2"></i> Back to Review
+                            </a>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Invoice # or Customer Name" ng-model="invoiceCtl.query" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+
+                                <input date-range-picker id="daterange" name="daterange" class="form-control date-picker" type="text"
+                                       ng-model="invoiceCtl.date"
+                                       options="invoiceCtl.dateRangePickerOptions" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @Html.Partial("PartialGroupedInvoiceHistoryList")
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

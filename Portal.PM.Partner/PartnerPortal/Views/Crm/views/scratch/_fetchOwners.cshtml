@@ -1,0 +1,49 @@
+﻿@model Acme.ViewModels.CRM.ContactsView
+<h2 class="text-info"><i class="fa fa-address-card"></i> Ownders</h2>
+<script type="text/javascript">
+    TableSort.config.queryParams = { ContactTypeID: 7 };
+</script>
+
+<div class="table-responsive">
+    <table id="tbl-owners-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="CRM/Data/JSON/Owners" data-row-attributes="Actions.rowAttributes">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="FullName">Contacts</th>
+                <th data-sortable="true" data-field="ContactType">Type</th>
+                <th data-sortable="true" data-field="AccountName">Property</th>
+                <th data-sortable="true" data-field="UrlPhoneNumber">Phone</th>
+                <th data-sortable="true" data-field="UrlEmailAddress">Email</th>
+                <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var tableName = "#tbl-owners-list";
+    $(function () {
+        Actions.init();
+    });
+
+    var Actions = {
+        init: function () {
+            CRM.render.table(tableName);
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-secondary btn-export' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-info btn-vendor-new' data-vendor-id='0' type='button' name='new' title='Create New Vendor'><i class='fa fa-plus-circle'></i></button>");
+            $(document).on("click", ".btn-export", function () {
+                $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                $("table-sortable").tableExport({
+                    type: 'excel'
+                });
+            });
+
+        },
+        rowAttributes: function (row, index) {
+            return {
+                "data-contact-id": row.ContactID
+            }
+        }
+    }
+</script>

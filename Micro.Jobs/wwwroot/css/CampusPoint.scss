@@ -1,0 +1,80 @@
+﻿body {
+    color: #666;
+    // page transition
+    opacity: 0;
+    transition: opacity .5s;
+    background-color:transparent;
+
+    small {
+        font-size: .6em;
+    }
+
+    .btn-close {
+        color: red;
+    }
+
+    .fa, .fas {
+        padding-right: .5em;
+    }
+
+    ul {
+        &#tbl-job-list {
+            li {
+                a {
+                    text-decoration: none;
+                    color: unset;
+                    display: block;
+                    width: 100%;
+                }
+                /*margin-bottom: .75em;*/
+                border-bottom: 1px solid #ccc;
+                padding: .75em;
+                cursor: pointer;
+
+                &.active{
+                    background-color: #eee;
+                    color: #999;
+                }
+
+                &:hover {
+                    background-color: #eaeaea;
+                }
+            }
+        }
+    }
+
+    #img-logo-main {
+        max-height: 6em;
+    }
+
+    .text-secondary {
+        color: #9a9a9a !important;
+    }
+
+    dl {
+        width: 100%;
+
+        dt {
+            cursor: default;
+            float: left;
+            clear: left;
+            text-align: left;
+            padding-top: 6px
+        }
+
+        dd {
+            padding: 5px 0;
+            text-align: right;
+
+            .form-control {
+                display: -webkit-inline-box;
+                width: auto;
+                text-align: right;
+            }
+        }
+    }
+}
+
+/*@/import "form";*/
+
+@import "FlexCaption.css";

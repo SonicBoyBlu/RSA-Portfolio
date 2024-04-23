@@ -1,0 +1,44 @@
+﻿@model Acme.Models.KnowledgeBaseItem
+
+<div class="row">
+    <div class="col">
+        <h1>@Model.Title</h1>
+        @Html.Raw(Model.Description)
+        <div class="text-right text-muted">
+            <small>Category: @Model.Category<br />KB ID: @Model.KbID</small>
+        </div>
+    </div>
+</div>
+@*
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="embed-responsive embed-responsive-16by9">
+                @Html.Raw(Model.Video)
+            </div>
+
+        </div>
+        <div class="col">
+            <dl>
+                <dt>Title</dt>
+                <dd>@Model.Title</dd>
+
+                <dt>Category</dt>
+                <dd>@Model.Category</dd>
+
+                <dt>KB ID</dt>
+                <dd>@Model.KbID</dd>
+
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <strong>Description</strong>
+            @Html.Raw(Model.Description)
+        </div>
+    </div>
+</div>
+*@

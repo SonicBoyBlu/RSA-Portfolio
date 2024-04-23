@@ -1,0 +1,11 @@
+﻿@import "../../_variables.scss", "../../_fonts.scss";
+.popover {
+    .popover-header {
+        background-color: transparent;
+        border-bottom: 0 none;
+    }
+}
+
+[data-toggle="popover"] {
+    cursor:pointer;
+}

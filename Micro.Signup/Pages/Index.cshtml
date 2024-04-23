@@ -1,0 +1,83 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "SignIn";
+}
+@section Title {
+    <div class="text-center mb-5">
+        <h3 class="text-success">Signup Sheet Setup</h3>
+    </div>
+}
+
+
+<div id="event-sign-in">
+    <p>
+        <div class="form-floating">
+            <select class="form-select" id="CpUserID">
+                @foreach (var a in Model.Admins)
+                {
+                    <option value="@a.UserID">@a.FullName</option>
+                }
+            </select>
+            <label for="CpUserID">Default Enroller</label>
+        </div>
+    </p>
+    <p>
+        <strong class="text-primary">Please confirm your event:</strong>
+    </p>
+    <div class="form-floating d-none">
+        <input class="form-control" type="number" placeholder="Event ID" id="event-id" />
+        <label for="event-id">Event ID</label>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Starts (PST)</th>
+                <th>Ends (PST)</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach(var e in Model.Events)
+        {
+            <tr data-event-id="@e.EventID" data-signup-id="@e.SignupSheetID" data-event-name="@e.Name" title="Select: @e.Name">
+                <td>@e.Name</td>
+                <td>@e.DateStart.ToString("g")</td>
+                <td>@e.DateEnd.ToString("g")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+<script type="text/javascript">
+    $(function () {
+        System.init();
+
+        $(document).on("keyup change", ".form-control", function (e) {
+            if (e.keyCode == 13) {
+                System.fetch.form();
+            } else {
+                localStorage.setItem(System.config.name, $("#event-id").val());
+            }
+        });
+
+        $(document).on("click", "#event-sign-in tr", function () {
+            //debugger;
+            var 
+                i = $(this),
+                e = { 
+                    name: i.data("event-name"),
+                    eventID: i.data("event-id"),
+                    sheetID: i.data("signup-id"),
+                    CpUserID: $("#CpUserID").val()
+                };
+            //alert("event: " + i.data("event-name"));
+            localStorage.setItem(System.config.name, JSON.stringify(e));
+            $("#event-id").val(e.eventID);
+            System.fetch.form();
+        });
+    });  
+</script>
+}

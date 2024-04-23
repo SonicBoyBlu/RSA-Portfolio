@@ -1,0 +1,80 @@
+﻿@import "../../_variables.scss";
+
+.text-primary {
+    color: $blue !important;
+}
+
+.text-warning {
+    color: $orange !important;
+}
+
+.text-success {
+    color: $green-medium !important;
+}
+
+.text-danger {
+    color: $red;
+}
+
+.text-muted {
+    color: #aeaeae !important;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+h1, .h1 {
+    font-size: 1.65em;
+
+    &.title {
+        margin-top: .25em;
+        margin-bottom: .45em;
+    }
+}
+
+h4 {
+    a {
+        color: $blue;
+
+        .af, fas, .far {
+            color: $blue;
+        }
+    }
+}
+
+.bg-warning {
+    background-color: $orange !important;
+    color: #fff;
+
+    .fa, .fas {
+        color: #fff;
+    }
+}
+
+.bg-success {
+    background-color: $green-medium !important;
+    color: #fff;
+
+    .fa, .fas {
+        color: #fff;
+    }
+}
+
+.bg-danger {
+    background-color: $red !important;
+    color: #fff;
+
+    .fa, .fas {
+        color: #fff;
+    }
+}
+
+.bg-primary {
+    background-color: $blue !important;
+    color: #fff;
+
+    .fa, .fas {
+        color: #fff;
+    }
+}

@@ -1,0 +1,96 @@
+﻿@{
+    int month = DateTime.Now.Month;
+    string urlBase = "https://www.campuspoint.com/assets/images/";
+    string urlLogo = "CampusPointLogo";
+    if (month == 12) { urlLogo += "-Holiday"; }
+    if (month == 6) { urlLogo += "-Pride"; }
+
+    urlLogo = urlBase + urlLogo + ".png";
+    //logo = "/assets/images/" + logo + ".png";
+    //logo = GlobalSettings.CDN.Images.www + logo + ".png";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="last-modified" content="@Root.AppSettings.DateReloaded.ToString()" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-title" content="CampusPoint">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+
+    <title>CampusPoint Jobs - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Jobs.styles.css" asp-append-version="true" />
+    *@
+    <link href="https://campuspointwebfiles.blob.core.windows.net/font-awesome/css/all.min.css" rel="stylesheet">
+    <link href="https://campuspointwebfiles.blob.core.windows.net/font-awesome/css/svg-with-js.min.css" rel="stylesheet">
+    @*<link href="~/css/campuspoint.min.css" rel="stylesheet" />*@
+    
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Signups</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    @*
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Signups.styles.css" asp-append-version="true" />
+    *@
+</head>
+<body>
+    <header class="text-center mt-5">
+        <a href="~/" title="Home">
+            <img class="img-fluid" id="img-logo-main" src="@urlLogo" title="CampusPoint Career Fair Signup" />
+        </a>
+        <br />
+        @RenderSection("Title")
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            @Html.AntiForgeryToken()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mb-3">
+        <div class="container">
+            &copy;@DateTime.Now.Year @Global.Settings.CompanyDetails.CompanyName v @Global.Settings.Application.Version.Singups.ToString()
+            <a asp-area="" asp-page="/Privacy" class="btn btn-sm btn-outline-info">Privacy</a>
+            <a href="https://forms.monday.com/forms/9ddb56d819507186191a899be6bcbebd?r=use1" target="_blank" class="btn btn-sm btn-outline-warning">Need Help?</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/plugins/serializeObject.js" asp-append-version="true"></script>
+    <script src="~/js/plugins/jquery.inputmask.min.js"></script>
+    @*
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

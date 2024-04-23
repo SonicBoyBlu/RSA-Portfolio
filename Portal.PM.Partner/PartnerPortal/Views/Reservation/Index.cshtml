@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "Reservations";
+    ViewBag.TitleIcon = "fa-id-card";
+    Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+}
+
+<div ng-app="reservation" ng-controller="ReservationController as reservationCtl" ng-cloak>
+        <div class="row mb-3">
+            <div class="col text-center">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    You must enter AirBnB reservations to Escapia before they will shown here
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <input type="search" class="form-control" id="frmSearch" name="frmSearch" placeholder="Reservation Number or Guest"
+                    ng-keydown="$event.keyCode === 13 && searchReservations()" />
+        </div>
+
+        <div class="col-sm-3">
+            <select class="form-control" id="frmPaymentStatus" name="frmPaymentStatus"
+                    data-placeholder="Payment Status"
+            ng-model="reservationCtl.paymentStatus"
+            ng-change="gridFilter()"
+            ng-options="option.value as option.name for option in reservationCtl.paymentStatuOptions"
+            >
+            </select>
+        </div>
+
+        <div class="col-sm-3">
+
+            <label for="frmShowHold">
+                <input type="checkbox" class="form-check-input" id="frmShowHold" name="frmShowHold" ng-model="reservationCtl.showHold" ng-change="gridFilter()">
+                Show Holds
+            </label>
+
+            <label for="frmShowOwnerStays">
+                <input type="checkbox" class="form-check-input" id="frmShowOwnerStays" name="frmShowOwnerStays" ng-model="reservationCtl.showOwnerStays" ng-change="gridFilter()">
+                Show Owner Stays
+            </label>
+
+            <label for="frmshowHistoricReservation">
+                <input type="checkbox" class="form-check-input" id="frmshowHistoricReservation" name="frmshowHistoricReservation" ng-model="reservationCtl.showHistoricReservation">
+                Show Historic Reservation
+            </label>
+
+
+        </div>
+
+        <div class="col-sm-3">
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   placeholder="Start Date"
+                                   ng-model="reservationCtl.frmStartDate"
+                                   options="datePickerOptions" />
+        </div>
+
+        <div class="col-sm-12">
+            <span class="btn btn-primary btn-report-search mr-2" ng-click="searchReservations()">Search</span>
+            <span class="btn btn-outline-warning btn-report-refresh" ng-click="reloadReservationData()" ng-model="reloadingReservationData" data-toggle="tooltip" title="Refresh was last run {{reservationCtl.reservationRefreshedOn}}. Click to force re-load Reservation data from the Escapia API. This process will take 5min and will run in the background. The current Reservation system will not be interrupted."> Refresh Escapia Data
+            </span>
+        </div>
+
+    </div>
+
+    <ul class="nav nav-tabs" id="nav-resv-main">
+        <li class="nav-item">
+            <a ng-click="loadReservations('arriving')" id="tab-arriving" class="nav-link text-success active resv-tab" data-toggle="tab" href="#tab-Arriving" title="Arriving"><i class="fa fa-clock"></i><span class="d-none d-sm-inline"> Arriving</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a ng-click="loadReservations('inhome')" id="tab-inHome" class="nav-link text-primary resv-tab" data-toggle="tab" href="#tab-InHome" title="InHome"><i class="fa fa-home"></i><span class="d-none d-sm-inline"> In-Home</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a ng-click="loadReservations('departed')" id="tab-departed" class="nav-link text-dark resv-tab" data-toggle="tab" href="#tab-Departed" title="Departed"><i class="fa fa-external-link-alt"></i><span class="d-none d-sm-inline"> Departed</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a ng-click="loadReservations('all')" id="tab-all" class="nav-link text-muted resv-tab" data-toggle="tab" href="#tab-All" title="All"><i class="fa fa-users"></i><span class="d-none d-sm-inline"> All</span></a>
+        </li>
+
+    </ul>
+
+
+        <div id="content-wrapper-main" class="tab-content container-fluid">
+                <!--
+                <div class="tab-pane active" data-toggle="tab" id="tab-Arriving">
+                    <h2 class="text-success"><i class="fa fa-clock"></i> <span class="model-count"></span> Arriving</h2>
+                </div>
+
+                <div class="tab-pane" data-toggle="tab" id="tab-InHome">
+                    <h2 class="text-primary"><i class="fa fa-home"></i><span class="model-count"></span> In-Home</h2>
+                </div>
+
+                <div class="tab-pane" data-toggle="tab" id="tab-Departed">
+                    <h2 class="text-dark"><i class="fa fa-external-link-alt"></i><span class="model-count"></span> Departed</h2>
+                </div>
+
+                <div class="tab-pane" data-toggle="tab" id="tab-All">
+                    <h2 class="text-muted"><i class="fa fa-users"></i><span class="model-count"></span> All</h2>
+                </div>
+                -->
+
+                <div ng-show="reservationCtl.showStayLegend">
+                    <ul>
+                        <li ng-repeat="stay in reservationCtl.stayTypes"><small>{{stay.Initial}} = {{stay.Name}}</small></li>
+                    </ul>
+                </div>
+
+
+            <div class="table-responsive">
+                <table id="tbl-reservation-list" class="table table-hover table-click" data-toggle="table0" data-search="false" data-show-columns="false">
+                    <thead>
+                        <tr>
+                            <th><small><a href="" ng-click="reservationCtl.showStayLegend = !reservationCtl.showStayLegend" >Legend</a></small>
+                                </th>
+                            <th data-sortable="true" data-field="ReservationNumber">Res. #</th>
+                            <th data-sortable="true">Guest</th>
+                            <th data-sortable="true">Created</th>
+                            <th data-sortable="true">Arrival</th>
+                            <th data-sortable="false">Depart</th>
+                            <th data-sortable="false">Payment</th>
+                            <th data-sortable="false">Contract Signed</th>
+                            <th data-sortable="false">Concierge Notified</th>
+                            <th data-sortable="false">ID Collected</th>
+                            <th data-sortable="false">Arrival Instructions</th>
+                            <th data-sortable="false">City Contract</th>
+                            <th data-sortable="false">Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-show="reservationCtl.loading">
+                            <td colspan="11">
+                                <div ng-show="reservationCtl.loading">
+                                    @Html.Partial("_LoadingIndicator", "Loading Reservations")
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr data-id="{{reservation.ReservationNumber}}" data-metaid="{{reservation.MetaID}}" ng-repeat="reservation in reservationCtl.reservations" ng-show="!reservationCtl.loading">
+                            <td>
+                                <span class="badge badge-primary" style="width:auto;border-radius:15%;">{{reservation.ReservationTypeInitial}}</span>
+                            </td>
+                            <td>
+                                <a href="" ng-click="reservationCtl.editReservation(reservation)">{{reservation.ReservationNumber}}</a>
+                            </td>
+                            <td>{{reservation.LastName}}, {{reservation.FirstName}}</td>
+                            <td>{{reservation.ReservationCreatedAt | date:"MM/dd/yyyy"}}</td>
+                            <td>{{reservation.DateStart | date:"MM/dd/yyyy"}}</td>
+                            <td>{{reservation.DateEnd | date:"MM/dd/yyyy"}}</td>
+                            <td class="paymentstatusfull"><i ng-class="getIconClass(reservation.PaymentStatusFull)"></i></td>
+                            <td class="contractsigned"><i ng-class="getIconClass(reservation.Reservation.ContractSigned)"></i></td>
+                            <td class="hasconcierge"><i ng-class="getIconClass(reservation.HasConcierge)"></i></td>
+                            <td class="uploadguestidentification"><i ng-class="getIconClass(reservation.UploadGuestIdentification)"></i></td>
+                            <td class="sentarrivalinstructions"><i ng-class="getIconClass(reservation.SentArrivalInstructions)"></i></td>
+                            <td class="ispscitycontract"><i ng-class="getIconClass(reservation.IsPSCityContract)"></i></td>
+                            <td>{{reservation.BookingSource}}</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div> <!-- id="content-wrapper-main" -->
+
+</div> <!--ng-app="reservation"-->
+
+
+<script type="text/javascript">
+    $(function () {
+        //TableSort.render.table("#tbl-reservation-list");
+
+    });
+
+    $(document).on("click", ".btn-export", function () {
+        $(tableName).tableExport({
+            type: 'excel'
+        });
+    });
+
+
+    function InitializeForm(task, startdate, enddate, searchterm, paymentstatus) {
+        return {
+            specification: {
+                staydaterangesearchspecification: {
+                    daterange: { startdate: startdate, enddate: enddate }
+                }
+            },
+            custom: { task: task, searchterm: searchterm, paymentstatus: paymentstatus },
+            pagesize: 100,
+            pagenumber: 100
+        };
+    }
+
+</script>
+

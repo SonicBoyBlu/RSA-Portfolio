@@ -1,0 +1,38 @@
+﻿@model Acme.ViewModels.CRM.EventsView
+<h2><i class="fa fa-calendar-alt"></i> Events</h2>
+
+@Html.Partial("partials/_CrmSearch", Model.Query)
+
+<h3 class="text-dark">(Add Calendar View)</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th style="max-width:250px">Subject</th>
+                <th>Agent</th>
+                <th>Venue</th>
+                <th>Starts</th>
+                <th>Ends</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in Model.Events)
+            {
+            <tr>
+                <td style="max-width:250px; overflow:hidden; text-overflow:ellipsis"><strong class="text-info">@e.Subject</strong></td>
+                <td>@e.EventOwner</td>
+                <td>@e.Venue</td>
+                <td>@e.DateStart.ToString("g")</td>
+                <td>@e.DateEnd.ToString("g")</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <p>
+                        <strong>Description:</strong> @e.Description
+                    </p>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

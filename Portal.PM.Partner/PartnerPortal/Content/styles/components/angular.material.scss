@@ -1,0 +1,13 @@
+﻿
+
+html.md-default-theme, html {
+    background: #225683;
+    background: -moz-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+    background: -webkit-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+    background: linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+}
+
+.md-datepicker-calendar-pane {
+    z-index: 1200
+}
+

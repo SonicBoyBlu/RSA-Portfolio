@@ -1,0 +1,21 @@
+﻿@model Acme.Models.KnowledgeBaseItem
+@{
+        ViewBag.Title = Model.Title;
+        ViewBag.TitleIcon = "fa-exclamation-circle";
+        ViewBag.Nav = Model.Title.Replace(" ", "").ToLower();
+        switch (ViewBag.Nav)
+        {
+            case "homeswap": ViewBag.TitleIcon = "fa-exchange-alt"; break;
+            case "preferredvendors": ViewBag.TitleIcon = "fa-award"; break;
+            case "feedback": ViewBag.TitleIcon = "fa-comment"; break;
+            case "localspots": ViewBag.TitleIcon = "fa-utensils"; break;
+            case "annualreports": ViewBag.TitleIcon = "fa-chart-bar"; break;
+        }
+    }
+<div class="container">
+    <div class="row">
+        <div class="col">
+            @Html.Raw(Model.Description)
+        </div>
+    </div>
+</div>

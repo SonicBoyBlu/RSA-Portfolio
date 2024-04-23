@@ -1,0 +1,25 @@
+﻿@import "../../_variables.scss", "../../_fonts.scss";
+.badge {
+    border-radius: 50%;
+    height: 1.3rem;
+    width: 1.3rem;
+    justify-content: center;
+    font-size: .9rem;
+
+    &.badge-primary {
+        background-color: $blue;
+    }
+
+    &.badge-success {
+        background-color: $green;
+    }
+
+    &.badge-warning {
+        background-color: $orange;
+        color: #fff;
+    }
+
+    &.badge-danger {
+        background-color: $red;
+    }
+}

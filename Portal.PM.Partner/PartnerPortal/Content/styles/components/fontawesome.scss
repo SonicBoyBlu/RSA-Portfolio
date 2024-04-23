@@ -1,0 +1,22 @@
+﻿@import "../_variables.scss";
+
+.fa, .fas, .fab {
+    /*font-weight: 100;*/
+}
+.fa-paper-plane, .fa-envelope, .fa-calendar-alt, .fa-id-card, .fa-address-card {
+    font-weight:100;
+}
+/*
+.fa-tachometer-alt, .fa-rocket, .fa-chart-line, .fa-file-invoice-dollar, .fa-clipboard-check, .fa-users, .fa-university, .fa-cog,
+.fa-chevron-circle-down, .fa-tools, .fa-network-wired, .fa-bug, .fa-power-off, .fa-users-cog {
+    font-weight: 600;
+}
+*/
+.fa-power-off {
+    color: $red;
+}
+
+
+.fa-spin {
+    color: #cecece !important;
+}

@@ -1,0 +1,94 @@
+﻿@model Acme.ViewModels.CRM.LeadsView
+<h2 class="text-success"><i class="fab fa-font-awesome-flag"></i> Leads</h2>
+<script type="text/javascript">
+    TableSort.config.queryParams = { ContactTypeID: 2 };
+</script>
+
+<div class="table-responsive">
+    <table id="tbl-leads-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="CRM/Data/JSON/Leads" data-row-attributes="Actions.rowAttributes">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="FullName">Contacts</th>
+                <th data-sortable="true" data-field="PropertyAddress">Address</th>
+                <th data-sortable="true" data-field="LeadSource">Source</th>
+                <th data-sortable="true" data-field="Stage">Status</th>
+                <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*
+                @foreach (var l in Model.Leads)
+                {
+                    <tr>
+                        <td class="text-info">
+                            @if (!string.IsNullOrEmpty(l.FullName))
+                            {
+                                @l.FullName <i class="fa fa-star text-warning"></i>
+                            }
+                            @if (!string.IsNullOrEmpty(l.FullName + l.PartnerFullName))
+                            {<br />}
+                            @if (!string.IsNullOrEmpty(l.PartnerFullName))
+                            {
+                                @l.PartnerFullName
+                            }
+                        </td>
+                        <td>@l.PropertyAddress</td>
+                        @*
+                            <td>
+                                @if (!string.IsNullOrEmpty(l.Phone))
+                                {
+                                    <a href="tel:@l.Phone"><i class="fa fa-phone text-info"></i> @l.Phone</a>
+                                }
+                                @if (!string.IsNullOrEmpty(l.Phone) && !string.IsNullOrEmpty(l.MobilePhone))
+                                {
+                                    <br />
+                                }
+                                @if (!string.IsNullOrEmpty(l.MobilePhone))
+                                {
+                                    <a href="tel:@l.MobilePhone"><i class="fa fa-mobile-alt text-info"></i> @l.MobilePhone</a>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(l.Email))
+                                {
+                                    <a href="mailto:@l.Email"><i class="fa fa-envelope text-info"></i> @l.Email</a>
+                                }
+                            </td>
+                        * @
+                        <td>@l.LeadSource</td>
+                        <td>@l.LeadStatus</td>
+                        <td>@l.DateLastActive.ToShortDateString()</td>
+                    </tr>
+                }
+            *@
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var tableName = "#tbl-leads-list";
+    $(function () {
+        Actions.init();
+    });
+
+    var Actions = {
+        init: function () {
+            CRM.render.table(tableName);
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-secondary btn-export' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-info btn-vendor-new' data-vendor-id='0' type='button' name='new' title='Create New Vendor'><i class='fa fa-plus-circle'></i></button>");
+            $(document).on("click", ".btn-export", function () {
+                $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                $("table-sortable").tableExport({
+                    type: 'excel'
+                });
+            });
+
+        },
+        rowAttributes: function (row, index) {
+            return {
+                "data-lead-id": row.LeadID
+            }
+
+        }
+    }
+</script>

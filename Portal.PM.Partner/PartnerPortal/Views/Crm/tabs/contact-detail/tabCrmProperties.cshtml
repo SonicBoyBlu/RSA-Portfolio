@@ -1,0 +1,394 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@{ 
+    var c = Model.ContactDetail;
+    var lists = Model.Lists;
+}
+
+<div class="tab-pane fade" id="tab-contact-property">
+    <dialog class="alert alert-warning">
+        There are known duplicates represented in this section.  This will be resolved later.
+    </dialog>
+
+    @if (c.Properties.Count == 0)
+    {
+        <text>No Properties on File.</text>
+    }
+    else
+    {
+        int propNum = 1;
+        foreach (var p in c.Properties)
+        {
+<article>
+
+    <form data-form-type="property-details">
+        <h5>Property@(c.Properties.Count > 1 ? " " + propNum : "") Details</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="PropertyName" placeholder="Property Name" value="@p.PropertyName" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="AccountName" placeholder="Account Name" value="@p.AccountName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <select class="form-control" name="PipelineStatusID" data-placeholder="Pipeline Status">
+                    @foreach (var i in lists.PipelineStageTypes)
+                    {
+                        <option value="@i.PipelineStageID" @(i.PipelineStageID == p.PipelineStatusID ? " selected='selected'" : "")>@i.PipelineStage</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm">
+                <select class="form-control" name="RentalStatusID" data-placeholder="Rental Status">
+                    @foreach (var i in lists.PropertyStatus)
+                    {
+                        <option value="@i.PropertyStatusID" @(i.PropertyStatusID == p.RentalStatusID ? " selected='selected'" : "")>@i.PropertyStatus</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-sm">
+                <input type="text" class="form-control" name="UnitCode" placeholder="Unit Code" value="@p.UnitCode" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="EscapiaPropID" placeholder="Escapia Prop ID" value="@p.EscapiaPropID" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="Neighborhood" placeholder="Neighborhood" value="@p.Neighborhood" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="MiscComplexes" placeholder="Misc Complexes" value="@p.MiscComplexes" />
+            </div>
+        </div>
+    </form>
+
+    @Html.Partial("formParts/_propertyAddress", Model)
+
+    <form data-form-type="property-owners">
+        <h5>Owners</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm"><input type="text" name="Owner1" placeholder="Owner 1" class="form-control" value="@p.Owner1" /></div>
+            <div class="col-sm"><input type="text" name="Owner2" placeholder="Owner 2" class="form-control" value="@p.Owner2" /></div>
+            <div class="col-sm"><input type="text" name="HousePhone" placeholder="House Phone" class="form-control" value="@p.HousePhone" /></div>
+        </div>
+
+    </form>
+
+    <form data-form-type="property-goals">
+        <h5>Goals & Expectations</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm"><input type="text" name="PersonalUsage" placeholder="Personal Usage" class="form-control" value="@p.PersonalUsage" /></div>
+            <div class="col-sm"><input type="text" name="Incentives" placeholder="Incentives" class="form-control" value="@p.Incentives" /></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control" placeholder="Expectations / Goals">@p.ExpectationsGoals</textarea>
+            </div>
+        </div>
+    </form>
+
+
+    <form data-form-type="property-notes">
+        <h5>General Notes</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+        <textarea name="GeneralNotes" class="form-control" placeholder="General Notes">@p.GeneralNotes</textarea>
+    </form>
+
+    <form data-form-type="property-special-instructions">
+        <h5>Special Instructions</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+        <textarea name="SpecialInstructions1" class="form-control" placeholder="Special Instructions 1">@p.SpecialInstructions1</textarea>
+        <textarea name="SpecialInstructions2" class="form-control" placeholder="Special Instructions 2">@p.SpecialInstructions2</textarea>
+    </form>
+
+    @Html.Partial("formParts/_propertyLogistics", Model)
+
+    <form data-form-type="property-automation">
+        <h5>Automation</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="IsPointCentralPaid" @(p.IsPointCentralPaid ? " checked='checked'" : "") />
+                    PointCentral Paid
+                </label>
+            </div>
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="HasPointCentralLock" @(p.HasPointCentralLock ? " checked='checked'" : "") />
+                    PointCentral Lock
+                </label>
+            </div>
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="HasPointCentralThermostat" @(p.HasPointCentralThermostat ? " checked='checked'" : "") />
+                    PointCentral Thermostat
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="HasGoZoneWifi" @(p.HasGoZoneWifi ? " checked='checked'" : "") />
+                    GoZone WiFi
+                </label>
+            </div>
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="HasNoiseAware" @(p.HasNoiseAware ? " checked='checked'" : "") />
+                    NoiseAware
+                </label>
+            </div>
+            <div class="col">
+                <label>
+                    <input type="checkbox" value="true" name="HasEarthquakeValve" @(p.HasEarthquakeValve ? " checked='checked'" : "") />
+                    Earthquake Valve
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="MatterportLink" placeholder="Matterport Link" value="@p.MatterportLink" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-alarms">
+        <h5>Alarm & Security</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="AlarmCompanyContact" placeholder="Alarm Company Contact" value="@p.AlarmCompanyContact" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="AlarmCode" placeholder="Alarm Code" value="@p.AlarmCode" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="AlarmPassword" placeholder="Alarm Password" value="@p.AlarmPassword" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-codes">
+        <h5>Codes</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="LockBoxCode" placeholder="Lock Box Code" value="@p.LockBoxCode" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="GateCode" placeholder="Gate Code" value="@p.GateCode" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="GarageCode" placeholder="Garage Code" value="@p.GarageCode" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="KeylessDoorCode" placeholder="Keyless Door Code" value="@p.KeylessDoorCode" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="MiscCodes" placeholder="Misc Codes" value="@p.MiscCodes" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-wifi">
+        <h5>WiFi</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="WiFiName_SSID" placeholder="WiFi Name (SSID)" value="@p.WiFiName_SSID" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="WiFiPassword" placeholder="WiFi Password" value="@p.WiFiPassword" />
+            </div>
+        </div>
+    </form>
+
+    @Html.Partial("formParts/_propertyFeatures", p)
+
+    <form data-form-type="property-service-contacts">
+        <h5>Service Contacts</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="PoolContact" placeholder="Pool Contact" value="@p.PoolContact" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="PoolSchedule" placeholder="Pool Schedule" value="@p.PoolSchedule" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="LandscapingContact" placeholder="Landscaping Contact" value="@p.LandscapingContact" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="LandscapingSchedule" placeholder="Landscaping Schedule" value="@p.LandscapingSchedule" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="Appliances" placeholder="Appliances Contact" value="@p.Appliances" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="TvInternet" placeholder="TV / Internet" value="@p.TvInternet" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="Handyman" placeholder="Handyman" value="@p.Handyman" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="PestContact" placeholder="Pest Control" value="@p.PestContact" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-important-dates">
+        <h5>Important Dates</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control date-picker" name="DateApplicationSubmitted" placeholder="Date Application Submitted" value="@GlobalUtilities.GetDateString(p.DateApplicationSubmitted)" />
+            </div>
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="DateOnBoard" placeholder="Date On-Board" value="@GlobalUtilities.GetDateString(p.DateOnBoard)" />
+            </div>
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="DateOffBoard" placeholder="Date Off-Board" value="@GlobalUtilities.GetDateString(p.DateOffBoard)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="DatePermitRenewal" placeholder="Date PermitR enewal" value="@GlobalUtilities.GetDateString(p.DatePermitRenewal)" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="RenewalServiceProgram" placeholder="Renewal Service Program" value="@p.RenewalServiceProgram" />
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="DatePcBatteryChange" placeholder="Date PC Battery Change" value="@GlobalUtilities.GetDateString(p.DatePcBatteryChange)" />
+            </div>
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="DateMinHouseholdItemCheck" placeholder="Date Min Household Item Check" value="@GlobalUtilities.GetDateString(p.DateMinHouseholdItemCheck)" />
+            </div>
+            <div class="col-sm"></div>
+        </div>
+    </form>
+
+    <form data-form-type="property-city-legal">
+        <h5>City / Legal</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="CityPropertyID" placeholder="City Property ID" value="@p.CityPropertyID" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="ActiveCitations" placeholder="Active Citations" value="@p.ActiveCitations" />
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" name="CitationDates" placeholder="Citation Dates" value="@p.CitationDates" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-inspections">
+        <h5>Inspections</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <label>
+                    <input type="checkbox" name="IsDoNotInspect" value="@p.IsDoNotInspect" @(p.IsDoNotInspect ? " checked='checked'" : "") /> Do Not Inspect
+                </label>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="InspectorName" placeholder="Inspector Name" value="@p.InspectorName" />
+            </div>
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" name="LastInspection" placeholder="Last Inspection Date" value="@GlobalUtilities.GetDateString(p.DateLastInspection)" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-social-media">
+        <h5>Social Media (Redundant of links on "Lead" tab??)</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="Website" placeholder="Website" value="@p.Website" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="SocialFacebook" placeholder="Facebook" value="@p.SocialFacebook" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="SocialGooglePlus" placeholder="Google+" value="@p.SocialGooglePlus" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="SocialInstagram" placeholder="Instagram" value="@p.SocialInstagram" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="SocialLinkedIn" placeholder="LinkedIn" value="@p.SocialLinkedIn" />
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="SocialTwitter" placeholder="Twitter" value="@p.SocialTwitter" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="property-meta">
+        <h5>Meta</h5>
+        <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+        <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+        <div class="row">
+            <div class="col-sm">
+                <label>
+                    <input type="checkbox" name="IsActive" @(c.IsActive ? " checked='checked'" : "") /> Active
+                </label>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" name="Tags" placeholder="Tags" value="@p.Tags" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm"><small class="font-italic">Last Activity: @(c.DateLastActive == DateTime.MinValue ? " -" : c.DateLastActive.ToString("G"))</small></div>
+            <div class="col-sm"><small class="font-italic">Created by: @c.CreatedBy on @c.DateCreated.ToString("g")</small></div>
+            <div class="col-sm"><small class="font-italic">Modified by: @c.ModifiedBy on @c.DateModified.ToString("g")</small></div>
+        </div>
+    </form>
+</article>
+            { propNum++; }
+        }
+    }
+</div>

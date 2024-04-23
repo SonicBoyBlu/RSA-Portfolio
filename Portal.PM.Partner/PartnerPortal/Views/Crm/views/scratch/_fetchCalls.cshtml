@@ -1,0 +1,49 @@
+﻿@model Acme.ViewModels.CRM.CallsView
+<h2 class="text-danger"><i class="fa fa-phone"></i> Calls</h2>
+
+@Html.Partial("partials/_CrmSearch", Model.Query)
+
+<div class="table-responsive">
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Contact</th>
+                <th>Subject</th>
+                <th>Purpose</th>
+                <th>Type</th>
+                <th>Billable</th>
+                <th>Duration</th>
+                <th>Agent</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var c in Model.Calls)
+            {
+                <tr>
+                    <td><strong class="text-info">@c.ContactName</strong></td>
+                    <td><strong class="text-info">@c.Subject</strong></td>
+                    <td>@c.Purpose</td>
+                    <td><i class="fa fa-@(c.CallType == "Inbound" ? "arrow-alt-circle-down text-primary" : "arrow-up text-warning")"></i></td>
+                    <td>@(c.Billable ? "<i class='fa fa-check-circle text-success'></i>" : "")</td>
+                    <td>@c.CallDuration</td>
+                    <td>@c.CallOwner</td>
+                    <td>@c.DateCallStart.ToString("g")</td>
+                </tr>
+                if (!string.IsNullOrEmpty(c.Description + c.CallResult))
+                {
+                <tr>
+                    <td colspan="8">
+                        <p>
+                            <strong>Description</strong>: @c.Description
+                        </p>
+                        <p>
+                            <strong>Call Result</strong>: @c.CallResult
+                        </p>
+                    </td>
+                </tr>
+                }
+                }
+        </tbody>
+    </table>
+</div>

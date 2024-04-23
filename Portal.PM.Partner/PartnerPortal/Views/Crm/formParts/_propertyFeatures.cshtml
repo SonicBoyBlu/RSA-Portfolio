@@ -1,0 +1,116 @@
+﻿@model Acme.Models.CRM.Properties.Property
+@{ 
+    var p = Model;
+}
+<form data-form-type="property-features">
+    <h5>@p._titlePropertyFeatures</h5>
+    <input name="PropertyID" type="hidden" value="@p.PropertyID" />
+    <input name="PersonID" type="hidden" value="@p.PersonID" />
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasPool" value="@p.HasPool" @(p.HasPool ? " checked='checked'" : "") /> Pool
+            </label>
+        </div>
+        <div class="col-sm">
+            <input type="text" class="form-control" name="PoolType" placeholder="Pool Type" value="@p.PoolType" />
+        </div>
+        <div class="col-sm">
+            <input type="text" class="form-control" name="PoolDimensions" placeholder="Pool Dimensions" value="@p.PoolDimensions" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasSpa" value="@p.HasSpa" @(p.HasSpa ? " checked='checked'" : "") /> Spa
+            </label>
+        </div>
+        <div class="col-sm">
+            <input type="text" class="form-control" name="SpaType" placeholder="Spa Type" value="@p.SpaType" />
+        </div>
+        <div class="col-sm">
+            <input type="text" class="form-control" name="SpaDimensions" placeholder="Spa Dimensions" value="@p.SpaDimensions" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasGarage" @(p.HasGarage ? " checked='checked'" : "") /> Garage
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasFireFeature" @(p.HasFireFeature ? " checked='checked'" : "") /> Fire Feature
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasWaterFeatures" @(p.HasWaterFeatures ? " checked='checked'" : "") /> Water Features
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasOutdoorShower" @(p.HasOutdoorShower ? " checked='checked'" : "") />  Outdoor Shower
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasOutdoorKitchen" @(p.HasOutdoorKitchen ? " checked='checked'" : "") /> Outdoor Kitchen
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasCabana" @(p.HasCabana ? " checked='checked'" : "") /> Cabana
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasCoveredPatio" @(p.HasCoveredPatio ? " checked='checked'" : "") /> Covered Patio
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasPuttingGreen" @(p.HasPuttingGreen ? " checked='checked'" : "") /> Putting Green
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasPingPongTable" @(p.HasPingPongTable ? " checked='checked'" : "") /> Ping-Pong Table
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasPoolTable" @(p.HasPoolTable ? " checked='checked'" : "") /> Pool Table
+            </label>
+        </div>
+        <div class="col-sm">
+            <label>
+                <input type="checkbox" name="HasSystemsVideo" @(p.HasSystemsVideo ? " checked='checked'" : "") /> Systems Video
+            </label>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm">
+            <input type="text" class="form-control" name="CasitaDetails" placeholder="Casita Details" value="@p.CasitaDetails" />
+        </div>
+        <div class="col-sm">
+            <input type="text" class="form-control" name="OtherAmenities" placeholder="Other Amenities" value="@p.OtherAmenities" />
+        </div>
+    </div>
+</form>
+

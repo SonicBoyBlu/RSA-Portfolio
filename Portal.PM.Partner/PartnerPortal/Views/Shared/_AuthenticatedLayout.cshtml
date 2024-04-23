@@ -1,0 +1,550 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+    var me = Identity.Current;
+    string nav = string.IsNullOrEmpty(ViewBag.Nav) ? "home" : ViewBag.Nav;
+    string titleIcon = string.IsNullOrEmpty(ViewBag.TitleIcon) ? string.Empty : ViewBag.TitleIcon;
+    titleIcon = (titleIcon.IndexOf("fab") == 0 || titleIcon.IndexOf("fas") == 0) ? titleIcon : "fa " + titleIcon;
+
+}
+@section header { @RenderSection("header", required: false) }
+@section styles { @RenderSection("styles", required: false) }
+@{ if (string.IsNullOrEmpty(me.AvatarUrl)){
+        me.AvatarUrl = GlobalSettings.Images.DefaultUser;
+    }
+}
+<main class="app" style="overflow:initial;">
+    <!-- TODO: class change for Admin vs Owner?? -->
+    <div class="app-sidebar admin-sidebar">
+        @Html.Partial("~/Views/Shared/nav/__NavBase.cshtml")
+    </div>
+    <div class="app-content">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <h1>@Html.Raw(string.Format("<i class='{1}'></i> {0}", ViewBag.Title, titleIcon))</h1>
+            </div>
+            <div class="navbar-user">
+                <div class="navbar-user-content">
+                    <div class="navbar-user-content-img placeholder">
+                        @if (string.IsNullOrEmpty(me.AvatarUrl))
+    {
+                            @*<i class="fa fa-user"></i>*@
+                        }
+                        else
+                        {
+                            <img src="@me.AvatarUrl" title="@me.FullName" />
+                        }
+                    </div>
+                    <span>Welcome @me.FullName</span>
+                    <span class="visible-xs">
+                        <a href="@Url.Action("Logout", "Authentication")" id="btn-logout" title="Logout">
+                            <i class="fa fa-power-off text-danger"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </nav>
+        <div class="app-content-wrapper">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</main>
+<footer></footer>
+
+
+<article class="d-none">
+
+    <header>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col text-right d-none d-sm-block">
+                    @if (string.IsNullOrEmpty(me.AvatarUrl))
+                    {
+                        <i class="fa fa-user"></i>
+                    }
+                    else
+                    {
+                        <img class="nav-avatar" src="@me.AvatarUrl" title="@me.FullName" />
+                    }
+                    <span class="nav-displayname">Welcome @me.FirstName</span>
+
+                    <span class="visible-xs">
+                        <a href="@Url.Action("Logout", "Authentication")" id="btn-logout" title="Logout">
+                            <i class="fa fa-power-off text-warning"></i>
+                        </a>
+
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <nav class="navbar navbar-expand-md fixed-left">
+        <a class="navbar-brand" href="">
+            <img class="img-fluid" id="logo-main" src="~/Content/images/Acme_logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-main" aria-controls="navigation-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <i class="fa fa-bars"></i>
+            </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navigation-main">
+            @Html.Partial("~/Views/Shared/nav/__NavBase.cshtml")
+        </div>
+    </nav>
+
+
+    <div id="applet-stage"></div>
+    <div class="container-fluid body-content">
+        RenderBody()
+
+        <footer class="d-block d-sm-none">
+            <ul id="nav-footer">
+                <li><a><i class="fa fa-calendar-alt" title="Bookings and Events"></i></a></li>
+                <li><a><i class="fa fa-comment-dots" title="Notifications"></i></a></li>
+                <li><a><i class="fa fa-toolbox" title="Support Tickets"></i></a></li>
+                <li><a><i class="fa fa-address-card" title="Meet the Teaam"></i></a></li>
+                <li><a><i class="fa fa-cog" title="Settings"></i></a></li>
+            </ul>
+        </footer>
+        <p class="text-right text-muted d-none d-sm-block"><small>&copy; @DateTime.Now.Year - Acme House Co. All Rights Reserved.</small></p>
+
+        @if (GlobalSettings.ServerInfo.IsSandbox)
+        {
+            <fieldset>
+                <legend>Developer Info:</legend>
+                <ul>
+                    <li><small class="text-muted">@GlobalSettings.DateStores.AcmePortal.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")</small></li>
+                    <li><small class="text-muted">@GlobalSettings.DateStores.Breezeway.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")</small></li>
+                    <li><small class="text-muted">@GlobalSettings.DateStores.CRM.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")</small></li>
+                    <li><small class="text-muted">@GlobalSettings.DateStores.BambooHR.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")</small></li>
+                    <li><small class="text-muted">@GlobalSettings.DateStores.SmarterTrack.Split(';')[2].Replace(" ", "").Replace("initialcatalog=", "Database: ")</small></li>
+                </ul>
+            </fieldset>
+        }
+    </div>
+
+</article>
+
+
+@section scripts {
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+    @*
+        <script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    *@
+
+    @*
+        <script src="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/extensions/export/bootstrap-table-export.js"></script>
+        <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/extensions/print/bootstrap-table-print.js"></script>
+        <script src="~/Content/plugins/bootstrap-table/plugins/tableExport/tableExport.min.js"></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.css">
+
+    *@
+
+
+    <script type="text/javascript">
+        // https://firebase.google.com/docs/auth/web/google-signin
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDOtxBDMbEo6NxbIWQb3wY2pczafp6ZJBU",
+            authDomain: "employee-portal-d7582.firebaseapp.com",
+            databaseURL: "https://employee-portal-d7582.firebaseio.com",
+            projectId: "employee-portal-d7582",
+            storageBucket: "",
+            messagingSenderId: "33198576852"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+    <script type="text/javascript">
+
+
+        $(document).on("click", "[data-employee-id]", function () {
+
+        });
+
+
+
+
+        var user = JSON.parse(sessionStorage.getItem("user")),
+            ajaxHeaders = {
+                homeAway: {
+                    "Authorization": "Bearer @GlobalSettings.Escapia.HomeAwayCredentials.Token",
+                    "x-homeaway-hasp-api-endsystem": "EscapiaVRS",
+                    "x-homeaway-hasp-api-pmcid": "@GlobalSettings.Escapia.PMCID.ToString()",
+                    "x-homeaway-hasp-api-version": 10,
+                    //"Host": "dispatch.homeaway.com",
+                    "Content-Type": "application/json",
+                    //"Accept-Encoding": "gzip,deflate"
+
+                }
+            },
+            TokenUtils = {
+                save: function () {
+                    sessionStorage.setItem("_tokens", JSON.stringify(Tokens));
+                    TokenUtils.load();
+                },
+                load: function () {
+                    //debugger;
+                    var t = sessionStorage.getItem("_tokens");
+                    if (t)
+                        Tokens = JSON.parse(t);
+                }
+            },
+            Tokens = {
+                QuickBooks: {
+                    token: "@GlobalSettings.QuickBooksOnline.Token",
+                    refreshToken: "@GlobalSettings.QuickBooksOnline.RefresToken",
+                }
+            };
+
+        var Notifications = {
+            init: function () {
+                Notifications.fetch.badges();
+            },
+            fetch: {
+                badges: function () {
+                    $.ajax({
+                        url: "@Url.Action("GetBadgeCounts", "Dashboard")",
+                        success: function (d) {
+                            //debugger;
+                            //var c = d.Counts;
+                            //if (parseInt(c.Tickets.TotalNew) > 0) {
+                            //    $("[data-badge-id='tickets']").append($("<span/>").addClass("badge badge-secondary badge-info").text(c.Tickets.TotalNew));
+                            //}
+                        }
+                    });
+                }
+            }
+        };
+
+
+
+        // REMOVE THIS - MOVED TO FETCH USER
+        // ---------------------------------
+             //    $(document).on("click", "[data-employee-id]", function () {
+             //        var i = $(this),
+             //            id = i.data("employee-id"),
+             //            mdl = $("#mdl-employee-detail"),
+             //            title = $(".employee-name", mdl),
+             //            body = $(".modal-body", mdl);
+             //        if (id > 0) {
+             //            mdl.modal("show");
+             //            console.log("employee id: " + id);
+             //            body.text("hello world");
+             //            $.ajax({
+             //                url: "@Url.Action("EmployeeDetail", "Dashboard")",
+             //                data: { id: id },
+             //                success: function (d) {
+             //                    body.html(d);
+             //                    title.text("Employee Detail");
+             //                },
+             //                beforeSend: function () {
+             //                    title.text("Fetching...");
+             //                    //title.html("<i class='fa fa-spinner fa-pulse'></i>");
+             //                    body.html("<div class='text-center'><i class='fa fa-5x fa-spinner fa-pulse'></i></div>");
+             //                }
+             //            });
+             //        }
+             //    });
+        // ---------------------------------
+        // ---------------------------------
+
+
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        var appLoader;
+        $(function () {
+            TokenUtils.load();
+            var url = window.location.href.toLowerCase();
+            //console.info("url: " + url);
+            $(".navbar a").each(function () {
+                var i = $(this),
+                    href;
+                if (i.attr("href")) href = i.attr("href").toLowerCase();
+                //console.log(i.text() + " link: " + href + " at: " + url.indexOf(href));
+                if (url.indexOf(href) > -1 && href !== "/") {
+                    i.addClass("active");
+                    $(".dropdown-toggle", i.closest(".navbar-nav > li")).addClass("active");
+                }
+            });
+            if ($(".navbar li a.active").length == 0)
+                $(".navbar li:first a").addClass("active");
+            else
+                $(".navbar li:first a").removeClass("active");
+
+            /*
+            try {
+                console.info("loading user object");
+                user = JSON.parse(sessionStorage.getItem("user"));
+            }
+            catch (ex) { console.error(ex); }
+            */
+        });
+
+        /*
+        $(".navApplet", document).dblclick( function (e) {
+            console.log("double click");
+        });
+        */
+
+        var Applets = {
+            config: {
+                applets: [
+                    { "app.crm": {} },
+                    { "app.tickets": { window: true } }
+                ],
+                stage: $("#applet-stage")
+
+            },
+            init: function (i) {
+                $(".iframe-loading").remove();
+
+                var interval = 1000,
+                    c = Applets.config.stage,
+                    //i = $(this),
+                    id = i.attr("target"),
+                    src = i.attr("href").toLowerCase(),
+                    w = c.innerWidth(),
+                    h = $(window).height() - $(".navbar-fixed-top").outerHeight(true) - 15,
+                    click = i.data("click") ? parseInt(i.data("click")) : 0;
+
+                click++;
+                i.attr("data-click", click).addClass("click-wait");
+                $(".navbar-collapse.collapse.in").removeClass("in");
+
+
+                // TODO: config lookup
+                Applets.open.iframe(i, { id: id, src: src, w: w, h: h });
+            },
+            open: {
+                window: function (i, s) {
+                    var i = $(".click-wait"),
+                        click = click;
+                    i.attr("data-click", 0).removeClass("click-wait");
+                    console.log("double click: " + click);
+                    //debugger;
+                    var win = window.open(s.src, s.id, "width=" + s.w + ",height=" + s.h + ",location=no,menubar=no,status=no,toolbar=no", false);
+                },
+                iframe: function (i, s) {
+                    var i = $(".click-wait"),
+                        c = $("#applet-stage"),
+                        click = click;
+
+                    //debugger;
+                    $("body").addClass("embedded");
+                    $(".body-content").hide();
+                    c.empty();
+                    $(".navbar a.active").removeClass("active");
+                    i.addClass("active");
+                    var iframe = "<div class='iframe-loading'><iframe src='" + s.src + "login.aspx?auto=true' width='" + s.w + "' height='" + s.h + "' frameborder='0' name='" + s.id + "' class='applet-wrapper'></frame></div>";
+                    //var iframe = "<div class='iframe-loading'><iframe src='" + s.src + "?auto=true' width='" + s.w + "' height='" + s.h + "' frameborder='0' name='" + s.id + "' class='applet-wrapper' data-username='" + un + "' data-hash='" + pw + "'></frame></div>";
+                    c.html(iframe);
+                }
+            }
+        }
+
+        $(document).on("click", ".navApplet", function (e) {
+            //e.preventDefault();
+            //Applets.init($(this));
+
+            /*
+            try {
+                clearTimeout(appLoader);
+            }
+            catch (ex) { }
+
+            $(".iframe-loading").remove();
+
+            var interval = 1000,
+                c = $("#applet-stage"),
+                i = $(this),
+                id = i.attr("target"),
+                src = i.attr("href").toLowerCase(),
+                w = c.innerWidth(),
+                h = $(window).height() - $(".navbar-fixed-top").outerHeight(true) - 15,
+                click = i.data("click") ? parseInt(i.data("click")) : 0;
+
+            click++;
+            i.attr("data-click", click).addClass("click-wait");
+            $(".navbar-collapse.collapse.in").removeClass("in");
+
+            console.log("click: " + click);
+
+            var un = 'ryan@acmehouseco.com',
+                pw = 'test1234';
+
+            //if (click === 1) {
+            if (!i.hasClass("click-wait")) {
+                appLoader = setTimeout(function () {
+                    var i = $(".click-wait"),
+                        c = $("#applet-stage"),
+                        click = click;
+                    console.log("single click: " + click);
+                    i.attr("data-click", 0).removeClass("click-wait");
+                    //debugger;
+                    $("body").addClass("embedded");
+                    $(".body-content").hide();
+                    c.empty();
+                    $(".navbar a.active").removeClass("active");
+                    i.addClass("active");
+                    var iframe = "<div class='iframe-loading'><iframe src='" + src + "' width='" + w + "' height='" + h + "' frameborder='0' name='" + id + "' class='applet-wrapper' data-username='" + un + "' data-hash='" + pw + "'></frame></div>";
+                    c.html(iframe);
+                }, 1000);
+
+            } else {
+                appLoader = setTimeout(function () {
+                    var i = $(".click-wait"),
+                        click = click;
+                    i.attr("data-click", 0).removeClass("click-wait");
+                    console.log("double click: " + click);
+                    //debugger;
+                    var win = window.open(src, id, "width=" + w + ",height=" + h + ",location=no,menubar=no,status=no,toolbar=no", false);
+                }, 1000);
+
+            }
+            */
+        });
+
+        $(window).on("resize", function () {
+            var c = $("#applet-stage"),
+                i = $(this),
+                id = i.attr("target"),
+                w = c.innerWidth(),
+                h = $(window).height() - $(".navbar-fixed-top").outerHeight(true) - 15;
+
+
+            $(".applet-wrapper").attr("height", 0).attr("width", 0);
+            $(".applet-wrapper").attr("height", h).attr("width", w);
+            //$(".applet-wrapper").css({ height: h, width: w });
+        });
+
+
+        var Auth = {
+            config: {
+                logoutWarningModal: $("#mdl-logout-warning"),
+                logoutwarningtimer: null,
+                logoutcountdown: null,
+                delay: 30,
+                pagetitle: document.title
+            },
+            init: function () {
+                Auth.warning.open();
+                $(window).on("click keypress", function () { Auth.warning.reset(); });
+
+            },
+            signout: function () {
+                firebase.auth().signOut();
+                localStorage.removeItem("g-user");
+                window.location.href = "/Logout";
+            },
+            warning: {
+                open: function () {
+                    Auth.config.pagetitle = document.title;
+
+                    Auth.config.logoutwarningtimer = setTimeout(function () {
+                        Auth.config.logoutWarningModal.modal("show");
+                        var to = 60;
+                        Auth.config.logoutcountdown = setInterval(function () {
+                            if (to > 0) {
+                                $("#lbl-lougout-warning-countdown").text(to);
+                                document.title = to + "s Logout Warning!";
+                                to--;
+                            } else {
+                                //console.log("logout");
+                                clearInterval(Auth.config.logoutcountdown);
+                                //window.location.href = "/Logout"
+                                Auth.signout();
+                                Auth.config.logoutWarningModal.modal("hide");
+                            }
+                        }, 1000)
+                    }, (Auth.config.delay * 60 * 1000));
+                },
+                reset: function () {
+                    if (Auth.config.pagetitle)
+                        document.title = Auth.config.pagetitle;
+                    Auth.config.logoutWarningModal.modal("hide");
+                    clearTimeout(Auth.config.logoutwarningtimer);
+                    clearInterval(Auth.config.logoutcountdown);
+                    Auth.warning.open();
+                }
+            }
+        }
+
+        $(function () {
+            Auth.init();
+            Notifications.init();
+
+            var winHeight = $(window).height(),
+                winWidth = $(window).width(),
+                topHeight = $(".navbar.navbar-expand-md.fixed-left").height(),
+                bottomHeight = $("footer").height(),
+                innerHeight = winHeight - topHeight - bottomHeight;
+            //debugger;
+            if (winWidth < 500)
+                $("#nav-main-wrapper").css({ "max-height": innerHeight + "px" });
+        });
+
+        $(document).on("click", "a", function (e) {
+            var i = $(this),
+                t = i.attr("target"),
+                spa = @GlobalSettings.ServerInfo.IsSpa.ToString().ToLower();
+            // TODO: integrate page management
+            if (!t && spa) {
+                var c = $(".body-content"),
+                    href = i.attr("href");
+            debugger;
+                if ((href.indexOf("#") + href.indexOf(".")) < 0 && !i.hasClass("nav-item") && !i.hasClass("nav-link")) {
+
+                    e.preventDefault();
+                    console.log("Ajax view: " + href);
+                    $.ajax({
+                        url: href,
+                        success: function (d) {
+                            c.html(d);
+                        }
+                    });
+                }
+            }
+        });
+
+
+
+
+
+    </script>
+    @* // Date Range Picker *@
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+    @RenderSection("scripts", required: false)
+
+
+}
+@section modals {
+    @Html.Partial("~/Views/Shared/modals/__modalsAll.cshtml")
+    @RenderSection("modals", required: false)
+}

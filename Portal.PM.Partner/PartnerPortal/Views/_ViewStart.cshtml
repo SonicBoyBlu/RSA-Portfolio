@@ -1,0 +1,12 @@
+﻿@{
+    bool IsAuth = Request.IsAuthenticated;
+    //IsAuth = true;
+    if (IsAuth)
+    {
+        Layout = "~/Views/Shared/_AuthenticatedLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_PublicLayout.cshtml";
+    }
+}

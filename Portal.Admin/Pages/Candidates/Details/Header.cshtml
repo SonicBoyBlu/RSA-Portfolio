@@ -1,0 +1,76 @@
+﻿@page
+@model Admin.Pages.Candidates.Details.HeaderModel
+@{
+    var me = Model.Stats;
+    Layout = null;
+
+    //*
+    // debugging
+    bool ShowFsiScore = true;
+    bool ShowResumeScore = true;
+    bool ShowDateConvertOrDirect = true;
+
+    var s = Global.Candidates.Details.Statues.GetStatuses(me.UserID, true);
+
+    // Status dot
+    string _statusNotes = (s.StatusDate == DateTime.MinValue ? "" : s.StatusDate.ToShortDateString() + ": ") + (string.IsNullOrEmpty(s.StatusNotes) ? "Available" : s.StatusNotes);
+    string _statustype = ((Global.DataTypes.CandidateStatus)s.StatusID).ToString().ToLower();
+
+    // MPC
+    string _mpcStatus = s.IsMPC ? "text-orange" : "text-muted";
+    string _mpcNotes = (s.MpcDate == DateTime.MinValue ? "" : s.MpcDate.ToShortDateString() + ": ") + (string.IsNullOrEmpty(s.MpcNotes) ? "Active" : s.MpcNotes);
+
+    // Quick Starter
+    string _qsStatus = s.IsQuickStart ? "text-pink" : "text-muted";
+    string _qsNotes = s.IsQuickStart.ToString();
+
+    // App/Hires
+    string _appStatus = s.AppCount > 0 ? "text-primary" : "text-muted";
+    string _hireStatus = s.PastHires > 0 ? "text-primary" : "text-muted";
+
+    // FSI Status
+    string _fsiStatus = string.Empty;
+    switch (s.FsiStatus)
+    {
+        case "C": _fsiStatus = "text-success fsi-status-complete' title='Completed"; break;
+        case "S": _fsiStatus = "text-primary fsi-status-scheduled' title='Scheduled"; break;
+        case "M": _fsiStatus = "text-warning fsi-status-missed' title='Missed"; break;
+        case "X": _fsiStatus = "text-warning fsi-status-missed' title='Canceled"; break;
+        case "-": _fsiStatus = "text-danger fsi-status-not-scheduled' title='Never Scheduled"; break;
+    }
+    string _fsiScore = string.Format("A: {0} P: {1}", s.APIC_A, s.APIC_P);
+    string _fsiAPIC = string.Empty;
+    string _fsiNotes = (s.FsiDate == DateTime.MinValue ? "" : s.FsiDate.ToShortDateString()) + " - (Score: " + _fsiScore + ") " + (!string.IsNullOrEmpty(s.FsiNotes) ? ": " + s.FsiNotes : "");
+    _fsiStatus += " - " +  _fsiNotes;
+    _fsiStatus = string.Format("<i class='fa fa-calendar detail-candidate-tab-fsi {0}'></i>", _fsiStatus, s.UserID);
+    if(ShowFsiScore)
+        _fsiAPIC = string.Format("<span class='text-center detail-candidate-tab-fsi'>{0}</span>", _fsiScore);
+
+    string _resumeExecutiveSummary = string.IsNullOrEmpty(s.ExecutiveSummary) ? string.Empty : " - Summary: " + s.ExecutiveSummary;
+    //*/
+}
+<h5>@me.FullName</h5>
+<span class="candidate-status-center" data-ref-id="@s.UserID">
+    @me.UserID
+    <i class="fa fa-fw fa-circle detail-candidate-tab-overview candidate-status candidate-status-@_statustype" title="Candidate Status: @_statusNotes"></i>
+    <i class="fa fa-fw fa-star @_mpcStatus detail-candidate-tab-overview" title="MPC: @_mpcNotes"></i> 
+    <i class="fa-solid fa-bolt-lightning @_qsStatus detail-candidate-tab-overview" title="Quick Starter: @_qsNotes"></i>
+    <i class="fas fa-file-alt @_appStatus detail-candidate-tab-apps" title="Applications: @s.AppCount"></i>
+    <i class="fa fa-fw fa-briefcase @_hireStatus detail-candidate-tab-hires" title="Past Hires: @s.PastHires"></i>
+    @Html.Raw(_fsiStatus)
+    <span title="@_fsiNotes">
+        @Html.Raw(_fsiAPIC)
+    </span>
+    <span title="Resume Score: @s.ResumeScore.ToString() + _resumeExecutiveSummary ">
+        <i class="fa fa-fw fa-file-alt text-warning detail-candidate-tab-resume"></i> @(ShowResumeScore ?  s.ResumeScore.ToString() : "")
+    </span>
+    @if (ShowDateConvertOrDirect)
+    {
+        if(s.DateConverted != DateTime.MinValue) {
+          <span>&nbsp;&nbsp;&nbsp;Converted: @s.DateConverted.ToShortDateString()</span>  
+        }
+        if(s.DateDirect != DateTime.MinValue) {
+        <span>&nbsp;&nbsp;&nbsp;Direct: @s.DateDirect.ToShortDateString()</span>
+        }
+    }
+</span>

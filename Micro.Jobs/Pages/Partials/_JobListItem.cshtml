@@ -1,0 +1,16 @@
+﻿@model Global.Jobs.Models.Job
+@{
+    var j = Model;
+}
+<li id="@j.JobID">
+    <a class="clearfix" href="?id=@j.JobID" data-job-itemid="@j.JobID">
+        <div class="float-start">
+            <strong>@j.Title</strong><br />
+            @Html.Raw(j.LocationTypeHTML.Replace("<br />", ""))<br />
+            <i class="fa fa-dollar-sign text-success"></i> @j.PayRange
+        </div>
+        <div class="float-end">
+            <i class="fas fa-angle-double-right"></i>
+        </div>
+    </a>
+</li>

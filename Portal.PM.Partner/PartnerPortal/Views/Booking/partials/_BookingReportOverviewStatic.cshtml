@@ -1,0 +1,110 @@
+﻿@model Acme.ViewModels.BookingReportOverviewViewModel
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">@Model.DateStart.ToString("MMMM") - @Model.DateEnd.ToString("MMMM yyyy")</h4>
+                <div class="card-body">
+                    <h2 class="text-success">$3,828.84</h2>
+                    <p class="text-muted">$0.00 in same period @Model.DateStart.AddYears(-1).Year</p>
+                    <strong>2 Arrivals</strong>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">Month of @Model.DateStart.ToString("MMMM")</h4>
+                <div class="card-body">
+                    <h2 class="text-danger">-$1,378.78</h2>
+                    <p class="text-muted">$0.00 in @Model.DateStart.AddYears(-1).ToString("MMMM yyyy")</p>
+                    <strong>1 Arrival</strong>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">Occupancy</h4>
+                <div class="card-body">
+
+                    <div class="progress" style="height:50px;">
+                        <div class="progress-bar bg-danger" style="width:10%"></div>
+                        <div class="progress-bar" style="width:25%"></div>
+                        <div class="progress-bar bg-success" style="width:65%"></div>
+                    </div>
+
+                    <fieldset>
+                        <legend></legend>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><span class="badge badge-danger">&nbsp;</span> Unavailable</li>
+                            <li class="list-inline-item"><span class="badge badge-primary">&nbsp;</span> Unoccupied</li>
+                            <li class="list-inline-item"><span class="badge badge-success">&nbsp;</span> Occupied</li>
+                        </ul>
+                    </fieldset>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">
+                    <i class="fa fa-home"></i> Glass and Steel House 2012
+                </h4>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Booking</th>
+                                    <th>Arrival</th>
+                                    <th>Departure</th>
+                                    <th>Gross Rent</th>
+                                    <th>Net To Owner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 1; i < 10; i++)
+                                {
+                                    DateTime arrives = DateTime.Now.AddDays(7 * i);
+                                    DateTime departs = DateTime.Now.AddDays(14 * i);
+                                    var gross = (0.3 * i) * 8000;
+                                    var fee = (gross * .1);
+                                    var net = (gross - fee);
+                                    <tr>
+                                        <td>@i.ToString("#.")</td>
+                                        <td>RES-1867<text>@i</text></td>
+                                        <td>@arrives.ToShortDateString()</td>
+                                        <td>@departs.ToShortDateString()</td>
+                                        <td>@gross.ToString("C")</td>
+                                        <td><strong class="text-success">@net.ToString("C")</strong></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

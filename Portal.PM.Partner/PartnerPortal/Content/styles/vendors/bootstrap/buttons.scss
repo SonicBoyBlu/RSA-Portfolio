@@ -1,0 +1,78 @@
+﻿@import "../../_variables.scss";
+.btn {
+    cursor: pointer;
+
+    &.btn-link {
+        text-decoration: underline;
+        text-transform: uppercase;
+        /*display: block;*/
+        text-align: unset;
+        font-size: .75rem;
+    }
+
+    &.btn-primary {
+        background-color: $blue;
+        border-color: $blue;
+    }
+
+    &.btn-success {
+        background-color: $green;
+        border-color: $green;
+    }
+
+    &.btn-warning {
+        background-color: $orange;
+        border-color: $orange;
+    }
+
+    &.btn-danger {
+        background-color: $red;
+        border-color: $red;
+        /*color:#fff !important;*/
+    }
+
+    &.btn-info {
+        background-color: $brightBlue;
+        border-color: $brightBlue;
+    }
+
+    &.btn-outline-primary {
+        border-color: $blue;
+        color: $blue;
+
+        &:hover {
+            background-color: $blue;
+            color: #fff;
+        }
+    }
+
+    &.btn-outline-success {
+        border-color: $green;
+        color: $green;
+
+        &:hover {
+            background-color: $green;
+            color: #fff;
+        }
+    }
+
+    &.btn-outline-warning {
+        border-color: $orange;
+        color: $orange;
+
+        &:hover {
+            background-color: $orange;
+            color: #fff;
+        }
+    }
+
+    &.btn-outline-danger {
+        border-color: $red;
+        color: $red;
+
+        &:hover {
+            background-color: $red;
+            color: #fff;
+        }
+    }
+}

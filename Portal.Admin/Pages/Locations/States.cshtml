@@ -1,0 +1,19 @@
+﻿@page
+@model Admin.Pages.Locations.IndexModel
+@{
+    ViewData["Title"] = "Locations";
+    int ID = 0;
+    int.TryParse(Request.Query["id"], out ID);
+}
+<h1>@ViewData["Title"]</h1>
+
+<div id="view-locations-list">Loading...</div>
+@section Scripts {
+    <script type="text/javascript" src="/js/Locations.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            console.log("Location list ready to load...");
+            Locations.init(@ID);
+        });
+    </script>
+}

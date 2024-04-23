@@ -1,0 +1,63 @@
+﻿@import "../../_variables.scss";
+.modal {
+    .modal-dialog {
+        .modal-content {
+            border-radius: .1rem;
+
+            .modal-content-wrapper {
+                border: 1px solid $blue;
+                border-radius: 10px;
+                margin: 15px;
+            }
+
+            .modal-header {
+                border-bottom: 0 none;
+                /*padding: .5rem 1rem;*/
+                padding: .6rem 2.8rem;
+                position:absolute;
+                width:100%;
+                z-index:10;
+
+                h1,h2,h3,h4,h4,h6 {
+                    color: $orange;
+                }
+
+                .close {
+                    font-size: 1.2rem;
+                    -webkit-transition: -webkit-transform .25s; /* Safari */
+                    transition: transform .25s;
+                    color: $red;
+                    cursor:pointer;
+
+                    &:hover {
+                        -webkit-transform: rotate(90deg); /* Safari */
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+    }
+}
+body{
+    &.modal-open {
+        main.app {
+            filter: blur(2px);
+        }
+    }
+}
+
+@media(min-width:576px) {
+    .modal-dialog {
+        &.modal-xl {
+            max-width: 100%;
+        }
+    }
+}
+
+@media(min-width:1200px) {
+    .modal-dialog {
+        &.modal-xl {
+            max-width: 1140px;
+        }
+    }
+}

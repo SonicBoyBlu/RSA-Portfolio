@@ -1,0 +1,118 @@
+﻿@model Acme.ViewModels.CRM.VendorsView
+<h2><i class="fa fa-toolbox"></i> Vendors</h2>
+<script type="text/javascript">
+    TableSort.config.queryParams = { ContactTypeID: 14 };
+</script>
+
+<div class="bootstrap-table bootstrap4">
+    <div class="table-responsive">
+        <table id="tbl-vendor-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="CRM/Data/JSON/Vendors" data-row-attributes="rowAttributes">
+            <thead>
+                <tr>
+                    <th data-sortable="true" data-field="FullName">Name</th>
+                    <th data-sortable="true" data-field="VendorType">Type</th>
+                    <th data-sortable="true" data-field="Category">Category</th>
+                    <th data-sortable="true" data-field="UrlPhoneNumber">Phone</th>
+                    <th data-sortable="true" data-field="UrlEmailAddress">Email</th>
+                    <th data-sortable="true" data-field="UrlWebsite">Website</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+<!-- Vendor Detail -->
+<div class="modal fade" id="mdl-vendor-detail" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-dark"><i class="fa fa-id-card"></i> <span class="vendor-name">Vendor Detail</span></h3>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                details here...
+            </div>
+            <div class="modal-footer text-right d-none" id="mdl-footer-vendor-detail-commands">
+                <div class="btn btn-outline-danger" data-dismiss="modal">Cancel</div>
+                <div class="btn btn-success btn-save">Save</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        /*
+        $.ajax({
+            url:"CRM/Data/JSON/Vendors",
+            success: function (d) {
+
+            }
+        });
+        */
+        init = function () {
+            CRM.render.table("#tbl-vendor-list");
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-secondary btn-export-vendors' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-info btn-vendor-new' data-vendor-id='0' type='button' name='new' title='Create New Vendor'><i class='fa fa-plus-circle'></i></button>");
+            $(document).on("click", ".btn-export-vendors", function () {
+                $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                $("table-sortable").tableExport({type:'excel',
+                            mso: {fileFormat:'xmlss',
+                            worksheetName: ['Table 1','Table 2', 'Table 3']}});
+            });
+
+            //$("#tbl-vendor-list").bootstrapTable("refresh");
+
+        }
+        init();
+    });
+
+    rowAttributes = function (row, index) {
+        return {
+            "data-contact-id": row.PersonID
+        }
+    }
+
+    
+</script>
+
+<!-- Wrap in edit permission logic -->
+<script type="text/javascript">
+    $(document).on("click", ".form-control[readonly]", function () {
+        var i = $(this),
+            c = $(i.closest("tr, .modal-body")).eq(0);
+        $(".form-control", c).removeAttr("readonly").removeAttr("title");
+        $("#mdl-footer-vendor-detail-commands").removeClass("d-none");
+    });
+
+    $(document).on("click", "#mdl-footer-vendor-detail-commands .btn", function () {
+        var i = $(this),
+            mdl = $("#mdl-vendor-detail");
+        //debugger;
+        var valid = $("#form-vendor-details").valid();
+        //console.log(valid);
+        if (valid) {
+            $("#mdl-footer-vendor-detail-commands").addClass("d-none");
+            $(".form-control", mdl).attr("readonly", "readonly");
+            if (i.hasClass("btn-save")) {
+                // wireup ajax save routine
+                var data = mdl.serializeObject();
+                //debugger;
+                $.ajax({
+                    url: "CRM/Save/Vendor",
+                    data: data,
+                    success: function (d) {
+                        if (d.success) {
+                            toastr.success(d.message);
+                            $("#tbl-vendor-list").bootstrapTable("refresh");
+                        }
+                        else
+                            toastr.error(d.message);
+
+                    }
+                });
+            }
+        }
+    });
+</script>
+<!-- Wrap in edit permission logic -->

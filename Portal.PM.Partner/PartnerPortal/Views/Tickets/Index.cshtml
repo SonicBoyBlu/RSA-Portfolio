@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Action Items";
+    ViewBag.TitleIcon = "fa-paper-plane";
+    ViewBag.Nav = "tickets";
+}
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder="Search your tickets" />
+                <div class="btn btn-success btn-search-kb"><i class="fa fa-search"></i></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="report-tickets-container"></div>
+
+<!-- Ticket -->
+<div class="modal fade" id="mdl-ticket" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title text-info"><i class="fa fa-ticket-alt"></i> Support Ticket</h2>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+    $(function () {
+        Tickets.init();
+    });
+    var Tickets = {
+        init: function () {
+            Tickets.fetch.report();
+        },
+        fetch: {
+            report: function () {
+                var c = $("#report-tickets-container");
+                $.ajax({
+                    url: "@Url.Action("FetchTickets", "Tickets")",
+                    success: function (d) {
+                        c.html(d);
+                    },
+                    beforeSend: function () {
+                        c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x text-muted'></i></div>");
+                    }
+                });
+            },
+            ticket: function (id) {
+                var mdl = $("#mdl-ticket");
+                $.ajax({
+                    url: "@Url.Action("FetchTicket", "Tickets")",
+                    data: { id: id },
+                    success: function (d) {
+                        $(".modal-body", mdl).html(d);
+                        mdl.modal("show");
+                    }
+                })
+            }
+        }
+        };
+
+        $(document).on("click", "[data-ticket-id]", function () {
+            var i = $(this),
+                id = i.data("ticket-id");
+            Tickets.fetch.ticket(id);
+        });
+
+        $(document).on("change", "[data-ticket-filter]", function () {
+            var i = $(this),
+                on = i.is(":checked")
+                id= i.data("ticket-filter"),
+                row = $("tr[data-ticket-filter='" + id + "']");
+            debugger;
+            if (on) row.removeClass("d-none");
+            else row.addClass("d-none");
+        });
+
+        $(document).on("click", "[data-ticket-filter-focus]", function () {
+            var i = $(this),
+                id = i.data("ticket-filter-focus"),
+                on = $("[data-ticket-filter='" + id + "']").is(":checked");
+            debugger;
+            $("[data-ticket-filter]").prop("checked", false);
+            $("[data-ticket-filter='" + id + "']").prop("checked", on ? false : true);
+            //$("[data-ticket-filter]").trigger("change");
+        });
+    </script>
+}

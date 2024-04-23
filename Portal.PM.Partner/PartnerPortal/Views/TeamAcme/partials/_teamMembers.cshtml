@@ -1,0 +1,28 @@
+﻿@model Acme.ViewModels.TeamMembersViewModel
+
+@foreach(var d in Model.Departments)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="card">
+                    <h4 class="card-header">@d</h4>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (var m in Model.TeamMembers.Where(i => i.Department == d).OrderBy(i => i.Title).ThenBy(i => i.FirstName))
+                            {
+                                <div class="@(Model.TeamMembers.Where(i => i.Department == d).Count() < 6 ? "col" : "col-3") text-center">
+                                    <img src="@m.ProfilePic" class="img-fluid img-circle" /><p></p>
+                                    <strong>@m.FullName</strong><br />
+                                    <em>@m.Title</em>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}

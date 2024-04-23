@@ -1,0 +1,41 @@
+﻿@page
+@model Jobs.Pages.EmployersModel
+@{
+    ViewData["Title"] = "Employers";
+    var m = Model;
+}
+<h1>Employers</h1>
+<p>How can we help staff your team?</p>
+<form method="post">
+        <div class="row">
+            <div class="col"><input type="text" placeholder="Your Name*" name="YourName" class="form-control" /></div>
+            <div class="col"><input type="text" placeholder="Your Title" name="Title" class="form-control" /></div>
+        </div>
+
+        <div class="row">
+            <div class="col"><input type="email" placeholder="Email*" name="Email" class="form-control" required /></div>
+            <div class="col"><input type="text" placeholder="Phone" name="Phone" class="form-control" required /></div>
+        </div>
+        <div class="row">
+            <div class="col-12"><input type="text" placeholder="Company Name" name="CompanyName" class="form-control" /></div>
+        </div>
+        <div class="row">
+            <div class="col-12"><textarea placeholder="What would you like to know more about?" name="Details" class="form-control"></textarea></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="hidden" name="IsSubmitted" value="true" />
+                <input type="submit" value="Contact Me" asp-page-handler="submit" />
+            </div>
+        </div>
+</form>
+<hr />
+<ul>
+    <li><strong>Contact: </strong>@(string.IsNullOrEmpty(Model.YourName) ? "-" : Model.YourName) @(string.IsNullOrEmpty(Model.Title) ? "" : " - " + Model.Title)</li>
+    <li><strong>Company: </strong>@(string.IsNullOrEmpty(Model.CompanyName) ? "-" : Model.CompanyName)</li>
+    <li><strong>Phone: </strong>@(string.IsNullOrEmpty(Model.Phone) ? "-" : Model.Phone)</li>
+    <li><strong>Email: </strong>@(string.IsNullOrEmpty(Model.Email) ? "-" : Model.Email)</li>
+    <li><strong>Detail: </strong>@(string.IsNullOrEmpty(Model.Details) ? "-" : Model.Details)</li>
+</ul>
+
+Submitted: @Model.IsSubmitted

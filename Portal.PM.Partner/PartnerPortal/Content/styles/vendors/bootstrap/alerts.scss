@@ -1,0 +1,43 @@
+﻿@import "../../_variables.scss", "../../_fonts.scss";
+.alert {
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+
+    &.alert-primary {
+        color: $blue !important;
+        background: $lightBlue linear-gradient(180deg, $lightBlue,$lightBlue) repeat-x !important;
+        /*background: #cce5ff linear-gradient(180deg, #cce5ff,#cce5ff) repeat-x !important;*/
+        border: 1px solid $blue !important;
+
+        h2 {
+            color: $blue !important;
+        }
+
+        .close {
+            color: $blue !important;
+        }
+    }
+
+    &.alert-warning {
+        color: $orange !important;
+        background: $yellow linear-gradient(180deg, $yellow,$yellow) repeat-x !important;
+        border: 1px solid $orange !important;
+
+        h2 {
+            color: $orange !important;
+        }
+
+        .close {
+            color: $orange !important;
+        }
+
+        span {
+            color: $orange !important;
+        }
+    }
+}
+
+label.alert{
+    padding:.25rem;
+    width:100%;
+}

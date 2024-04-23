@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Statements  (Coming Soon)";
+    ViewBag.Nav = "statements";
+    ViewBag.TitleIcon = "fa-file-invoice-dollar";
+    Random r = new Random();
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">@DateTime.Now.ToString("MMMM") Statement</h4>
+                <div class="card-body">
+                    <h2 class="text-success">$3,828.84</h2>
+                    <dl>
+                        <dt>Last Month</dt>
+                        <dd>$2,565.99</dd>
+
+                        <dt>Same Period in @DateTime.Now.AddYears(-1).Year</dt>
+                        <dd>$3,675.26</dd>
+
+                        <dt>Latest Statement</dt>
+                        <dd><a href="#">View</a></dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">@DateTime.Now.ToString("MMMM") Invoice</h4>
+                <div class="card-body">
+                    <h2 class="text-danger">($564.53)</h2>
+                    <dl>
+                        <dt>Last Month</dt>
+                        <dd>($329.32)</dd>
+
+                        <dt>Same Period in @DateTime.Now.AddYears(-1).Year</dt>
+                        <dd>($387.24)</dd>
+
+                        <dt>Latest Invoice</dt>
+                        <dd><a href="#">View</a></dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">Accounting Summary</h4>
+                <div class="card-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Bookings</th>
+                                    <th>Gross Rent</th>
+                                    <th>Owner's Net</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 1; i < 10; i++)
+                                {
+                                    int occupants = r.Next(3, 12);
+                                    DateTime month = DateTime.Now.AddMonths(-1 * i);
+                                    var gross = occupants * 8000;
+                                    var fee = (gross * 0.2);
+                                    var net = (gross - fee);
+                                    <tr data-statement-id="@i" class="row-action">
+                                        <td>@month.ToString("MMMM")</td>
+                                        <td>@occupants</td>
+                                        <td>@gross.ToString("C")</td>
+                                        <td><strong class="text-success">@net.ToString("C")</strong></td>
+                                        <td>
+                                            <a href="#" target="_blank" class="btn btn-outline-success" title="Download Statment"><i class="fa fa-file-invoice-dollar"></i></a>
+                                            <a href="#" target="_blank" class="btn btn-outline-warning" title="Download QuickBooks Invoice"><i class="fa fa-receipt"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).on("click", "[data-statement-id]", function () {
+            alert("TODO: Dowload PDF or create HTML invoice.");
+        });
+    </script>
+}

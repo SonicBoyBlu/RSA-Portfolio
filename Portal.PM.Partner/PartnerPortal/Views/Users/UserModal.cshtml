@@ -1,0 +1,146 @@
+﻿<div class="modal-content-wrapper">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-toggle="modal"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+        <div ng-show="UserEditCtl.isLoading">
+            @Html.Partial("_LoadingIndicator", "Loading User")
+        </div>
+
+        <div ng-show="!UserEditCtl.isLoading">
+
+        <div class="card flex-md-row box-shadow h-md-250">
+
+            <div class="m-6 text-center">
+                <img ng-src="{{user.PhotoUrl}}" class="img-fluid img-circle img-profile"  alt="{{user.FullName}}" />
+                <p>{{user.UserTypeName}}</p>
+            </div>
+
+            <div class="card-body d-flex flex-column align-items-start">
+                <h3 class="mb-0"><a class="text-dark" href="">{{user.FullName}}</a></h3>
+                <div class="mb-3 text-muted">{{user.Email}}</div>
+
+                <div class="mb-1 text-muted">{{user.Department}}</div>
+                <div class="mb-3 text-muted">{{user.JobTitle}}</div>
+
+            </div>
+
+
+
+
+        </div>
+
+        <!-- menu -->
+        <div class="p-2 mb-3 text-center" data-id="{{user.UserID}}">
+            <a href="" id="btn-employee-detail-edit" class="btn-employee-detail-edit">Edit</a> |
+            <a href="" id="btn-employee-detail-pw" class="btn-employee-detail-pw" ng-click="pwupdateshow()">Change Password</a> |
+            <a href="" id="btn-employee-detail-pwsend" class="btn-employee-detail-pwsend" ng-click="pwsendshow()">Password Reset Email</a>
+        </div>
+        <!-- end menu -->
+
+        <!--pw-update-->
+        <div class="p-2 mb-3 text-center" data-id="{{user.UserID}}" ng-show="showPwUpdate">
+            <form id="frm-pw-update" name="frm-pw-update">
+
+            <div class="col align-self-center">
+            <div class="form-group">
+                <label for="password1">Update Password</label>
+                <input type="text" class="form-control" ng-model="password1" ng-value="password1">
+                <small class="form-text text-muted">
+                    <a href="" ng-click="pwrandomize()">Generate random password</a>
+                </small>
+            </div>
+
+            <button class="btn btn-sm btn-primary btn-pw-update" ng-click="pwupdate()">Submit</button>
+
+            </div>
+            </form>
+
+        </div>
+        <!--pw-update-->
+
+        <!--pw-send-->
+        <div class="p-2 mb-3 text-center" data-id="{{user.UserID}}" ng-show="showPwSend">
+                <button class="btn btn-sm btn-primary" ng-click="pwsendreset()">Send It</button>
+        </div>
+        <!--pw-send-->
+
+
+            <ul>
+                <li>UserID: {{user.UserID}}</li>
+                <li>UserType: {{user.UserType}}</li>
+                <li>MembershipID: {{user.MembershipID}}</li>
+                <li>EscapiaUserID: {{user.EscapiaUserID}}</li>
+                <li>BambooHrUserID: {{user.BambooHrUserID}}</li>
+                <li>SmarterTrackUserID: {{user.SmarterTrackUserID}}</li>
+                <li>JitBitUserID: {{user.JitBitUserID}}</li>
+                <li>QuickBooksCustomerID: {{user.QuickBooksCustomerID}}</li>
+                <li>ZohoCrmUserID: {{user.ZohoCrmUserID}}</li>
+                <li>ZohoCreatorUserID: {{user.ZohoCreatorUserID}}</li>
+                <li>ZohoDeskUserID: {{user.ZohoDeskUserID}}</li>
+                <li>FirstName: {{user.FirstName}}</li>
+                <li>LastName: {{user.LastName}}</li>
+                <li>Username: {{user.Username}}</li>
+                <li>Email: {{user.Email}}</li>
+                <li>Phone: {{user.Phone}}</li>
+                <li>PhotoUrl: {{user.PhotoUrl}}</li>
+                <li>JobTitle: {{user.JobTitle}}</li>
+                <li>AssignedTo: {{user.AssignedTo}}</li>
+                <li>Company: {{user.Company}}</li>
+                <li>DepartmentID: {{user.DepartmentID}}</li>
+                <li>Department: {{user.Department}}</li>
+                <li>SecurityLevel: {{user.SecurityLevel}}</li>
+                <li>HireDate: {{user.HireDate}}</li>
+                <li>VendorID: {{user.VendorID}}</li>
+                <li>IsActive: {{user.IsActive}}</li>
+                <li>IsOnboarded: {{user.IsOnboarded}}</li>
+                <li>IsAdmin: {{user.IsAdmin}}</li>
+                <li>IsDepartmentAdmin: {{user.IsDepartmentAdmin}}</li>
+                <li>IsDisabled: {{user.IsDisabled}}</li>
+                <li>DateLastLogin: {{user.DateLastLogin}}</li>
+                <li>Notes: {{user.Notes}}</li>
+                <li>FullName: {{user.FullName}}</li>
+                <li>Guid: {{user.Guid}}</li>
+                <li>UserTypeID: {{user.UserTypeID}}</li>
+                <li>UserTypeName: {{user.UserTypeName}}</li>
+
+                <li>
+                Escapia: <i ng-class="getIconClass(user.ExternalApplications.Escapia)"></i><br>
+                JitBitUser: <i ng-class="getIconClass(user.ExternalApplications.JitBitUser)"></i><br>
+                BambooHR: <i ng-class="getIconClass(user.ExternalApplications.BambooHR)"></i><br>
+                IsDepartmentAdmin: <i ng-class="getIconClass(user.IsDepartmentAdmin)"></i><br>
+                IsAdmin: <i ng-class="getIconClass(user.IsAdmin)"></i><br>
+                </li>
+
+            </ul>
+
+
+        <!-- Escapia Owner Data  -->
+        <div ng-show="user.ExternalApplications.Escapia">
+            <hr>
+            <h2>Escapia Owner Data</h2>
+
+
+        </div>
+
+
+
+        </div>
+    </div>
+    <!--modal-body-->
+
+
+    <div class="modal-footer text-right" ng-show="!UserEditCtl.isLoading">
+        <div class="btn btn-outline-primary" ng-click="cancel()">Close</div>
+    </div>
+    <!--modal-footer-->
+</div>
+<!--modal-content-->
+
+<script type="text/javascript">
+    $(function () {
+        Utilities.Modals.init();
+    });
+</script>
+
+

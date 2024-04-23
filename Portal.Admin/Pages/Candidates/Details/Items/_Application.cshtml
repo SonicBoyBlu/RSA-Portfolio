@@ -1,0 +1,16 @@
+﻿@model Global.Candidates.Details.Models.CandidateEventItem
+@{
+    var i = Model;
+}
+<div class="text-primary row">
+    <strong>
+        <i class="fa-regular fa-pen-to-square"></i> @i.SystemEventName - @i.DateOccurred.ToString("MM/dd/yyyy hh:mmtt").ToLower()
+    </strong>
+</div>
+<div class="row">
+    <div class="col-sm-7"><strong>Position:</strong> <a href="#" data-action="fetch" data-job-id="@i.JobID" data-fetch-type="job">@i.JobName</a></div>
+    <div class="col-sm-5"><strong>Company:</strong> <a href="#" data-action="fetch" data-employer-id="@i.CompanyID" data-fetch-type="employer">@i.CompanyName</a></div>
+</div>
+<div class="row">
+    <div class="col-sm-12"><strong>Status:</strong> <span class="@(i.IsAppDenied ? "text-danger" : "text-primary")">@(i.IsAppDenied ? ("Declined" + (i.DateDenied == DateTime.MinValue ? "" : " on " + i.DateDenied.ToShortDateString())) : i.VerificationName)</span></div>
+</div>

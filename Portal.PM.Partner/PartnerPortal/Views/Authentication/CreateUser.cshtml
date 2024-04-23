@@ -1,0 +1,107 @@
+﻿@model AcmeHouseCompany.ViewModels.Authentication.RegistrationViewModel
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2 class="text-info">@ViewBag.Title (OLD)</h2>
+
+<div id="view-user-manager">
+
+    <div id="mdl-user-account">
+        <h4 class="text-warning">Details</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required="required" name="FirstName" placeholder="First Name" />
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required="required" name="LastName" placeholder="Last Name" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required="required" name="Phone" placeholder="Phone" />
+            </div>
+            <div class="col-sm-6"></div>
+        </div>
+
+        <hr />
+        <h4 class="text-warning">Organization</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <select name="DepartmentID" class="form-control" required="required">
+                    <option value="0">-- Select Department --</option>
+                    @foreach(var d in Model.Departments)
+                    {
+                        <option value="@d.DepartmentID">@d.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <select name="DepartmentID" class="form-control">
+                    <option value="0">-- Select Vendor (Optional) --</option>
+                </select>
+            </div>
+        </div>
+
+        <hr />
+        <h4 class="text-warning">Login</h4>
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" class="form-control" required="required" name="Username" placeholder="Username" />
+            </div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="password" class="form-control" required="required" name="Password" placeholder="Password" />
+            </div>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" required="required" name="PasswordConfirm" placeholder="Confirm Password" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <div class="btn btn-default btn-sm text-danger">Cancel</div>
+                <button type="submit" class="btn btn-info btn-lg">Create</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+{
+
+    <script type="text/javascript">
+    var UserManager = {
+        config: {
+
+        },
+        init: function () {
+
+        },
+        create: function () {
+            $.ajax({
+                url:"@Url.Action("CreateUser", "Authentication")",
+                method: "post",
+                data: $("#mdl-user-account").serializeObject(),
+                success: function (d) {
+                    debugger;
+                },
+                beforeSend: function () {
+
+                }
+            });
+        }
+    }
+
+    $(function () {
+
+    });
+
+    $(document).on("click", "#mdl-user-account button[type='submit']", function () {
+        UserManager.create();
+    });
+    </script>
+}

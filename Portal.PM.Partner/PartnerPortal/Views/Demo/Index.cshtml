@@ -1,0 +1,15 @@
+﻿<div ng-controller="AngularControlsController as ctl">
+    <div class="row">
+        @*<div class="col-sm-1">
+            <input class="form-control" type="text" ng-model="ctl.phonenumber" ui-mask="(999) 999-9999" placeholder="" ui-mask-placeholder-char=" " />
+        </div>*@
+        <input class="form-control" type="text" ng-model="ctl.phonenumber" ui-mask="99/99/9999" placeholder="" ui-mask-placeholder-char=" " />
+
+        mask('99/99/9999'
+        <div class="col-sm-2">
+            <md-datepicker ng-model="ctl.demoDate" md-placeholder="Enter date"></md-datepicker>
+        </div>
+    </div>
+
+</div>
+

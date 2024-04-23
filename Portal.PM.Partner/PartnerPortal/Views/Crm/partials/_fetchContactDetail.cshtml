@@ -1,0 +1,185 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@{
+    var c = Model.ContactDetail;
+    bool isVendor = c.ContactType == DataTypes.CRM.ContactType.Vendor;
+    var v = c.VendorDetail.FirstOrDefault();
+    var ld = c.LeadDetail.FirstOrDefault();
+    var pd = c.PotentialDetail.FirstOrDefault();
+
+
+    <div class="d-none0" id="contact-modal-title">
+        <div class="row">
+            <div class="col">
+                <form id="contact-name" data-form-type="contact-name">
+                    <input name="PersonID" type="hidden" value="@c.PersonID" />
+
+                    <div class="header-display" title="Click to Edit">
+                        <h1 class="modal-title">@Html.Raw(c.FullName) <i class="fa fa-edit d-none text-default"></i></h1>
+                    </div>
+                    <div class="header-edit d-none row">
+                        <input type="hidden" value="@c.PersonID" />
+                        <div class="col-sm">
+                            <select name="SalutationTypeID" data-placeholder="Salutation" class="form-control">
+                                @foreach (var i in Model.Lists.SalutationType)
+                                {
+                                    <option value="@i.SalutationTypeID" @(c.Salutation == i.SalutationType ? " selected='selected'" : "")>@i.SalutationType</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm"><input type="text" name="FirstName" placeholder="First Name" class="form-control" value="@c.FirstName" required /></div>
+                        <div class="col-sm"><input type="text" name="LastName" placeholder="Last Name" class="form-control" value="@c.LastName" /></div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="row" id="contact-header-common">
+            <div class="col-sm-6">
+                Contact Type: <strong>@Model.HeaderDetails.ContactType</strong>
+            </div>
+            <div class="col-sm-6">
+                Pipeline Status: <strong class="lable-pipeline-status">@Model.HeaderDetails.ContactStatus</strong>
+            </div>
+            <div class="col-sm-6">
+                Phone: @Html.Raw(Model.HeaderDetails.Phone)
+            </div>
+            <div class="col-sm-6">
+                Email: @Html.Raw(Model.HeaderDetails.Email)
+            </div>
+
+        </div>
+    </div>
+}
+<select class="form-control d-sm-none d-flex" id="lst-tabs-contact-details"></select>
+<ul class="nav nav-tabs d-none d-sm-flex mt-5" id="tabs-contact-details">
+    @*
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tab-contact-overview">Snapshot</a>
+        </li>
+    *@
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#tab-contact-contact">Contact</a>
+    </li>
+    @if (!isVendor)
+    {
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-contact-lead" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Lead)">Lead</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-contact-potential" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Potential)">Potential</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-contact-property" data-contact-type-id="property">Property</a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-contact-links">Links</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-contact-notes">Notes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab-contact-docs">Documents</a>
+    </li>
+</ul>
+<div class="tab-content container">
+    @Html.Partial("tabs/contact-detail/tabCrmContactSnapshot", Model)
+    @Html.Partial("tabs/contact-detail/tabCrmContactBasic", Model)
+    @Html.Partial("tabs/contact-detail/tabCrmLead", Model)
+    @Html.Partial("tabs/contact-detail/tabCrmPotential", Model)
+    @Html.Partial("tabs/contact-detail/tabCrmProperties", Model)
+    @Html.Partial("tabs/contact-detail/tabCrmContactLinks", Model.ContactDetail.SocialMedias)
+    @Html.Partial("tabs/contact-detail/tabCrmContactNotes", c.Notes)
+    @Html.Partial("tabs/contact-detail/tabCrmContactDocs", Model)
+</div>
+@section Scrips {
+<script type="text/javascript">
+    var suggestions = {
+        contactType: {
+            sub: [
+            @foreach (var s in Model.Lists.ContactSubTypes) { <text>{ value: "@s.ContactSubType", data: { subTypeID: @s.ContactSubTypeID, parentTypeID: @s.ContactTypeID } },</text>}
+            @foreach(var s in Model.Lists.VendorTypes) { <text>{ value: "@s.VendorType", data: { subTypeID: @s.VendorTypeID, parentTypeID: @((int)DataTypes.CRM.ContactType.Vendor) } },</text> }
+            ],
+            filtered: []
+        },
+        @*
+        phone: {
+            type: [@foreach (var s in Model.Lists.PhoneTypes) { <text>{ value: "@s.PhoneType", data: @s.PhoneTypeID },</text> }]
+        },
+        email: {
+            type: [@foreach (var s in Model.Lists.EmailTypes) { <text>{ value: "@s.EmailType", data: @s.EmailTypeID },</text> }]
+        },
+        *@
+        tags: [@foreach (var s in Model.Lists.Tags) { <text>"@s.Tag",</text> } ]
+    };
+
+    $("[name='Tag']").autocomplete({
+        lookup: suggestions.tags,
+        minChars:2
+    });
+
+    $(document).on("change load", "[name='ContactTypeID']", function () {
+        //contactSubTypeAutocomplete();
+        CRM.render.lists.lists($(this).val());
+    });
+
+    contactSubTypeAutocomplete = function () {
+        var i = $("[name='ContactTypeID']"),
+            v = i.val(),
+            ac = $("[name='auto-contact-sub-type'");
+        suggestions.contactType.filtered = [];
+        $(suggestions.contactType.sub).each(function () {
+            if (this.data.parentTypeID == v) suggestions.contactType.filtered.push(this);
+        });
+        //debugger;
+        if (i.data("org-value") == v) ac.val(ac.data("org-value"));
+        else ac.val("");
+        ac.autocomplete({
+            lookup: suggestions.contactType.filtered,
+            //lookup: suggestions.contactType.sub,
+            minChars: 0,
+            onSelect: function (s) {
+                $("[name='ContactSubTypeID'").val(s.data.subTypeID);
+                $("[name='ContactSubType'").val(s.value);
+                $("[name='auto-contact-sub-type'").trigger("change");
+            }
+        });
+    };
+    @*
+    $("[name='auto-contact-phone'").autocomplete({
+        lookup: suggestions.phone.type,
+        minChars: 0,
+        onSelect: function (s) {
+            $("[name='PhoneNumberTypeID'").val(s.data);
+            $("[name='PhoneNumberType'").val(s.value);
+            $(this).trigger("change");
+        }
+    });
+
+    $("[name='auto-contact-email'").autocomplete({
+        lookup: suggestions.email.type,
+        minChars: 0,
+        onSelect: function (s) {
+            $("[name='EmailTypeID'").val(s.data);
+            $("[name='EmailType'").val(s.value);
+            $(this).trigger("change");
+        }
+    });
+    *@
+    $(function () {
+        console.log(CRM.lists.contactSubTypes);
+
+
+
+        contactSubTypeAutocomplete();
+
+        $(document).on("change", "[name='ContactTypeID']", function () {
+            var i = $(this),
+                v = i.val(),
+                c = $("#contact-vendor-detail");
+            if (v == @((int)DataTypes.CRM.ContactType.Vendor)) c.removeClass("d-none").collapse("show");
+            else c.collapse("hide").addClass("d-none");
+        });
+    });
+</script>
+}

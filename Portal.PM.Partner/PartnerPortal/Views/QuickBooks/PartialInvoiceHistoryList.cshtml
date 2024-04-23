@@ -1,0 +1,44 @@
+﻿
+
+<table class="table table-bordered table-striped table-condensed">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col" class="text-center">QBO Invoice #</th>
+            <th scope="col" class="text-center">Customer</th>
+            <th scope="col" class="text-center">Property</th>
+            <th scope="col" class="text-center">Unit #</th>
+            <th scope="col" class="text-center">Uploaded Date</th>
+            <th scope="col" class="text-center">Uploaded By</th>
+            <th scope="col" class="text-center">Amount Including Tax</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-show="invoiceCtl.loading">
+            <td colspan="7">
+                <div ng-show="invoiceCtl.loading">
+                    @Html.Partial("_LoadingIndicator", "Loading Invoices")
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat-start="invoice in workOrder.Invoices | orderBy : 'QuickBooksInvoiceNum' | filter : invoiceCtl.search" ng-show="!invoiceCtl.loading">
+            @*<td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">
+            <Label class="selectable">{{invoice.InvoiveNum}}</Label>
+            <i ng-show="!invoice.Expanded" class="fa fa-caret-right text-primary"></i>
+            <i ng-show="invoice.Expanded" class="fa fa-caret-up text-danger"></i>
+        </td>*@
+            <td><a href="https://c6.qbo.intuit.com/app/invoice?txnId={{invoice.QuickBooksInvoiceID}}" target="_blank">{{invoice.QuickBooksInvoiceNum}}</a></td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.QuickBooksCustomerName}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.Property}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.UnitCode}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.DateQboUploaded | date : shortDate}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.UploadedByUserName}}</td>
+            <td class="selectable-cell text-right" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.QuickBooksTotalCost | currency}}</td>
+        </tr>
+        <tr ng-repeat-end ng-show="invoice.Expanded">
+            <td colspan="6">
+                @*@Html.Partial("PartialInvoice")*@
+            </td>
+        </tr>
+    </tbody>
+</table>
+

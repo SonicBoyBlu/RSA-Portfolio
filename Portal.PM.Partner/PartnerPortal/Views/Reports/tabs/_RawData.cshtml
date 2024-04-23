@@ -1,0 +1,28 @@
+﻿@model Dictionary<string, Dictionary<string, dynamic>>
+
+
+<h3 class="text-secondary">
+    <i class="fa fa-dna"></i> Raw Data
+</h3>
+
+<div class="row">
+    @foreach (var s in Model.OrderBy(t => t.Value.Count))
+    {
+        <div class="col-6">
+            <h4 class="text-info">@s.Key</h4>
+            <dl>
+                @foreach (var i in s.Value)
+                {
+                    <dt>@i.Key</dt>
+                    <dd>@i.Value</dd>
+                }
+            </dl>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        console.info("Loading tab: Raw Data");
+    });
+</script>

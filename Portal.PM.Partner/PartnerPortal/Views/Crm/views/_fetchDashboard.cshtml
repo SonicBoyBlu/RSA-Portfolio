@@ -1,0 +1,102 @@
+﻿@*model Acme.ViewModels.CRM.PropertiesView*@
+@model Acme.ViewModels.CRM.DashboardViewModel
+@{
+    var total = Model.PipelineTotals;
+    var current = Model.PipelineTotalsCurrent;
+    var last = Model.PipelineTotalsPrevious;
+}
+<h2 class="text-secondary d-none"><i class="fa fa-tachometer-alt"></i> Dashboard</h2>
+
+<div class="row">
+    <div class="col">
+        <h3>Pipeline by Stage</h3>
+        <img src="~/Content/images/mockup/CrmPipeline.png" class="img-fluid mb-5 d-none" />
+        <div id="graph-sales-funnel"></div>
+    </div>
+    <div class="col">
+        <h3>Statistics</h3>
+        <dl>
+            <dt>Total Active Properties</dt>
+            <dd>@total.TotalProperties.ToString("N0")</dd>
+            <dt>Total Active Leads</dt>
+            <dd>@total.TotalLeads.ToString("N0")</dd>
+            <dt>Total Active Potentials</dt>
+            <dd>@total.TotalPotentials.ToString("N0")</dd>
+            <dt>Total Active Owners</dt>
+            <dd>@total.TotalOwners.ToString("N0")</dd>
+            <dt>Total Active Vendors</dt>
+            <dd>@total.TotalVendors.ToString("N0")</dd>
+
+            <dt>Owners: YTD Over Current</dt>
+            <dd>@current.TotalOwners.ToString("N0") / @last.TotalOwners.ToString("N0")</dd>
+            <dt>Leads: YTD Over Current</dt>
+            <dd>@current.TotalLeads.ToString("N0") / @last.TotalLeads.ToString("N0")</dd>
+            <dt>Potentials: YTD Over</dt>
+            <dd>@current.TotalPotentials.ToString("N0") / @last.TotalPotentials.ToString("N0")</dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <h3>Upcoming Events</h3>
+        <dl>
+            <dt>{date}</dt>
+            <dd>{description}</dd>
+            <dt>{date}</dt>
+            <dd>{description}</dd>
+            <dt>{date}</dt>
+            <dd>{description}</dd>
+            <dt>+ 3 More</dt>
+            <dd><a href="#">Show</a></dd>
+        </dl>
+    </div>
+    <div class="col">
+        <h3>Calls to Action</h3>
+        <dl>
+            <dt>Action Items</dt>
+            <dd>##</dd>
+
+            <dt>Touch > 90</dt>
+            <dd>##</dd>
+            <dt>Touch > 60</dt>
+            <dd>##</dd>
+            <dt>Touch > 30</dt>
+            <dd>##</dd>
+        </dl>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const salesFunnelData = {
+        labels: ["Qualifications", "Needs Analysis", "Appt Pending"],
+        colors: ['#FFB178', '#FF78B1', '#FF3C8E'],
+        values: [800, 500, 300]
+    };
+
+    $(function () {
+        console.log("Drawing Sales Funnel");
+        var funnelCanvas = $("#graph-sales-funnel"),
+            funnelContainer = funnelCanvas.closest(".col");
+        funnelCanvas.width(funnelContainer.width);
+
+        var salesFunnel = new FunnelGraph({
+            container: "#graph-sales-funnel",
+            data: salesFunnelData,
+
+            direction: 'vertical',
+            gradientDirection: 'vertical',
+            displayPercent: true,
+            //width: 800,
+            //height: 800,
+            width: funnelContainer.width,
+            height:300,
+            subLabelValue: 'percent'
+        });
+
+
+        salesFunnel.draw();
+        // updates the height/width
+        salesFunnel.updateHeight();
+        salesFunnel.updateWidth();
+    });
+</script>

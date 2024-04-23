@@ -1,0 +1,414 @@
+﻿@model Acme.ViewModels.WorkOrdersPreviewViewModel
+@{
+    var me = Identity.Current;
+
+    var invoices = Model.Invoices;
+    var owners = invoices.Where(t => t.BillTo == "Owner" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var comp = invoices.Where(t => t.BillTo == "No Charge/Internal" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var other = invoices.Where(t => t.BillTo != "Owner" && t.BillTo != "No Charge/Internal" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var screened = invoices.Where(t => t.IsIgnore == true && t.IsLocked == false).ToList();
+    var locked = invoices.Where(t => t.IsLocked == true).ToList();
+
+    var tabs = new List<List<Acme.Models.QuickBooks.QboInvoice>>();
+
+
+    List<string> billto = new List<string>()
+    {
+        "Owner",
+        "No Charge/Internal",
+        "Damage",
+        "Guest",
+        "Uncategorized"
+    };
+
+    if (Model.Type == "Property Care")
+    {
+    } else
+    {
+        //owners = new List<Acme.Models.QuickBooks.QboInvoice>();
+        //comp = invoices;
+        //other = new List<Acme.Models.QuickBooks.QboInvoice>();
+
+    }
+    tabs.Add(owners);
+    tabs.Add(comp);
+    tabs.Add(other);
+    tabs.Add(screened);
+    tabs.Add(locked);
+
+}
+
+<style type="text/css">
+    .tab-pane h3 { border-bottom: 1px solid; margin-top:1.9rem; }
+    .tab-pane .table td, .tab-pane .table th { border-top: 0 none; }
+    .tab-pane > div {  border-bottom: 1px solid #dee2e6; }
+    .tab-pane > div > div.row {  margin-bottom:0; }
+    .tab-pane .table { margin-bottom:0; }
+    .tab-content dl { padding:42px 10px 0; }
+    .tab-pane dl dd:first-child { border-top:1px dotted; }
+    .tab-pane dl dd:last-child { border-bottom:0 none; }
+</style>
+
+<div class="d-none d-sm-flex0">
+    <h3 class="text-success"><i class="fa fa-thumbs-up"></i> Reviewed</h3>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-dark"><i class="fa fa-lock"></i> Locked</h5>
+                        <div class="card-text">
+                            <dl class="text-success">
+                                <dt>Work Orders:</dt>
+                                <dd class="font-weight-bold">@locked.Count()</dd>
+                                <dt>w/ Bal:</dt>
+                                <dd class="font-weight-bold">@locked.Where(t => t.TotalAmount > 0).Count()</dd>
+                                <dt>Total:</dt>
+                                <dd class="font-weight-bold">@locked.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger"><i class="fa fa-trash"></i> Ignored</h5>
+                        <div class="card-text">
+                            <dl class="text-danger">
+                                <dt>Work Orders:</dt>
+                                <dd class="font-weight-bold">@screened.Count()</dd>
+                                <dt>w/ Bal:</dt>
+                                <dd class="font-weight-bold">@screened.Where(t => t.TotalAmount > 0).Count()</dd>
+                                <dt>Total:</dt>
+                                <dd class="font-weight-bold">@screened.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-sm">
+        <div class="input-group mb-3">
+            <input type="search" class="form-control" placeholder="Invoice #, Unit Code or Customer Name" data-filter="unit-code" value="@Model.Query.Trim()" />
+            @*
+        <div class="input-group-append">
+            <span class="input-group-text btn btn-outline-success btn-search-invoices"><i class="fa fa-search"></i></span>
+        </div>
+            *@
+        </div>
+    </div>
+
+    <div class="col-sm">
+        <div class="input-group mb-3">
+            <input class="form-control input-date-range" readonly id="work-order-date-range" value="@(Model.DateStart.ToShortDateString() + " - " + Model.DateEnd.ToShortDateString())" />
+        </div>
+    </div>
+
+    <div class="col-sm">
+        <select class="form-control" id="lst-task-type" data-placeholder="Department">
+            <option value="Property Care" @(Model.Type == "Property Care" ? " selected='selected'" : "")>Property Care</option>
+            <option value="Housekeeping" @(Model.Type == "Housekeeping" ? " selected='selected'" : "")>Housekeeping</option>
+        </select>
+    </div>
+
+    <div class="col-sm">
+        <select class="form-control" id="fltr-invoice-balance" data-placeholder="Balance Filter">
+            <option value="0">All</option>
+            <option value="1"@(Model.Filter == 1 ? " selected='selected'" : "")>With Balance</option>
+            <option value="2"@(Model.Filter == 2 ? " selected='selected'" : "")>Without Balance</option>
+        </select>
+    </div>
+
+    <div class="col-sm-1 col-1">
+        <span class="btn btn-outline-warning btn-report-refresh btn-block"><i class="fa fa-sync"></i></span>
+    </div>
+
+
+
+</div>
+
+<div id="preview-invoice-inner">
+    <nav class="nav nav-tabs" id="tabs-preview-invoices">
+        <a href="#invoice-preview-tab-0" data-tab-id="0" data-toggle="tab" class="nav-item nav-link text-success active"><span class="d-none d-sm-inline">Owner</span><span class="d-inline d-sm-none"><i class="fa fa-money-check-alt"></i></span> <span class="count"></span></a>
+        <a href="#invoice-preview-tab-1" data-tab-id="1" data-toggle="tab" class="nav-item nav-link text-info"><span class="d-none d-sm-inline">Internal / No Charge</span><span class="d-inline d-sm-none"><i class="fa fa-house-damage"></i></span> <span class="count"></span></a>
+        <a href="#invoice-preview-tab-2" data-tab-id="2" data-toggle="tab" class="nav-item nav-link text-warning"><span class="d-none d-sm-inline">Other</span><span class="d-inline d-sm-none"><i class="fa fa-question"></i></span> <span class="count"></span></a>
+        <a href="#invoice-preview-tab-3" data-tab-id="3" data-toggle="tab" class="nav-item nav-link text-danger"><span class="d-none d-sm-inline"><i class="fa fa-eye-slash"></i> Ignored</span><span class="d-inline d-sm-none"><i class="fa fa-eye-slash"></i></span> <span class="count"></span></a>
+        <a href="#invoice-preview-tab-4" data-tab-id="4" data-toggle="tab" class="nav-item nav-link text-secondary"><span class="d-none d-sm-inline"><i class="fa fa-lock"></i> Locked for QB</span><span class="d-inline d-sm-none"><i class="fa fa-lock"></i></span> <span class="count"></span></a>
+    </nav>
+
+    <div class="tab-content">
+        <div id="rpt-invoice-loading" class="text-center" style="display:none;"><i class="fa fa-cog fa-spin fa-5x"></i></div>
+        @{
+            int tab = 0;
+            string color = "success";
+            string tabType = "Owner";
+            int origin = 0;
+        }
+        @foreach (var t in tabs)
+        {
+            int t_count = 0;
+            switch (tab)
+            {
+                case 0: color = "success"; tabType = "Owner"; break;
+                case 1: color = "info"; tabType = "No Charge/Internal"; break;
+                case 2: color = "warning"; tabType = "Other"; break;
+                case 3: color = "danger"; tabType = "Ignored"; break;
+                case 4: color = "secondary"; tabType = "Reviewed"; break;
+            }
+    <div class="tab-pane fade@(tab == 0 ? " show active" : "")" id="invoice-preview-tab-@tab" data-tab-type="@tabType">
+        <div class="col rpt-zero-items" data-tab-ref="@tab">No records found.</div>
+        @{
+            var tabitems = t.OrderBy(b => b.BillTo);
+        }
+        @if (tab > 0)
+        {
+            //tabitems = t.OrderByDescending(a => a.UnitCode).ToList();
+        }
+        @if (tab == 4)
+        {
+            <div class="text-right container">
+                <label>
+                    <input type="checkbox" class="form-check-inline" id="chk-show-committed" @(Model.ShowCommitted ? "checked='checked'" : "") /> Show Committed
+                </label>
+
+            </div>
+        }
+        <h5 class="text-@color text-right container">Tab Total: @t.Sum(x => x.TotalAmount).ToString("C")</h5>
+        @*<h5 class="text-@color text-right container">Tab Total: @t.Sum(x => x.TotalAmount).ToString("C")</h5>*@
+
+        @foreach (var i in tabitems)
+        {
+            string displayName = string.IsNullOrEmpty(i.CustomerName) ? "* (" + i.UnitCode + ")" : i.CustomerName;
+            if (i.InvoiveNum == "951253")
+            {
+                var test = true;
+            }
+            if (tab == 3)
+            {
+                switch (i.BillTo)
+                {
+                    case "Owner": color = "success"; origin = 0; break;
+                    case "No Charge/Internal": color = "info"; origin = 1; break;
+                    default: color = "warning"; origin = 2; break;
+                }
+
+            }
+            <div data-item-index="@t_count" data-unit-id="@i.UnitCode" data-bill-to="@i.BillTo" data-customer-name="@i.CustomerName.ToUpper()" data-invoice-num="@i.InvoiveNum" data-balance="@i.TotalAmount" data-tab-origin="@origin">
+                <h3 class="text-@color">@displayName</h3>
+                <div class="row">
+                    <div class="col-sm-9 table-responsive collapse show" id="invoice-collapse-@i.InvoiveNum">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Product/Service</th>
+                                    <th>Description</th>
+                                    <th>Taxable</th>
+                                    <th>Tax %</th>
+                                    <th>Qty</th>
+                                    <th>Rate</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Item Reported</td>
+                                    <td>@i.Description</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td>$0.00</td>
+                                    <td>$0.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Item Resolution</td>
+                                    <td>@i.Resolution</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>1</td>
+                                    <td>$0.00</td>
+                                    <td>$0.00</td>
+                                </tr>
+                                @foreach (var l in i.LineItems.OrderByDescending(x => x.Amount))
+                                {
+                                    <tr>
+                                        <td>@l.SalesItemLineDetail_ItemRefName</td>
+                                        <td>@l.Description</td>
+                                        <td class="text-center">@Html.Raw(l.SalesItemLineDetail_TaxCodeRefId == "NON" ? "" : "<i class='fa text-success fa-check-circle'></i>")</td>
+                                        <td class="text-center">@(l.SalesItemLineDetail_TaxCodeRefId == "NON" ? "-" : "9.25%")</td>
+                                        <td class="text-right">@l.SalesItemLineDetail_Qty</td>
+                                        <td class="text-right">@l.SalesItemLineDetail_UnitPrice.ToString("c")</td>
+                                        <td class="text-right">@l.Total.ToString("c")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="bg-@color text-light">
+                                    <td colspan="7" class="text-left text-sm-right">
+                                        <strong>Total @(i.LineItems.Sum(a => a.Total).ToString("c"))</strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-sm-3 order-first order-sm-last">
+
+                        <dl>
+                            <dt>Type</dt>
+                            <dd>@i.Type</dd>
+
+                            <dt>Status</dt>
+                            @{
+                                var statusColor = string.Empty;
+                                switch (i.BreezewayStatus)
+                                {
+                                    case "Approved": statusColor = "text-success text-bold"; break;
+                                }
+                            }
+                            <dd class="@statusColor">@i.BreezewayStatus</dd>
+
+                            <dt>Invoice #</dt>
+                            <dd>@(i.InvoiveNum)</dd>
+
+                            <dt>Invoice Date</dt>
+                            <dd>@i.TxnDate.ToShortDateString()</dd>
+
+                            <dt>Due Date</dt>
+                            <dd>@i.DueDate.ToShortDateString()</dd>
+
+                            <dt>Terms</dt>
+                            <dd>Due On Receipt</dd>
+
+                            <dt>Total</dt>
+                            <dd><strong class="text-@color">@(i.LineItems.Sum(a => a.Total).ToString("c"))</strong></dd>
+
+                            @*
+                            <dt>Total</dt>
+                            <dd><strong class="text-@color">@(i.TotalAmount.ToString("c"))</strong></dd>
+                            *@
+
+                            <dt>Memo</dt>
+                            <dd>@(string.IsNullOrEmpty(i.CustomerMemo_Value) ? "None" : i.CustomerMemo_Value)</dd>
+
+                            <dt>Bill To</dt>
+                            <dd class="row">
+                                <div class="col pr-0">
+                                    @if (i.IsLocked)
+                                    {
+                                        <span>@i.BillTo</span>
+                                    }
+                                    else
+                                    {
+                                        <select class="form-control" data-bill-to="@i.BillTo" data-id="@i.InvoiveNum">
+                                            @if (i.BillTo == "Uncategorized" || i.BillTo == "Unknown")
+                                            {
+                                                <option>-- Select --</option>
+                                            }
+                                            @foreach (var b in billto)
+                                            {
+                                                if (i.BillTo == b)
+                                                {
+                                                    <option selected="selected">@b</option>
+                                                }
+                                                else
+                                                {
+                                                    <option>@b</option>
+                                                }
+                                            }
+                                        </select>
+                                    }
+                                </div>
+                            </dd>
+
+                            @if (!i.IsLocked)
+                            {
+                                <dt>Edit in BW</dt>
+                                <dd><div class="btn btn-sm btn-outline-info btn-breeway-task-edit" data-task-id="@i.InvoiveNum" title="Edit in Breezeway"><i class="fa fa-fw fa-edit"></i></div></dd>
+
+                                <dt>Ignore Work Order</dt>
+                                <dd>
+                                    @if (i.IsIgnore)
+                                    {
+                                        <i class="fa fa-toggle-on text-danger" data-filter="screened" data-switch="true" data-id="@i.InvoiveNum"></i>
+                                    }
+                                    else
+                                    {
+                                        <div class="btn btn-sm btn-outline-danger" data-filter="screened" data-switch="false" data-id="@i.InvoiveNum">
+                                            <i class="fa fa-eye-slash fa-fw"></i>
+                                        </div>
+                                    }
+                                </dd>
+                            }
+
+                            <dt class="d-block d-sm-none"></dt>
+                            <dd class="d-block d-sm-none">
+                                <a href="#invoice-collapse-@i.InvoiveNum" data-toggle="collapse">Details</a>
+                            </dd>
+
+
+                        </dl>
+
+                        @if (i.DateQboCommitted == DateTime.MinValue)
+                        {
+                            if (i.IsLocked)
+                            {
+                                if (me.IsAdmin)
+                                {
+                                    <div class="btn btn-outline-danger btn-block btn-invoice-lock" data-invoice-num="@i.InvoiveNum" data-locked="true"><i class="fa fa-fw fa-unlock"></i> Unlock</div>
+                                }
+                                else
+                                {
+                                    <div class="btn btn-outline-warning btn-block"><i class="fa fa-fw fa-lock"></i> Locked for QB</div>
+                                }
+                            }
+                            else
+                            {
+                                if (tab == 0 || tab == 4)
+                                {
+                                    <div class="btn btn-success btn-block btn-invoice-lock" data-invoice-num="@i.InvoiveNum" data-locked="false" title="Locking this invoice marks it ready to be sent to QuickBooks"><i class="fa fa-fw fa-lock-open"></i> Lock for QB</div>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <small><em class="text-muted"><i class="fa fa-lock"></i> QBO Committed: <br />@i.DateQboCommitted.ToString("G")</em></small>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            t_count++;
+        }
+    </div>
+            tab++;
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    detailViewHandler = function () {
+        var c = $(".table-responsive.collapse")
+        if ($(".d-block.d-sm-none").is(":visible")) c.removeClass("show");
+        else c.addClass("show");
+    };
+    $(function () {
+        var rpt = $("#preview-invoice-inner"),
+            top = rpt.offset().top,
+            win = $(window).height();
+        //debugger;
+        //rpt.css({ height: (win - top) + "px", overflow: "auto" });
+
+        detailViewHandler();
+        $(window).resize(function () { detailViewHandler(); });
+
+    });
+    $(document).on("change", "#chk-show-committed", function () {
+        Invoices.fetch.preview();
+    });
+</script>

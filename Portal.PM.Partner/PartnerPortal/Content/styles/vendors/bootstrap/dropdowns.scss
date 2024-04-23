@@ -1,0 +1,13 @@
+﻿@import "../../_variables.scss";
+@media (max-width:768px) {
+    .dropdown-menu {
+        li {
+            background-color: #fff;
+            color: $black;
+
+            a {
+                padding: 15px 50px !important;
+            }
+        }
+    }
+}

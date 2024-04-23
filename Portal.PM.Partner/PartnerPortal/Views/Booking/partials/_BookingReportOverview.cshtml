@@ -1,0 +1,166 @@
+﻿@model Acme.ViewModels.BookingReportOverviewViewModel
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card" id="card-bookings-year-to-date">
+                <h4 class="card-header">January - @Model.DateStart.ToString("MMMM") @Model.DateEnd.ToString("yyyy")</h4>
+                <div class="card-body">
+                    <h2 class="text-success"><span data-ref="reservation-gross-rent-ytd"></span></h2>
+                    <dl>
+                        <dt>Same period @Model.DateStart.AddYears(-1).Year</dt>
+                        <dd>$###.##</dd>
+                        <dt>Bookings</dt>
+                        <dd><span data-ref="reservation-res-total-ytd">##</span></dd>
+                        <dt>Guests</dt>
+                        <dd><span data-ref="reservation-guests-total-ytd">##</span></dd>
+                        <dt>Nights</dt>
+                        <dd><span data-ref="reservation-nights-total-ytd">##</span></dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+        <div class="col">
+
+            <div class="card" id="card-bookings-month-current">
+                <h4 class="card-header">Month of @Model.DateStart.ToString("MMMM")</h4>
+                <div class="card-body">
+                    <h2 class="text-success"><span data-ref="reservation-gross-rent-total"></span></h2>
+                    <dl>
+                        <dt>Same period @Model.DateStart.AddYears(-1).Year</dt>
+                        <dd>$###.##</dd>
+                        <dt>Bookings</dt>
+                        <dd><span data-ref="reservation-count-total">##</span></dd>
+                        <dt>Guests</dt>
+                        <dd><span data-ref="reservation-guests-total">##</span></dd>
+                        <dt>Nights</dt>
+                        <dd><span data-ref="reservation-nights-total">##</span></dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h4 class="card-header"><i class="fa fa-funnel-dollar"></i> Reservation Details</h4>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="text" name="DateStart" class="form-control" placeholder="Start Date" aria-label="Start Date" aria-describedby="basic-addon1" value="@Model.DateStart.ToShortDateString()">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                        </div>
+                        <input type="text" name="DateEnd" class="form-control" placeholder="End Date" aria-label="End Date" aria-describedby="basic-addon1" value="@Model.DateEnd.ToShortDateString()">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="btn btn-success btn-block btn-run-report-booking" title="Run Report">
+                                <i class="fa fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="btn btn-outline-info btn-block btn-reset-report-booking" title="Reset Report">
+                                <i class="fa fa-redo"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card" id="card-bookings-occupancy">
+                <h4 class="card-header"><i class="fa fa-chart-pie"></i> Occupancy <span data-ref="occupancy-percent-current"></span></h4>
+                <div class="card-body">
+
+                    <div class="progress" style="height:50px;" data-occupancy-type="current">
+                        <div class="progress-bar bg-danger" style="width:5%">5%</div>
+                        <div class="progress-bar bg-warning" style="width:10%">10%</div>
+                        <div class="progress-bar bg-info" style="width:10%">10%</div>
+                        <div class="progress-bar bg-success" style="width:50%">50%</div>
+                        <div class="progress-bar bg-dark" style="width:25%">25%</div>
+                    </div>
+
+
+                    <fieldset>
+                        <legend></legend>
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><span class="badge badge-danger">&nbsp;</span> Maint. Hold</li>
+                            <li class="list-inline-item"><span class="badge badge-warning">&nbsp;</span> Owner</li>
+                            <li class="list-inline-item"><span class="badge badge-info">&nbsp;</span> Owner Guest</li>
+                            <li class="list-inline-item"><span class="badge badge-success">&nbsp;</span> Occupied</li>
+                            <li class="list-inline-item"><span class="badge badge-dark">&nbsp;</span> Unoccupied</li>
+                        </ul>
+                    </fieldset>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card" id="card-bookings-reservation-list">
+                <h4 class="card-header">
+                    <i class="fa fa-home"></i> <span class="property-name"></span>
+                </h4>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Nights</th>
+                                    <th>Guests</th>
+                                    <th>Gross Rent</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot class="btn-success font-weight-bold">
+                                <tr>
+                                    <td>Total: <span data-ref="reservation-count-total"></span></td>
+                                    <td colspan="6"></td>
+                                    <td><span data-ref="reservation-gross-rent-total"></span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

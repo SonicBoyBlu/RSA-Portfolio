@@ -1,0 +1,64 @@
+﻿@model Acme.ViewModels.ReservationListViewModel
+@{
+    var me = Identity.Current;
+}
+<div class="row">
+    <div class="col">
+        <input type="date" class="form-control" placeholder="Start Date" name="DateStart" required />
+    </div>
+    <div class="col">
+        <input type="date" class="form-control" placeholder="End Date" name="DateEnd" required />
+    </div>
+    <div class="col">
+        <select class="form-control" name="ReservationTypeID" required>
+            <option>-- Select --</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <input type="text" class="form-control" placeholder="First Name" name="FirstName" required />
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="Last Name" name="LastName" required />
+    </div>
+    <div class="col">
+        <input type="email" class="form-control" placeholder="Guest Email" name="Email" required />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">Adults:</div>
+    <div class="col">
+        <select class="form-control" name="TotalAdults" required>
+            @for (var i = 0; i < 30; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
+    <div class="col">Children:</div>
+    <div class="col">
+        <select class="form-control" name="TotalChildren" required>
+            @for (var i = 0; i < 30; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        Notes:
+        <textarea class="form-control" name="Notes"></textarea>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col text-right">
+        <div class="btn btn-outline-danger" name="btn-delete">Cancel Reservation</div>
+        <div class="btn btn-outline-warning" data-dismiss="modal">Close Without Saving</div>
+        <div class="btn btn-success" name="btn-save">Save</div>
+    </div>
+</div>

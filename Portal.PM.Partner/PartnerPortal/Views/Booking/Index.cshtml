@@ -1,0 +1,297 @@
+﻿@{
+    ViewBag.Title = "Bookings";
+    ViewBag.TitleIcon = "fa-book";
+    ViewBag.Nav = "booking";
+
+}
+<div id="booking-report-container"></div>
+
+@section scripts {
+<script type="text/javascript">
+    $(function () {
+        Bookings.init();
+    });
+    var Bookings = {
+        config: {
+            defaults: {
+                dateStart: $("[name='DateStart']").val(),
+                dateEnd: $("[name='DateEnd']").val()
+            }
+        },
+        data: {
+            current: null,
+            last: null
+        },
+        init: function () {
+            Bookings.fetch.report(true);
+        },
+        fetch: {
+            report: function (init) {
+                var c = $("#booking-report-container");
+                if (init) {
+                    $.ajax({
+                        url: "@Url.Action("FetchBookingReportOverview", "booking")",
+                        data: { dateStart: $("[name='DateStart']").val(), dateEnd: $("[name='DateEnd']").val() },
+                        method: "post",
+                        success: function (d) {
+                            if (init)
+                                Bookings.fetch.data(false, "@DateTime.Now.Year-01-01");
+                            else Bookings.fetch.data();
+                            c.html(d);
+                        },
+                        beforeSend: function () {
+                            c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                        }
+                    });
+                } else {
+                    Bookings.fetch.data();
+                }
+            },
+            data: function (getLast, startDate) {
+                var dateStart = startDate || $("[name='DateStart']").val(),
+                    dateEnd = $("[name='DateEnd']").val();
+                if (getLast) {
+                    dateStart = moment(dateStart, "MM/DD/YYYY").subtract(1, "year").format("YYYY-MM-DD");
+                    dateEnd = moment(dateEnd, "MM/DD/YYYY").subtract(1, "year").format("YYYY-MM-DD");
+                }
+                if (!dateEnd) dateEnd = moment().format("YYYY-MM-DD");
+
+
+                dateStart = moment(dateStart).format("YYYY-MM-DD");
+                dateEnd = moment(dateEnd).format("YYYY-MM-DD");
+
+                $.ajax({
+                    //*
+                    url: "https://hsapi.escapia.com/dragomanadapter/hsapi/SearchReservationSummaries",
+                    //contentType: "application/json",
+                    //processData: false,
+                    method: "post",
+                    //*
+                    data: JSON.stringify({
+                        "specification": {
+                            "pmcid": "@GlobalSettings.Escapia.PMCID.ToString()",
+                            // "unitNativePMSIDs": [user.EscapiaDetails.Property.nativePMSID],
+                            "unitNativePMSIDs": [133161],
+                            "stayDateRangeSearchSpecification": {
+                                DateRange: {
+                                    "startDate": dateStart,
+                                    "endDate": dateEnd
+                                }
+                            },
+                        },
+                        "pageSize": 100,
+                        "pageNumber": 100
+                    }),
+                    /*
+                    data: JSON.stringify({
+                      "specification": {
+	                    "pmcid": "1596",
+	                    "unitNativePMSIDs": [133161],
+                        "stayDateRangeSearchSpecification": {
+		                    "DateRange": {
+		                      "startDate": "2019-03-01",
+		                      "endDate": "2020-03-31"
+	                      }
+                        },
+                      },
+                      "pageSize": 100,
+                      "pageNumber": 100
+                    }),
+                    //*/
+                    headers: ajaxHeaders.homeAway,
+                    //url: "/json/calendar.json",
+                    success: function (d) {
+                        if (getLast) {
+                            Bookings.data.last = d;
+                        }  else {
+                            Bookings.data.current = d;
+                            if (startDate) Bookings.data.ytd = d;
+                            Bookings.render.report(startDate);
+                            Bookings.fetch.data(true);
+                        }
+                        console.log(Bookings.data);
+                    }
+                });
+            }
+        },
+        reset: {
+            report: function () {
+                $("[name='DateStart']").val(Bookings.config.defaults.dateStart);
+                $("[name='DateEnd']").val(Bookings.config.defaults.dateEnd);
+                Bookings.fetch.report();
+            }
+        },
+        render: {
+            report: function (isInit) {
+                $(".property-name").text(user.EscapiaDetails.Property.name + "(" + user.EscapiaDetails.Property.code + ")");
+
+                var dateStart = new Date($("[name='DateStart']").val()),
+                    dateEnd = new Date($("[name='DateEnd']").val()),
+                    results = Bookings.data.current.results,
+                    data = {
+                        ytd: [],
+                        current: []
+                    },
+                    totals = {
+                        ytd: 0,
+                        current: 0
+                    },
+                    nights = {
+                        ytd: 0,
+                        current: 0
+                    },
+                    guests = {
+                        ytd: 0,
+                        current: 0
+                    };
+                /*
+                console.warn("start: " + dateStart);
+                console.warn("End: " + dateEnd);
+                console.log("total rent: " + totals.current);
+                console.log("total nights: " + nights.current);
+                console.log("total guests: " + guests.current);
+                */
+
+                // Sort and prep data
+                results = Utilities.sort.reservationsDesc(results);
+                $(results).each(function () {
+                    var i = this,
+                        ds = new Date(i.stayDateRange.startDate),
+                        de = new Date(i.stayDateRange.endDate),
+                        total = parseFloat(i.rent); //paymentTotal);
+                    if ((ds >= dateStart && ds <= dateEnd) || (de >= dateEnd && de <= dateEnd)) {
+                        // get items in current range at time of checkin
+                        i.isCalc = true;
+                        data.current.push(i);
+                        totals.current += i.rent;
+                        guests.current += i.guestCount;
+                        nights.current += Utilities.calc.nights(ds, de);
+                    } else if (de >= dateStart && de <= dateEnd) {
+                        // get remaining items in range by checkout
+                        i.isCalc = false;
+                        i.stayDateRange.startDateAdj = dateStart;
+                        data.current.push(i);
+                    } else {
+                        i.isCalc = false;
+                    }
+                });
+
+
+                // Render YTD Totals
+                if (Bookings.data.ytd) {
+                    //console.error("Init YTD");
+                    var ytd = {
+                        current: {
+                            guests: 0,
+                            nights: 0,
+                            dollars:0
+                        }
+                    },
+                    jan = new Date(new Date().getFullYear(), 0, 1);
+                    $(Bookings.data.ytd.results).each(function () {
+                        var i = this,
+                            ds = new Date(i.stayDateRange.startDate),
+                            de = new Date(i.stayDateRange.endDate);
+                        if (ds >= jan && ds <= dateEnd) {
+                            ytd.current.guests += i.guestCount;
+                            ytd.current.nights += Utilities.calc.nights(i.stayDateRange.startDate, i.stayDateRange.endDate);
+                            ytd.current.dollars += i.rent;
+                        }
+                    });
+                    $("[data-ref='reservation-gross-rent-ytd']").text(Utilities.format.currency(ytd.current.dollars));
+                    $("[data-ref='reservation-nights-total-ytd']").text(ytd.current.nights);
+                    $("[data-ref='reservation-guests-total-ytd']").text(ytd.current.guests);
+                    $("[data-ref='reservation-res-total-ytd']").text(Bookings.data.ytd.results.length);
+                    //$("[data-ref='reservation-count-guests-ytd']").text(totals.current.guests);
+                    //console.warn(totals);
+                }
+
+
+                // Render Occupancy graph
+                var resTypes = [];
+                $(data.current).each(function (x, i) {
+                    if (resTypes[i.reservationTypeNativePMSID] == undefined) {
+                        resTypes[i.reservationTypeNativePMSID] = 0;
+                        console.log(i);
+                    }
+                    var ds = i.isCalc ? i.stayDateRange.startDate : i.stayDateRange.startDateAdj;
+                    if (i.reservationTypeNativePMSID === null) {
+                        if (isNaN(resTypes[1])) resTypes[1] = 0;
+                        resTypes[1] += Utilities.calc.nights(ds, i.stayDateRange.endDate);
+                    } else
+                        resTypes[i.reservationTypeNativePMSID] += Utilities.calc.nights(ds, i.stayDateRange.endDate);
+                });
+                console.log("reservation types:");
+                console.log(resTypes);
+                var occupancy = []
+                $(resTypes).each(function (i) {
+                    if (resTypes[i] !== undefined) {
+                        var tid = i === null ? -1 : i;
+                        occupancy.push({
+                            typeId:tid,
+                            guestCount: resTypes[tid],
+                            name: Utilities.reservations.getType(tid),
+                            css: Utilities.reservations.getTypeClass(tid)
+                        });
+                    }
+                });
+                console.log("occupancy:");
+                console.log(occupancy);
+
+                var cardOcc = $("#card-bookings-occupancy"),
+                    progCurrent = $(".progress[data-occupancy-type='current']", cardOcc),
+                    legend = $("fieldset .list-inline", cardOcc),
+                    totalNights = Utilities.calc.nights(dateStart, dateEnd),
+                    percOccupied = 0;
+                legend.empty();
+                progCurrent.empty();
+                $(occupancy).each(function () {
+                    var i = this,
+                        key = $("<span/>", { "class": "badge badge-" + i.css, html: "&nbsp; " }),
+                        li = $("<li/>", { "class" : "list-inline-item"}).append(key).append(" " + i.name);
+                    legend.append(li);
+                    var percOcc = ((i.guestCount / totalNights) * 100),
+                        prog = $("<div/>", { "class": "progress-bar bg-" + i.css, style: "width:" + percOcc + "%" });
+                    progCurrent.append(prog);
+                    percOccupied += percOcc;
+                });
+                $("[data-ref='occupancy-percent-current']", cardOcc).text(percOccupied.toFixed(1) + "%");
+
+                // Render table
+                var table = $("#card-bookings-reservation-list table"),
+                    tbody = $("tbody", table),
+                    tfooter = $("tfoot", table);
+
+                // Monthly totals
+                $("[data-ref='reservation-count-total']").text(data.current.length);
+                $("[data-ref='reservation-guests-total']").text(guests.current);
+                $("[data-ref='reservation-nights-total']").text(nights.current);
+                $("[data-ref='reservation-gross-rent-total']").text(Utilities.format.currency(totals.current));
+
+                tbody.empty();
+                $(data.current).each(function () {
+                    var i = this,
+                        tr = $("<tr/>");
+                    tr.append($("<td/>", { text: i.reservationNumber }));
+                    tr.append($("<td/>", { text: Utilities.reservations.getType(i.reservationTypeNativePMSID) }));
+                    tr.append($("<td/>", { text: i.primaryGuest.fullNameFirstLast }));
+                    tr.append($("<td/>", { text: i.stayDateRange.startDate }));
+                    tr.append($("<td/>", { text: i.stayDateRange.endDate }));
+                    tr.append($("<td/>", { text: Utilities.calc.nights(i.stayDateRange.startDate, i.stayDateRange.endDate), "class" : "text-center" }));
+                    tr.append($("<td/>", { text: i.guestCount, "class" : "text-center" }));
+                    tr.append($("<td/>", { text: Utilities.format.currency(i.rent), "class" : "text-right" }));
+
+                    tbody.append(tr);
+                });
+            }
+        }
+    };
+
+    $(document).on("click", ".btn-run-report-booking", function () {
+        Bookings.fetch.report();
+    });
+    $(document).on("click", ".btn-reset-report-booking", function () {
+        Bookings.reset.report();
+    });
+</script>        
+}

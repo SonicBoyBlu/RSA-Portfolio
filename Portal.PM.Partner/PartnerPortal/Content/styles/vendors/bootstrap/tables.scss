@@ -1,0 +1,35 @@
+﻿@import "../../_variables.scss", "../../_fonts.scss";
+.table {
+    background-color: #fff;
+    color: $default;
+
+    &.table-hover {
+        tbody {
+            tr:hover {
+                color: $default;
+            }
+        }
+    }
+
+    &.table-click {
+        tbody {
+            tr {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+tfoot {
+    tr {
+        &.d-block, &.d-sm-block {
+            display: table-row !important;
+        }
+    }
+}
+
+.bootstrap-table.fullscreen {
+    overflow: auto;
+    bottom: 0;
+    right: 0;
+}

@@ -1,0 +1,21 @@
+﻿.bootstrap-table {
+    .fixed-table-container {
+        .fixed-table-body {
+            min-height: 6rem !important;
+
+
+            .loading-text {
+                font-size: 1.2rem !important;
+            }
+
+
+            .animation-dot {
+                background: #029cca !important;
+            }
+        }
+    }
+}
+
+.fixed-table-toolbar {
+    margin-top: -10px;
+}

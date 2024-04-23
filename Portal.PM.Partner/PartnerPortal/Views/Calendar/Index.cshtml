@@ -1,0 +1,943 @@
+﻿@{
+    ViewBag.Title = "Calendar";
+    ViewBag.Nav = "calendar";
+    ViewBag.TitleIcon = "fa-calendar-alt";
+}
+<div class="container">
+    <div class="row">
+        <div class="col text-right">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            @*
+                <div class="card">
+                    <h4 class="card-header"></h4>
+                    <div class="card-body">
+            *@
+            <div id="report-calendar" class="row table-responsive"></div>
+            @*
+                </div>
+                    </div>
+            *@
+        </div>
+    </div>
+</div>
+<!-- Demo taken from https://bootsnipp.com/snippets/PEZZ7 -->
+
+
+
+@section modals {
+    <!-- Reservation Detail -->
+    <div class="modal fade" id="mdl-reservation-detail" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fa fa-calendar-alt"></i> Reservation Detail (<span name="reservation-number"></span>)</h3>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+                </div>
+                <div class="modal-body"></div>
+                <input type="hidden" name="reservation-id" />
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    <script type="text/tmpl" id="tmpl">
+        {{
+  var date = date || new Date(),
+      month = date.getMonth(),
+      year = date.getFullYear(),
+      first = new Date(year, month, 1),
+      last = new Date(year, month + 1, 0),
+      startingDay = first.getDay(),
+      thedate = new Date(year, month, 1 - startingDay),
+      dayclass = lastmonthcss,
+      today = new Date(),
+      i, j;
+  if (mode === 'week') {
+    thedate = new Date(date);
+    thedate.setDate(date.getDate() - date.getDay());
+    first = new Date(thedate);
+    last = new Date(thedate);
+    last.setDate(last.getDate()+6);
+  } else if (mode === 'day') {
+    thedate = new Date(date);
+    first = new Date(thedate);
+    last = new Date(thedate);
+    last.setDate(thedate.getDate() + 1);
+  }
+
+        }}
+        <table class="calendar-table table table-condensed table-tight">
+            <thead>
+                <tr>
+                    <td colspan="7" style="text-align: center; border:0 none">
+                        <table style="white-space: nowrap; width: 100%">
+                            <tr>
+                                <td style="text-align: left;">
+                                    <span class="btn-group">
+                                        <button class="js-cal-option btn btn-outline-info {{: mode==='month'? 'active':'' }}" data-mode="month">Month</button>
+                                        <button class="js-cal-option btn btn-outline-info {{: mode==='year'? 'active':'' }}" data-mode="year">Year</button>
+                                        @*
+                                            <button class="js-cal-option btn btn-outline-info {{: mode==='week'? 'active':'' }}" data-mode="week">Week</button>
+                                            <button class="js-cal-option btn btn-outline-info {{: mode==='day'? 'active':'' }}" data-mode="day">Day</button>
+                                        *@
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="btn-group btn-group-lg">
+                                        {{ if (mode !== 'day') { }}
+                                        {{ if (mode === 'month') { }}<button class="js-cal-option btn btn-link" data-mode="year">{{: months[month] }}</button>{{ } }}
+                                        {{ if (mode ==='week') { }}
+                                        <button class="btn btn-link disabled">{{: shortMonths[first.getMonth()] }} {{: first.getDate() }} - {{: shortMonths[last.getMonth()] }} {{: last.getDate() }}</button>
+                                        {{ } }}
+                                        <button class="js-cal-years btn btn-link">{{: year}}</button>
+                                        {{ } else { }}
+                                        <button class="btn btn-link disabled">{{: date.toDateString() }}</button>
+                                        {{ } }}
+                                    </span>
+                                </td>
+                                <td style="text-align: right">
+                                    <span class="btn-group">
+                                        <button class="js-cal-prev btn btn-outline-info"><</button>
+                                        <button class="js-cal-option btn btn-outline-info {{: first.toDateInt() <= today.toDateInt() && today.toDateInt() <= last.toDateInt() ? 'active':'' }}" data-date="{{: today.toISOString()}}" data-mode="month">{{: todayname }}</button>
+                                        <button class="js-cal-next btn btn-outline-info">></button>
+                                    </span>
+                                    <div class="btn btn-outline-success btn-calendar-add" data-type="16"><i class="fa fa-calendar-plus"></i> Add</div>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </thead>
+            {{ if (mode ==='year') {
+      month = 0;
+            }}
+            <tbody>
+                {{ for (j = 0; j < 3; j++) { }}
+                <tr>
+                    {{ for (i = 0; i < 4; i++) { }}
+                    <td class="calendar-month month-{{:month}} js-cal-option" data-date="{{: new Date(year, month, 1).toISOString() }}" data-mode="month">
+                        {{: months[month] }}
+                        {{ month++;}}
+                    </td>
+                    {{ } }}
+                </tr>
+                {{ } }}
+            </tbody>
+            {{ } }}
+            {{ if (mode ==='month' || mode ==='week') { }}
+            <thead>
+                <tr class="c-weeks">
+                    {{ for (i = 0; i < 7; i++) { }}
+                    <th class="c-name">
+                        {{: days[i] }}
+                    </th>
+                    {{ } }}
+                </tr>
+            </thead>
+            <tbody>
+                {{ for (j = 0; j < 6 && (j < 1 || mode === 'month'); j++) { }}
+                <tr>
+                    {{ for (i = 0; i < 7; i++) { }}
+                    {{ if (thedate > last) { dayclass = nextmonthcss; } else if (thedate >= first) { dayclass = thismonthcss; } }}
+                    <td class="calendar-day {{: dayclass }} {{: thedate.toDateCssClass() }} {{: date.toDateCssClass() === thedate.toDateCssClass() ? 'selected':'' }} {{: daycss[i] }} js-cal-option" data-date="{{: thedate.toISOString() }}">
+                        <div class="date">{{: thedate.getDate() }}</div>
+                        {{ thedate.setDate(thedate.getDate() + 1);}}
+                    </td>
+                    {{ } }}
+                </tr>
+                {{ } }}
+            </tbody>
+            {{ } }}
+            {{ if (mode ==='day') { }}
+            <tbody>
+                <tr>
+                    <td colspan="7">
+                        <table class="table table-striped table-condensed table-tight-vert">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th style="text-align: center; width: 100%">{{: days[date.getDay()] }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th class="timetitle">All Day</th>
+                                    <td class="{{: date.toDateCssClass() }}">  </td>
+                                </tr>
+                                <tr>
+                                    <th class="timetitle">Before 6 AM</th>
+                                    <td class="time-0-0"> </td>
+                                </tr>
+                                {{for (i = 6; i < 22; i++) { }}
+                                <tr>
+                                    <th class="timetitle">{{: i <= 12 ? i : i - 12 }} {{: i < 12 ? "AM" : "PM"}}</th>
+                                    <td class="time-{{: i}}-0"> </td>
+                                </tr>
+                                <tr>
+                                    <th class="timetitle">{{: i <= 12 ? i : i - 12 }}:30 {{: i < 12 ? "AM" : "PM"}}</th>
+                                    <td class="time-{{: i}}-30"> </td>
+                                </tr>
+                                {{ } }}
+                                <tr>
+                                    <th class="timetitle">After 10 PM</th>
+                                    <td class="time-22-0"> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+            {{ } }}
+        </table>
+    </script>
+
+    <script type="text/javascript">
+        var Reservations = {
+            config: {
+                modal: $("#mdl-reservation-detail")
+            },
+            insert: function () {
+                debugger;
+                var mdl = Reservations.config.modal,
+                    data = {
+                    unitNativePMSID: user.EscapiaDetails.Property.nativePMSID,
+                    stayDateRange: {
+                        startDate: $("[name='DateStart']", mdl).val(),
+                        endDate: $("[name='DateEnd']", mdl).val()
+                    },
+                    Guest: {
+                        firstName: $("[name='FirstName']", mdl).val(),
+                        lastName: $("[name='LastName']", mdl).val(),
+                        emails: [$("[name='Email']", mdl).val()]
+                    },
+                    adults: $("[name='TotalAdults']", mdl).val(),
+                    children:$("[name='TotalChildren']", mdl).val(),
+                    userNativePMSID: user.EscapiaDetails.Owner.nativePMSID,
+                    reason: $("[name='Notes']", mdl).val(),
+                    //nativePMSID: $("[name='reservation-id']", mdl).val(),
+                    pmcid:@GlobalSettings.Escapia.PMCID.ToString()
+                };
+                $.ajax({
+                    url: "https://hsapi.escapia.com/dragomanadapter/hsapi/UpdateReservation?id=" + data.nativePMSID,
+                    method: "put",
+                    headers: ajaxHeaders.homeAway,
+                    data: data,
+                    success: function (d) {
+                        debugger;
+                        //calendar. refresh
+                    },
+                    error: function (xhr) {
+                        debugger;
+                    }
+                });
+            },
+            update: function () {
+                debugger;
+                var mdl = Reservations.config.modal,
+                    data =
+                    {
+                        unitNativePMSID: user.EscapiaDetails.Property.nativePMSID,
+                        stayDateRange: {
+                            startDate: $("[name='DateStart']", mdl).val(),
+                            endDate: $("[name='DateEnd']", mdl).val()
+                        },
+                        userNativePMSID: user.EscapiaDetails.Owner.nativePMSID,
+                        reason: $("[name='Notes']", mdl).val(),
+                        nativePMSID: $("[name='reservation-id']", mdl).val(),
+                        pmcid:@GlobalSettings.Escapia.PMCID.ToString()
+                    };
+                $.ajax({
+                    url: "https://hsapi.escapia.com/dragomanadapter/hsapi/UpdateReservation?id=" + data.nativePMSID,
+                    method: "put",
+                    headers: ajaxHeaders.homeAway,
+                    data: data,
+                    success: function (d) {
+                        debugger;
+                        //calendar. refresh
+                    },
+                    error: function (xhr) {
+                        debugger;
+                    }
+                });
+            },
+            cancel: function () {
+                var mdl = Reservations.config.modal,
+                    id = $("[name='reservation-id']", mdl).val();
+                $.ajax({
+                    url: "https://hsapi.escapia.com/dragomanadapter/hsapi/CancelReservation?id=" + id,
+                    method: "post",
+                    headers: ajaxHeaders.homeAway,
+                    data: {
+                        userNativePMSID: user.EscapiaDetails.Owner.nativePMSID,
+                        reason: $("[name='Notes']", mdl).val(),
+                        nativePMSID: id,
+                        pmcid:@GlobalSettings.Escapia.PMCID.ToString()
+                    },
+                    success: function (d) {
+                        debugger;
+                        //calendar. refresh
+                    },
+                    error: function (xhr) {
+                        debugger;
+                    }
+                });
+            },
+            holds: {
+
+            }
+        };
+
+        $(document).on("click", "#mdl-reservation-detail [name='btn-save']", function () {
+            var id = $("[name='reservation-id']", Reservations.config.modal).val();
+            if (id === "")
+                Reservations.insert();
+            else Reservations.update();
+        });
+        $(document).on("click", "#mdl-reservation-detail [name='btn-delete']", function () {
+            // TODO: confirm delete
+            Reservations.cancel();
+        });
+    </script>
+
+    <script type="text/javascript">
+        var calendar = {
+            config: {
+                reservationTypes: {
+                    editable: [16, 17],
+                    //visible:[0,16, 17, 18, ]
+                }
+            },
+            data: {
+                reservations: null,
+                reservationTypes: null
+            },
+            fetch: {
+                reservationTypes: function () {
+                    $.ajax({
+                        url: "https://hsapi.escapia.com/dragomanadapter/hsapi/ListReservationTypes",
+                        headers: ajaxHeaders.homeAway,
+                        async:false,
+                        success: function (d) {
+                            calendar.data.reservationTypes = d;
+                        }
+                    })
+                }
+            },
+            render: {
+                reservationTypes: function (id) {
+                    var lst = $("#mdl-reservation-detail [name='ReservationTypeID']");
+                    lst.empty();
+                    if (!calendar.data.reservationTypes) calendar.fetch.reservationTypes();
+                    $(calendar.data.reservationTypes).each(function () {
+                        var i = $(this)[0];
+                        if (i.nativePMSID == 16 || i.nativePMSID == 17) {
+                            //console.log(i);
+                            var opt = $("<option />", { val: i.nativePMSID, text: i.type });
+                            if (i.nativePMSID == id) opt.attr("selected", "selected");
+                            lst.append(opt);
+                        }
+                    });
+                }
+            }
+        };
+
+        $(document).on("click", ".btn-calendar-add, [data-reservation-id]", function () {
+            var i = $(this),
+                id = i.data("reservation-id") || 0,
+                type = parseInt(i.data("type")),
+                mdl = $("#mdl-reservation-detail");
+
+            mdl.modal("show");
+
+            //get the reservation data
+            $.ajax({
+                url: "@Url.Action("fetchReservationDetail", "Calendar")",
+                method: "post",
+                //data: { id: id },
+                data: { typeID: type },
+                success: function (d) {
+                    if (id === 0) $(".modal-body", mdl).html(d);
+                    else {
+                        //debugger;
+                        var r = $.grep(calendar.data.reservations, function (r) { return r.reservationNumber === id })[0];
+
+                        var isEditable = false,
+                            type = parseInt(r.reservationTypeNativePMSID);
+                        switch (type) {
+                            case 16: isEditable = true; break;
+                            case 17: isEditable = true; break;
+                        }
+
+                        if (isEditable) {
+                            $(".modal-dialog", mdl).addClass("modal-lg");
+                        } else {
+                            $(".modal-dialog", mdl).removeClass("modal-lg");
+                        }
+
+                        $(".modal-body", mdl).html(d);
+
+                        // populate the reservation
+                        if (isEditable) {
+                            calendar.render.reservationTypes(type);
+                            $("[name='FirstName']", mdl).val(r.primaryGuest.firstName);
+                            $("[name='LastName']", mdl).val(r.primaryGuest.lastName);
+                            if (r.primaryGuest.phones.length > 0)
+                                $("[name='Phone']", mdl).val(r.primaryGuest.phones[0].areaCode + r.primaryGuest.phones[0].number);
+                            //if(r.emails.length > 0)
+                            //$("[name='Phone']", mdl).val(r.emails[0].addresses);
+                            $("[name='DateStart']", mdl).val(r.stayDateRange.startDate);
+                            $("[name='DateEnd']", mdl).val(r.stayDateRange.endDate);
+                        }
+                        $("[name='reservation-number']", mdl).text(r.reservationNumber);
+                        $("[name='reservation-id']", mdl).val(r.nativePMSID);
+                        $("[name='DateStart']", mdl).text(r.stayDateRange.startDate);
+                        $("[name='DateEnd']", mdl).text(r.stayDateRange.endDate);
+
+                        if (r.nativePMSID) {
+                            $(".form-control", mdl).prop("readonly", true).prop("disabled", true);
+                            $("[name='DateStart']", mdl).prop("readonly", false).prop("disabled", false);
+                            $("[name='DateEnd']", mdl).prop("readonly", false).prop("disabled", false);
+                            $("[name='Notes']", mdl).prop("readonly", false).prop("disabled", false);
+                        }
+
+                        /*
+                        $.ajax({
+                            url: "https://hsapi.escapia.com/dragomanadapter/hsapi/GetReservationByNumber",
+                            method: "get",
+                            headers: {
+                                "Authorization": "GlobalSettings.Escapia.HomeAwayCredentials.Token",
+                                "x-homeaway-hasp-api-endsystem": "EscapiaVRS",
+                                "x-homeaway-hasp-api-pmcid": 1596,
+                                "x-homeaway-hasp-api-version": 10
+                            },
+                            data: {
+                                reservationNumber: "HLD-09178"
+                            },
+                            success: function (r) {
+                                debugger;
+                                $(".modal-body", mdl).html(d);
+                                // populate the reservation
+                            },
+                            error: function (xhr) {
+                                debugger;
+                            }
+                        });
+                        */
+                    }
+                },
+                beforeSend: function () {
+                    $(".modal-body", mdl).html("<div class='text-center'><i class='fa fa-5x fa-cog fa-spin'></i></div>");
+                }
+            });
+        });
+
+
+        var $currentPopover = null;
+        $(document).on('shown.bs.popover', function (ev) {
+            var $target = $(ev.target);
+            if ($currentPopover && ($currentPopover.get(0) != $target.get(0))) {
+                $currentPopover.popover('toggle');
+        }
+        $currentPopover = $target;
+        }).on('hidden.bs.popover', function (ev) {
+            var $target = $(ev.target);
+            if ($currentPopover && ($currentPopover.get(0) == $target.get(0))) {
+                $currentPopover = null;
+            }
+        });
+
+
+        //quicktmpl is a simple template language I threw together a while ago; it is not remotely secure to xss and probably has plenty of bugs that I haven't considered, but it basically works
+        //the design is a function I read in a blog post by John Resig (http://ejohn.org/blog/javascript-micro-templating/) and it is intended to be loosely translateable to a more comprehensive template language like mustache easily
+        $.extend({
+            quicktmpl: function (template) {return new Function("obj","var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push('"+template.replace(/[\r\t\n]/g," ").split("{{").join("\t").replace(/((^|\}\})[^\t]*)'/g,"$1\r").replace(/\t:(.*?)\}\}/g,"',$1,'").split("\t").join("');").split("}}").join("p.push('").split("\r").join("\\'")+"');}return p.join('');")}
+        });
+
+        $.extend(Date.prototype, {
+          //provides a string that is _year_month_day, intended to be widely usable as a css class
+          toDateCssClass:  function () {
+            return '_' + this.getFullYear() + '_' + (this.getMonth() + 1) + '_' + this.getDate();
+          },
+          //this generates a number useful for comparing two dates;
+          toDateInt: function () {
+            return ((this.getFullYear()*12) + this.getMonth())*32 + this.getDate();
+          },
+          toTimeString: function() {
+            var hours = this.getHours(),
+                minutes = this.getMinutes(),
+                hour = (hours > 12) ? (hours - 12) : hours,
+                ampm = (hours >= 12) ? ' pm' : ' am';
+            if (hours === 0 && minutes===0) { return ''; }
+            if (minutes > 0) {
+              return hour + ':' + minutes + ampm;
+            }
+            return hour + ampm;
+          }
+        });
+
+
+        (function ($) {
+
+          //t here is a function which gets passed an options object and returns a string of html. I am using quicktmpl to create it based on the template located over in the html block
+          var t = $.quicktmpl($('#tmpl').get(0).innerHTML);
+
+          function calendar($el, options) {
+            //actions aren't currently in the template, but could be added easily...
+            $el.on('click', '.js-cal-prev', function () {
+              switch(options.mode) {
+              case 'year': options.date.setFullYear(options.date.getFullYear() - 1); break;
+              case 'month': options.date.setMonth(options.date.getMonth() - 1); break;
+              case 'week': options.date.setDate(options.date.getDate() - 7); break;
+              case 'day':  options.date.setDate(options.date.getDate() - 1); break;
+              }
+              draw();
+            }).on('click', '.js-cal-next', function () {
+              switch(options.mode) {
+              case 'year': options.date.setFullYear(options.date.getFullYear() + 1); break;
+              case 'month': options.date.setMonth(options.date.getMonth() + 1); break;
+              case 'week': options.date.setDate(options.date.getDate() + 7); break;
+              case 'day':  options.date.setDate(options.date.getDate() + 1); break;
+              }
+              draw();
+            }).on('click', '.js-cal-option', function () {
+              var $t = $(this), o = $t.data();
+              if (o.date) { o.date = new Date(o.date); }
+              $.extend(options, o);
+              draw();
+            }).on('click', '.js-cal-years', function () {
+              var $t = $(this),
+                  haspop = $t.data('popover'),
+                  s = '',
+                  y = options.date.getFullYear() - 2,
+                  l = y + 5;
+              if (haspop) { return true; }
+              for (; y < l; y++) {
+                s += '<button type="button" class="btn btn-default btn-lg btn-block js-cal-option" data-date="' + (new Date(y, 1, 1)).toISOString() + '" data-mode="year">'+y + '</button>';
+              }
+              $t.popover({content: s, html: true, placement: 'auto top'}).popover('toggle');
+              return false;
+            }).on('click', '.event', function () {
+              var $t = $(this),
+                  index = +($t.attr('data-index')),
+                  haspop = $t.data('popover'),
+                  data, time;
+
+              if (haspop || isNaN(index)) { return true; }
+              data = options.data[index];
+              time = data.start.toTimeString();
+                if (time && data.end) { time = time + ' - ' + data.end.toTimeString(); }
+                /*
+              $t.data('popover',true);
+                //$t.popover({ content: '<p><strong>' + time + '</strong></p>' + data.text, html: true, placement: 'auto left' }).popover('toggle');
+                $t.popover({ content: '<p><strong>' + time + '</strong></p>' + data.text, html: true, placement: 'top' }).popover('toggle');
+              return false;
+                */
+            });
+            function dayAddEvent(index, event) {
+              if (!!event.allDay) {
+                monthAddEvent(index, event);
+                return;
+              }
+              var $event = $('<div/>', {'class': 'event ' + event.holdType, text: event.title, title: event.title, 'data-index': index, 'data-reservation-id': event.reservationNumber }),
+                  start = event.start,
+                  end = event.end || start,
+                  time = event.start.toTimeString(),
+                  hour = start.getHours(),
+                  timeclass = '.time-22-0',
+                  startint = start.toDateInt(),
+                  dateint = options.date.toDateInt(),
+                  endint = end.toDateInt();
+              if (startint > dateint || endint < dateint) { return; }
+
+              if (!!time) {
+                $event.html('<strong>' + time + '</strong> ' + $event.html());
+              }
+              $event.toggleClass('begin', startint === dateint);
+              $event.toggleClass('end', endint === dateint);
+              if (hour < 6) {
+                timeclass = '.time-0-0';
+              }
+              if (hour < 22) {
+                timeclass = '.time-' + hour + '-' + (start.getMinutes() < 30 ? '0' : '30');
+              }
+              $(timeclass).append($event);
+            }
+
+              function monthAddEvent(index, event) {
+                  //debugger;
+                  var holdCss = "res-hold";
+                  switch (event.type) {
+                      case 0: holdCss = "res-renter"; break;
+                      case 16: holdCss = "res-owner"; break;
+                      case 17: holdCss = "res-owner-guest"; break;
+                  }
+              var $event = $('<div/>', {'class': 'event ' + holdCss, text: event.title, title: event.title, 'data-index': index, 'data-reservation-id': event.reservationNumber, 'data-type': event.type }),
+                  e = new Date(event.start),
+                  dateclass = e.toDateCssClass(),
+                  day = $('.' + e.toDateCssClass()),
+                  empty = $('<div/>', {'class':'clear event', html:' '}),
+                  numbevents = 0,
+                  time = null, // event.start.toTimeString(),
+                  endday = event.end && $('.' + event.end.toDateCssClass()).length > 0,
+                  checkanyway = new Date(e.getFullYear(), e.getMonth(), e.getDate()+40),
+                  existing,
+                  i;
+              $event.toggleClass('all-day', !!event.allDay);
+              if (!!time) {
+                $event.html('<strong>' + time + '</strong> ' + $event.html());
+              }
+              if (!event.end) {
+                $event.addClass('begin end');
+                $('.' + event.start.toDateCssClass()).append($event);
+                return;
+              }
+
+              while (e <= event.end && (day.length || endday || options.date < checkanyway)) {
+                if(day.length) {
+                  existing = day.find('.event').length;
+                  numbevents = Math.max(numbevents, existing);
+                  for(i = 0; i < numbevents - existing; i++) {
+                    day.append(empty.clone());
+                  }
+                  day.append(
+                    $event.
+                    toggleClass('begin', dateclass === event.start.toDateCssClass()).
+                    toggleClass('end', dateclass === event.end.toDateCssClass())
+                  );
+                  $event = $event.clone();
+                  $event.html(' ');
+                }
+                e.setDate(e.getDate() + 1);
+                dateclass = e.toDateCssClass();
+                day = $('.' + dateclass);
+              }
+            }
+            function yearAddEvents(events, year) {
+              var counts = [0,0,0,0,0,0,0,0,0,0,0,0];
+              $.each(events, function (i, v) {
+                if (v.start.getFullYear() === year) {
+                    counts[v.start.getMonth()]++;
+                }
+              });
+              $.each(counts, function (i, v) {
+                if (v!==0) {
+                    $('.month-'+i).append('<span class="badge">'+v+'</span>');
+                }
+              });
+            }
+
+            function draw() {
+              $el.html(t(options));
+              //potential optimization (untested), this object could be keyed into a dictionary on the dateclass string; the object would need to be reset and the first entry would have to be made here
+              $('.' + (new Date()).toDateCssClass()).addClass('today');
+              if (options.data && options.data.length) {
+                if (options.mode === 'year') {
+                    yearAddEvents(options.data, options.date.getFullYear());
+                } else if (options.mode === 'month' || options.mode === 'week') {
+                    $.each(options.data, monthAddEvent);
+                } else {
+                    $.each(options.data, dayAddEvent);
+                }
+              }
+            }
+
+            draw();
+          }
+
+          ;(function (defaults, $, window, document) {
+            $.extend({
+              calendar: function (options) {
+                return $.extend(defaults, options);
+              }
+            }).fn.extend({
+              calendar: function (options) {
+                options = $.extend({}, defaults, options);
+                return $(this).each(function () {
+                  var $this = $(this);
+                  calendar($this, options);
+                });
+              }
+            });
+          })({
+            days: ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"],
+            months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            date: (new Date()),
+                daycss: ["c-sunday", "", "", "", "", "", "c-saturday"],
+                todayname: "Today",
+                thismonthcss: "current",
+                lastmonthcss: "outside",
+                nextmonthcss: "outside",
+            mode: "month",
+            data: []
+          }, jQuery, window, document);
+
+        })(jQuery);
+
+        /*
+        var data = [],
+            date = new Date(),
+            d = date.getDate(),
+            d1 = d,
+            m = date.getMonth(),
+            y = date.getFullYear(),
+            i,
+            end,
+            j,
+            c = 1063,
+            c1 = 3329,
+            h,
+            m,
+            names = ['All Day Event', 'Long Event', 'Birthday Party', 'Repeating Event', 'Training', 'Meeting', 'Mr. Behnke', 'Date', 'Ms. Tubbs'],
+            slipsum = ["Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass.", "You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die down here. Just as a matter of deductive logic.", "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends.", "Well, the way they make shows is, they make one show. That show's called a pilot. Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing.", "Yeah, I like animals better than people sometimes... Especially dogs. Dogs are the best. Every time you come home, they act like they haven't seen you in a year. And the good thing about dogs... is they got different dogs for different people. Like pit bulls. The dog of dogs. Pit bull can be the right man's best friend... or the wrong man's worst enemy. You going to give me a dog for a pet, give me a pit bull. Give me... Raoul. Right, Omar? Give me Raoul.", "Like you, I used to think the world was this great place where everybody lived by the same standards I did, then some kid with a nail showed me I was living in his world, a world where chaos rules not order, a world where righteousness is not rewarded. That's Cesar's world, and if you're not willing to play by his rules, then you're gonna have to pay the price.", "You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man.", "You see? It's curious. Ted did figure it out - time travel. And when we get back, we gonna tell everyone. How it's possible, how it's done, what the dangers are. But then why fifty years in the future when the spacecraft encounters a black hole does the computer call it an 'unknown entry event'? Why don't they know? If they don't know, that means we never told anyone. And if we never told anyone it means we never made it back. Hence we die down here. Just as a matter of deductive logic.", "Like you, I used to think the world was this great place where everybody lived by the same standards I did, then some kid with a nail showed me I was living in his world, a world where chaos rules not order, a world where righteousness is not rewarded. That's Cesar's world, and if you're not willing to play by his rules, then you're gonna have to pay the price.", "You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man."];
+
+            names = ['Guest Stay', 'Owner Stay', 'Owner Guest Stay'];
+                slipsum = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin libero ante, vestibulum ac elementum eu, condimentum sed dui. Morbi ac nisl dignissim, hendrerit nulla in, hendrerit mauris. Nam diam mauris, pellentesque eu rhoncus et, porttitor ut risus.'];
+
+          for(i = 0; i < 500; i++) {
+            j = Math.max(i % 15 - 10, 0);
+            //c and c1 jump around to provide an illusion of random data
+            c = (c * 1063) % 1061;
+            c1 = (c1 * 3329) % 3331;
+            d = (d1 + c + c1) % 839 - 440;
+            h = i % 36;
+            m = (i % 4) * 15;
+            if (h < 18) { h = 0; m = 0; } else { h = Math.max(h - 24, 0) + 8; }
+            end = !j ? null : new Date(y, m, d + j, h + 2, m);
+            data.push({ title: names[c1 % names.length], start: new Date(y, m, d, h, m), end: end, allDay: !(i % 6), text: slipsum[c % slipsum.length ]  });
+        }
+        */
+        $.ajax({
+            url: "https://hsapi.escapia.com/dragomanadapter/hsapi/SearchReservationSummaries",
+            method: "post",
+            data: JSON.stringify({
+                "specification": {
+                    "pmcid": "@GlobalSettings.Escapia.PMCID.ToString()",
+                    "unitNativePMSIDs": [133161],
+                    //"unitNativePMSIDs": [user.EscapiaDetails.Property.nativePMSID],
+                    "stayDateRangeSearchSpecification": {
+                        DateRange: {
+                            "startDate": "2019-05-01", //dateStart,
+                            "endDate": "2019-05-31" //dateEnd
+                        }
+                    },
+                },
+                "pageSize": 100,
+                "pageNumber": 100
+            }),
+            headers: ajaxHeaders.homeAway,
+            //url: "/json/calendar.json",
+            success: function (d) {
+                //debugger;
+                calendar.data.reservations = d.results;
+                var data = [];
+                $(d.results).each(function () {
+                    var i = this,
+                        title = "Hold",
+                        start = new Date(i.stayDateRange.startDate),
+                        end = new Date(i.stayDateRange.endDate),
+                        text = "<strong>Reservation #:</strong> " + i.reservationNumber + "<br/><strong>Notes:</strong> " + i.primaryGuest.notes || "None";
+
+                    switch (parseInt(i.reservationTypeNativePMSID)) {
+                        case 0: title = "Renter"; break;
+                        case 16: title = "You"; break;
+                        case 17: title = "Your Guest"; break;
+                    }
+
+                    data.push({
+                        title: title, // i.primaryGuest.fullNameLastCommaFirst,
+                        start: start, end: end,
+                        allDay: false,
+                        text: text,
+                        type: parseInt(i.reservationTypeNativePMSID),
+                        reservationNumber: i.reservationNumber
+                    });
+                });
+
+                //data must be sorted by start date
+                data.sort(function(a,b) { return (+a.start) - (+b.start); });
+
+                //Actually do everything
+                $('#report-calendar').calendar({
+                    data: data
+                });
+            }
+        });
+
+        /*
+        var data = [];
+
+        $(mock.results).each(function () {
+            var i = this,
+                start = new Date(i.stayDateRange.startDate),
+                end = new Date(i.stayDateRange.endDate),
+                text = "<strong>Reservation #:</strong> " + i.reservationNumber + "<br/><strong>Notes:</strong> " + i.primaryGuest.notes || "None";
+            data.push({ title: i.primaryGuest.fullNameLastCommaFirst, start:start, end:end, allDay: false, text: text, type: i.holdType });
+        });
+
+        //data must be sorted by start date
+        data.sort(function(a,b) { return (+a.start) - (+b.start); });
+
+        //Actually do everything
+        $('#report-calendar').calendar({
+            data: data
+        });
+        */
+    </script>
+}
+
+@section styles {
+    <style type="text/css">
+        .calendar-day {
+            width: 14.29%;
+            /*
+            width: 100px;
+            min-width: 100px;
+            */
+            max-width: 100px;
+            height: 80px;
+        }
+
+        .calendar-table {
+            margin: 0 auto;
+            /*width: 700px;*/
+            width: 100%;
+            margin-top: -20px;
+        }
+
+        .selected {
+            background-color: #eee;
+        }
+
+        .outside .date {
+            color: #ccc;
+        }
+
+        .timetitle {
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        .event {
+            /*
+            border-top: 1px solid #b2dba1;
+            border-bottom: 1px solid #b2dba1;
+            background-image: linear-gradient(to bottom, #dff0d8 0px, #c8e5bc 100%);
+            background-repeat: repeat-x;
+            color: #3c763d;
+            border-width: 1px;
+            */
+            color: #fff;
+            font-size: .75em;
+            padding: 0 .75em;
+            line-height: 2em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 1px;
+        }
+
+            .event.begin {
+                /*
+                border-left: 1px solid #b2dba1;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                */
+            }
+
+            .event.end {
+                /*
+                border-right: 1px solid #b2dba1;
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+                */
+            }
+
+            .event.all-day {
+                /*
+                border-top: 1px solid #9acfea;
+                border-bottom: 1px solid #9acfea;
+                background-image: linear-gradient(to bottom, #d9edf7 0px, #b9def0 100%);
+                background-repeat: repeat-x;
+                color: #31708f;
+                border-width: 1px;
+                */
+            }
+
+                .event.all-day.begin {
+                    border-left: 1px solid #9acfea;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                }
+
+                .event.all-day.end {
+                    /*
+                    border-right: 1px solid #9acfea;
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+                    */
+                }
+
+            .event.clear {
+                background: none;
+                border: 1px solid transparent;
+            }
+
+            .event.res-hold {
+                background-color: #343a40 !important;
+            }
+
+            .event.res-renter {
+                background-color: #28a745;
+            }
+
+            .event.res-owner {
+                background-color: #ffc107 !important;
+            }
+
+            .event.res-owner-guest {
+                background-color: #17a2b8;
+            }
+
+        .table-tight > thead > tr > th,
+        .table-tight > tbody > tr > th,
+        .table-tight > tfoot > tr > th,
+        .table-tight > thead > tr > td,
+        .table-tight > tbody > tr > td,
+        .table-tight > tfoot > tr > td {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .table-tight-vert > thead > tr > th,
+        .table-tight-vert > tbody > tr > th,
+        .table-tight-vert > tfoot > tr > th,
+        .table-tight-vert > thead > tr > td,
+        .table-tight-vert > tbody > tr > td,
+        .table-tight-vert > tfoot > tr > td {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .date {
+            border-radius: 50%;
+            max-width: 26px;
+            padding: 1px;
+        }
+
+        .today .date {
+            background-color: #17a2b8;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        [data-reservation-id] {
+            cursor: pointer;
+        }
+    </style>
+}

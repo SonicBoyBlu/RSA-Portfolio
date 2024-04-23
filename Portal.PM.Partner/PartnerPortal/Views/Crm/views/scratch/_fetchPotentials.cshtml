@@ -1,0 +1,81 @@
+﻿@model Acme.ViewModels.CRM.PotentialsView
+<h2 class="text-warning"><i class="fa fa-funnel-dollar"></i> Potentials</h2>
+<script type="text/javascript">
+    TableSort.config.queryParams = { ContactTypeID: 3 };
+</script>
+
+<div class="table-responsive">
+    <table id="tbl-potentials-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="CRM/Data/JSON/Potentials" data-row-attributes="Actions.rowAttributes">
+        <thead>
+            <tr>
+                <th data-sortable="true" data-field="FullName">Contact</th>
+                <th data-sortable="true" data-field="AccountName">Property</th>
+                <th data-sortable="true" data-field="Goals" data-formatter="TableSort.format.currency" data-class="text-success">Expected $</th>
+                <th data-sortable="true" data-field="Stage">Stage</th>
+                <th data-sortable="true" data-field="LeadType">Type</th>
+                <th data-sortable="true" data-field="LeadSource">Source</th>
+                <th data-sortable="true" data-field="DateLastActivity" data-formatter="TableSort.format.date.lastActive">Last Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*
+                @foreach (var p in Model.Potentials)
+                {
+                    <tr data-potential-id="@p.PotentialID">
+                        <td>
+                            <strong class="text-info">
+                                @if (!string.IsNullOrEmpty(p.PotentialName))
+                                {
+                                    @p.PotentialName <i class="fa fa-star text-warning"></i>
+                                }
+                                @if (!string.IsNullOrEmpty(p.PotentialName + p.PartnerFullName))
+                                {<br />}
+                                @if (!string.IsNullOrEmpty(p.PartnerFullName))
+                                {
+                                    @p.PartnerFullName
+                                }
+
+
+                            </strong>
+                        </td>
+                        <td>@p.AccountName</td>
+                        <td class="text-success">@p.ExpectedRevenue.ToString("C")</td>
+                        <td>@p.Stage</td>
+                        <td>@p.LeadType</td>
+                        <td>@p.LeadSource</td>
+                        <td>@(p.DateLastActive == DateTime.MinValue ? "-" : p.DateLastActive.ToShortDateString())</td>
+                    </tr>
+                }
+            *@
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var tableName = "#tbl-potentials-list";
+    $(function () {
+        Actions.init();
+    });
+
+    var Actions = {
+        init: function () {
+            CRM.render.table(tableName);
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-secondary btn-export' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+            $(".fixed-table-toolbar .btn-group").append("<button class='btn btn-info btn-vendor-new' data-vendor-id='0' type='button' name='new' title='Create New Vendor'><i class='fa fa-plus-circle'></i></button>");
+            $(document).on("click", ".btn-export", function () {
+                $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                $("table-sortable").tableExport({
+                    type: 'excel'
+                });
+            });
+
+        },
+        rowAttributes: function (row, index) {
+            return {
+                "data-poitential-id": row.PotentialID
+            }
+
+        }
+    }
+
+</script>

@@ -1,0 +1,55 @@
+﻿@import "../_variables.scss";
+
+#contact-header-common {
+    margin-bottom: -2rem;
+    margin-top: 2.5rem;
+}
+
+#chart-pipeline-stage {
+    display:inline-block;
+
+    li {
+        display:inline;
+        float:left;
+        margin-right:2.5rem;
+        position:relative;
+        z-index:10;
+        div {
+            background-color: $lightGrey;
+            border-radius:50%;
+            height:.65rem;
+            width:.65em;
+            cursor:pointer;
+
+            &.active{
+                background-color:$green;
+                &.closed {
+                    background-color:$orange;
+                }
+            }
+            &.current{
+                border:2px solid $green;
+                height:1.2rem;
+                width:1.2rem;
+                margin-top:-0.3rem;
+                &.closed {
+                    border-color: $orange;
+                }
+            }
+            &.goal {
+                background-color:$brightBlue;
+                &.current {
+                    border-color:$brightBlue;
+                }
+            }
+        }
+        &:first-child{
+            float:none;
+            top:1.3rem;
+            z-index:0;
+        }
+        &:last-child{
+            margin-right:-2.5rem;
+        }
+    }
+}

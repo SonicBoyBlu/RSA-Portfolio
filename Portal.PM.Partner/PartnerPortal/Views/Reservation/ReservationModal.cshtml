@@ -1,0 +1,389 @@
+﻿<div class="modal-content-wrapper">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()" data-toggle="modal"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+        <div ng-show="reservationEditCtl.isLoading">
+            @Html.Partial("_LoadingIndicator", "Loading Reservation")
+        </div>
+        <div ng-show="reservationEditCtl.hasError">
+            <h1 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Something Went Wrong!</h1>
+            Oops, an error has occured.  Please try again.
+        </div>
+        <div ng-show="reservationEditCtl.showContent()">
+
+
+            <!--begin form-->
+
+            <form id="formReservatioEdit" name="formReservatioEdit" method="post" action="#">
+
+                <section class="text-center0 top row">
+                    <div class="col-12">
+                        <h1>
+                            [{{reservation.ReservationNumber}}]
+                            <span class="text-default">{{reservation.LastName}}, {{reservation.FirstName}}</span>
+                        </h1>
+                        <p class="mb-3">
+                            <strong>Booking #:</strong> ### |
+                            <strong>Conf#:</strong>  ### |
+                            <strong>Source:</strong> {{reservation.BookingSource}}
+                        </p>
+
+                    </div>
+                    <div class="col-8">
+
+                        <div class="alert alert-success">
+                            <p class="mb-2">
+                                <strong>
+                                    {{reservation.Unit.address.street1}}
+                                    {{reservation.Unit.address.street2}},
+                                    {{reservation.Unit.address.city}},
+                                    {{reservation.Unit.address.state}}
+                                    {{reservation.Unit.address.zip}}
+                                </strong>
+                            </p>
+                            <p>
+                                <strong>When: </strong>{{reservation.DateStart | date:"M/dd/yyyy"}} to {{reservation.DateEnd | date:"M/dd/yyyy"}}
+                            </p>
+                            <p>
+                                <strong>Unit Code:</strong> {{reservation.Unit.unitCode}} | {{reservation.Unit.unitName}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-4 text-right">
+                        <dl>
+                            <dt>Payment</dt>
+                            <dd><i ng-class="getIconClass(reservation.PaymentStatusFull)"></i></dd>
+                            <dt>Contract Signed</dt>
+                            <dd><i ng-class="getIconClass(reservation.Reservation.ContractSigned)"></i></dd>
+                            <dt>Concierge Notified</dt>
+                            <dd><i ng-class="getIconClass(reservation.HasConcierge)"></i></dd>
+                            <dt>ID Collected</dt>
+                            <dd><i ng-class="getIconClass(reservation.UploadGuestIdentification)"></i></dd>
+                            <dt>Arrival Instructions</dt>
+                            <dd><i ng-class="getIconClass(reservation.SentArrivalInstructions)"></i></dd>
+                            <dt>City Contract</dt>
+                            <dd><i ng-class="getIconClass(reservation.IsPSCityContract)"></i></dd>
+                        </dl>
+                    </div>
+                    <div class="col-12">
+                        <strong>Notes:</strong>
+                        <em ng-repeat="note in reservation.Notes">
+                            {{note.text}}
+                        </em>
+                    </div>
+
+
+                </section>
+
+                <section>
+                    <h3><i ng-class="getIconClass(reservation.Reservation.ContractSigned)"></i> Reservation Details</h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>
+                                <input type="checkbox" id="inputescapia"
+                                       name="inputescapia" ng-model="reservation.Reservation.InputEscapia">
+                                Input into Escapia
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>
+                                <input type="checkbox" id="createvirtualguestfolder"
+                                       name="createvirtualguestfolder"
+                                       ng-model="reservation.Reservation.CreateVirtualGuestFolder">
+                                Create Virtual guest folder
+                            </label>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <label>
+                                <input type="checkbox" id="adjustratematchpayout"
+                                       name="adjustratematchpayout"
+                                       ng-model="reservation.Reservation.AdjustRateMatchPayout">
+                                Adjust rate to match Payout
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label ng-class="getCheckAlertClass(reservation.Reservation.ContractSigned)">
+                                <input type="checkbox" id="contractsigned"
+                                       name="contractsigned"
+                                       ng-model="reservation.Reservation.ContractSigned">
+                                Contract Signed [from Escapia phase2]
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>
+                                <input type="checkbox" id="addtravelagent"
+                                       name="addtravelagent" ng-model="reservation.Reservation.AddTravelAgent">
+                                Add Travel Agent
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label>
+                                <input type="checkbox" id="printcreditcardauth"
+                                       name="printcreditcardauth"
+                                       ng-model="reservation.Reservation.PrintCreditCardAuth">
+                                Save Credit Card Auth to Guest Folder
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3><i ng-class="getIconClass(reservation.HasConcierge)"></i> Notify Concierge</h3>
+                    <div class="row mt-2">
+                        <div class="col-sm-6">
+
+                            <strong>Concierge Name:</strong>
+                            {{reservation.Reservation.ConciergeName}}
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>
+                                Notified on:
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   placeholder="Enter Date"
+                                   ng-model="reservation.Reservation.ConciergeNotified"
+                                   options="datePickerOptions" />
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>
+                        <i ng-class="getIconClass(reservation.SentArrivalInstructions && reservation.UploadGuestIdentification)"></i>
+                        Guest Verification
+                    </h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div>
+                                <label ng-class="getCheckAlertClass(reservation.UploadGuestIdentification)">
+                                    <input type="checkbox" id="uploadguestidentification"
+                                           name="uploadguestidentification"
+                                           ng-model="reservation.Reservation.UploadGuestIdentification"
+                                           ng-change="updateDashboard(this)">
+                                    ID/Passport Saved to Guest Folder
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox"
+                                           id="intakechannelrequestguestinfo" name="intakechannelrequestguestinfo"
+                                           ng-model="reservation.Reservation.IntakeChannelRequestGuestInfo">
+                                    Request Guest Info
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="updateescapia"
+                                           name="updateescapia" ng-model="reservation.Reservation.UpdateEscapia">
+                                    Update guest info in Escapia
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label ng-class="getCheckAlertClass(reservation.SentArrivalInstructions)">
+                                Email arrival Instructions Sent:
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input date-range-picker class="form-control date-picker" type="text"
+                                   placeholder="Enter Date"
+                                   ng-model="reservation.Reservation.GuestArrivalInstructionsSent"
+                                   options="datePickerOptions" />
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3><i ng-class="getIconClass(reservation.IsPSCityContract)"></i> Palm Springs City Contract Summary</h3>
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            <strong>City ID:</strong>
+                            {{reservation.Reservation.PSCityIdNumber}}
+                        </div>
+
+                        <div class="col">
+                            <strong>TOT #:</strong> 4560
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <select class="form-control" id="pscitycontractnumber" name="pscitycontractnumber"
+                                    data-placeholder="New Contract Number" required
+                                    ng-model="reservation.Reservation.PSCityContractNumber"
+                                    ng-options="option as option for option in reservation.PalmSpringsContractNumberOptions">
+                                <option value="">-- Select contract number --</option>
+                            </select>
+                        </div>
+
+                        <div class="col-sm-6">
+                            @*<label ng-class="getCheckAlertClass(reservation.IsPSCityContract)"></label>*@
+                                <input type="text" class="form-control form-input filled" id="pscitysummaryidnumber"
+                                       placeholder="Enter PS City Summary Number"
+                                       name="pscitysummaryidnumber" required
+                                       ng-model="reservation.Reservation.PSCitySummaryIdNumber">
+
+                        </div>
+
+                        <div class="col-sm-4">
+                                <label>
+                                    <input type="checkbox" id="pscitycontractcancellation"
+                                           name="pscitycontractcancellation"
+                                           ng-model="reservation.Reservation.PSCityContractCancellation">
+                                    Contract Cancellation
+                                </label>
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="pscitycontractrevision"
+                                           name="pscitycontractrevision"
+                                           ng-model="reservation.Reservation.PSCityContractRevision">
+                                    Contract Revision
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <a href="https://form.jotform.us/CityofPalmSprings/AgencyContract" target="_blank"
+                               class="btn btn-outline-primary btn-block">Post To City</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Unique Requirements</h3>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="saveotaitinerary"
+                                           name="saveotaitinerary"
+                                           ng-model="reservation.Reservation.SaveOTAItinerary">
+                                    Save OTA Itinerary
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="attachcopypayment"
+                                           name="attachcopypayment"
+                                           ng-model="reservation.Reservation.AttachCopyPayment">
+                                    Attach copy of payment
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="sendcopypaymentaccounting"
+                                           name="sendcopypaymentaccounting"
+                                           ng-model="reservation.Reservation.SendCopyPaymentAccounting">
+                                    Send copy to Accounting
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="postpayment"
+                                           name="postpayment" ng-model="reservation.Reservation.PostPayment">
+                                    Post payment and save copy [from Escapia]
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="excludepayment"
+                                           name="excludepayment" ng-model="reservation.Reservation.ExcludePayment">
+                                    Exclude Payment in Escapia
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div>
+                                <label>
+                                    <input type="checkbox" id="sendconfirmationota"
+                                           name="sendconfirmationota"
+                                           ng-model="reservation.Reservation.SendConfirmationOTA">
+                                    Send Confirmation to OTA
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="no-border">
+                    <h3>Long Term Rental Requirements</h3>
+                    <div class="row">
+                        <div class="col-12">
+                                <label>
+                                    <input type="checkbox" id="longtermrentalagreement"
+                                           name="longtermrentalagreement"
+                                           ng-model="reservation.Reservation.LongTermRentalAgreement">
+                                    Complete, save and send Long Term Rental
+                                    Agreement
+                                </label>
+                            <br />
+                                <label>
+                                    <input type="checkbox" id="excludeautomaticpayments"
+                                           name="excludeautomaticpayments"
+                                           ng-model="reservation.Reservation.ExcludeAutomaticPayments">
+                                    Check the "Exclude from automatic payments"
+                                    checkbox in Escapia Folio
+                                </label>
+                            <br />
+                                <label>
+                                    <input type="checkbox"
+                                           id="finalpaymentduedateaddcalendar" name="finalpaymentduedateaddcalendar"
+                                           ng-model="reservation.Reservation.FinalPaymentDueDateAddCalendar">
+                                    Add due date for final payment to the calendar
+                                </label>
+                        </div>
+                    </div>
+                </section>
+
+                <input type="hidden" name="reservationnumber" id="reservationnumber"
+                       value="{{reservation.ReservationNumber}}">
+                <input type="hidden" name="authuser" id="authuser"
+                       value="@System.Web.HttpContext.Current.User.Identity.Name">
+            </form>
+            <!--end form-->
+        </div>
+    </div>
+    <!--modal-body-->
+
+
+    <div class="modal-footer text-right" ng-show="reservationEditCtl.showContent()">
+        <div class="btn btn-outline-primary" ng-click="cancel()">Close</div>
+    </div>
+    <!--modal-footer-->
+</div>
+<!--modal-content-->
+
+<script type="text/javascript">
+    $(function () {
+        Utilities.Modals.init();
+    });
+</script>
+
+

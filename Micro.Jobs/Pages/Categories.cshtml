@@ -1,0 +1,60 @@
+﻿@page
+@model Jobs.Pages.CategoriesModel
+@{
+    ViewData["Title"] = "Categories";
+    var _Stats = Model.Stats;
+}
+@section Scripts{
+<script type='text/javascript'>
+$(function () {
+    //*
+    $(function () {
+        $('.flexslider .slides li p').each(function(){
+            //animation: "slide"
+            id = $(this).data("cat-id");
+            setTimeout(function () {
+                id.addClass("flex-caption");
+            }, 2500);
+        });
+    });
+    //*/
+});
+</script>
+}
+<h3 class="text-success">Pay Scale by Job Type</h3>
+<div class="flexslider">
+    <ul class="list-unstyled slides">
+        @foreach(var c in _Stats.Categories)
+        {
+            <li>
+                <p class="flex-caption0" data-cat-itemid="@c.CategoryID">
+                    <strong class="text-primary">@c.CategoryName @*(@c.TotalJobs ID: @c.CategoryID)*@</strong>
+                    @{
+                        var cat = _Stats.CategoryPayScale.Where(x => x.CategoryID == c.CategoryID);
+                        var _hr = cat.Where(x => x.PayType == "hr").FirstOrDefault();
+                        var _yr = cat.Where(x => x.PayType == "yr").FirstOrDefault();
+                    }
+                    @if (_hr is not null)
+                    {
+                        <br /><span>Hourly avg base @_hr.PayAvgLower.ToString("C0") up to @_hr.PayRangeUpper.ToString("C0")<sup>*</sup></span>
+                    }
+                    @if (_yr is not null)
+                    {
+                        <br />
+                        <span>Salary avg base @_yr.PayAvgLower.ToString("C0") up to @_yr.PayRangeUpper.ToString("C0")<sup>*</sup></span>
+                    }
+                </p>
+            </li>
+        }
+    </ul>
+    <small>
+        <strong>* Disclaimers:</strong>
+        <ul class=" text-muted">
+            <li>Starting wage is based on average starting pay for the specific job category.</li>
+            <li>Maximum "up to" is based on highest wage for the specific job category.</li>
+            <li>All pay scales represented are based on aggregates; individual position wages may vary.</li>
+            <li>Minimum and maximum wages are subject to experience and job requirements.</li>
+            <li>This list is for general information and is not a guarantee of compensation of potential job offer.</li>
+        </ul>
+    </small>
+</div>

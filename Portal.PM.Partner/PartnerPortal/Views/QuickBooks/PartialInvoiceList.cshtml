@@ -1,0 +1,55 @@
+﻿<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th scope="col">
+                <div class="dropdown" ng-show="invoiceCtl.authenticated">
+                    <button class="btn btn-outline-success btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-check-square"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(10)" href="#">Select top 10</a>
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(20)" href="#">Select top 20</a>
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(50)" href="#">Select top 50</a>
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(100)" href="#">Select top 100</a>
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(-1)" href="#">Select All</a>
+                        <a class="dropdown-item" ng-click="invoiceCtl.selectInvoices(-1,false)" href="#">Deselect All</a>
+                    </div>
+                </div>
+            </th>
+            <th scope="col">Invoice #</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Invoice Date</th>
+            <th scope="col">Due Date</th>
+            <th class="text-right" scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="5">
+                <div ng-show="invoiceCtl.loading">
+                    @Html.Partial("_LoadingIndicator", "Loading Invoices")
+                </div>
+            </td>
+        </tr>
+        <tr ng-repeat-start="invoice in invoiceCtl.invoices | orderBy : 'CustomerName' | filter : invoiceCtl.search" ng-show="!invoiceCtl.loading">
+            <td>
+                <input type="checkbox" ng-model="invoice.Selected" ng-disabled="!invoiceCtl.authenticated">
+            </td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">
+                <i ng-show="!invoice.Expanded" class="fa fa-caret-right text-primary"></i>
+                <i ng-show="invoice.Expanded" class="fa fa-caret-down text-danger"></i>
+                <Label class="selectable">{{invoice.InvoiveNum}}</Label>
+            </td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.CustomerName}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.TxnDate | date : shortDate}}</td>
+            <td class="selectable-cell" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.DueDate | date : shortDate}}</td>
+            <td class="text-right" ng-click="invoice.Expanded=!invoice.Expanded">{{invoice.LineItemsTotalTaxIncluded  | currency}}</td>
+        </tr>
+        <tr ng-repeat-end ng-show="invoice.Expanded">
+            <td colspan="6">
+                @Html.Partial("PartialInvoice")
+            </td>
+        </tr>
+    </tbody>
+</table>
+

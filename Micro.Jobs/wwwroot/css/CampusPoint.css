@@ -1,0 +1,62 @@
+﻿@import "FlexCaption.css";
+body {
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.5s;
+  background-color: transparent;
+}
+body small {
+  font-size: 0.6em;
+}
+body .btn-close {
+  color: red;
+}
+body .fa, body .fas {
+  padding-right: 0.5em;
+}
+body ul#tbl-job-list li {
+  /*margin-bottom: .75em;*/
+  border-bottom: 1px solid #ccc;
+  padding: 0.75em;
+  cursor: pointer;
+}
+body ul#tbl-job-list li a {
+  text-decoration: none;
+  color: unset;
+  display: block;
+  width: 100%;
+}
+body ul#tbl-job-list li.active {
+  background-color: #eee;
+  color: #999;
+}
+body ul#tbl-job-list li:hover {
+  background-color: #eaeaea;
+}
+body #img-logo-main {
+  max-height: 6em;
+}
+body .text-secondary {
+  color: #9a9a9a !important;
+}
+body dl {
+  width: 100%;
+}
+body dl dt {
+  cursor: default;
+  float: left;
+  clear: left;
+  text-align: left;
+  padding-top: 6px;
+}
+body dl dd {
+  padding: 5px 0;
+  text-align: right;
+}
+body dl dd .form-control {
+  display: -webkit-inline-box;
+  width: auto;
+  text-align: right;
+}
+
+/*@/import "form";*/

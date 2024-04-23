@@ -1,0 +1,168 @@
+﻿@model Acme.ViewModels.CRM.PropertiesViewViewModel
+    <h2 class="text-primary  d-none"><i class="fa fa-home"></i> Properties</h2>
+    <script type="text/javascript">
+        TableSort.config.queryParams = null;
+    </script>
+    <fieldset>
+        <legend>Filters</legend>
+        <div class="row cmd-filters">
+            <div class="col-3">
+                <label><input type="checkbox" value="0" checked="checked" /> All</label>
+            </div>
+            <div class="col-12">
+                <strong>Property Types</strong>
+            </div>
+            @foreach (var t in Model.Lists.PropertyTypes)
+            {
+                <div class="col-3">
+                    <label><input type="checkbox" value="@t.PropertyTypeID" checked="checked" data-type="PropertyTypeID" /> @t.PropertyType</label>
+                </div>
+            }
+
+            @*
+            <div class="col-12">
+                <strong>Property Status</strong>
+            </div>
+            @foreach (var t in Model.Lists.PropertyStatus)
+            {
+                <div class="col-3">
+                    <label><input type="checkbox" value="@t.PropertyStatusID" checked="checked" data-type="PropertyStatusID" /> @t.PropertyStatus</label>
+                </div>
+            }
+            *@
+
+            <div class="col-12">
+                <strong>Rental Status</strong>
+            </div>
+            @foreach (var t in Model.Lists.PropertyStatus)
+            {
+                <div class="col-3">
+                    <label><input type="checkbox" value="@t.PropertyStatusID" checked="checked" data-type="RentalStatusID" /> @t.PropertyStatus</label>
+                </div>
+            }
+        </div>
+    </fieldset>
+
+            <div class="table-responsive">
+                <input type="checkbox" id="chk-show-inactive" value="false" class="d-none" />
+                <table id="tbl-properties-list" data-classes="table table-sm table-hover table-click table-sortable" data-toggle="table" data-url="CRM/Data/JSON/Properties" data-row-attributes="Actions.rowAttributes">
+                    <thead>
+                        <tr>
+                            <th data-sortable="true" data-field="PersonID"></th>
+                            <th data-sortable="true" data-field="PropertyID"></th>
+
+                            <th data-sortable="true" data-field="RentalStatusIcon">Active</th>
+                            <th data-sortable="true" data-field="RentalStatus">Status</th>
+                            <th data-sortable="true" data-field="PropertyName">Property</th>
+                            <th data-sortable="true" data-field="PropertyType">Prop Type</th>
+                            <th data-sortable="true" data-field="Neighborhood">Neighborhood</th>
+                            <th data-sortable="true" data-field="Address1">Address</th>
+                            <th data-sortable="true" data-field="Owners">Contacts</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+            <script type="text/javascript">
+                var tableName = "#tbl-properties-list";
+                $(function () {
+                    Actions.init();
+                });
+
+                var Actions = {
+                    init: function () {
+                        CRM.render.table(tableName);
+                        //$(".fixed-table-toolbar .search.btn-group .input-group-append").append("<button class='btn btn-outline-warning btn-show-inactive' type='button' name='inactive' data-show-inactive='false' title='Show Inactive'><i class='fa fa-eye-slash'></i></button>");
+                        $(".fixed-table-toolbar:visible .columns-right.btn-group").append("<button class='btn btn-secondary btn-export' type='button' name='export' title='Export Excel'><i class='fa fa-file-download'></i></button>");
+                        $(".fixed-table-toolbar:visible .columns-right.btn-group").append("<button class='btn btn-info btn-property-new' data-property-id='0' type='button' name='new' title='Create New Property'><i class='fa fa-plus-circle'></i></button>");
+                        $(document).on("click", ".btn-export", function () {
+                            $//("#tbl-vendor-list").tableExport({ type: 'excel' });
+                            $("table-sortable").tableExport({
+                                type: 'excel'
+                            });
+                        });
+
+                        /*
+                        var lstStatus = $("<select/>", { id: "lst-status-id" }).addClass("form-control");
+                        for (var i = 0; i < 6; i++) {
+                            var label = "All";
+                            switch (i) {
+                                case 1: label = "Unknown"; break;
+                                case 2: label = "Active"; break;
+                                case 3: label = "Inactive"; break;
+                                case 4: label = "Pending"; break;
+                                case 5: label = "Prospect"; break;
+                            }
+                            lstStatus.append($("<option/>", { value: i, text: label }));
+                        }
+                        $(".fixed-table-toolbar .search.btn-group .input-group-append").append(lstStatus);
+                        $(document).on("change", "#lst-status-id", function () {
+                            TableSort.config.queryParams = {
+                                statusID: $("#lst-status-id").val(),
+                                showInactive: $("#chk-show-inactive").is(":checked"),
+                            };
+                            console.info(TableSort.config.queryParams);
+                            $(".table-sortable").bootstrapTable("refresh");
+                        });
+                        */
+                    },
+                    rowAttributes: function (row, index) {
+                        return {
+                            "data-property-id": row.PropertyID,
+                            "data-property-type-id": row.PropertyTypeID,
+                            "data-contact-id": row.PersonID
+                        }
+
+                    }
+                }
+            </script>
+            <script type="text/javascript">
+                /*
+                $(document).on("click", "[data-property-id]", function () {
+                    var i = $(this),
+                        id = i.data("property-id"),
+                        mdl = $("#mdl-property-detail");
+                    $.ajax({
+                        url: "CRM/Property/" + id,
+                        data: { id: id },
+                        beforeSend: function () {
+                            $("#modal-header-detail .property-name").html("<i class='fa fa-cog fa-spin'></i>");
+                            $(".details-cta", mdl).hide();
+                            $(".modal-body", mdl).html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x'></i></div>");
+                            mdl.modal("show");
+                        },
+                        success: function (d) {
+                            $(".modal-body", mdl).html(d);
+                            console.log($("#header-detail").html());
+                            $("#modal-header-detail").html($("#header-detail").html());
+                        }
+                    });
+                });
+                */
+
+                /*
+                $(document).on("click change", ".btn-show-inactive, #lst-status-id)", function () {
+                    var i = $(this),
+                        icn = $(".fa", i),
+                        tbl = $(".table-sortable"),
+                        chk = $("#chk-show-inactive"); //.is(":checked");
+                    chk.prop("checked", !chk.is(":checked"));
+                    if (chk.is(":checked")) {
+                        i.addClass("btn-outline-success").removeClass("btn-outline-warning").attr("title", "Hide Inactive");
+                        icn.removeClass("fa-eye-slash").addClass("fa-eye");
+                    }
+                    else {
+                        i.removeClass("btn-outline-success").addClass("btn-outline-warning").attr("title", "Show Inactive");
+                        icn.addClass("fa-eye-slash").removeClass("fa-eye");
+                    }
+                    TableSort.config.queryParams = {
+                        showInactive: $("#chk-show-inactive").is(":checked"),
+                        statusID: $("#lst-status-id").val()
+                    };
+                    console.info(TableSort.config.queryParams);
+                    $(".table-sortable").bootstrapTable("refresh");
+                });
+                */
+            </script>

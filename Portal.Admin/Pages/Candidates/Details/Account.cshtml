@@ -1,0 +1,48 @@
+﻿@page
+@model Admin.Pages.Candidates.Details.AccountModel
+@{
+    Layout = null;
+    var me = Model.Me;
+}
+{ Account (@Model.UserID) }
+
+<div class="row">
+    <div class="col-6">
+        <dl>
+            <dt>Signup</dt>
+            <dd>00/00/0000</dd>
+            <dt>Last Login</dt>
+            <dd>00/00/0000</dd>
+        </dl>
+    </div>
+    <div class="col-6">
+        <dl>
+            <dt>Recovery</dt>
+            <dd>{ token } / <div class="btn btn-outline-info"><i class="fa-solid fa-unlock-keyhole"></i> Send Reset</div></dd>
+            <dt>Status</dt>
+            <dd>
+                <div class="btn btn-outline-success"><i class="fa-light fa-heart-circle-plus"></i> Reactivate</div> /
+                <div class="btn btn-outline-danger"><i class="fa-solid fa-skull-crossbones"></i> Deactivate</div>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<h4 class="text-success">Contact Info</h4>
+<div class="row">
+    <div class="col-6">
+        <input type="text" class="form-control" name="FirstName" placeholder="First Name" value="@me.FirstName" />
+        <input type="text" class="form-control" name="LastName" placeholder="Last Name" value="@me.LastName" />
+        <input type="text" class="form-control" name="Email" placeholder="Email" value="@me.Email" />
+        <input type="text" class="form-control" name="Phone" placeholder="Phone" value="@me.Phone1" />
+    </div>
+    <div class="col-6">
+        <input type="text" class="form-control" name="FirstName" placeholder="Address" value="@me.Address1" />
+        <input type="text" class="form-control" name="FirstName" placeholder="City" value="@me.City" />
+        <input type="text" class="form-control" name="FirstName" placeholder="State" value="@me.State" />
+        <input type="text" class="form-control" name="FirstName" placeholder="Zip" value="@me.Zip" />
+    </div>
+</div>
+
+<h4 class="text-success">History</h4>
+<partial name="_journalLogs" model="Model.Journal" />

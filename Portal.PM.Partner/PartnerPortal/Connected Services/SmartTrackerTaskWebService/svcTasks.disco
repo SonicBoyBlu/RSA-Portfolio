@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://help.acmehouseco.com/Services2/svcTasks.asmx?wsdl" docRef="https://help.acmehouseco.com/Services2/svcTasks.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://help.acmehouseco.com/Services2/svcTasks.asmx" xmlns:q1="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx" binding="q1:svcTasksSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://help.acmehouseco.com/Services2/svcTasks.asmx" xmlns:q2="http://www.smartertools.com/SmarterTrack/Services2/svcTasks.asmx" binding="q2:svcTasksSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

@@ -1,0 +1,40 @@
+﻿@model Global.Candidates.Details.Models.CandidateLogs
+<ul class="list-unstyled">
+    @if(Model.Count == 0)
+    {
+        <li>No entries found.</li>
+    } else
+    {
+        string filterType = "all";
+        string partialName = string.Empty;
+        foreach (var j in Model)
+        {
+            if (j.SystemEventTypeID == 7)
+            {
+                filterType = "jobs";
+            }
+            else if(j.SystemEventTypeID == 16 || j.SystemEventTypeID == 25 || j.SystemEventTypeID == 37)
+            {
+                filterType = "contact";
+            }
+            else if(j.SystemEventTypeID == 21 || j.SystemEventTypeID == 22 || j.SystemEventTypeID == 23 || j.SystemEventTypeID == 24 || j.SystemEventTypeID == 26 || j.SystemEventTypeID == 27)
+            {
+                filterType = "account";
+            }
+            else
+            {
+                filterType = "all";
+            }
+            <li data-system-event-filter-type="@filterType" data-system-event-id="@j.SystemEventID" data-system-event-type-id="@j.SystemEventTypeID" class="mb-3">
+                @switch (filterType)
+                {
+                    case "account": partialName = "_Account"; break;
+                    case "contact": partialName = "_Contact"; break;
+                    case "jobs": partialName = "_Application"; break;
+                    default: partialName = "_Generic"; break;
+                }
+                <partial name="Items/@partialName" model=j />
+            </li>
+        }
+    }
+</ul>

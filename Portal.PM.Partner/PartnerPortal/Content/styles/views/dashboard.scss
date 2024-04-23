@@ -1,0 +1,177 @@
+﻿/*@import url(_mixins.scss);*/
+.dashboard-message {
+    padding:20px;
+    margin:15px 0 25px;
+    border:1px solid #ddd;
+}
+
+$card-border-radius: 3px;
+$card-padding: 15px 15px;
+$card-body-height: 290px;
+$card-footer-height: 45px;
+
+$orange: #F99b1c;
+$green: #81c341;
+$brightBlue: #31b0d5;
+
+#dashboard-main {
+    /*
+    position: absolute;
+    /*background-color: #f6f1ee !important;* /
+    left: 0;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+    width: 100%;
+    padding: 25px;
+    */
+    padding: 20px 0;
+
+    .col-sm-6, .col-md-4 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 1px solid #aaa;
+        /*@include border-radius($card-border-radius + 1);*/
+        /*@include box-shadow(5px 6px 8px rgba(0, 0, 0, .35));*/
+        .fa-spinner {
+            margin-top: 25px;
+        }
+
+        .card-body {
+            padding: 0 15px 15px;
+            /*padding: $card-padding;*/
+            overflow: auto;
+            height: $card-body-height;
+        }
+
+        .card-heading {
+            /*padding: $card-padding;*/
+            padding: 15px 15px 0px;
+            border-bottom: 1px solid transparent;
+            @include border-top-radius($card-border-radius);
+        }
+
+        .card-heading > .dropdown .dropdown-toggle {
+            color: inherit;
+        }
+
+        .card-title {
+            margin: 0 !important;
+            width: 100%;
+            /*
+            margin-top: 0;
+            margin-bottom: 0;
+            */
+            font-size: 18pt;
+            font-weight: bold;
+            color: $green;
+            @include text-overflow();
+        }
+
+        .card-title > a {
+            color: inherit;
+        }
+
+        .card-footer {
+            padding:10px 15px;
+            /*padding: $card-padding;*/
+            /*height: $card-footer-height;*/
+            height:37px;
+            background-color: $brightBlue;
+            border-top: 1px solid #ddd;
+            display: block;
+            /*@include border-bottom-radius($card-border-radius);*/
+            @include text-overflow();
+            color: #fff;
+
+            .fa {
+                color: #fff;
+                margin-left: 10px;
+            }
+
+            -webkit-transition: all 200ms ease-out;
+            -moz-transition: all 200ms ease-out;
+            -o-transition: all 200ms ease-out;
+            -ms-transition: all 200ms ease-out;
+            transition: all 200ms ease-out;
+        }
+
+        a.card-footer {
+            text-transform: uppercase;
+            font-size: 0.85em;
+
+            &:hover {
+                text-decoration: none;
+                font-size: 16pt;
+                padding: 4px 15px;
+            }
+        }
+    }
+    // Default
+    /*$card-border-color: #aeaeae;*/
+    $card-border-color: #d0d0d0;
+
+    .card-default {
+        border-color: $card-border-color;
+
+        > .card-heading {
+            color: #333;
+            background-color: #fff;
+            border-color: #fff;
+
+            + .card-collapse .card-body {
+                border-top-color: $card-border-color;
+            }
+        }
+
+        > .card-footer {
+            color: #fff;
+            background-color: $brightBlue;
+            border-color: $card-border-color;
+
+            + .card-collapse .card-body {
+                border-bottom-color: $card-border-color;
+            }
+        }
+    }
+}
+
+.navbar {
+    .dropdown-menu {
+        li {
+            strong {
+                padding: 0 10px;
+                border-bottom: 1px solid;
+                color: #f99b1c;
+            }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .card {
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+}
+
+dl.list-employees {
+    dt,dd{
+        line-height:2;
+        img {
+            max-height: 30px;
+            margin-right: 10px;
+            display: inline-block !important;
+        }
+    }
+}
+
+[data-employee-id]{
+    cursor:pointer;
+}

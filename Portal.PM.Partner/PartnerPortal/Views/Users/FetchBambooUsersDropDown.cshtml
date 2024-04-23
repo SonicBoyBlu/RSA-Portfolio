@@ -1,0 +1,12 @@
+﻿@model List<Acme.ViewModels.Common.IdTitlePair>
+
+
+    <select class="form-control" id="BambooList" name="BambooList" required>
+        <option value>-- Select One --</option>
+
+        @foreach (var item in Model)
+        {
+            <option value="@item.Id" @(item.Id == 0 ? "disabled" : "")>@item.Title</option>
+        }
+
+    </select>

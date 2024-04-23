@@ -1,0 +1,28 @@
+﻿@import
+    "../../_variables.scss";
+
+/*
+.nav-tabs {
+    .nav-item {
+        .nav-link {
+            background-color: $grey-light !important;
+            color: $grey !important;
+
+            &.active {
+                background-color: transparent;
+                color: $orange;
+            }
+        }
+    }
+}
+*/
+
+a.nav-link {
+    background-color: $grey-dark !important;
+    color:$grey-dark !important;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    background-color: $grey-dark !important;
+    color:$grey-dark !important;
+
+}

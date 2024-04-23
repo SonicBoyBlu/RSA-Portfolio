@@ -1,0 +1,33 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+
+<PageTitle>CP Comms Hub</PageTitle>
+
+<h1>Communication Hub Status</h1>
+
+Console: @IsConnectedConsole - ID: @BlazorComms.Tasks.Console.hubConnection?.ConnectionId
+<br />
+FSI: @IsConnectedFsi<br />
+Bulletins: IsConnectedBulletin<br />
+
+
+@code{
+    public bool IsConnectedConsole => BlazorComms.Tasks.Console.hubConnection?.State == HubConnectionState.Connected;
+    public bool IsConnectedFsi => BlazorComms.Tasks.FSI.hubConnection?.State == HubConnectionState.Connected;
+    //public bool IsConnectedBulletin => BlazorComms.Tasks.Bulletins.hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if(BlazorComms.Tasks.Console.hubConnection is not null){
+            await BlazorComms.Tasks.Console.hubConnection.DisposeAsync();
+        }
+        if(BlazorComms.Tasks.FSI.hubConnection is not null){
+            await BlazorComms.Tasks.FSI.hubConnection.DisposeAsync();
+        }
+        /*
+        if(BlazorComms.Tasks.Bulletins.hubConnection is not null){
+            await BlazorComms.Tasks.Bulletins.hubConnection.DisposeAsync();
+        }
+        */
+    }
+}

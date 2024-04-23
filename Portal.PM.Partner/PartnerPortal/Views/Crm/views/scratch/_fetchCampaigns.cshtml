@@ -1,0 +1,23 @@
+﻿@model Acme.ViewModels.CRM.CampaignsView
+<h2><i class="fa fa-chart-area"></i> Campaigns</h2>
+
+@Html.Partial("partials/_CrmSearch", Model.Query)
+
+<h3 class="text-dark">Coming soon! (Is this currently being used?)</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model.Campaigns)
+            {
+                <tr>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

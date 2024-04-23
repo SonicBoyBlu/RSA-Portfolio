@@ -1,0 +1,141 @@
+﻿@model Acme.ViewModels.MyProperty
+@{
+    int idxIndicator = 0;
+    int idxPhoto = 0;
+    var a = Model.Address;
+}
+<div class="card">
+    <h2 class="card-header">@Model.UnitName</h2>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="my-property-map"></div>
+
+                    <img src="@Model.ThumbnailImageURL" class="img-fluid hidden" />
+                    @*
+                        <div id="property-pics-slider" class="carousel slide" data-ride="carousel">
+
+                            <ol class="carousel-indicators">
+                                @foreach (var p in Model.Photos)
+                                {
+                                    <li data-target="#property-pics-slider" data-slide-to="@idxIndicator" @(idxIndicator == 0 ? "class='active'" : "")></li>
+                                    idxIndicator++;
+                                }
+                            </ol>
+                            <div class="carousel-inner">
+                                @*foreach (var p in Model.Photos)
+                                {
+                                    <div class="carousel-item @(idxPhoto == 0 ? "active" : "")">
+                                        <img class="d-block w-100" src="@p" />
+                                    </div>
+                                    idxPhoto++;
+                                }
+                                * @
+                            </div>
+                            <a class="carousel-control-prev" href="#property-pics-slider" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#property-pics-slider" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    *@
+
+                    @*<img src="@Model.Photos.FirstOrDefault()" class="img-fluid" />*@
+                </div>
+                <div class="col bg-white">
+                    <blockquote class="well">
+                        <dl>
+                            @*
+                                <dt>Avg Price/Night</dt>
+                                <dd>@Model.Price.ToString("C")</dd>
+                                <dt>People Interested</dt>
+                                <dd>@Model.NumInterested</dd>
+
+                                <dt>Type</dt>
+                                <dd>@Model.Type</dd>
+                            *@
+
+                            <dt>Status</dt>
+                            <dd><i class="fa fa-@(Model.IsActive ? "check-circle text-success" : "dash text-danger")"></i></dd>
+
+                            <dt>Insurance (##/##/####)</dt>
+                            <dd><i class="fa fa-check-circle text-success"></i></dd>
+
+
+                            <dt>Unit Code</dt>
+                            <dd>@Model.UnitCode</dd>
+                            <dt>Key Code</dt>
+                            <dd>@(string.IsNullOrEmpty(Model.KeyCode) ? "Unassigned" : Model.KeyCode)</dd>
+
+                            <dt>Address</dt>
+                            <dd>
+                                <address>
+                                    @(a.Street1 + (string.IsNullOrEmpty(a.Street2) ? "" : ", " + a.Street2))<br />
+                                    @a.City, @a.State @a.Zip
+                                </address>
+                            </dd>
+
+                            <dt>Next Arrival</dt>
+                            <dd>@(Model.NextArrival == DateTime.MinValue ? "- " : Model.NextArrival.ToShortDateString())</dd>
+
+                            @*
+                                <dt>Allows Dogs</dt>
+                                <dd><i class="fa @(Model.DogsAllowed ? "fa-check-circle text-success" : "fa-minus-circle text-danger")"></i></dd>
+                            *@
+                            <dt>Website</dt>
+                            <dd><a href="@Model.Url" target="_blank">View Listing</a></dd>
+                        </dl>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.MaintenanceNotes))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Maintenance Note: </strong>@Html.Raw(Model.MaintenanceNotes)</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.HousekeepingNotes))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Housekeeping Note: </strong>@Html.Raw(Model.HousekeepingNotes)</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p><strong>Description: </strong>@Html.Raw(Model.WebDescription)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhv7l2d1NRzngipPTdXbMgmAomuM0VUL0&callback=initMap"
+        async defer></script>
+
+<script type="text/javascript">
+    //key=YOUR_API_KEY&
+    initMap = function () {
+        var map;
+        map = new google.maps.Map(document.getElementById('my-property-map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8
+        });
+    };
+</script>

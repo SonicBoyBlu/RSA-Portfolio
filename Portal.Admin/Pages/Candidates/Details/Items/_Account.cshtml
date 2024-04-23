@@ -1,0 +1,34 @@
+﻿@model Global.Candidates.Details.Models.CandidateEventItem
+@{
+    var i = Model;
+}
+<div class="row">
+    <strong class="text-@(i.SystemEventTypeID == 26 ? "danger" : "info")">
+        <i class="fa-regular fa-cog"></i> @i.SystemEventName - @i.DateOccurred.ToString("MM/dd/yyyy hh:mmtt").ToLower()
+    </strong>
+    @if(i.SystemEventTypeID == 23)
+    {
+        <div class='row'>
+            <div class='col-sm-7'><strong>School:</strong> @i.CompanyName</div>
+            <div class='col-sm-5'><strong>Major:</strong> @i.JobName</div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-5'><strong>Phone:</strong> <a href='tel:{5}'>{5}</a></div>
+            <div class='col-sm-2'></div>
+            <div class='col-sm-2'><strong>CPT Score:</strong> @i.ScoreI/@i.ScoreP</div>
+            <div class='col-sm-3'><strong>Grad Date:</strong> @i.DateStart.ToShortDateString()</div>
+        </div>
+        //GlobalUtilities.Format.PhoneNumber(i.InterviewContactName), i.Notes
+
+    }
+    @if (!string.IsNullOrEmpty(i.Notes.Trim()))
+    {
+        <div class='row'>
+            <div class='col-sm-12'><strong>Notes:</strong> @Html.Raw(i.Notes)</div>
+    </div>
+    }
+
+</div>
+@switch (i.SystemEventTypeID)
+{
+}

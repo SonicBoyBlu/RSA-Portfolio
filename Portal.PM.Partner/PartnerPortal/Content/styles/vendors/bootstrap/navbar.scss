@@ -1,0 +1,33 @@
+﻿@import "../../_variables.scss";
+.navbar.navbar-inverse {
+    color: #fff;
+}
+
+.nav-displayname {
+    font-size: 12pt;
+}
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+    max-height: 100% !important
+}
+
+.nav-displayname {
+    max-height: 25px;
+    border-radius: 50%;
+}
+
+.nav-avatar {
+    height: 25px;
+    border-radius: 50%;
+}
+
+.navbar-nav {
+    .nav-item, .dropdown-item {
+        font-size: 1.1rem;
+        font-weight: 300;
+
+        .btn {
+            font-size: 1rem;
+        }
+    }
+}

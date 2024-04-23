@@ -1,0 +1,176 @@
+﻿<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <button class="btn btn-xs btn-default pull-right" ng-click="testCtrl.getCourses(customer)"><i class="fa fa-refresh"></i></button>
+
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-9 table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product/Service</th>
+                            <th>Description</th>
+                            <th>Taxable</th>
+                            <th>Tax %</th>
+                            <th>Qty</th>
+                            <th>Rate</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Item Reported</td>
+                            <td>{{invoice.Description}}</td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">$0.00</td>
+                            <td class="text-right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td>Item Resolution</td>
+                            <td>{{invoice.Resolution}}</td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right">1</td>
+                            <td class="text-right">$0.00</td>
+                            <td class="text-right">$0.00</td>
+                        </tr>
+                        <tr ng-repeat="l in invoice.LineItems | orderBy : 'Amount'">
+                            <td>{{l.SalesItemLineDetail_ItemRefName}}</td>
+                            <td>{{l.Description}}</td>
+                            <td class="text-center"><i ng-show="l.SalesItemLineDetail_TaxCodeRefId != 'NON'" class='fa text-success fa-check-circle'></i></td>
+                            <td class="text-center"> {{l.SalesItemLineDetail_TaxCodeRefId != 'NON' ? '9.25%' : '-' }}</td>
+                            <td class="text-right">{{l.SalesItemLineDetail_Qty}}</td>
+                            <td class="text-right">{{l.SalesItemLineDetail_UnitPrice | currency}}</td>
+                            <td class="text-right">{{l.Total | currency}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="text-right text-sm-right">
+                                <strong>{{invoice.LineItemsTotal | currency}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="text-right text-sm-right">
+                                <strong>Tax: {{invoice.LineItemsTotalTax | currency}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="text-light bg-{{tab != null ? tab.color : 'secondary'}}">
+                            <td colspan="7" class="text-right text-sm-right">
+                                <strong>Total: {{(invoice.LineItemsTotal + invoice.LineItemsTotalTax) | currency}}</strong>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+            <div class="col-sm-3 order-first order-sm-last">
+
+                <dl>
+                    <dt>Type</dt>
+                    <dd>{{invoice.Type}}</dd>
+
+                    <dt>Status</dt>
+                    <dd ng-class="invoice.BreezewayStatus == 'Approved' ? 'text-success text-bold' : ''">{{invoice.BreezewayStatus}}</dd>
+
+                    <dt>Invoice #</dt>
+                    <dd>{{invoice.InvoiveNum}}</dd>
+
+                    <dt>Invoice Date</dt>
+                    <dd>{{invoice.TxnDate | date : shortDate}}</dd>
+
+                    <dt>Due Date</dt>
+                    <dd>{{invoice.DueDate | date : shortDate}}</dd>
+
+                    <dt>Terms</dt>
+                    <dd>Due On Receipt</dd>
+
+                    <dt>Tax</dt>
+                    <dd><strong>{{invoice.LineItemsTotalTax | currency}}</strong></dd>
+
+                    <dt>Total</dt>
+                    <dd><strong class="text-{{tab != null ? tab.color : ''}}">{{invoice.LineItemsTotalTaxIncluded | currency}}</strong></dd>
+
+                    <dt>Memo</dt>
+                    <dd>{{invoice.CustomerMemo_Value}}</dd>
+
+                    <dt>Bill To</dt>
+                    <dd class="row">
+                        <div class="col pr-0">
+
+                            <div ng-if="!invoice.editable || invoice.IsLocked" class="col pr-0">
+                                <span>{{invoice.BillTo}}</span>
+                            </div>
+
+                            <select ng-if="invoice.editable && !invoice.IsLocked" class="form-control" ng-model="invoice.BillTo" ng-change="ctl.updateBillTo(invoice)">
+                                <option disabled selected ng-show="invoice.BillTo == 'Unknown' " value="{{(invoice.BillTo == 'Unknown') ? invoice.BillTo : ''}}">-- Select --</option>
+                                <option ng-repeat="item in ctl.billTo">{{item.name}}</option>
+                            </select>
+                            </div>
+                    </dd>
+                    <div ng-if="invoice.editable">
+                        <div ng-show="!invoice.IsLocked">
+                            <dt>Edit in BW</dt>
+                            <dd>
+                                <div class="btn btn-sm btn-outline-info btn-breeway-task-edit" data-task-id="{{invoice.InvoiveNum}}" ng-click="ctl.editInBreezeway(invoice)" title="Edit in Breezeway">
+                                    <i class="fa fa-fw fa-edit"></i>
+                                </div>
+                            </dd>
+
+                            <div ng-if="invoice.IsIgnore">
+                                <dt>Restore Work Order</dt>
+                                <dd>
+                                    <div class="btn btn-sm btn-outline-success"  ng-click="ctl.toggleInvoiceIgnore(invoice)" data-filter="screened" data-id="{{invoice.InvoiveNum}}">
+                                        <i class="fa fa-fw fa-eye"></i>
+                                    </div>
+                                </dd>
+                            </div>
+
+
+                            <div ng-if="!invoice.IsIgnore">
+
+                                <dt>Ignore Work Order</dt>
+                                <dd>
+                                    <div class="btn btn-sm btn-outline-danger" ng-click="ctl.toggleInvoiceIgnore(invoice)" data-filter="screened" data-id="{{invoice.InvoiveNum}}">
+                                        <i class="fa fa-fw fa-eye-slash"></i>
+                                    </div>
+                                </dd>
+                                </div>
+                            </div>
+                        </div>
+                </dl>
+                <div ng-if="invoice.editable">
+                    <div ng-show="!invoice.IsCommitted">
+                        <div ng-show="invoice.IsLocked">
+                            @if (Identity.Current.IsAdmin)
+                            {
+                                <div class="btn btn-outline-danger btn-block btn-invoice-lock" ng-click="ctl.toggleInvoiceLock(invoice)" data-invoice-num="{{invoice.InvoiveNum}}" data-locked="true"><i class="fa fa-fw fa-unlock"></i> Unlock</div>
+                            }
+                            else
+                            {
+                                <div class="btn btn-outline-warning btn-block"><i class="fa fa-fw fa-lock"></i> Locked for QB</div>
+                            }
+                        </div>
+                        <div ng-show="!invoice.IsLocked && invoice.BillTo==='Owner'">
+                            <div class="btn btn-success btn-block btn-invoice-lock" ng-click="ctl.toggleInvoiceLock(invoice)" data-invoice-num="{{invoice.InvoiveNum}}" data-locked="false" title="Locking this invoice marks it ready to be sent to QuickBooks"><i class="fa fa-fw fa-lock-open"></i> Lock for QB</div>
+                        </div>
+                    </div>
+
+                    <div ng-show="invoice.IsCommitted">
+                        <div class="text-center">
+                            <small><em class="text-muted"><i class="fa fa-lock"></i> QBO Committed: <br />{{invoice.DateQboCommitted}}</em></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,111 @@
+﻿@model Acme.Models.User
+
+<div class="card flex-md-row box-shadow h-md-250">
+
+    <div class="m-6 text-center">
+        <img src="@Model.PhotoUrl" class="img-fluid img-circle img-profile" />
+        <p>@Model.UserTypeName</p>
+    </div>
+
+    <div class="card-body d-flex flex-column align-items-start">
+        <h3 class="mb-0"><a class="text-dark" href="#">@Model.FullName</a></h3>
+        <div class="mb-3 text-muted">@Model.Email</div>
+
+        <div class="mb-1 text-muted">@Model.Department</div>
+        <div class="mb-3 text-muted">@Model.JobTitle</div>
+
+    </div>
+</div>
+
+<div class="p-2 mb-3 text-center" data-id="@Model.UserID">
+    <a href="#" id="btn-employee-detail-edit" class="btn-employee-detail-edit">Edit</a> |
+    <a href="#" id="btn-employee-detail-pw" class="btn-employee-detail-pw">Change Password</a> |
+    <a href="#" id="btn-employee-detail-pwsend" class="btn-employee-detail-pwsend">Password Reset Email</a>
+</div>
+
+
+<div id="pw-update" class="p-2 mb-3 text-center" data-id="@Model.UserID" style="display:none;">
+    <form id="frm-pw-update" name="frm-pw-update">
+
+        <div class="col align-self-center">
+            <div class="form-group">
+                <label for="password1">Update Password</label>
+                <input type="text" class="form-control" id="password1" name="password1">
+                <small id="user-pw-update-help" class="form-text text-muted">
+                    <a href="#" id="pw-update-random">Generate random password</a>
+                </small>
+            </div>
+
+            <input type="hidden" class="form-control" id="password2" name="password2">
+            <button type="submit" id="btn-pwrest" class="btn btn-sm btn-primary btn-pw-update">Submit</button>
+
+        </div>
+    </form>
+
+</div>
+
+<div id="pw-send" class="p-2 mb-3 text-center" data-id="@Model.UserID" style="display:none;">
+        <button type="submit" id="btn-pwrestsend" class="btn btn-sm btn-primary">Send It</button>
+        <input type="hidden" name="Username" value="@Model.Email" />
+</div>
+
+
+<div id="user-details" class="p-2 mb-3 text-center" data-id="@Model.UserID" style="display:none;">
+
+        <dt>FirstName</dt><dd>@Model.FirstName</dd>
+
+        <dt>LastName</dt><dd>@Model.LastName</dd>
+
+        <dt>Username</dt><dd>@Model.Username</dd>
+
+        <dt>Email</dt><dd>@Model.Email</dd>
+
+        <dt>Phone</dt><dd>@Model.Phone.ToStringOrDefault()</dd>
+
+        <dt>JobTitle</dt><dd>@Model.JobTitle</dd>
+
+        <dt>AssignedTo</dt><dd>@Model.AssignedTo</dd>
+
+        <dt>Company</dt><dd>@Model.Company</dd>
+
+        <dt>DepartmentID</dt><dd>@Model.DepartmentID</dd>
+
+        <dt>Department</dt><dd>@Model.Department</dd>
+
+        <dt>SecurityLevel</dt><dd>@Model.SecurityLevel</dd>
+
+        <dt>HireDate</dt><dd>@Model.HireDate</dd>
+
+        <dt>VendorID</dt><dd>@Model.VendorID</dd>
+
+        <dt>IsActive</dt><dd>@Model.IsActive</dd>
+
+        <dt>IsOnboarded</dt><dd>@Model.IsOnboarded</dd>
+
+        <dt>IsAdmin</dt><dd>@Model.IsAdmin</dd>
+
+        <dt>IsDepartmentAdmin</dt><dd>@Model.IsDepartmentAdmin</dd>
+
+        <dt>IsDisabled</dt><dd>@Model.IsDisabled</dd>
+
+        <dt>DateLastLogin</dt><dd>@Model.DateLastLogin</dd>
+
+        <dt>Notes</dt><dd>@Model.Notes</dd>
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <script type="text/javascript">
+
+
+
+
+    </script>
+

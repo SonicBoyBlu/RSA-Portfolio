@@ -1,0 +1,13 @@
+﻿@page
+@model Signups.Pages.ClearModel
+@{
+}
+
+@section Scripts {
+<script type="text/javascript">
+    $(function () { 
+        localStorage.clear();
+        window.location = "/";
+    });    
+</script>
+}

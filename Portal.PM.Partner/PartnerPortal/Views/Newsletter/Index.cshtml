@@ -1,0 +1,105 @@
+﻿@model Acme.ViewModels.NewsletterViewModel
+@{
+    ViewBag.Title = "Newsletter";
+    ViewBag.Nav = "newsletter";
+}
+<h2><i class="fa fa-newspaper"></i> @ViewBag.Title</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">Most Recent</h4>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                                @foreach (var n in Model.Articles.Take(3))
+                                {
+                                    <tr data-news-id="@n.NewsItemID" class="row-action">
+                                        <td><strong>@n.Subject</strong></td>
+                                        <td class="text-right text-muted">@n.DatePublished.ToString("MM/yyyy")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header">Archives</h4>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                                @if (Model.Articles.Count > 0)
+                                {
+
+                                    foreach (var n in Model.Articles.Skip(3))
+                                    {
+                                        <tr data-news-id="@n.NewsItemID" class="row-action">
+                                            <td><strong>@n.Subject</strong></td>
+                                            <td class="text-right text-muted">@n.DatePublished.ToString("MM/yyyy")</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="2">No archives yet.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Newletter Article -->
+<div class="modal fade" id="mdl-news-item" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript">
+    $(document).on("click", "tr[data-news-id]", function () {
+        var i = $(this),
+            id = i.data("news-id");
+        $.ajax({
+            url: "@Url.Action("FetchNewsletter", "Newsletter")",
+            data: { id: id },
+            success: function (d) {
+                var mdl = $("#mdl-news-item");
+                $(".modal-body", mdl).html(d);
+                mdl.modal("show");
+            }
+        });
+    });
+    </script>
+}

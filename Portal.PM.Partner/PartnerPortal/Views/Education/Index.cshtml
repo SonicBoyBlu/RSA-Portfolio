@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Partner Education";
+    ViewBag.TitleIcon = "fa-university";
+    ViewBag.Nav = "education";
+}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder="Search our knowledgebase" />
+                <div class="btn btn-success btn-search-kb"><i class="fa fa-search"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="report-education-lessons"></div>
+
+@section scripts {
+<script type="text/javascript">
+    var EducationCategoryParentID = @(Identity.Current.UserType == DataTypes.UserType.Employee ? 2 : 8);
+    $(function () {
+        console.log("Init: Education");
+        Education.init();
+    });
+</script>
+}

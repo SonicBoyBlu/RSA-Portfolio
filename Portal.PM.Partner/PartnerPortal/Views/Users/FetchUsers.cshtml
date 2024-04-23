@@ -1,0 +1,121 @@
+﻿@model List<Acme.Models.User>
+@{
+    int cntEmployees = Model.Where(i => i.UserType == DataTypes.UserType.Employee).Count();
+}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Contact</th>
+                <th>Escapia</th>
+                @if (cntEmployees > 0)
+                {
+                    <th>Department</th>
+                    <th>Tickets</th>
+                    <th>Bamboo</th>
+                    <th>Dpt Admin</th>
+                    <th>SU</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model.OrderBy(i => i.FullName))
+            {
+                <tr data-user-id="@u.UserID" data-user-type="@((int)u.UserType)">
+                    <td>
+                        <img src="@u.PhotoUrl" class="img-fluid img-circle img-profile" />
+                    </td>
+                    <td>@u.FullName</td>
+                    <td>@u.UserType.ToString()</td>
+
+                    <td>
+                        @if (string.IsNullOrEmpty(u.Phone))
+                        {
+                            <div class="btn btn-info disabled" title="No phone on file"><i class="fas fa-phone-slash"></i></div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="tel:@u.Phone" title="@u.Phone"><i class="fas fa-phone"></i></a>
+                        }
+                        <br />
+                        @if (string.IsNullOrEmpty(u.Email))
+                        {
+                            <div class="btn btn-info disabled" title="No email on file"><i class="fas fa-envelope"></i></div>
+                        }
+                        else
+                        {
+                            <a class="btn btn-info" href="mailto:@u.Email" title="@u.Email"><i class="fas fa-envelope"></i></a>
+                        }
+                    </td>
+
+                    <td data-system="escapia">
+                        @if (u.EscapiaUserID == 0)
+                        {
+                            <i class="fa fa-minus-circle text-danger"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-check-circle text-success"></i>
+                        }
+                    </td>
+
+                    @if (cntEmployees > 0)
+                    {
+                        <td>
+                            @u.Department <br />
+                            <small>@u.JobTitle</small>
+                        </td>
+                        <td data-system="tickets">
+                            @if (u.JitBitUserID == 0)
+                            {
+                                <i class="fa fa-minus-circle text-danger"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-check-circle text-success"></i>
+                            }
+                        </td>
+                        <td data-system="bamboo">
+                            @if (u.ExternalApplications.BambooHR.IsNull())
+                            {
+                                <i class="fa fa-minus-circle text-danger"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-check-circle text-success"></i>
+                            }
+                        </td>
+                        <td data-system="admin-dept">
+                            @if (u.IsDepartmentAdmin)
+                            {
+                                <i class="fa fa-check-circle text-success"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-minus-circle text-danger"></i>
+                            }
+                        </td>
+                        <td data-system="admin-super">
+                            @if (u.IsAdmin)
+                            {
+                                <i class="fa fa-check-circle text-success"></i>
+                            }
+                            else
+                            {
+                                <i class="fa fa-minus-circle text-danger"></i>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+

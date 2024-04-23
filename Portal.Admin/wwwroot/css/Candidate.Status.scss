@@ -1,0 +1,26 @@
+﻿@import "_variables.scss";
+.candidate-status {
+    &.candidate-status-green {
+        color: $green;
+    }
+
+    &.candidate-status-yellow {
+        color: $yellow
+    }
+
+    &.candidate-status-red {
+        color: $red
+    }
+
+    &.candidate-status-blue {
+        color: $blue
+    }
+
+    &.candidate-status-black {
+        color: #000;
+    }
+
+    &.candidate-status-unknown {
+        color: $grey
+    }
+}

@@ -1,0 +1,170 @@
+﻿@model Acme.ViewModels.CRM.DefaultView
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.TitleIcon = "fa-users";
+    ViewBag.Nav = "crm";
+}
+
+<ul class="nav nav-tabs" id="nav-crm-main">
+    <li class="nav-item">
+        <a class="nav-link text-secondary0" data-toggle="tab" href="#tab-Dashboard" title="Dashboard"><i class="fa fa-tachometer-alt"></i><span class="d-none d-sm-inline"> Dashboard</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-info0" data-toggle="tab" href="#tab-Contacts"><i class="fa fa-address-card"></i><span class="d-none d-sm-inline"> Everyone</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-info0" data-toggle="tab" href="#tab-Owners"><i class="fa fa-user-friends" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Owner)"></i><span class="d-none d-sm-inline"> Owners</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-success0" data-toggle="tab" href="#tab-Leads" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Lead)"><i class="fab fa-font-awesome-flag"></i><span class="d-none d-sm-inline"> Leads</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning0" data-toggle="tab" href="#tab-Potentials" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Potential)"><i class="fa fa-funnel-dollar"></i><span class="d-none d-sm-inline"> Potentials</span></a>
+    </li>
+    <li class="nav-item d-none">
+        <a class="nav-link text-danger0" data-toggle="tab" href="#tab-Calls"><i class="fa fa-phone"></i><span class="d-none d-sm-inline"> Calls</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark0" data-toggle="tab" href="#tab-Vendors" data-contact-type-id="@((int)DataTypes.CRM.ContactType.Vendor)"><i class="fa fa-tools"></i><span class="d-none d-sm-inline"> Vendors</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-primary0" data-toggle="tab" href="#tab-Properties" data-contact-type-id="property"><i class="fa fa-home"></i><span class="d-none d-sm-inline"> Properties</span></a>
+    </li>
+
+    @*
+
+        <li class="nav-item">
+            <a class="nav-link text-danger" data-toggle="tab" href="#tab-Feeds"><i class="fa fa-rss"></i><span class="d-none d-sm-inline"> Feeds</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" data-toggle="tab" href="#tab-Campaigns"><i class="fa fa-chart-area"></i><span class="d-none d-sm-inline"> Campaigns</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" data-toggle="tab" href="#tab-Events"><i class="fa fa-calendar-alt"></i><span class="d-none d-sm-inline"> Events</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" data-toggle="tab" href="#tab-Tasks"><i class="fa fa-tasks"></i><span class="d-none d-sm-inline"> Tasks</span></a>
+        </li>
+    *@
+</ul>
+
+<div id="crm-content-wrapper-main" class="tab-content container-fluid">
+    <div class="tab-pane" id="tab-Dashboard"></div>
+    <div class="tab-pane" id="tab-Properties"></div>
+    <div class="tab-pane" id="tab-Contacts"></div>
+    <div class="tab-pane" id="tab-Owners"></div>
+    <div class="tab-pane" id="tab-Leads"></div>
+    <div class="tab-pane" id="tab-Potentials"></div>
+    <div class="tab-pane" id="tab-Feeds"></div>
+    <div class="tab-pane d-none" id="tab-Calls"></div>
+    <div class="tab-pane" id="tab-Campaigns"></div>
+    <div class="tab-pane" id="tab-Events"></div>
+    <div class="tab-pane" id="tab-Tasks"></div>
+    <div class="tab-pane" id="tab-Vendors"></div>
+</div>
+
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        CRM.config.tabs = {
+            startup: "@Model.Tab",
+            current: "@Model.Tab"
+        };
+        var sessionTab = sessionStorage.getItem("current-tab");
+        console.log("Current Tab (from session): " + sessionTab);
+        if (sessionTab) {
+            CRM.config.tabs.startup = sessionTab;
+            CRM.config.tabs.current = sessionTab;
+            CRM.fetch.tab(sessionTab);
+        }
+
+        console.log("CRM SubTypes");
+        debugger;
+        CRM.lists.contactSubTypes = [
+             @foreach (var s in Model.Lists.ContactSubTypes)
+             { <text>{ label: "@s.ContactSubType", subTypeID: @s.ContactSubTypeID, parentTypeID: @s.ContactTypeID },</text> }
+        ];
+    });
+    </script>
+
+
+    <!-- https://www.cssscript.com/svg-funnel-chart/ -->
+    <script src="~/Content/plugins/funnel-graph-js/funnel-graph.min.js" type="text/javascript"></script>
+    <link href="~/Content/plugins/funnel-graph-js/main.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/funnel-graph-js/theme.min.css" rel="stylesheet" />
+}
+
+@section modals {
+    <!-- Command Rows -->
+    <div class="d-none" id="command-row-save">
+        <div class="row row-action d-none">
+            <div class="col text-right">
+                <div class="btn btn-link text-warning btn-cancel">Cancel</div>
+                <div class="btn btn-outline-info btn-save">Save</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- CRM: New Person -->
+    <div class="modal fade" id="mdl-crm-new-person" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-content-wrapper">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Add Contact</h2>
+
+                        <form data-form-type="contact-new">
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" name="FirstName" placeholder="First Name" class="form-control" value="" />
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="LastName" placeholder="Last Name" class="form-control" value="" />
+                                </div>
+                                <div class="col-4">
+                                    <input type="tel" name="Phone" placeholder="Phone" class="form-control" value="" />
+                                </div>
+                                <div class="col-4">
+                                    <input type="email" name="Email" placeholder="Email" class="form-control" value="" />
+                                </div>
+                                <div class="col-4">
+                                    <select name="ContactTypeID" class="form-control" data-placeholder="Contact Type">
+                                        @foreach (var c in Model.Lists.ContactTypes)
+                                        {
+                                            <option value="@c.ContactTypeID">@c.ContactType</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CRM: New Property -->
+    <div class="modal fade" id="mdl-crm-new-property" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-content-wrapper">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="fa fa-times-circle text-danger"></i></span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h2>Add Property</h2>
+                            @Html.Partial("formParts/_propertyAddress", new Acme.ViewModels.CRM.ContactDetailViewModel())
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

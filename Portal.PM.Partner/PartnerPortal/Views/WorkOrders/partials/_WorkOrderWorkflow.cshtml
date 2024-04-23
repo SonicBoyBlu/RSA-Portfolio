@@ -1,0 +1,55 @@
+﻿<div class="container-fluid">
+    <fieldset class="d-none d-sm-flex">
+        <legend><i class="fa fa-cog"></i> Admin - {{(!advanced ? 'Standard Workflow' : 'Advanced Workflow')}}</legend>
+        <div class="pull-right">
+            <a href="" class="pull-right" data-toggle="tooltip" title="The advanced workflow is for manual uploading of work orders or troubleshooting import functionality. These functions are only needed if the regular functions do not work properly." ng-click="advanced=!advanced">{{(advanced ? 'Show Standard Workflow' : 'Show Advanced Workflow')}}</a>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span id="btn-workorder-import" data-toggle="tooltip" title="After downloading the CSV reports from Breezeway, use this function to upload them to the Portal. When done, you can review the imported work orders." class="btn btn-outline-primary btn-block">
+                    <i class="fa fa-file-upload"></i> 1 - Breezeway Import
+                </span>
+            </div>
+            <div class="col">
+                <div class="btn btn-outline-info d-block" data-toggle="tooltip" title="Use this function to sync existing customers from QBO to this system. This will correct any customers that show in this system as (~unit code). This is required from proper upload to QBO." id="btn-quickbooks-customer-sync">
+                    <i class="fa fa-user-cog"></i> 2 - Sync Customers
+                </div>
+            </div>
+            <div class="col" ng-show="!advanced">
+                <a href="/Quickbooks" class="btn btn-outline-success d-none d-sm-block" data-toggle="tooltip" title="Use this navigation to open the QBO Upload Tool. That tool is used to upload work orders to QBO and remove them from the review tool, completing the process." id="btn-qbo-upload" target="_self">
+                    <i class="fa fa-upload">
+                    </i> 3 - Upload Invoices <small class="hidden">(Owners)</small>
+                </a>
+            </div>
+            <div class="col" ng-show="!advanced">
+                <a href="/Quickbooks/History" class="btn btn-outline-warning d-none d-sm-block" data-toggle="tooltip" title="Use this navigation to open the history of invoices uploaded to QBO." id="btn-qbo-history" target="_self">
+                    <i class="fa fa-history">
+                    </i> View Upload History <small class="hidden">(Owners)</small>
+                </a>
+            </div>
+            <div class="col" ng-show="advanced">
+                <a href="/WorkOrders/DownloadQuickBooksCSV" data-toggle="tooltip" title="This function will prepare and download a formatted CSV with all the WO ready to be imported to QBO using the QBO Import Tool in QBO." class="btn btn-outline-success d-none d-sm-block" id="btn-qbo-csv-download" target="_blank">
+                    <i class="fa fa-file-archive">
+                    </i> Manual 3 - Export CSV <small class="hidden">(Owners)</small>
+                </a>
+            </div>
+            <div class="col" ng-show="advanced">
+                <div class="btn btn-outline-danger d-none d-sm-block" id="btn-qbo-lock-approved" data-toggle="tooltip" title="This function is used when work orders were manually imported to QBO. Use this after the manual import to mark all of the work orders as committed, removing them from the review tool and completing the process.">
+                    <i class="fa fa-unlock"></i> Manual 4 - Commit Records
+                </div>
+            </div>
+            <div class="col" ng-show="advanced">
+                <div class="btn btn-outline-warning d-block" id="btn-workorder-errors" data-toggle="tooltip" title="Use this function to review errors that may have occurred during step 1, importing work orders from Breezeway.">
+                    <i class="fa fa-exclamation-triangle"></i> Import Error Log
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <hr />
+</div>
+
+
+
+
+

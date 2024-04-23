@@ -1,0 +1,221 @@
+﻿@import "../_variables.scss";
+input::placeholder, input::-webkit-input-placeholder, input::-ms-placeholder, input::-moz-placeholder {
+    color: $lightBlue !important;
+    background-color: transparent;
+
+    &::-moz-placeholder {
+        opacity: 1;
+    }
+}
+
+[data-switch] {
+    font-size: 1.6em;
+}
+
+.form-control {
+    border: 0 none;
+    box-shadow: 0 none;
+    transition: box-shadow 1000ms ease-in-out;
+
+    &[readonly] {
+        background-color: transparent !important;
+        border: 0 none;
+        width: auto;
+        display: inline-block;
+    }
+
+    &.input-date-range {
+        border: 1px solid $lightGrey;
+    }
+
+    &.error {
+        border: 2px solid $red !important;
+    }
+}
+textarea.form-control {
+    width: 100% !important;
+}
+
+
+.form-wrapper {
+  max-width: 30%;
+  min-width: 300px;
+  padding: 50px 30px 50px 30px;
+  margin: 50px auto;   
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+}
+
+.form-group {
+  position:relative;  
+
+  & + .form-group {
+    margin-top: 30px;
+  }
+}
+
+.input-group {
+    .form-group {
+        margin-bottom:0 !important;
+        .form-input {
+        padding-bottom:9px;
+        }
+    }
+}
+
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 13px;
+  color: $lightGrey;
+  /*background-color: #fff;*/
+  /*background-color:transparent !important;*/
+  z-index: 10;
+  transition: transform 250ms ease-out, font-size 250ms ease-out, opacity 250ms ease-out;
+  opacity:0;
+}
+
+.focused .form-label {
+    transform: translateY(-125%);
+    font-size: .75em;
+    opacity:1;
+}
+
+.form-input {
+    background-color:transparent;
+    position: relative;
+    /*padding: 12px 0px 5px 0;*/
+    padding: 7px 0px 3px 0;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius:0;
+    box-shadow: 0 1px 0 0 $default;
+    transition: box-shadow 250ms ease-out;
+    &::placeholder{
+        color: $lightGrey;
+    }
+
+    &[required] {
+        box-shadow: 0 2px 0 0 $red;
+    }
+
+    &.filled {
+        box-shadow: 0 2px 0 #ccc;
+        /*box-shadow: 0 2px 0 0 green;*/
+    }
+
+    &:focus {
+        box-shadow: 0 2px 0 0 $blue;
+
+        &::placeholder {
+            color: transparent;
+        }
+    }
+}
+select.form-input { padding-bottom:5px !important; }
+
+.header-display {
+    cursor:pointer;
+    transition: border 350ms ease-out, padding 250ms ease-out, display 350ms ease-out;
+    transition-delay: 350ms;
+    position:absolute;
+    z-index:100;
+
+
+    &:hover {
+        border: 2px dashed $lightGrey;
+        padding: .1rem;
+
+        .d-none {
+            display: inline-block !important;
+        }
+    }
+}
+.header-edit {
+    padding-top:.5rem;
+}
+
+.toggle {
+    cursor:pointer;
+}
+
+/*
+html[data-useragent*='Mac OS X'] {
+    select {
+        padding: 10px;
+        margin: 0;
+        -webkit-appearance:; /* remove the strong OSX influence from Webkit * /
+        option {
+            padding-left: 1rem;
+        }
+    }
+}
+*/
+
+.form-group {
+    .form-label {
+        background-color: #fff;
+        padding: 0 7px;
+        left: 10px;
+        color: $blue;
+    }
+
+    .form-input {
+        border: 1px solid $bone;
+        border-radius: 5px;
+        padding: 10px 5px 5px;
+
+        &:focus {
+            /*box-shadow:initial !important;*/
+            box-shadow: $teal;
+            border-color: $teal;
+        }
+        /*
+        &:focus-within{
+            .form-label {
+            color:red !important;
+            }
+        }
+        */
+    }
+
+    &.focused {
+        .form-label {
+            /*color: $teal;*/
+        }
+    }
+
+    [date-range-picker], [date-picker] {
+        &.form-input {
+            background: url(/content/images/_system/calendar-alt-solid.svg) right 1rem center no-repeat;
+            background-size: 1rem;
+        }
+    }
+
+    select {
+        &.form-input {
+            background: url(/content/images/_system/sort-down-solid.svg) right 1rem center no-repeat;
+            background-size: 0.8rem;
+            -webkit-appearance: none;
+        }
+
+        option {
+            padding: 0 .5rem;
+            color: $blue;
+        }
+    }
+
+    [type='search'] {
+        &.form-input {
+            background: url(/content/images/_system/search-solid.svg) right 1rem center no-repeat;
+            background-size: 1rem;
+            width: calc(100% - 35px);
+        }
+    }
+
+    .charmed {
+        padding-right: 35px;
+    }
+}

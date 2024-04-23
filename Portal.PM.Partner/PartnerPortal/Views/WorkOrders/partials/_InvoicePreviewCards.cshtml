@@ -1,0 +1,111 @@
+﻿@model Acme.ViewModels.WorkOrdersImportViewModel
+@{ 
+    var invoices = Model.taskSummaries;
+    var owners = invoices.Where(t => t.BillTo == "Owner" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var comp = invoices.Where(t => t.BillTo == "No Charge/Internal" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var other = invoices.Where(t => t.BillTo != "Owner" && t.BillTo != "No Charge/Internal" && t.IsIgnore == false && t.IsLocked == false).ToList();
+    var screened = invoices.Where(t => t.IsIgnore == true && t.IsLocked == false).ToList();
+    var locked = invoices.Where(t => t.IsLocked == true).ToList();
+}
+
+
+<div class="d-none d-sm-flex">
+    <div class="container-fluid p-0">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        @{ 
+                            double countLocked = locked.Count();
+                            double countOwnerBillable = invoices.Where(t => t.BillTo == "Owner" && t.IsIgnore == false).Count();
+                            double percentLocked = countOwnerBillable > 0 ? countLocked / countOwnerBillable : 0;
+                        }
+                        <h3 class="card-title text-success">Billable <span class="float-right">@(percentLocked.ToString("P2"))</span></h3>
+                        <div class="card-text">
+                            <dl class="text-success">
+                                @*
+                                <dt title="Invoicable / Total Owner Work Orders">Lock / Owner(ni):</dt>
+                                <dd class="font-weight-bold">@countLocked / @countOwnerBillable</dd>
+                                *@
+                                <dt title="Invoicable / Total Owner Work Orders">Work Orders:</dt>
+                                <dd class="font-weight-bold">@locked.Count() / @owners.Count()</dd>
+                                <dt>w/ Bal:</dt>
+                                <dd class="font-weight-bold">@locked.Where(t => t.TotalAmount > 0).Count() / @owners.Where(t => t.TotalAmount > 0).Count()</dd>
+                                <dt>Total:</dt>
+                                <dd class="font-weight-bold">@locked.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c") / (@owners.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")) </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-info">No Charge</h3>
+                        <div class="card-text">
+                            <dl class="text-info">
+                                <dt>Work Orders:</dt>
+                                <dd class="font-weight-bold">@comp.Count()</dd>
+                                <dt>w/ Bal:</dt>
+                                <dd class="font-weight-bold">@comp.Where(t => t.TotalAmount > 0).Count()</dd>
+                                <dt>Total:</dt>
+                                <dd class="font-weight-bold">@comp.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title text-warning">Other</h3>
+                        <div class="card-text">
+                            <dl class="text-warning">
+                                <dt>Work Orders:</dt>
+                                <dd class="font-weight-bold">@other.Count()</dd>
+                                <dt>w/ Bal:</dt>
+                                <dd class="font-weight-bold">@other.Where(t => t.TotalAmount > 0).Count()</dd>
+                                <dt>Total:</dt>
+                                <dd class="font-weight-bold">@other.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr />
+</div>
+
+<div class="row d-sm-none d-flex">
+    <div class="col">
+        <dl id="report-invoice-preview-summary">
+            <dt class="text-success">Owners</dt>
+            <dd>
+                <span class="text-muted">Work Orders:</span> <strong>@owners.Count()</strong><br />
+                <span class="text-muted">w/ Bal:</span> <strong>@owners.Where(t => t.TotalAmount > 0).Count()</strong><br />
+                <span class="text-muted">Total:</span> <strong class="text-success">@owners.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</strong>
+            </dd>
+
+            <dt class="text-info">No Charge/Internal</dt>
+            <dd>
+                <span class="text-muted">Work Orders:</span> <strong>@comp.Count()</strong><br />
+                <span class="text-muted">w/ Bal:</span> <strong>@comp.Where(t => t.TotalAmount > 0).Count()</strong><br />
+                <span class="text-muted">Total:</span> <strong class="text-info">@comp.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</strong>
+            </dd>
+
+            <dt class="text-warning">Other</dt>
+            <dd>
+                <span class="text-muted">Work Orders:</span> <strong>@other.Count()</strong><br />
+                <span class="text-muted">w/ Bal:</span> <strong>@other.Where(t => t.TotalAmount > 0).Count()</strong><br />
+                <span class="text-muted">Total:</span> <strong class="text-warning">@other.Where(t => t.TotalAmount > 0).Sum(t => t.TotalAmount).ToString("c")</strong>
+            </dd>
+        </dl>
+    </div>
+</div>

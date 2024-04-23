@@ -1,0 +1,37 @@
+﻿@model Acme.ViewModels.CRM.TasksView
+<h2><i class="fa fa-tasks"></i> Tasks</h2>
+
+@Html.Partial("partials/_CrmSearch", Model.Query)
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Created</th>
+                <th>Due</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var t in Model.Tasks)
+            {
+                <tr data-task-id="@t.ActivityID">
+                    <td><strong class="text-info">@t.Subject</strong></td>
+                    <td>@t.Status</td>
+                    <td>@t.Priority</td>
+                    <td>@t.DateCreated.ToShortDateString()</td>
+                    <td>@t.DateDue.ToShortDateString()</td>
+                </tr>
+                <tr data-task-id="@t.ActivityID">
+                    <td>
+                        <p>
+                            <strong>Description:</strong> @t.Description
+                        </p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

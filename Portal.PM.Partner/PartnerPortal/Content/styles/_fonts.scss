@@ -1,0 +1,63 @@
+﻿@font-face {
+    font-family: "CatamaranBlack";
+    src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranBold";
+    src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranExtraBold";
+    src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranExtraLight";
+    src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranLight";
+    src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranMedium";
+    src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff");
+}
+
+@font-face {
+    font-family: "CatamaranRegular";
+    src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranSemiBold";
+    src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+    font-display:swap;
+}
+
+@font-face {
+    font-family: "CatamaranThin";
+    src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+    font-display:swap;
+}
+
+/* Base font family */
+$catamaran-black-font-family: 'CatamaranBlack', sans-serif;
+$catamaran-bold-font-family: 'CatamaranBold', sans-serif;
+$catamaran-extrabold-font-family: 'CatamaranExtraBold', sans-serif;
+$catamaran-extralight-font-family: 'CatamaranExtraLight', sans-serif;
+$catamaran-light-font-family: 'CatamaranLight', sans-serif;
+$catamaran-medium-font-family: 'CatamaranMedium', sans-serif;
+$catamaran-regular-font-family: 'CatamaranRegular', sans-serif;
+$catamaran-semibold-font-family: 'CatamaranSemiBold', sans-serif;
+$catamaran-thin-font-family: 'CatamaranThin', sans-serif;

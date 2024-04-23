@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Jobs.csproj" />
+    <None Include="Jobs.csproj.user" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" Version="1.38.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Global\Global.csproj" />
+  </ItemGroup>
+
+</Project>

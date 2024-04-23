@@ -1,0 +1,157 @@
+﻿@model Acme.ViewModels.TicketsViewModel
+@{
+
+}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-chart-pie"></i> Ticket Status</h4>
+                <div class="card-body">
+                    <dl>
+                        @foreach(var s in Model.Summary.Statuses)
+                        {
+                            string status = string.Empty;
+                            switch (s.StatusID)
+                            {
+                                case DataTypes.TicketStatus.Open: status = "success"; break;
+                                case DataTypes.TicketStatus.Waiting: status = "warning"; break;
+                                case DataTypes.TicketStatus.Closed: status = "info"; break;
+                                case DataTypes.TicketStatus.ClosedAndLocked: status = "dark"; break;
+                            }
+                            <dt data-ticket-status-id="@s.StatusID">@s.Status</dt>
+                            <dd><div data-ticket-filter-focus="@((int)s.StatusID)" class="btn btn-@status">@s.TicketCount</div></dd>
+                        }
+
+                    </dl>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="btn btn-danger btn-ticket-new btn-block" data-ticket-id="0">
+                                <i class="fa fa-plus-circle"></i> Support Ticket
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-university"></i> Education Topics</h4>
+                <div class="card-body text-right">
+                    <dl>
+                        @foreach(var e in Model.KB)
+                            {
+                            <dt>@e.Title</dt>
+                            <dd><a class="btn btn-outline-success" href="@Url.Action("index", "Education", new { KbID = e.CategoryID })">@e.Total</a></dd>
+                        }
+                    </dl>
+
+                    <div class="row">
+                        <div class="col">
+                            <a class="btn btn-success btn-ticket-new btn-block" href="@Url.Action("Index", "Education")">
+                                <i class="fa fa-university"></i> View All
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <dic class="card">
+                <h4 class="card-header"><i class="fa fa-clock"></i> Ticket History</h4>
+                <div class="card-body">
+
+                    <div class="row">
+                        @foreach (var s in Model.Summary.Statuses)
+                        {
+                            string status = string.Empty;
+                            switch (s.StatusID)
+                            {
+                                case DataTypes.TicketStatus.Open: status = "success"; break;
+                                case DataTypes.TicketStatus.Waiting: status = "warning"; break;
+                                case DataTypes.TicketStatus.Closed: status = "info"; break;
+                                case DataTypes.TicketStatus.ClosedAndLocked: status = "dark"; break;
+                            }
+
+                            <div class="col">
+                                <label>
+                                    <input type="checkbox" data-ticket-filter="@((int)s.StatusID)" checked="checked" />
+                                    <span class="badge badge-@status ticket-status">
+                                        @s.Status
+                                    </span>
+                                </label>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Status</th>
+                                    <th>Subject</th>
+                                    <th>Submitted</th>
+                                    <th>Updated</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in Model.Tickets)
+                                {
+                                    string status = "badge-info";
+                                    switch (t.Status)
+                                    {
+                                        case DataTypes.TicketStatus.Closed: status = "info"; break;
+                                        case DataTypes.TicketStatus.ClosedAndLocked: status = "dark"; break;
+                                        case DataTypes.TicketStatus.Open: status = "success"; break;
+                                        case DataTypes.TicketStatus.Waiting: status = "warning"; break;
+                                    }
+                                    string priority = string.Empty;
+                                    if (t.Status == DataTypes.TicketStatus.Waiting)
+                                    {
+                                        priority = "<i class='fa fa-flag text-danger'></i>";
+                                    }
+
+                                    <tr data-ticket-id="@t.TicketID" data-ticket-filter="@((int)t.Status)" class="row-action @(t.IsNew ? "font-wieght-bold" : "")">
+                                        <td>@Html.Raw(priority)</td>
+                                        <td class="text-@status">@Model.Summary.Statuses.Where(i => i.StatusID == t.Status).FirstOrDefault().Status</td>
+                                        <td>@t.Subject</td>
+                                        <td>@t.DateOpened.ToShortDateString()</td>
+                                        <td>@t.DateLastAction.ToShortDateString()</td>
+                                        <td>@Html.Raw(t.HasAttachment ? "<i class='fa fa-paperclip'></i>" : "")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </dic>
+
+
+        </div>
+    </div>
+</div>
+
+

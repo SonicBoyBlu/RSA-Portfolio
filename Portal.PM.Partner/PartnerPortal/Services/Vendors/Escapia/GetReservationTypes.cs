@@ -1,0 +1,80 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using Newtonsoft.Json;
+
+namespace Acme.Services.Vendors.Escapia
+{
+    public class GetReservationTypes
+    {
+        public GetReservationTypes()
+        {
+
+        }
+
+        public async Task<List<Models.ExternalApplication.Escapia.APIReturn.ReservationTypes>> getAPI()
+        {
+            await Escapia.EscapiaToken.SetEscapiaToken();
+
+            using (var httpClient = new HttpClient())
+            {
+
+                //var postJson = Newtonsoft.Json.JsonConvert.SerializeObject(postData);
+                //var data = new StringContent(postJson, Encoding.UTF8, "application/json");
+
+                httpClient.DefaultRequestHeaders.Add("x-homeaway-hasp-api-pmcid",
+                    GlobalSettings.Escapia.PMCID.ToString());
+                httpClient.DefaultRequestHeaders.Add("x-homeaway-hasp-api-version", "10");
+                httpClient.DefaultRequestHeaders.Add("x-homeaway-hasp-api-endsystem", "EscapiaVRS");
+                httpClient.DefaultRequestHeaders.Add("Authorization",
+                    "Bearer " + GlobalSettings.Escapia.HomeAwayCredentials.Token);
+
+                string url = "https://hsapi.escapia.com/dragomanadapter/hsapi/ListReservationTypes";
+                var response = await httpClient.GetAsync(url).ConfigureAwait(false); 
+
+                var jsonString = await response.Content.ReadAsStringAsync();
+
+                // Escapia API sends $id which is an internal escapia and is not needed
+                // to parse $id we use MetadataPropertyHandling and applied [JsonProperty("$id")] and name to metaid in class
+                // ---------------------------------------------
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.MetadataPropertyHandling = MetadataPropertyHandling.Ignore;
+                settings.NullValueHandling = NullValueHandling.Ignore;
+                settings.MissingMemberHandling = MissingMemberHandling.Ignore;
+
+                var rootObject = JsonConvert.DeserializeObject<List<Models.ExternalApplication.Escapia.APIReturn.ReservationTypes>>(jsonString, settings);
+
+                return rootObject;
+            }
+        }
+
+        internal void importIntoDB(List<Models.ExternalApplication.Escapia.APIReturn.ReservationTypes> apiReservationTypes)
+        {
+            // Loop through parent Marketing Category
+
+            foreach (var apiReservationType in apiReservationTypes)
+            {
+                var repoType = new Data.Repositories.ReservationTypeRepository();
+                Models.ReservationType reservationType = repoType.GetByNativePMSID(apiReservationType.nativePMSID);
+
+                if (reservationType.IsNull())
+                {
+                    var srvReservationTypes = new Acme.Services.ReservationTypeService();
+
+                    // We dont have it in DB yet  ADD IT
+                    var dbReservationTypes = srvReservationTypes.InitializeDBModel(apiReservationType);
+
+                    if (dbReservationTypes.IsNotNull())
+                    {
+                        int reservationTypeID = repoType.Add(dbReservationTypes).ToInt32OrDefault();
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+}

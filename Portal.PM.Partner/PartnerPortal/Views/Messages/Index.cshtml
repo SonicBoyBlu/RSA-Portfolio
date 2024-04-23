@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Communication";
+    ViewBag.TitleIcon = "fa-comments";
+    ViewBag.Nav = "messages";
+}
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-envelope"></i> Messages</h4>
+                <div class="card-body">
+                    <div id="report-messages"></div>
+                    @*
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th><th>Subject</th><th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-message-id="0" class="row-action">
+                                    <td><i class="fa fa-envelope-open text-muted"></i></td>
+                                    <td>Sample Message</td>
+                                    <td class="text-right text-muted">02/24/2019</td>
+                                </tr>
+                                <tr data-message-id="0" class="row-action">
+                                    <td><i class="fa fa-envelope-open text-muted"></i></td>
+                                    <td>Another Sample Message</td>
+                                    <td class="text-right text-muted">03/09/2019</td>
+                                </tr>
+                                <tr data-message-id="0" class="row-action font-weight-bold">
+                                    <td><i class="fa fa-envelope text-muted"></i></td>
+                                    <td><strong>This Sample Message is Unread</strong></td>
+                                    <td class="text-right text-muted">03/21/2019</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    *@
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <div class="card">
+                <h4 class="card-header"><i class="fa fa-newspaper"></i> Newsletters</h4>
+                <div class="card-body">
+                    <div id="report-newsletters"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+<script type="text/javascript">
+    $(function () {
+        Messages.init();
+        Newsletters.init();
+    });
+
+    var Messages = {
+        init: function() {
+            Messages.fetch.list();
+        },
+        fetch: {
+            list: function (){
+                var c = $("#report-messages");
+                $.ajax({
+                    url: "@Url.Action("FetchMessages", "Messages")",
+                    success: function (d) {
+                        c.html(d);
+                    },
+                    beforeSend: function () {
+                        c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x text-muted'></i></div>");
+                    }
+                });
+
+            }
+        }
+    }
+
+    var Newsletters = {
+        init: function () {
+            Newsletters.fetch.list();
+        },
+        fetch: {
+            list: function () {
+                var c = $("#report-newsletters");
+                $.ajax({
+                    url: "@Url.Action("FetchNewsletterList", "Newsletter")",
+                    success: function (d) {
+                        c.html(d);
+                    },
+                    beforeSend: function () {
+                        c.html("<div class='text-center'><i class='fa fa-cog fa-spin fa-5x text-muted'></i></div>");
+                    }
+                });
+            },
+            item: function (id) {
+                $.ajax({
+                    url: "@Url.Action("FetchNewsletter", "Newsletter")",
+                    data: { id: id },
+                    success: function (d) {
+                        var mdl = $("#mdl-news-item");
+                        $(".modal-body", mdl).html(d);
+                        mdl.modal("show");
+                    }
+                });
+            }
+        }
+    };
+
+
+    $(document).on("click", "tr[data-news-id]", function () {
+        var i = $(this),
+            id = i.data("news-id");
+        Newsletters.fetch.item(id);
+    });
+    </script>
+}

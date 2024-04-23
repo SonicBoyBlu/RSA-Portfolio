@@ -1,0 +1,98 @@
+﻿@model Acme.Models.Ticket
+
+<div id="ticket-containter">
+    @if (Model.TicketID == 0)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">Subject</div>
+                <div class="col-sm-10">
+                    <input type="text" name="title" placeholder="Subject" value="@Model.Subject" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">Priority</div>
+                <div class="col-sm-10">
+
+                    <select name="priority" class="form-control">
+                        <option>-- Select --</option>
+                        <option value="2">I Have a Question</option>
+                        <option value="3">Service Request</option>
+                        <option value="2">Needs Attention</option>
+                        <option value="1">Emergency</option>
+                        <option value="4">Not Sure</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">Description</div>
+                <div class="col-sm-10">
+
+                    <textarea name="description" class="form-control" rows="10" placeholder="How can we help you?"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col text-right">
+                    <div class="btn btn-outline-warning">Cancel</div>
+                    <div class="btn btn-success">Submit</div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        string status = "badge-info";
+        switch (Model.Status)
+        {
+            case DataTypes.TicketStatus.Closed: status = "badge-info"; break;
+            case DataTypes.TicketStatus.Open: status = "badge-success"; break;
+            case DataTypes.TicketStatus.Waiting: status = "badge-warning"; break;
+            case DataTypes.TicketStatus.ClosedAndLocked: status = "badge-dark"; break;
+        }
+        string priority = string.Empty;
+        if (Model.Status == DataTypes.TicketStatus.Waiting)
+        {
+            priority = "<i class='fa fa-flag text-danger'></i>";
+        }
+
+
+        <h3>
+            <strong>Subject:</strong> @Model.Subject
+        </h3>
+        <div class="row">
+            <div class="col">
+                @Html.Raw(priority)
+                <div class="badge @status">@Model.Status</div>
+            </div>
+            <div class="col">Dept: @Model.Department</div>
+            <div class="col text-right">Sumbitted: @Model.DateOpened.ToShortDateString()</div>
+            <div class="col text-right">Last Action: @Model.DateLastAction.ToShortDateString()</div>
+
+        </div>
+        <hr />
+
+        <h2 class="text-warning">Sort desc and color code blocks by owner/acme.  Tab for attachemnts.  IsNew flagged if acme was last to respond.</h2>
+
+
+        foreach(var m in Model.Messages)
+        {
+            <blockquote class="@(m.IsMe ? "me" : "")">
+                <p>
+                    @Model.DateLastAction.ToShortDateString()
+                </p>
+                @Html.Raw(m.Body)
+            </blockquote>
+        }
+
+
+        //@Html.Raw(Model.Description)
+    }
+</div>

@@ -1,0 +1,24 @@
+﻿@import "_variables";
+
+body{
+    color:$grey-dark;
+    h1 {
+        color: $blue;
+    }
+
+    a {
+        color:$orange-medium;
+        font-weight:bold;
+    }
+
+    small{
+        font-size:9pt;
+        color:$grey-medium;
+    }
+
+    table {
+        thead, tfoot {
+            color:$blue-medium;
+        }
+    }
+}

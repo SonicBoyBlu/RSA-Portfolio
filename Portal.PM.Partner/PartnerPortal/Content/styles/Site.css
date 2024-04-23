@@ -1,0 +1,2941 @@
+﻿/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@import url(/Content/plugins/autocomplete/autocomplete.css);
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.iframe-loading {
+  background: url("/Content//images/loading.GIF") no-repeat center center; }
+
+.row-action {
+  cursor: pointer; }
+
+.ticket-status {
+  padding-bottom: 5px;
+  min-width: 110px; }
+  .ticket-status input[type='checkbox'] {
+    padding: 3px; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.app {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  min-height: calc(100vh - 80px);
+  margin: 40px;
+  margin-bottom: 18px;
+  background: #fff; }
+
+@media (max-width: 768px) {
+  .app {
+    margin: 0 !important; } }
+
+.app-content {
+  width: calc(100% - 200px);
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-bottom: 40px; }
+  .app-content .navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 35px;
+    padding-bottom: 20px;
+    /*padding: .5rem 1rem;*/ }
+    .app-content .navbar .navbar-brand, .app-content .navbar .navbar-user {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: .3125rem;
+      padding-bottom: .3125rem;
+      margin-right: 1rem;
+      font-size: 1.25rem;
+      line-height: inherit;
+      white-space: nowrap; }
+    .app-content .navbar .navbar-user-content {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center; }
+      .app-content .navbar .navbar-user-content .navbar-user-content-img {
+        border: 2px solid #337ab7;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 12px; }
+        .app-content .navbar .navbar-user-content .navbar-user-content-img img, .app-content .navbar .navbar-user-content .navbar-user-content-img .fa {
+          object-fit: contain;
+          position: relative;
+          top: 3px;
+          height: 35px;
+          width: 35px; }
+      .app-content .navbar .navbar-user-content span {
+        /*
+                font-family: $catamaran-black-font-family;
+                font-size: 18px;
+                */
+        color: #337ab7; }
+    .app-content .navbar .navbar-brand .fa, .app-content .navbar .navbar-brand .fas, .app-content .navbar .navbar-brand .fab, .app-content .navbar .navbar-brand img {
+      margin-right: .9rem; }
+    .app-content .navbar .navbar-brand h1 {
+      font-size: 1.6rem;
+      color: #696a6c;
+      margin-bottom: 0; }
+    .app-content .navbar #btn-logout .fa {
+      font-size: .8rem;
+      margin-left: 15px; }
+    .app-content .navbar .app-content-wrapper {
+      padding: 0 20px; }
+
+/* Set padding to keep content from hitting the edges */
+/*
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    /*margin-top:10px;* /
+    margin-top: -29px;
+}
+
+@media(max-width:768px) {
+    .body-content {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}
+*/
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+#contact-header-common {
+  margin-bottom: -2rem;
+  margin-top: 2.5rem; }
+
+#chart-pipeline-stage {
+  display: inline-block; }
+  #chart-pipeline-stage li {
+    display: inline;
+    float: left;
+    margin-right: 2.5rem;
+    position: relative;
+    z-index: 10; }
+    #chart-pipeline-stage li div {
+      background-color: #ccc;
+      border-radius: 50%;
+      height: .65rem;
+      width: .65em;
+      cursor: pointer; }
+      #chart-pipeline-stage li div.active {
+        background-color: #8DC63F; }
+        #chart-pipeline-stage li div.active.closed {
+          background-color: #F7941D; }
+      #chart-pipeline-stage li div.current {
+        border: 2px solid #8DC63F;
+        height: 1.2rem;
+        width: 1.2rem;
+        margin-top: -0.3rem; }
+        #chart-pipeline-stage li div.current.closed {
+          border-color: #F7941D; }
+      #chart-pipeline-stage li div.goal {
+        background-color: #17a2b8; }
+        #chart-pipeline-stage li div.goal.current {
+          border-color: #17a2b8; }
+    #chart-pipeline-stage li:first-child {
+      float: none;
+      top: 1.3rem;
+      z-index: 0; }
+    #chart-pipeline-stage li:last-child {
+      margin-right: -2.5rem; }
+
+/*@import url(_mixins.scss);*/
+.dashboard-message {
+  padding: 20px;
+  margin: 15px 0 25px;
+  border: 1px solid #ddd; }
+
+#dashboard-main {
+  /*
+    position: absolute;
+    /*background-color: #f6f1ee !important;* /
+    left: 0;
+    right: 0;
+    top: 40px;
+    bottom: 0;
+    width: 100%;
+    padding: 25px;
+    */
+  padding: 20px 0;
+  /*$card-border-color: #aeaeae;*/ }
+  #dashboard-main .col-sm-6, #dashboard-main .col-md-4 {
+    padding-left: 10px;
+    padding-right: 10px; }
+  #dashboard-main .card {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #aaa;
+    /*@include border-radius($card-border-radius + 1);*/
+    /*@include box-shadow(5px 6px 8px rgba(0, 0, 0, .35));*/ }
+    #dashboard-main .card .fa-spinner {
+      margin-top: 25px; }
+    #dashboard-main .card .card-body {
+      padding: 0 15px 15px;
+      /*padding: $card-padding;*/
+      overflow: auto;
+      height: 290px; }
+    #dashboard-main .card .card-heading {
+      /*padding: $card-padding;*/
+      padding: 15px 15px 0px;
+      border-bottom: 1px solid transparent;
+      -webkit-border-top-right-radius: 3px;
+      -moz-border-radius-topright: 3px;
+      border-top-right-radius: 3px;
+      -webkit-border-top-left-radius: 3px;
+      -moz-border-radius-topleft: 3px;
+      border-top-left-radius: 3px; }
+    #dashboard-main .card .card-heading > .dropdown .dropdown-toggle {
+      color: inherit; }
+    #dashboard-main .card .card-title {
+      margin: 0 !important;
+      width: 100%;
+      /*
+            margin-top: 0;
+            margin-bottom: 0;
+            */
+      font-size: 18pt;
+      font-weight: bold;
+      color: #81c341;
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
+    #dashboard-main .card .card-title > a {
+      color: inherit; }
+    #dashboard-main .card .card-footer {
+      padding: 10px 15px;
+      /*padding: $card-padding;*/
+      /*height: $card-footer-height;*/
+      height: 37px;
+      background-color: #31b0d5;
+      border-top: 1px solid #ddd;
+      display: block;
+      /*@include border-bottom-radius($card-border-radius);*/
+      overflow: hidden;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #fff;
+      -webkit-transition: all 200ms ease-out;
+      -moz-transition: all 200ms ease-out;
+      -o-transition: all 200ms ease-out;
+      -ms-transition: all 200ms ease-out;
+      transition: all 200ms ease-out; }
+      #dashboard-main .card .card-footer .fa {
+        color: #fff;
+        margin-left: 10px; }
+    #dashboard-main .card a.card-footer {
+      text-transform: uppercase;
+      font-size: 0.85em; }
+      #dashboard-main .card a.card-footer:hover {
+        text-decoration: none;
+        font-size: 16pt;
+        padding: 4px 15px; }
+  #dashboard-main .card-default {
+    border-color: #d0d0d0; }
+    #dashboard-main .card-default > .card-heading {
+      color: #333;
+      background-color: #fff;
+      border-color: #fff; }
+      #dashboard-main .card-default > .card-heading + .card-collapse .card-body {
+        border-top-color: #d0d0d0; }
+    #dashboard-main .card-default > .card-footer {
+      color: #fff;
+      background-color: #31b0d5;
+      border-color: #d0d0d0; }
+      #dashboard-main .card-default > .card-footer + .card-collapse .card-body {
+        border-bottom-color: #d0d0d0; }
+
+.navbar .dropdown-menu li strong {
+  padding: 0 10px;
+  border-bottom: 1px solid;
+  color: #f99b1c; }
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 10px;
+    margin-right: 0; } }
+
+dl.list-employees dt, dl.list-employees dd {
+  line-height: 2; }
+  dl.list-employees dt img, dl.list-employees dd img {
+    max-height: 30px;
+    margin-right: 10px;
+    display: inline-block !important; }
+
+[data-employee-id] {
+  cursor: pointer; }
+
+.tbl-billable td:nth-child(1), .tbl-billable th:nth-child(1) {
+  width: 50px !important; }
+
+.tbl-billable td:nth-child(2), .tbl-billable th:nth-child(2) {
+  width: 125px !important; }
+
+.tbl-billable td:nth-child(5), .tbl-billable th:nth-child(5) {
+  width: 50px !important;
+  text-align: right !important; }
+
+.tbl-billable td:nth-child(6), .tbl-billable th:nth-child(6) {
+  width: 125px !important;
+  text-align: right !important; }
+
+.tbl-non-billable td:nth-child(2), .tbl-non-billable th:nth-child(2) {
+  width: 50px !important;
+  text-align: right !important; }
+
+.tbl-non-billable td:nth-child(3), .tbl-non-billable th:nth-child(3) {
+  width: 125px !important;
+  text-align: right !important; }
+
+.tbl-non-billable td:nth-child(4), .tbl-non-billable th:nth-child(4) {
+  width: 125px !important;
+  text-align: right !important; }
+
+.tbl-hours td:nth-child(2), .tbl-hours th:nth-child(2) {
+  width: 50px !important;
+  text-align: right !important; }
+
+.tbl-hours td:nth-child(3), .tbl-hours th:nth-child(3) {
+  width: 125px !important;
+  text-align: right !important; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+body {
+  font-family: "CatamaranThin", sans-serif;
+  /*font-family: 'Roboto', sans-serif !important;*/
+  color: #696a6c !important;
+  font-size: 1rem;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  background: #225683;
+  background: -moz-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+  background: -webkit-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+  background: linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#225683', endColorstr='#225683',GradientType=1 );
+  overflow-x: hidden; }
+
+body.embedded {
+  /*margin-top:14px;*/
+  /*
+    margin-top:10px;
+
+    .navbar-fixed-top {
+        border-bottom: 10px solid $slate;
+    }
+    */ }
+
+footer {
+  font-size: 8pt; }
+
+iframe {
+  border: 0 none; }
+
+a {
+  cursor: pointer;
+  color: #337ab7; }
+
+input,
+select,
+textarea {
+  /*max-width: 280px;*/
+  color: #696a6c; }
+
+dl dd {
+  text-align: right;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #ddd; }
+  dl dd .form-control[readonly] {
+    text-align: right; }
+
+dl.dl-horizontal dt {
+  white-space: normal; }
+
+dl dt {
+  float: left;
+  clear: left;
+  text-align: left;
+  font-weight: normal;
+  color: #aaaaaa; }
+
+fieldset {
+  border: 1px solid #ced4da !important;
+  border-radius: 5px;
+  padding: 0 1rem 1rem !important;
+  width: 100%; }
+  fieldset legend {
+    display: inline !important;
+    width: auto !important;
+    padding: 0 0.5rem !important;
+    margin-left: 0.5rem !important;
+    font-size: 1.25rem; }
+
+section {
+  border-bottom: 1px solid #eaeaea;
+  padding: 1.5rem 0; }
+  section.top {
+    padding-top: 0; }
+  section.no-border {
+    border-bottom: 0 none; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.fa, .fas, .fab {
+  /*font-weight: 100;*/ }
+
+.fa-paper-plane, .fa-envelope, .fa-calendar-alt, .fa-id-card, .fa-address-card {
+  font-weight: 100; }
+
+/*
+.fa-tachometer-alt, .fa-rocket, .fa-chart-line, .fa-file-invoice-dollar, .fa-clipboard-check, .fa-users, .fa-university, .fa-cog,
+.fa-chevron-circle-down, .fa-tools, .fa-network-wired, .fa-bug, .fa-power-off, .fa-users-cog {
+    font-weight: 600;
+}
+*/
+.fa-power-off {
+  color: #ED1C24; }
+
+.fa-spin {
+  color: #cecece !important; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+input::placeholder, input::-webkit-input-placeholder, input::-ms-placeholder, input::-moz-placeholder {
+  color: #E9F0F7 !important;
+  background-color: transparent; }
+  input::placeholder::-moz-placeholder, input::-webkit-input-placeholder::-moz-placeholder, input::-ms-placeholder::-moz-placeholder, input::-moz-placeholder::-moz-placeholder {
+    opacity: 1; }
+
+[data-switch] {
+  font-size: 1.6em; }
+
+.form-control {
+  border: 0 none;
+  box-shadow: 0 none;
+  transition: box-shadow 1000ms ease-in-out; }
+  .form-control[readonly] {
+    background-color: transparent !important;
+    border: 0 none;
+    width: auto;
+    display: inline-block; }
+  .form-control.input-date-range {
+    border: 1px solid #ccc; }
+  .form-control.error {
+    border: 2px solid #ED1C24 !important; }
+
+textarea.form-control {
+  width: 100% !important; }
+
+.form-wrapper {
+  max-width: 30%;
+  min-width: 300px;
+  padding: 50px 30px 50px 30px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); }
+
+.form-group {
+  position: relative; }
+  .form-group + .form-group {
+    margin-top: 30px; }
+
+.input-group .form-group {
+  margin-bottom: 0 !important; }
+  .input-group .form-group .form-input {
+    padding-bottom: 9px; }
+
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 13px;
+  color: #ccc;
+  /*background-color: #fff;*/
+  /*background-color:transparent !important;*/
+  z-index: 10;
+  transition: transform 250ms ease-out, font-size 250ms ease-out, opacity 250ms ease-out;
+  opacity: 0; }
+
+.focused .form-label {
+  transform: translateY(-125%);
+  font-size: .75em;
+  opacity: 1; }
+
+.form-input {
+  background-color: transparent;
+  position: relative;
+  /*padding: 12px 0px 5px 0;*/
+  padding: 7px 0px 3px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 1px 0 0 #696a6c;
+  transition: box-shadow 250ms ease-out; }
+  .form-input::placeholder {
+    color: #ccc; }
+  .form-input[required] {
+    box-shadow: 0 2px 0 0 #ED1C24; }
+  .form-input.filled {
+    box-shadow: 0 2px 0 #ccc;
+    /*box-shadow: 0 2px 0 0 green;*/ }
+  .form-input:focus {
+    box-shadow: 0 2px 0 0 #337ab7; }
+    .form-input:focus::placeholder {
+      color: transparent; }
+
+select.form-input {
+  padding-bottom: 5px !important; }
+
+.header-display {
+  cursor: pointer;
+  transition: border 350ms ease-out, padding 250ms ease-out, display 350ms ease-out;
+  transition-delay: 350ms;
+  position: absolute;
+  z-index: 100; }
+  .header-display:hover {
+    border: 2px dashed #ccc;
+    padding: .1rem; }
+    .header-display:hover .d-none {
+      display: inline-block !important; }
+
+.header-edit {
+  padding-top: .5rem; }
+
+.toggle {
+  cursor: pointer; }
+
+/*
+html[data-useragent*='Mac OS X'] {
+    select {
+        padding: 10px;
+        margin: 0;
+        -webkit-appearance:; /* remove the strong OSX influence from Webkit * /
+        option {
+            padding-left: 1rem;
+        }
+    }
+}
+*/
+.form-group .form-label {
+  background-color: #fff;
+  padding: 0 7px;
+  left: 10px;
+  color: #337ab7; }
+
+.form-group .form-input {
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  padding: 10px 5px 5px;
+  /*
+        &:focus-within{
+            .form-label {
+            color:red !important;
+            }
+        }
+        */ }
+  .form-group .form-input:focus {
+    /*box-shadow:initial !important;*/
+    box-shadow: #17a2b8;
+    border-color: #17a2b8; }
+
+.form-group.focused .form-label {
+  /*color: $teal;*/ }
+
+.form-group [date-range-picker].form-input, .form-group [date-picker].form-input {
+  background: url(/content/images/_system/calendar-alt-solid.svg) right 1rem center no-repeat;
+  background-size: 1rem; }
+
+.form-group select.form-input {
+  background: url(/content/images/_system/sort-down-solid.svg) right 1rem center no-repeat;
+  background-size: 0.8rem;
+  -webkit-appearance: none; }
+
+.form-group select option {
+  padding: 0 .5rem;
+  color: #337ab7; }
+
+.form-group [type='search'].form-input {
+  background: url(/content/images/_system/search-solid.svg) right 1rem center no-repeat;
+  background-size: 1rem;
+  width: calc(100% - 35px); }
+
+.form-group .charmed {
+  padding-right: 35px; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.app-sidebar {
+  width: 200px;
+  border-right: 1px solid #E5E5E5;
+  padding-top: 30px;
+  position: relative;
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  -o-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+  white-space: nowrap; }
+  .app-sidebar.slide-left {
+    margin-left: -200px; }
+  .app-sidebar .nav-logo-main {
+    display: block;
+    max-width: 138px;
+    margin: 0 auto 25px; }
+  .app-sidebar .portal-label {
+    padding: 0 30px;
+    margin-bottom: 20px;
+    line-height: 1;
+    font-size: 1.2rem; }
+  .app-sidebar .sidebar-toggle {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid #E5E5E5;
+    border-right: 0;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    text-align: center;
+    /*
+        background-image: url(../assets/img/angle-left-solid.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 6px;
+        */
+    z-index: 1; }
+  .app-sidebar .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    font-family: "CatamaranMedium", sans-serif; }
+    .app-sidebar .sidebar-nav li {
+      width: 100%; }
+      .app-sidebar .sidebar-nav li a {
+        position: relative;
+        display: block;
+        padding: 10px 0 10px 30px;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        color: #696a6c;
+        width: 100%; }
+        .app-sidebar .sidebar-nav li a[target^='acme-window-'] {
+          padding: 5px 0 5px 30px; }
+        .app-sidebar .sidebar-nav li a:hover {
+          text-decoration: none; }
+          .app-sidebar .sidebar-nav li a:hover:not(.btn) {
+            background-color: #E9F0F7; }
+          .app-sidebar .sidebar-nav li a:hover .fa-chevron-circle-down {
+            color: #696a6c; }
+        .app-sidebar .sidebar-nav li a img {
+          max-width: 100%;
+          padding-right: 3.5rem; }
+        .app-sidebar .sidebar-nav li a .fa, .app-sidebar .sidebar-nav li a .fas, .app-sidebar .sidebar-nav li a .fab {
+          max-width: 17px;
+          display: block;
+          margin-right: 15px;
+          color: #696a6c;
+          font-size: 1.1rem; }
+        .app-sidebar .sidebar-nav li a .fa-chevron-circle-down {
+          position: absolute;
+          right: 0;
+          color: #ccc;
+          -moz-transition: all 500ms ease-in-out;
+          -webkit-transition: all 500ms ease-in-out;
+          transition: all 500ms ease-in-out; }
+          .app-sidebar .sidebar-nav li a .fa-chevron-circle-down.open {
+            transform: rotate(90deg);
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); }
+          .app-sidebar .sidebar-nav li a .fa-chevron-circle-down:hover {
+            cursor: pointer;
+            color: #696a6c; }
+        .app-sidebar .sidebar-nav li a span {
+          position: relative;
+          width: 100%; }
+          .app-sidebar .sidebar-nav li a span.badge {
+            position: absolute;
+            right: 0;
+            background-color: #ED1C24 !important;
+            color: #fff;
+            border-radius: 50%;
+            /* padding: .3rem 0.4rem; */
+            height: 1.2rem;
+            width: 1.2rem;
+            /* text-align: center; */
+            /* display: flex; */
+            justify-content: center;
+            /* -webkit-box-align: center; */
+            font-size: .8rem;
+            animation-name: color;
+            animation-duration: 5s;
+            margin-right: 10px;
+            animation-iteration-count: infinite; }
+
+@keyframes color {
+  0% {
+    background-color: #eaeaea; }
+  25%, 50%, 75% {
+    background-color: #ED1C24; }
+  100% {
+    background-color: #eaeaea; } }
+        .app-sidebar .sidebar-nav li a.btn {
+          color: #fff !important; }
+          .app-sidebar .sidebar-nav li a.btn .fa, .app-sidebar .sidebar-nav li a.btn .fas, .app-sidebar .sidebar-nav li a.btn .fab {
+            color: #fff !important; }
+      .app-sidebar .sidebar-nav li.nav-border-bottom {
+        border-bottom: 1px solid #E5E5E5; }
+      .app-sidebar .sidebar-nav li.active.nav-border-bottom {
+        border: none; }
+      .app-sidebar .sidebar-nav li.active a {
+        background-color: #337AB7;
+        color: #fff; }
+        .app-sidebar .sidebar-nav li.active a .fa, .app-sidebar .sidebar-nav li.active a .fas, .app-sidebar .sidebar-nav li.active a .fab {
+          color: #fff; }
+  .app-sidebar.collapsed {
+    width: 45px; }
+    .app-sidebar.collapsed .nav-logo-main {
+      padding: 0 3px; }
+    .app-sidebar.collapsed .portal-label {
+      display: none; }
+    .app-sidebar.collapsed .sidebar-nav li a {
+      padding: 10px 0 10px 15px; }
+      .app-sidebar.collapsed .sidebar-nav li a[target^='acme-window-'] {
+        padding: 10px 0 10px 15px;
+        width: 40px;
+        overflow: hidden; }
+      .app-sidebar.collapsed .sidebar-nav li a img {
+        max-width: initial;
+        padding-right: 0;
+        height: 25px; }
+      .app-sidebar.collapsed .sidebar-nav li a .fa-chevron-circle-down {
+        right: -22px; }
+      .app-sidebar.collapsed .sidebar-nav li a span.badge {
+        right: 18px; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@keyframes betanotice {
+  0% {
+    height: 1000px;
+    opacity: 0; }
+  100% {
+    height: 55px; } }
+
+#alert-environment-notice {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: .8;
+  z-index: 999999999999999999999999;
+  text-align: center;
+  padding: 15px;
+  animation-name: betanotice;
+  /*animation-delay: 2s;*/
+  animation-duration: 2s; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+#mdl-logout-warning {
+  z-index: 999999999999999999999999; }
+
+html.md-default-theme, html {
+  background: #225683;
+  background: -moz-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+  background: -webkit-linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%);
+  background: linear-gradient(45deg, #225683 14%, #347ab7 50%, #225683 86%); }
+
+.md-datepicker-calendar-pane {
+  z-index: 1200; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+/* Checkbox UI */
+label {
+  display: inline-flex; }
+  label:hover {
+    font-weight: bold;
+    cursor: pointer; }
+  label > span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: .5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: transparent;
+    border: 2px solid #eaeaea;
+    border-radius: .3rem;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.23, 1); }
+  label > input[type='checkbox'] {
+    height: 0;
+    width: 0;
+    opacity: 0; }
+    label > input[type='checkbox']:checked + span {
+      border: 0.6rem solid #337ab7;
+      animation: shrink-bounce 200ms cubic-bezier(0.4, 0, 0.23, 1); }
+      label > input[type='checkbox']:checked + span:before {
+        content: "";
+        position: absolute;
+        /*
+                top:8px;
+                left:21px;
+                */
+        top: 1.6rem;
+        left: 1.1rem;
+        border-right: 3px solid transparent;
+        border-bottom: 3px solid transparent;
+        transform: rotate(45deg);
+        transform-origin: 0% 100%;
+        animation: checkbox-check 125ms 250ms cubic-bezier(0.4, 0, 0.23, 1) forwards; }
+
+@keyframes shrink-bounce {
+  0% {
+    transform: scale(1); }
+  33% {
+    transform: scale(0.85); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes checkbox-check {
+  0% {
+    width: 0;
+    height: 0;
+    border-color: #fff;
+    transform: translate3d(0, 0, 0) rotate(45deg); }
+  33% {
+    width: .5rem;
+    height: 0;
+    transform: translate3d(0, 0, 0) rotate(45deg); }
+  100% {
+    width: .5rem;
+    height: .8rem;
+    border-color: #fff;
+    transform: translate3d(0, -0.8rem, 0) rotate(45deg); } }
+
+label.alert.alert-danger span {
+  border-color: #ED1C24;
+  background-color: #fff; }
+
+label.alert span {
+  width: 1.5rem; }
+
+label.alert > input[type='checkbox']:checked + span {
+  width: 1.2rem; }
+  label.alert > input[type='checkbox']:checked + span:before {
+    top: 0.8rem;
+    left: 0.4rem; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+[data-switch], .input-date-range {
+  cursor: pointer; }
+
+.input-date-range[readonly] {
+  background-color: #fff !important; }
+
+.daterangepicker {
+  box-shadow: 2px 5px 10px #666;
+  margin-top: -31px !important; }
+  .daterangepicker select.monthselect, .daterangepicker select.yearselect {
+    border-radius: 3px;
+    border-color: #ccc;
+    color: #666; }
+  .daterangepicker td.start-date {
+    border-radius: 50% 0 0 50% !important;
+    /*background-color: #00adef !important;*/
+    background-color: #17a2b8 !important; }
+  .daterangepicker td.end-date {
+    border-radius: 0 50% 50% 0 !important;
+    background-color: #17a2b8 !important; }
+    .daterangepicker td.end-date.active {
+      color: #fff !important;
+      font-weight: bold !important; }
+    .daterangepicker td.end-date.start-date {
+      border-radius: 50% !important; }
+
+.bootstrap-table .fixed-table-container .fixed-table-body {
+  min-height: 6rem !important; }
+  .bootstrap-table .fixed-table-container .fixed-table-body .loading-text {
+    font-size: 1.2rem !important; }
+  .bootstrap-table .fixed-table-container .fixed-table-body .animation-dot {
+    background: #029cca !important; }
+
+.fixed-table-toolbar {
+  margin-top: -10px; }
+
+.toast-title {
+  font-weight: bold; }
+
+.toast-message {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word; }
+
+.toast-message a,
+.toast-message label {
+  color: #ffffff; }
+
+.toast-message a:hover {
+  color: #cccccc;
+  text-decoration: none; }
+
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  -webkit-text-shadow: 0 1px 0 #ffffff;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80); }
+
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  filter: alpha(opacity=40); }
+
+/*Additional properties for button version
+ iOS requires the button element instead of an anchor tag.
+ If you want the anchor version, it requires `href="#"`.*/
+button.toast-close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none; }
+
+.toast-top-center {
+  top: 0;
+  right: 0;
+  width: 100%; }
+
+.toast-bottom-center {
+  bottom: 0;
+  right: 0;
+  width: 100%; }
+
+.toast-top-full-width {
+  top: 0;
+  right: 0;
+  width: 100%; }
+
+.toast-bottom-full-width {
+  bottom: 0;
+  right: 0;
+  width: 100%; }
+
+.toast-top-left {
+  top: 12px;
+  left: 12px; }
+
+.toast-top-right {
+  top: 12px;
+  right: 12px; }
+
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px; }
+
+.toast-bottom-left {
+  bottom: 12px;
+  left: 12px; }
+
+#toast-container {
+  position: fixed;
+  z-index: 999999;
+  /*overrides*/ }
+
+#toast-container * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+#toast-container > div {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 15px 15px 15px 50px;
+  width: 300px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  -moz-box-shadow: 0 0 12px #999999;
+  -webkit-box-shadow: 0 0 12px #999999;
+  box-shadow: 0 0 12px #999999;
+  color: #ffffff;
+  opacity: 0.8;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  filter: alpha(opacity=80); }
+
+#toast-container > :hover {
+  -moz-box-shadow: 0 0 12px #000000;
+  -webkit-box-shadow: 0 0 12px #000000;
+  box-shadow: 0 0 12px #000000;
+  opacity: 1;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  filter: alpha(opacity=100);
+  cursor: pointer; }
+
+#toast-container > .toast-info {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=") !important; }
+
+#toast-container > .toast-error {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=") !important; }
+
+#toast-container > .toast-success {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==") !important; }
+
+#toast-container > .toast-warning {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=") !important; }
+
+#toast-container.toast-top-center > div,
+#toast-container.toast-bottom-center > div {
+  width: 300px;
+  margin: auto; }
+
+#toast-container.toast-top-full-width > div,
+#toast-container.toast-bottom-full-width > div {
+  width: 96%;
+  margin: auto; }
+
+.toast {
+  background-color: #030303; }
+
+.toast-success {
+  background-color: #51a351; }
+
+.toast-error {
+  background-color: #bd362f !important; }
+
+.toast-info {
+  background-color: #2f96b4; }
+
+.toast-warning {
+  background-color: #f89406; }
+
+.toast-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: #000000;
+  opacity: 0.4;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+  filter: alpha(opacity=40); }
+
+/*Responsive Design*/
+@media all and (max-width: 240px) {
+  #toast-container > div {
+    padding: 8px 8px 8px 50px;
+    width: 11em; }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em; } }
+
+@media all and (min-width: 241px) and (max-width: 480px) {
+  #toast-container > div {
+    padding: 8px 8px 8px 50px;
+    width: 18em; }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em; } }
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #toast-container > div {
+    padding: 15px 15px 15px 50px;
+    width: 25em; } }
+
+#toast-container {
+  background-image: none; }
+  #toast-container > .toast-info {
+    background-color: #17a2b8; }
+  #toast-container > .toast-success {
+    background-color: #28a745; }
+
+/*@import url('vendor.bootstrap.min.css');*/
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.hidden {
+  display: none; }
+
+.container {
+  /*margin-bottom:20px;*/
+  max-width: initial !important; }
+
+.row {
+  margin-top: 6px;
+  margin-bottom: 6px; }
+
+.pr-5 {
+  padding-right: 5px !important; }
+
+.pl-5 {
+  padding-left: 5px !important; }
+
+.pt-5 {
+  padding-top: 5px !important; }
+
+.pb-5 {
+  padding-bottom: 5px !important; }
+
+.pr-10 {
+  padding-right: 10px !important; }
+
+.pl-10 {
+  padding-left: 10px !important; }
+
+.pt-10 {
+  padding-top: 10px !important; }
+
+.pb-10 {
+  padding-bottom: 10px !important; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.alert {
+  border-radius: 10px;
+  margin-bottom: 0.3rem; }
+  .alert.alert-primary {
+    color: #337ab7 !important;
+    background: #E9F0F7 linear-gradient(180deg, #E9F0F7, #E9F0F7) repeat-x !important;
+    /*background: #cce5ff linear-gradient(180deg, #cce5ff,#cce5ff) repeat-x !important;*/
+    border: 1px solid #337ab7 !important; }
+    .alert.alert-primary h2 {
+      color: #337ab7 !important; }
+    .alert.alert-primary .close {
+      color: #337ab7 !important; }
+  .alert.alert-warning {
+    color: #F7941D !important;
+    background: #FFF799 linear-gradient(180deg, #FFF799, #FFF799) repeat-x !important;
+    border: 1px solid #F7941D !important; }
+    .alert.alert-warning h2 {
+      color: #F7941D !important; }
+    .alert.alert-warning .close {
+      color: #F7941D !important; }
+    .alert.alert-warning span {
+      color: #F7941D !important; }
+
+label.alert {
+  padding: .25rem;
+  width: 100%; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.badge {
+  border-radius: 50%;
+  height: 1.3rem;
+  width: 1.3rem;
+  justify-content: center;
+  font-size: .9rem; }
+  .badge.badge-primary {
+    background-color: #337ab7; }
+  .badge.badge-success {
+    background-color: #8DC63F; }
+  .badge.badge-warning {
+    background-color: #F7941D;
+    color: #fff; }
+  .badge.badge-danger {
+    background-color: #ED1C24; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.btn {
+  cursor: pointer; }
+  .btn.btn-link {
+    text-decoration: underline;
+    text-transform: uppercase;
+    /*display: block;*/
+    text-align: unset;
+    font-size: .75rem; }
+  .btn.btn-primary {
+    background-color: #337ab7;
+    border-color: #337ab7; }
+  .btn.btn-success {
+    background-color: #8DC63F;
+    border-color: #8DC63F; }
+  .btn.btn-warning {
+    background-color: #F7941D;
+    border-color: #F7941D; }
+  .btn.btn-danger {
+    background-color: #ED1C24;
+    border-color: #ED1C24;
+    /*color:#fff !important;*/ }
+  .btn.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8; }
+  .btn.btn-outline-primary {
+    border-color: #337ab7;
+    color: #337ab7; }
+    .btn.btn-outline-primary:hover {
+      background-color: #337ab7;
+      color: #fff; }
+  .btn.btn-outline-success {
+    border-color: #8DC63F;
+    color: #8DC63F; }
+    .btn.btn-outline-success:hover {
+      background-color: #8DC63F;
+      color: #fff; }
+  .btn.btn-outline-warning {
+    border-color: #F7941D;
+    color: #F7941D; }
+    .btn.btn-outline-warning:hover {
+      background-color: #F7941D;
+      color: #fff; }
+  .btn.btn-outline-danger {
+    border-color: #ED1C24;
+    color: #ED1C24; }
+    .btn.btn-outline-danger:hover {
+      background-color: #ED1C24;
+      color: #fff; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.card {
+  border-radius: 10px;
+  border-color: #337ab7;
+  margin-bottom: 0.3rem; }
+  .card .card-header {
+    font-size: 1.2rem;
+    background-color: transparent;
+    border-bottom: 0 none;
+    padding-bottom: 0; }
+  .card .card-body {
+    padding: 1.1rem .8rem .5rem; }
+    .card .card-body dt.btn {
+      min-width: 127px; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@media (max-width: 768px) {
+  .dropdown-menu li {
+    background-color: #fff;
+    color: #333; }
+    .dropdown-menu li a {
+      padding: 15px 50px !important; } }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.img-circle {
+  border: 2px solid #337ab7;
+  border-radius: 50%; }
+
+.img-profile {
+  max-width: 90px; }
+
+.grid-avatar {
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px; }
+
+.nav-logo-vendor {
+  height: 24px;
+  -webkit-filter: grayscale(100%) brightness(135%);
+  filter: grayscale(100%) brightness(135%); }
+  .nav-logo-vendor:hover {
+    -webkit-filter: grayscale(100%) brightness(1000%);
+    filter: grayscale(100%) brightness(1000%); }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.modal .modal-dialog .modal-content {
+  border-radius: .1rem; }
+  .modal .modal-dialog .modal-content .modal-content-wrapper {
+    border: 1px solid #337ab7;
+    border-radius: 10px;
+    margin: 15px; }
+  .modal .modal-dialog .modal-content .modal-header {
+    border-bottom: 0 none;
+    /*padding: .5rem 1rem;*/
+    padding: .6rem 2.8rem;
+    position: absolute;
+    width: 100%;
+    z-index: 10; }
+    .modal .modal-dialog .modal-content .modal-header h1, .modal .modal-dialog .modal-content .modal-header h2, .modal .modal-dialog .modal-content .modal-header h3, .modal .modal-dialog .modal-content .modal-header h4, .modal .modal-dialog .modal-content .modal-header h4, .modal .modal-dialog .modal-content .modal-header h6 {
+      color: #F7941D; }
+    .modal .modal-dialog .modal-content .modal-header .close {
+      font-size: 1.2rem;
+      -webkit-transition: -webkit-transform .25s;
+      /* Safari */
+      transition: transform .25s;
+      color: #ED1C24;
+      cursor: pointer; }
+      .modal .modal-dialog .modal-content .modal-header .close:hover {
+        -webkit-transform: rotate(90deg);
+        /* Safari */
+        transform: rotate(90deg); }
+
+body.modal-open main.app {
+  filter: blur(2px); }
+
+@media (min-width: 576px) {
+  .modal-dialog.modal-xl {
+    max-width: 100%; } }
+
+@media (min-width: 1200px) {
+  .modal-dialog.modal-xl {
+    max-width: 1140px; } }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.navbar.navbar-inverse {
+  color: #fff; }
+
+.nav-displayname {
+  font-size: 12pt; }
+
+.navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+  max-height: 100% !important; }
+
+.nav-displayname {
+  max-height: 25px;
+  border-radius: 50%; }
+
+.nav-avatar {
+  height: 25px;
+  border-radius: 50%; }
+
+.navbar-nav .nav-item, .navbar-nav .dropdown-item {
+  font-size: 1.1rem;
+  font-weight: 300; }
+  .navbar-nav .nav-item .btn, .navbar-nav .dropdown-item .btn {
+    font-size: 1rem; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.popover .popover-header {
+  background-color: transparent;
+  border-bottom: 0 none; }
+
+[data-toggle="popover"] {
+  cursor: pointer; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.table {
+  background-color: #fff;
+  color: #696a6c; }
+  .table.table-hover tbody tr:hover {
+    color: #696a6c; }
+  .table.table-click tbody tr {
+    cursor: pointer; }
+
+tfoot tr.d-block, tfoot tr.d-sm-block {
+  display: table-row !important; }
+
+.bootstrap-table.fullscreen {
+  overflow: auto;
+  bottom: 0;
+  right: 0; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.tab-content {
+  border: 1px solid #337ab7 !important;
+  border-top-width: 2px !important;
+  padding-top: 20px; }
+  .tab-content h3 {
+    padding-left: 10px; }
+  .tab-content dl {
+    padding: 0 10px; }
+
+.nav-tabs {
+  /*border-bottom: 3px solid $blue !important;*/ }
+  .nav-tabs .nav-item {
+    margin-bottom: -3px; }
+  .nav-tabs .nav-link {
+    /*border-color: #e9ecef #e9ecef #dee2e6;*/
+    border: 1px solid #ccc !important;
+    color: #696a6c;
+    /*margin-right: 3px;*/
+    padding: .5rem 0.8rem; }
+    .nav-tabs .nav-link.active {
+      border-color: #337ab7 !important;
+      border-top-width: 3px !important;
+      border-bottom: 1px solid #fff !important;
+      color: #337ab7;
+      font-weight: bold; }
+      .nav-tabs .nav-link.active.text-success {
+        border-top-color: #8DC63F !important; }
+      .nav-tabs .nav-link.active.text-info {
+        border-top-color: #E9F0F7 !important; }
+      .nav-tabs .nav-link.active.text-warning {
+        border-top-color: #F7941D !important; }
+      .nav-tabs .nav-link.active.text-danger {
+        border-top-color: #ED1C24 !important; }
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s; }
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent; }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1; }
+
+/*#6a7b8d;*/
+/*#e7e7e7; #ede3dd;*/
+/*#e5e5e5 */
+@font-face {
+  font-family: "CatamaranBlack";
+  src: url("/Content/fonts/catamaran-black/Catamaran-Black.woff2"), url("/Content/fonts/catamaran-black/Catamaran-Black.eot"), url("/Content/fonts/catamaran-black/Catamaran-Black.ttf"), url("/Content/fonts/catamaran-black/Catamaran-Black.svg"), url("/Content/fonts/catamaran-black/Catamaran-Black.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranBold";
+  src: url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff2"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.eot"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.ttf"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.svg"), url("/Content/fonts/catamaran-bold/Catamaran-Bold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraBold";
+  src: url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff2"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.eot"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.ttf"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.svg"), url("/Content/fonts/catamaran-extrabold/Catamaran-ExtraBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranExtraLight";
+  src: url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff2"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.eot"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.ttf"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.svg"), url("/Content/fonts/catamaran-extralight/Catamaran-ExtraLight.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranLight";
+  src: url("/Content/fonts/catamaran-light/Catamaran-Light.woff2"), url("/Content/fonts/catamaran-light/Catamaran-Light.eot"), url("/Content/fonts/catamaran-light/Catamaran-Light.ttf"), url("/Content/fonts/catamaran-light/Catamaran-Light.svg"), url("/Content/fonts/catamaran-light/Catamaran-Light.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranMedium";
+  src: url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff2"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.eot"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.ttf"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.svg"), url("/Content/fonts/catamaran-medium/Catamaran-Medium.woff"); }
+
+@font-face {
+  font-family: "CatamaranRegular";
+  src: url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff2"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.eot"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.ttf"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.svg"), url("/Content/fonts/catamaran-regular/Catamaran-Regular.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranSemiBold";
+  src: url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff2"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.eot"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.ttf"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.svg"), url("/Content/fonts/catamaran-semibold/Catamaran-SemiBold.woff");
+  font-display: swap; }
+
+@font-face {
+  font-family: "CatamaranThin";
+  src: url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff2"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.eot"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.ttf"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.svg"), url("/Content/fonts/catamaran-thin/Catamaran-Thin.woff");
+  font-display: swap; }
+
+/* Base font family */
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  color: #337ab7;
+  font-family: "CatamaranMedium", sans-serif;
+  font-weight: 400 !important;
+  /*margin-bottom: 0.7rem;*/
+  margin-bottom: 0; }
+
+h1 {
+  font-size: 1.9rem;
+  line-height: 2rem; }
+
+h2 {
+  font-size: 1.6rem;
+  line-height: 1.6rem; }
+  h2 input[type='text'] {
+    font-size: 1.75rem;
+    color: #17a2b8 !important; }
+
+h3 {
+  font-size: 1.1rem;
+  line-height: 1.2rem;
+  font-family: "CatamaranBold", sans-serif; }
+
+h4 {
+  font-size: 1.15rem;
+  line-height: 1.15rem; }
+
+h5 {
+  font-size: 1.1rem;
+  line-height: 1.1rem; }
+
+h1 + .row, h2 + .row, h3 + .row, h4 + .row, h5 + .row, h6 + .row {
+  margin-top: 0; }
+
+p {
+  line-height: 1.4rem;
+  font-weight: normal;
+  padding: 0;
+  margin-bottom: 0; }
+
+strong {
+  font-family: "CatamaranBold", sans-serif; }
+
+.text-primary {
+  color: #337ab7 !important; }
+
+.text-warning {
+  color: #F7941D !important; }
+
+.text-danger {
+  color: #ED1C24 !important; }
+
+.text-success {
+  color: #8DC63F !important; }
+
+.text-info {
+  color: #E9F0F7; }
+
+.text-default {
+  color: #696a6c; }
+
+.disabled {
+  cursor: not-allowed; }
+
+[class^="cloudtrax-"] {
+  margin-bottom: 25px; }
+  [class^="cloudtrax-"] table {
+    background-color: #fff; }
+    [class^="cloudtrax-"] table .pagination {
+      display: table-row !important;
+      /*background-color:purple;*/ }

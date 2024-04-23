@@ -1,0 +1,11 @@
+﻿@page
+@model Admin.Pages.Candidates.Details.AppsModel
+@{
+    Layout = null;
+}
+<h3 class="text-success">Applications: @Model.Journal.Count</h3>
+{ @Model.UserID }
+{ Current Hire }<br />
+{ CampusPoint.Models.Admin.Stats.Candidates.Overview }
+<hr />
+<partial name="_journalLogs" model="Model.Journal" />

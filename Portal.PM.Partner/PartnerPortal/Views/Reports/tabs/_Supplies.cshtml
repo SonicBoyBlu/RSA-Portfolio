@@ -1,0 +1,797 @@
+﻿@model Acme.ViewModels.Reports.SupplyList
+@{
+    //Random sx = new Random();
+    var LaborItems = Model.Items.Where(x => x.IsLabor);
+    var SupplyItems = Model.Items.Where(x => !(x.IsLabor));
+    //var LaborItems = Model.Items.Where(x => x.Supply.ToLower().Contains("labor") || x.Supply.ToLower().Contains("30 min") || x.Supply.ToLower().Contains("60 min") || x.Supply.ToLower().Contains("90 min"));
+    //var SupplyItems = Model.Items.Where(x => !(x.Supply.ToLower().Contains("labor") || x.Supply.ToLower().Contains("30 min") || x.Supply.ToLower().Contains("60 min") || x.Supply.ToLower().Contains("90 min")));
+    var ManualEntries = Model.ItemsManuallyEntered;
+}
+@*
+    <style>
+        .chart-wrapper {
+            position:relative;
+            padding-bottom:100%;
+            height:0;
+            overflow:hidden;
+        }
+        .chart {
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            min-height:200px;
+        }
+    </style>
+*@
+
+<script type="text/javascript">
+    var SupplyCharts = {
+        options: {
+            title: 'Overview',
+            width: '100%',
+            //height: '400px'
+            //is3D: true,
+            //pieHole:0.2
+        },
+        data: google.visualization.arrayToDataTable([])
+    };
+</script>
+
+<h3 class="text-warning">
+    <i class="fa fa-shopping-bag"></i> Labor & Supplies
+</h3>
+
+<div id="report-charts-supplies" class="hidden">
+    <div class="row">
+        <div class="col" id="chart-pie-SummaryItemsByUser"></div>
+        <div class="col" id="chart-pie-Billables"></div>
+    </div>
+    <div class="row">
+        <div class="col" id="chart-pie-Parts-Qty"></div>
+        <div class="col" id="chart-pie-Parts-Cost"></div>
+    </div>
+</div>
+
+
+<h4 class="text-warning">Summary</h4>
+<div class="row">
+    <div class="col">
+        <dl>
+            <dt>Total Labor & Supplies</dt>
+            <dd><strong class="text-secondary">@Model.SupplyTotals.TotalCost.ToString("c")</strong></dd>
+            <dt>Total Labor</dt>
+            <dd><strong class="text-success">@LaborItems.Sum(x => x.TotalBilled).ToString("C")</strong> / @LaborItems.Sum(x => x.TotalCost).ToString("C")</dd>
+            <dt>Total Supplies</dt>
+            <dd><strong class="text-success">@SupplyItems.Sum(x => x.TotalBilled).ToString("C")</strong> / @SupplyItems.Sum(x => x.TotalCost).ToString("C")</dd>
+            <dt>Total Manually Entered</dt>
+            <dd><strong class="text-success">@ManualEntries.Where(x => x.IsLocked).Sum(x => x.LineTotal).ToString("C")</strong> / @ManualEntries.Sum(x => x.LineTotal).ToString("C")</dd>
+            @*
+                <dt>Gross Billed</dt>
+                <dd>@Model.SupplyTotals.TotalNetBilled.ToString("p2")</dd>
+                <dt>Gross Unbilled</dt>
+                <dd>@Model.SupplyTotals.TotalGrossBilled.ToString("p2")</dd>
+            *@
+        </dl>
+    </div>
+    <div class="col">
+        <dl>
+            <dt>Not Billed</dt>
+            <dd><strong class="text-danger">(@Model.SupplyTotals.TotalNonOwnerBillable.ToString("C"))</strong></dd>
+            <dt>Owner Billed</dt>
+            <dd><strong class="text-success">@Model.SupplyTotals.TotalOwnerBilled.ToString("c")</strong></dd>
+            <dt>Owner Billable</dt>
+            <dd><strong class="text-info">@Model.SupplyTotals.TotalOwnerBillable.ToString("c")</strong></dd>
+            <dt>Total Billed</dt>
+            <dd><strong class="text-warning">@((Model.SupplyTotals.TotalOwnerBilled / Model.SupplyTotals.TotalOwnerBillable).ToString("p2"))</strong></dd>
+        </dl>
+    </div>
+</div>
+
+<hr />
+
+<ul class="nav nav-tabs" id="sub-report-tabs-supplies">
+    <li class="nav-item">
+        <a class="nav-link text-warning active" data-toggle="tab" href="#sub-tabs-supplies-0">Total / Team Member</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-6">Labor / Team Member</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-2">Supply / Team Member</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-5">Labor List</a>
+    </li>
+    <li class="nav-item hidden">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-3">Labor Chart</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-1">Supply List</a>
+    </li>
+    <li class="nav-item hidden">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-4">Supply Chart</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-warning" data-toggle="tab" href="#sub-tabs-supplies-7">Manual Entries</a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane container active" id="sub-tabs-supplies-0">
+
+        <h4 class="text-warning">Totals By Team Member</h4>
+        <strong class="text-warning">Totals</strong>
+        <strong class="text-success">@Model.ItemsByUser.Sum(x => x.TotalBilled).ToString("C")</strong> / 
+        <strong class="text-info">@Model.ItemsByUser.Sum(x => x.TotalCost).ToString("C")</strong>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sortable">
+                <thead>
+                    <tr>
+                        <th>Who</th>
+                        <th class="text-left">Department</th>
+                        <th>WO Total</th>
+                        <th>Qty Total</th>
+                        <th>Total Billable</th>
+                        <th>Total Billed</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.SummaryItemsByUser.OrderByDescending(x => x.TotalBilled).ThenBy(x => x.CompletedBy))
+                    {
+                        <tr>
+                            <td>
+                                <img src="@i.CompletedByPhotoUrl" class="grid-avatar" title="@i.CompletedBy" />
+                                @i.CompletedBy
+                            </td>
+                            <td class="text-left">@i.CompletedByJobTitle</td>
+                            <td class="text-right">@i.WorkOrderTotal.ToString("N0")</td>
+                            <td class="text-right">@i.Quantity.ToString("N0")</td>
+                            <td class="text-right">@i.TotalCost.ToString("C")</td>
+                            <td class="text-right text-success">@i.TotalBilled.ToString("C")</td>
+                            <td class="text-right">@((i.TotalBilled / i.TotalCost).ToString("P").Replace("NaN", "-"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="text-reset">Totals</th>
+                        <th></th>
+                        <th>@(Model.SummaryItemsByUser.Sum(i => i.WorkOrderTotal).ToString("N0"))</th>
+                        <th>@(Model.SummaryItemsByUser.Sum(i => i.Quantity).ToString("N0"))</th>
+                        <th>@(Model.SummaryItemsByUser.Sum(i => i.TotalCost).ToString("C"))</th>
+                        <th><strong class="text-success">@(Model.SummaryItemsByUser.Sum(i => i.TotalBilled).ToString("C"))</strong></th>
+                        <th>@((Model.SummaryItemsByUser.Sum(i => i.TotalBilled) / Model.SummaryItemsByUser.Sum(i => i.TotalCost)).ToString("P"))</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="tab-pane container" id="sub-tabs-supplies-6">
+
+        <h4 class="text-warning">Labor By Team Member</h4>
+        @{
+            var TeamLaborItems = Model.ItemsByUser.Where(x => x.IsLabor).OrderBy(x => x.CompletedBy.Trim()); // && x.CompletedByJobTitle.Contains("Property Care")
+            var TeamLaborMembers = from m in TeamLaborItems
+                                   group m by m.CompletedBy into Members
+                                   orderby Members.Key
+                                   select Members;
+            int ChartLaborUserIndex = 0;
+        }
+        <strong class="text-warning">Totals</strong>
+        <strong class="text-success">@TeamLaborItems.Sum(x => x.TotalBilled).ToString("C")</strong> /
+        <strong class="text-info">@TeamLaborItems.Sum(x => x.TotalCost).ToString("C")</strong>
+
+        @foreach (var m in TeamLaborMembers)
+        {
+            var Items = TeamLaborItems.Where(x => x.CompletedBy == m.Key).OrderByDescending(x => x.TotalCost);
+            var FirstRow = Items.First();
+            <div class="row" style="margin:23px -16px 0">
+                <div class="col">
+                    <h4>
+                        <img src="@FirstRow.CompletedByPhotoUrl" class="grid-avatar" title="@FirstRow.CompletedBy" />
+                        @FirstRow.CompletedBy
+                    </h4>
+                    <div class="chart-wrapper">
+                        <div id="chart-team-labor-@(ChartLaborUserIndex)" class="chart"></div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            SupplyCharts.options.title = "Hours Billed (Top 6)";
+                            SupplyCharts.data = google.visualization.arrayToDataTable([
+                                ['Labor Type', 'Hours'],
+                                @foreach(var i in Items.OrderByDescending(x => x.TotalBilled).Take(6))
+                                {
+                                    <text>['@i.Supply', @i.Quantity],</text>
+                                }
+                            ]);
+                            var chart@(ChartLaborUserIndex) = new google.visualization.PieChart(document.getElementById('chart-team-labor-@(ChartLaborUserIndex)'));
+                            chart@(ChartLaborUserIndex).draw(SupplyCharts.data, SupplyCharts.options);
+                        });
+                    </script>
+                    <table class="table">
+                        <tbody class="text-warning">
+                            <tr>
+                                <td></td>
+                                <td>WO/QTY</td>
+                                <td><span class="text-success">Billed</span> / <span class="text-info">Billable</span></td>
+                                <td>%</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="text-warning">
+                            <tr>
+                                <th>Totals</th>
+                                <th>@Items.Sum(x => x.WorkOrderTotal) / @Items.Sum(x => x.Quantity)</th>
+                                <th><strong class="text-success">@Items.Sum(x => x.TotalBilled).ToString("C")</strong> / <strong class="text-info">@Items.Sum(x => x.TotalCost).ToString("C")</strong></th>
+                                <th>@((Items.Sum(x => x.TotalBilled) / Items.Sum(x => x.TotalCost)).ToString("P").Replace("NaN", "-"))</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="col" style="height:412px; margin-top:-23px; overflow-x:auto; padding-bottom:20px;">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Person / Item</th>
+                                    <th>WO / Qty Total</th>
+                                    <th class="d-none">Unit Cost</th>
+                                    <th>Total Billable</th>
+                                    <th>Total Billed</th>
+                                    <th>%</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Items)
+                                {
+                                    <tr>
+                                        <td class="text-left">@i.Supply</td>
+                                        <td class="text-right">@i.WorkOrderTotal / @i.Quantity</td>
+                                        <td class="text-right d-none">@i.UnitCost.ToString("C")</td>
+                                        <td class="text-right">@i.TotalCost.ToString("C")</td>
+                                        <td class="text-right">@i.TotalBilled.ToString("C")</td>
+                                        <td class="text-right">@((i.TotalBilled / i.TotalCost).ToString("P").Replace("NaN", "-"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="bg-warning hidden">
+                                <tr>
+                                    <th>Totals</th>
+                                    <th>@Items.Sum(x => x.WorkOrderTotal) / @Items.Sum(x => x.Quantity)</th>
+                                    <th colspan="2">@Items.Sum(x => x.TotalCost).ToString("C")</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            ChartLaborUserIndex++;
+        }
+
+    </div>
+    <div class="tab-pane container" id="sub-tabs-supplies-2">
+
+        <h4 class="text-warning">Supplies By Team Member</h4>
+        @{
+            //var TeamSupplyItems = Model.ItemsByUser.Where(x => !(x.IsLabor)).OrderBy(x => x.CompletedBy.Trim());
+            var TeamSupplyItems = Model.ItemsByUser.Where(x => !(x.IsLabor)).Where(x => x.TotalCost > 0).OrderBy(x => x.CompletedBy.Trim());
+            var TeamSupplyMembers = from m in TeamSupplyItems
+                                    group m by m.CompletedBy into Members
+                                    orderby Members.Key
+                                    select Members;
+            int ChartSupplyUserIndex = 0;
+        }
+    <div class="row">
+        <dl class="col">
+            <dt>Billable</dt>
+            <dd><strong class="text-info">@TeamSupplyItems.Sum(x => x.TotalCost).ToString("C")</strong></dd>
+            <dt>Billed</dt>
+            <dd><strong class="text-success">@TeamSupplyItems.Sum(x => x.TotalBilled).ToString("C")</strong></dd>
+        </dl>
+        <dl class="col">
+            <dt>Normalized</dt>
+            <dd>@TeamSupplyItems.Where(x => x.IsEnteredSupply == false).Sum(x => x.TotalBilled).ToString("C") / @TeamSupplyItems.Where(x => x.IsEnteredSupply == false).Sum(x => x.TotalCost).ToString("C")</dd>
+            <dt>Manually Entered</dt>
+            <dd><strong>@TeamSupplyItems.Where(x => x.IsEnteredSupply).Sum(x => x.TotalBilled).ToString("C") / @TeamSupplyItems.Where(x => x.IsEnteredSupply).Sum(x => x.TotalCost).ToString("C")</strong></dd>
+        </dl>
+    </div>
+
+        @foreach (var m in TeamSupplyMembers)
+        {
+            var Items = TeamSupplyItems.Where(x => x.CompletedBy == m.Key).OrderByDescending(x => x.TotalCost);
+            var FirstRow = Items.First();
+            <div class="row" style="margin:23px -16px 0">
+                <div class="col">
+                    <h4>
+                        <img src="@FirstRow.CompletedByPhotoUrl" class="grid-avatar" title="@FirstRow.CompletedBy" />
+                        @FirstRow.CompletedBy
+                    </h4>
+                    <div class="chart-wrapper">
+                        <div id="chart-team-supply-@(ChartSupplyUserIndex)" class="chart"></div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            SupplyCharts.options.title = "Hours Billed (Top 6)";
+                            SupplyCharts.data = google.visualization.arrayToDataTable([
+                                ['Labor Type', 'Hours'],
+                                @foreach(var i in Items.OrderByDescending(x => x.TotalBilled).Take(6))
+                                {
+                                    <text>['@i.Supply', @i.Quantity],</text>
+                                }
+                            ]);
+                            var chart@(ChartSupplyUserIndex) = new google.visualization.PieChart(document.getElementById('chart-team-supply-@(ChartSupplyUserIndex)'));
+                            chart@(ChartSupplyUserIndex).draw(SupplyCharts.data, SupplyCharts.options);
+                        });
+                    </script>
+                    <table class="table">
+                        <tbody class="text-warning">
+                            <tr>
+                                <td></td>
+                                <td>WO/QTY</td>
+                                <td><span class="text-success">Billed</span> / <span class="text-info">Billable</span></td>
+                                <td>%</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="text-warning">
+                            <tr>
+                                <th>Totals</th>
+                                <th>@Items.Sum(x => x.WorkOrderTotal) / @Items.Sum(x => x.Quantity)</th>
+                                <th><strong class="text-success">@Items.Sum(x => x.TotalBilled).ToString("C")</strong> / <strong class="text-info">@Items.Sum(x => x.TotalCost).ToString("C")</strong></th>
+                                <th>@((Items.Sum(x => x.TotalBilled) / Items.Sum(x => x.TotalCost)).ToString("P").Replace("NaN", "-"))</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div class="col" style="height:412px; margin-top:-23px; overflow-x:auto; padding-bottom:20px;">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Total WO / Qty</th>
+                                    <th class="d-none">Unit Cost</th>
+                                    <th>Total Billable</th>
+                                    <th>Total Billed</th>
+                                    <th>Billed %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Items)
+                                {
+                                    <tr>
+                                        <td class="text-left">@Html.Raw(i.IsEnteredSupply ? "<i class='fa fa-plus-circle fa-fw text-success'></i> " : "")@i.Supply</td>
+                                        <td class="text-right">@i.WorkOrderTotal / @i.Quantity</td>
+                                        <td class="text-right d-none">@i.UnitCost.ToString("C")</td>
+                                        <td class="text-right">@i.TotalCost.ToString("C")</td>
+                                        <td class="text-right">@i.TotalBilled.ToString("C")</td>
+                                        <td class="text-right">@((i.TotalBilled / i.TotalCost).ToString("P").Replace("NaN", "-"))</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="bg-warning hidden">
+                                <tr>
+                                    <th>Totals</th>
+                                    <th>@Items.Sum(x => x.WorkOrderTotal) / @Items.Sum(x => x.Quantity)</th>
+                                    <th colspan="2">@Items.Sum(x => x.TotalCost).ToString("C")</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            ChartSupplyUserIndex++;
+        }
+    </div>
+
+    <div id="sub-tabs-supplies-5" class="tab-pane container">
+        @{
+            double TotalQty = LaborItems.Sum(x => x.Quantity);
+            double MaxQty = LaborItems.OrderByDescending(x => x.Quantity).First().Quantity;
+        }
+
+        <h4 class="text-warning">Labor List</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sortable">
+                <thead>
+                    <tr>
+                        <th width="40%">Item</th>
+                        <th width="30%" class="text-left">Utilization</th>
+                        <th>WO / Qty</th>
+                        <th>Unit Cost</th>
+                        <th>Total Cost</th>
+                        <th>Total Billed</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in LaborItems.OrderByDescending(x => x.TotalCost))
+                    {
+                        double itemPercent = ((double)i.Quantity / TotalQty);
+                        double drawPercent = (((double)i.Quantity / MaxQty) * 100);
+                        string css = "info";
+                        if (drawPercent >= 90) { css = "danger"; }
+                        else if (drawPercent > 70) { css = "warning"; }
+                        else if (drawPercent > 55) { css = "success"; }
+                        else if (drawPercent > 45) { css = "primary"; }
+                        else if (drawPercent > 30) { css = "info"; }
+                        else if (drawPercent > 20) { css = "secondary "; }
+                        else { css = "dark"; }
+                        <tr>
+                            <td>@i.Supply</td>
+                            <td>
+                                <span class="d-none">@(itemPercent)</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-@css progress-bar-animated" style="width:@(drawPercent.ToString())%"></div>
+                                </div>
+                                @itemPercent.ToString("P")
+                            </td>
+                            <td class="text-right">@i.WorkOrderTotal / @i.Quantity</td>
+                            <td class="text-right">@i.UnitCost.ToString("C")</td>
+                            <td class="text-right">@i.TotalCost.ToString("C")</td>
+                            <td class="text-right text-success">@i.TotalBilled.ToString("C")</td>
+                            <td class="text-right">@((i.TotalBilled / i.TotalCost).ToString("P").Replace("NaN", "-"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-reset">Totals</th>
+                        <th>@(LaborItems.Sum(i => i.WorkOrderTotal).ToString("N0")) / @(LaborItems.Sum(i => i.Quantity).ToString("N0"))</th>
+                        <th></th>
+                        <th>@(LaborItems.Sum(i => i.TotalCost).ToString("C"))</th>
+                        <th><strong class="text-success">@(LaborItems.Sum(i => i.TotalBilled).ToString("C"))</strong></th>
+                        <th>@((LaborItems.Sum(i => i.TotalBilled) / LaborItems.Sum(i => i.TotalCost)).ToString("P").Replace("NaN", "-"))</th>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+
+
+    </div>
+    <div class="tab-pane container" id="sub-tabs-supplies-1">
+
+        @{
+            TotalQty = SupplyItems.Sum(x => x.Quantity);
+            MaxQty = SupplyItems.OrderByDescending(x => x.Quantity).First().Quantity;
+        }
+
+
+        <h4 class="text-warning">Supply List</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sortable">
+                <thead>
+                    <tr>
+                        <th width="40%">Item</th>
+                        <th width="30%" class="text-left">Utilization</th>
+                        <th>WO / Qty</th>
+                        <th>Unit Cost</th>
+                        <th>Total Cost</th>
+                        <th>Total Billed</th>
+                        <th>%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in SupplyItems.OrderByDescending(x => x.TotalBilled))
+                    {
+                        double itemPercent = ((double)i.Quantity / TotalQty);
+                        double drawPercent = (((double)i.Quantity / MaxQty) * 100);
+                        string css = "info";
+                        if (drawPercent >= 90) { css = "danger"; }
+                        else if (drawPercent > 70) { css = "warning"; }
+                        else if (drawPercent > 55) { css = "success"; }
+                        else if (drawPercent > 45) { css = "primary"; }
+                        else if (drawPercent > 30) { css = "info"; }
+                        else if (drawPercent > 20) { css = "secondary "; }
+                        else { css = "dark"; }
+                        <tr>
+                            <td>@i.Supply</td>
+                            <td>
+                                <span class="d-none">@(itemPercent)</span>
+                                <div class="progress">
+                                    <div class="progress-bar bg-@css progress-bar-animated" style="width:@(drawPercent.ToString())%"></div>
+                                </div>
+                                @itemPercent.ToString("P")
+                            </td>
+                            <td class="text-right">@i.WorkOrderTotal / @i.Quantity</td>
+                            <td class="text-right">@i.UnitCost.ToString("C")</td>
+                            <td class="text-right"> @i.TotalCost.ToString("C")</td>
+                            <td class="text-right text-success">@i.TotalBilled.ToString("C")</td>
+                            <td class="text-right">@((i.TotalBilled / i.TotalCost).ToString("P").Replace("NaN", "-"))</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-reset">Totals</th>
+                        <th>@(SupplyItems.Sum(i => i.WorkOrderTotal).ToString("N0")) / @(SupplyItems.Sum(i => i.Quantity).ToString("N0"))</th>
+                        <th></th>
+                        <th>@(SupplyItems.Sum(i => i.TotalCost).ToString("C"))</th>
+                        <th><strong class="text-success">@(SupplyItems.Sum(i => i.TotalBilled).ToString("C"))</strong></th>
+                        <th>@((SupplyItems.Sum(i => i.TotalBilled) / SupplyItems.Sum(i => i.TotalCost)).ToString("P").Replace("NaN", "-"))</th>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="tab-pane container" id="sub-tabs-supplies-7">
+        <h4 class="text-warning">Supply Additions</h4>
+        <strong class="text-warning">Totals: </strong>
+        <span class="text-success">@(Model.ItemsManuallyEntered.Where(x => x.IsLocked).Sum(x => x.ItemTotal).ToString("C"))</span> / 
+        @Model.ItemsManuallyEntered.Sum(x=> x.ItemTotal).ToString("C")
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sortable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-left">Bill To</th>
+                        <th>Task Type</th>
+                        <th>Item Type</th>
+                        <th>Completed By</th>
+                        <th>Completed On</th>
+                        <th>Time To Complete</th>
+                        <th>QTY</th>
+                        <th>Unit Cost</th>
+                        <th>Unit Total</th>
+                        <th>Item Total</th>
+                        <th>Taxable</th>
+                        <th>Billed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.ItemsManuallyEntered.OrderByDescending(x => x.LineTotal))
+                    {
+                        <tr>
+                            <td>@i.ItemDescription</td>
+                            <td class="text-left">@i.BillTo</td>
+                            <td>@i.Type</td>
+                            <td>@i.ItemType</td>
+                            <td>@i.CompletedBy</td>
+                            <td>@i.Completed.ToShortDateString()</td>
+                            <td>@i.TimeToComplete</td>
+                            <td>@i.SupplyQuantity</td>
+                            <td>@i.ItemCost.ToString("C")</td>
+                            <td>@i.ItemTotal.ToString("C")</td>
+                            <td>@i.LineTotal.ToString("C")</td>
+                            <td>@Html.Raw(i.IsTaxable ? "<i class='fa fa-check-circle text-success'></i>" : "")</td>
+                            <td>@Html.Raw(i.IsLocked ? "<i class='fa fa-check-circle text-success'></i>" : "<i class='fa fa-minus-circle text-danger'></i>")</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+        <!-- Not displayed -->
+        <div class="tab-pane container" id="sub-tabs-supplies-3">
+            <h4 class="text-warning">Supply Chart</h4>
+            <strong>Total Items:</strong> @TotalQty.ToString("N0")
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Chart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var i in LaborItems)
+                        {
+                            double itemPercent = ((double)i.Quantity / TotalQty);
+                            double drawPercent = (((double)i.Quantity / MaxQty) * 100);
+                            string css = "info";
+                            if (drawPercent >= 90) { css = "danger"; }
+                            else if (drawPercent > 70) { css = "warning"; }
+                            else if (drawPercent > 55) { css = "success"; }
+                            else if (drawPercent > 45) { css = "primary"; }
+                            else if (drawPercent > 30) { css = "info"; }
+                            else if (drawPercent > 20) { css = "secondary "; }
+                            else { css = "dark"; }
+                            <tr>
+                                <td width="30%">
+                                    <text>@i.Supply</text>
+                                </td>
+                                <td width="3%">
+                                    @i.Quantity
+                                </td>
+                                <td>
+                                    <span class="d-none">@(itemPercent)</span>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-@css progress-bar-animated" style="width:@(drawPercent.ToString())%"></div>
+                                    </div>
+
+                                    @itemPercent.ToString("P")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Totals
+                            </th>
+                            <th colspan="2">@TotalQty</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+        <div class="tab-pane container" id="sub-tabs-supplies-4">
+
+            @{
+                TotalQty = SupplyItems.Sum(x => x.Quantity);
+                MaxQty = SupplyItems.OrderByDescending(x => x.Quantity).First().Quantity;
+            }
+
+            <h4 class="text-warning">Supply Chart</h4>
+            <strong>Total Items:</strong> @TotalQty.ToString("N0")
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Chart</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var i in SupplyItems)
+                        {
+                            double itemPercent = ((double)i.Quantity / TotalQty);
+                            double drawPercent = (((double)i.Quantity / MaxQty) * 100);
+                            string css = "info";
+                            if (drawPercent >= 90) { css = "danger"; }
+                            else if (drawPercent > 70) { css = "warning"; }
+                            else if (drawPercent > 55) { css = "success"; }
+                            else if (drawPercent > 45) { css = "primary"; }
+                            else if (drawPercent > 30) { css = "info"; }
+                            else if (drawPercent > 20) { css = "secondary "; }
+                            else { css = "dark"; }
+                            <tr>
+                                <td width="30%">
+                                    <text>@i.Supply</text>
+                                </td>
+                                <td width="3%">
+                                    @i.Quantity
+                                </td>
+                                <td>
+
+                                    <div class="progress">
+                                        <div class="progress-bar bg-@css progress-bar-animated" style="width:@(drawPercent.ToString())%"></div>
+                                    </div>
+
+                                    @itemPercent.ToString("P")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Totals
+                            </th>
+                            <th colspan="2">@TotalQty</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+
+<script type="text/javascript">
+    var fadeSpeed = "fast";
+    var ReportSupplies = {
+        init: function () {
+            //var c = $("#report-summary");
+            //c.html($("#report-charts-supplies").html());
+            ReportSupplies.draw.charts();
+        },
+        draw: {
+            charts: function () {
+                /*
+                var c = $("#report-summary");
+                c.animate({
+                    opacity: 0,
+                    "margin-top": 250,
+                    //"max-height": 500,
+                    //position: "fixed",
+                    //"z-index": -1
+                }, fadeSpeed);
+                */
+
+                var
+                    options = {
+                        title: 'Total Work Orders',
+                        width: '100%',
+                        height: '400px'
+                    },
+                    data = google.visualization.arrayToDataTable([
+                        ['Total', 'Hours per Day'],
+                        @foreach(var w in Model.SummaryItemsByUser)
+                        {
+                            <text>['@w.CompletedBy', @w.WorkOrderTotal],</text>
+                        }
+                    ]);
+                var chart0 = new google.visualization.PieChart(document.getElementById('chart-pie-SummaryItemsByUser'));
+                chart0.draw(data, options);
+
+
+                options.title = "Bill To Owner";
+                    data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    @foreach(var w in Model.SummaryItemsByUser)
+                    {
+                        <text>['@w.CompletedBy', @w.TotalCost],</text>
+                    }
+                ]);
+                var chart1 = new google.visualization.PieChart(document.getElementById('chart-pie-Billables'));
+                chart1.draw(data, options);
+
+
+                @*
+                options.title = "Qty Parts Ordered";
+                data = google.visualization.arrayToDataTable([
+                    ['Total', 'Hours per Day'],
+                    @foreach(var w in Model.SummaryItemsByUser)
+                    {
+                        <text>['@w.CompletedBy', @w.Quantity],</text>
+                    }
+                ]);
+                var chart2 = new google.visualization.PieChart(document.getElementById('chart-pie-Parts-Qty'));
+                chart2.draw(data, options);
+
+                options.title = "Cost Parts Ordered";
+                    data = google.visualization.arrayToDataTable([
+                        ['Total', 'Hours per Day'],
+                        @foreach(var w in Model.SummaryItemsByUser)
+                        {
+                            <text>['@w.CompletedBy', @(w.CompletedBy.Count() / Model.SummaryItemsByUser.Count())],</text>
+                        }
+                    ]);
+                var chart3 = new google.visualization.PieChart(document.getElementById('chart-pie-Parts-Cost'));
+                chart3.draw(data, options);
+                *@
+                /*
+                c.animate({
+                    opacity: 1,
+                    "margin-top": 0,
+                    //position: "fixed",
+                    //"z-index": -1
+                }, fadeSpeed);
+                //*/
+
+            }
+        }
+    };
+
+    $(function () {
+        console.info("Loading tab: Supplies");
+        ReportSupplies.init();
+    });
+</script>

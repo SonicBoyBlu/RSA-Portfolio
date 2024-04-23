@@ -1,0 +1,42 @@
+﻿@model Global.Jobs.Models.Job
+@{
+    var a = Model.Address;
+}
+@{
+    var j = Model;
+    var mapAddr = (string.Format("{0} {1} {2} {3} {4}", a.Address1, a.Address2, a.City, a.State, a.Zip)).Replace(" ", "+");
+    /*
+    string cats = string.Empty;
+    foreach (var c in j.Categories)
+    {
+        cats += (string.IsNullOrEmpty(cats) ? "" : ", ") + c.CategoryName;
+    }
+    */
+}
+<script type="text/javascript">
+    //alert("url: " + parent.location.href);    
+</script>
+
+<div class="float-end">
+    @*<a href="#@j.JobID" onclick="history.back()" title="Return to job list"><i class="far fa-times-circle text-danger"></i></a>*@
+    <a href="./#@j.JobID" title="Return to job list"><i class="far fa-times-circle text-danger"></i></a>
+</div>
+<h3>@Html.Raw(j.Title)</h3>
+<ul class="list-unstyled">
+    <li>@Html.Raw(j.LocationTypeHTML)</li>
+    <li><strong class="text-primary">Category: </strong>@j.CategoryName</li>
+    <li><strong class="text-primary">Job Type: </strong>@j.JobType</li>
+    <li><strong class="text-primary">Compensation: </strong>@j.PayRange</li>
+</ul>
+<p>
+    @Html.Raw(j.Description)
+</p>
+<p class="text-warning">
+    <i class="fas fa-exclamation-circle"></i> To apply, see full job details, and more, please continue to our candidate portal.
+</p>
+<p class="text-center">
+    <a href="https://beta.candidates.campuspoint.com/Jobs/@j.JobID" class="btn btn-outline-success" target="_top">Continue <i class="fas fa-angle-double-right"></i></a>
+</p>
+
+<partial name="Partials/_EEOC" model="j" />
+<small class="text-muted float-end">JobID: @j.JobID</small>

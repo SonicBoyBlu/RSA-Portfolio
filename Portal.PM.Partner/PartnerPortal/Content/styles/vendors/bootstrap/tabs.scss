@@ -1,0 +1,53 @@
+﻿@import "../../_variables.scss", "../../_fonts.scss";
+.tab-content {
+    border: 1px solid $blue !important;
+    border-top-width: 2px !important;
+    padding-top: 20px;
+
+    h3 {
+        padding-left: 10px;
+    }
+
+    dl {
+        padding: 0 10px;
+    }
+}
+
+.nav-tabs {
+    /*border-bottom: 3px solid $blue !important;*/
+    .nav-item {
+        margin-bottom: -3px;
+    }
+
+    .nav-link {
+        /*border-color: #e9ecef #e9ecef #dee2e6;*/
+        border: 1px solid $lightGrey !important;
+        color: $default;
+        /*margin-right: 3px;*/
+        padding: .5rem 0.8rem;
+
+        &.active {
+            border-color: $blue !important;
+            border-top-width: 3px !important;
+            border-bottom: 1px solid #fff !important;
+            color: $blue;
+            font-weight: bold;
+
+            &.text-success {
+                border-top-color: $green !important;
+            }
+
+            &.text-info {
+                border-top-color: $lightBlue !important;
+            }
+
+            &.text-warning {
+                border-top-color: $orange !important;
+            }
+
+            &.text-danger {
+                border-top-color: $red !important;
+            }
+        }
+    }
+}

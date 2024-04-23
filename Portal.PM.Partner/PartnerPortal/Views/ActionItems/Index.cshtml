@@ -1,0 +1,239 @@
+﻿<styles>
+    <link rel="stylesheet" href="~/Content/styles/temp/app.css" />
+</styles>
+
+@{
+    ViewBag.Title = "Action Items";
+    ViewBag.TitleIcon = "fa-paper-plane";
+    ViewBag.Nav = "tickets";
+}
+
+<div ng-controller="ActionItemsController as actionItemsCtl" ng-cloak>
+    <div ng-show="actionItemsCtl.viewMode=='list'">
+        <input type="checkbox" id="closedItems" ng-model="actionItemsCtl.showClosedItems">
+        <label for="closedItems"> Show closed action items</label>
+        <p align="right">
+            <button class="btn btn-primary" ng-click="actionItemsCtl.createActionItem()"><i class="fa fa-plus"></i> Create Action Item</button>
+        </p>
+        <br />
+        <table class="table table-hover table-click">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Status</th>
+                    <th>Subject</th>
+                    <th>Last update</th>
+                    <th>Action Item #</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="actionItem in actionItemsCtl.actionItems" ng-show="actionItem.IsOpen || actionItemsCtl.showClosedItems">
+                <td><i class="{{actionItem.Icon}}" title="{{actionItem.Title}}"></i></td>
+                <td>{{actionItem.Info}}</td>
+                <td><a href="" ng-click="actionItemsCtl.showMessage(actionItem)">{{actionItem.Subject}}</a></td>
+                <td>{{actionItem.LastReplyDate  | date:'MMMM d, y h:mm a' }}</td>
+                <td>{{actionItem.TicketNumber}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="app__content-wrapper" ng-show="actionItemsCtl.viewMode=='message'">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="action-items">
+                        <div class="action-items__nav">
+                            <a href="#" ng-click="actionItemsCtl.showList()">
+                                <span class="text-primary"><i class="fa fa-angle-left"></i> Back to Action Items</span>
+                            </a>
+                        </div>
+
+
+                        <div class="action-items__header">
+                            <div class="action-items__header-title">
+                                <h2><i class="{{actionItemsCtl.selectedActionItem.Icon}}"></i>&nbsp; {{actionItemsCtl.selectedActionItem.Subject}}</h2>
+                                <p>Action Item Number: {{actionItemsCtl.selectedActionItem.TicketNumber}}</p>
+                                <div class="status_{{actionItemsCtl.selectedActionItem.StatusClass}}">
+                                    <span>{{actionItemsCtl.selectedActionItem.Info}} </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="actionItemsCtl.loadingMessages">
+                            @Html.Partial("_LoadingIndicator", "Loading Messages...")
+                        </div>
+
+                        <ul class="action-items__content" ng-show="!actionItemsCtl.loadingMessages">
+
+                            <li ng-repeat="message in actionItemsCtl.actionItemMessages" ng-class="{'action-items__content-message' : true, 'bkg-light':$index%2==1}">
+                                <div class="content-message__img placeholder">
+                                    <img src="~/Content/images/actionitems/admin-profile.svg" alt="" ng-show="!message.AvatarUrl">
+                                    <img ng-src="{{message.AvatarUrl}}" alt="" ng-show="message.AvatarUrl">
+                                </div>
+                                <div class="content-message__content">
+                                    <h2>{{message.Sender}}</h2>
+                                    <div class="content-message__info">
+                                        <p>{{message.SentDate | date:'MMMM d, y h:mm a'}}</p>
+                                        <span ng-show="message.Direction==1">agent post</span>
+                                    </div>
+                                    <h3>Subject: {{message.Subject}}</h3>
+
+                                    <p ng-bind-html="message.BodyHTML">
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="action-items__header" ng-show="!actionItemsCtl.loadingMessages && actionItemsCtl.actionItemAttachments.length > 0">
+                            <div class="action-items__header-title">
+                                <h2><i class="fa fa-paperclip"></i> Attachments</h2>
+                                <ul>
+                                    <li ng-repeat="attachment in actionItemsCtl.actionItemAttachments" class="action-items__content-message">
+                                        <span><i class=""></i> <a ng-href="{{attachment.DownloadUrl}}"> {{attachment.FileName}} </a></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="action-items__reply" ng-show="!actionItemsCtl.selectedActionItem.IsLocked">
+                            <a href="#" ng-click="actionItemsCtl.showList()">
+                                <span class="text-primary"><i class="fa fa-angle-left"></i> Back to Action Items</span>
+                            </a>
+
+                            <div class="action-items__reply-content" ng-show="!actionItemsCtl.loadingMessages">
+                                <h4>Reply to Action Item</h4>
+
+                                <form>
+                                    <div class="form-message">
+                                        <div class="form-group">
+                                            <textarea class="form-control" ng-model="actionItemsCtl.reply" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-submit">
+                                        <div class="form-group">
+                                            <label for="formSubmitFile">Upload file:</label>
+                                            <div class="file-upload-wrapper">
+                                                <button class="upload-btn">Choose file</button>
+                                                <input type="file" class="form-control-file" multiple="multiple" ngf-select="actionItemsCtl.selectFiles($files)">
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                            <label class="form-check-label" for="formSubmitCheckbox">
+                                                This action item can be closed
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn large" ng-click="actionItemsCtl.replyToActionItem(actionItemsCtl.reply)">Send reply</button>
+                                    </div>
+
+
+
+
+                                </form>
+
+                                <ul>
+                                    <li ng-repeat="file in actionItemsCtl.selectedFiles" class="action-items__content-message">
+                                        <p>
+                                            <i class="fa fa-paperclip"></i> {{file.name}}  
+                                            <a href="" ng-click="actionItemsCtl.removeFile(file)" title="Remove File"><i class="far fa-times-circle text-danger"></i></a>                                         
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="actionItemsCtl.viewMode=='create'">
+        <div class="action-items__header">
+            <div class="action-items__header-title">
+                <h2>New Action Item</h2>
+            </div>
+        </div>
+
+        <div class="action-items__form">
+            <form>
+                @*<div class="form-group row">
+                <label for="actionItemDepartment" class="col-sm-3 col-form-label">Department</label>
+                <div class="col-sm-9">
+                    <input type="text" readonly class="form-control-plaintext" id="actionItemDepartment" value="Accounting Department">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="actionItemName" class="col-sm-3 col-form-label">Display Name<span>*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="actionItemName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="actionItemEmail" class="col-sm-3 col-form-label">Email<span>*</span></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="actionItemEmail">
+                </div>
+            </div>*@
+                <div class="form-group row">
+                    <label for="actionItemSubject" class="col-sm-3 col-form-label">Subject<span>*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ng-model="actionItemsCtl.createSubject" id="actionItemSubject" maxlength="250">
+                        <p class="subject-word-count"><span>0</span> / 250</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="actionItemTextarea" class="col-sm-3 col-form-label">Message Body<span>*</span></label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" ng-model="actionItemsCtl.createMessage" id="actionItemTextarea" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="actionItemSubject" class="col-sm-3 col-form-label">Attachments</label>
+                    <div class="col-sm-9">
+                        <div class="upload-container">
+                            <div class="file-upload-wrapper">
+                                <div class="file-upload-wrapper">
+                                    <button class="upload-btn">Choose file</button>
+                                    <input type="file" class="form-control-file" multiple="multiple" ngf-select="actionItemsCtl.selectFiles($files)">
+                                </div>
+
+
+                                @*<button class="upload-btn">Choose file</button>
+                            <input type="file" class="form-control-file" id="formSubmitFile">*@
+                            </div>
+                            <span class="input-value">No file Chosen</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-sm-3 col-sm-9">
+                        <div class="inline-buttons">
+                            <a href="" class="btn large empty icon" ng-click="actionItemsCtl.viewMode='list'">
+                                <span>Back</span>
+                            </a>
+                            <a href="" ng-disabled="!actionItemsCtl.canCreate()" class="btn large" ng-click="actionItemsCtl.createActionItem()">
+                                <span>SUBMIT ACTION ITEM</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <ul>
+                <li ng-repeat="file in actionItemsCtl.selectedFiles" class="action-items__content-message">
+                    <p>
+                        <i class="fa fa-paperclip"></i> {{file.name}}
+                        <a href="" ng-click="actionItemsCtl.removeFile(file)" title="Remove File"><i class="far fa-times-circle text-danger"></i></a>
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+ </div>

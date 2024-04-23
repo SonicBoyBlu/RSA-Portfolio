@@ -1,0 +1,19 @@
+﻿@import "../../_variables.scss";
+.form-floating {
+    > label {
+        left:auto !important;
+    }
+    &.error {
+        > input { 
+            border: .2em solid $red !important;
+            background-color: $red-light;
+        }
+        > label {
+            color: $red !important;
+            font-weight:bold;
+            &.error {
+                right:.5em;
+            }
+        }
+    }
+}

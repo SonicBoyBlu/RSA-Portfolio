@@ -1,0 +1,2815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service contains methods that modify the configuration of departments, groups, users, etc within SmarterTrack.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx">
+      <s:element name="GetServerName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServerNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetServerNameResult" type="tns:StringRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="StringRequestResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequestResult" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllBrands">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllBrandsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllBrandsResult" type="tns:BrandInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BrandInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Brands" type="tns:ArrayOfBrandInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBrandInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BrandInfo" type="tns:BrandInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BrandInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDeptsForUserTicketSubmission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeptsForUserTicketSubmissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDeptsForUserTicketSubmissionResult" type="tns:DepartmentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DepartmentInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Departments" type="tns:ArrayOfDepartmentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDepartmentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DepartmentInfo" type="tns:DepartmentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DepartmentInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllDepartments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllDepartmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllDepartmentsResult" type="tns:DepartmentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDepartmentsForBrand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="BrandID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDepartmentsForBrandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDepartmentsForBrandResult" type="tns:DepartmentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllGroupsResult" type="tns:GroupInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GroupInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Groups" type="tns:ArrayOfGroupInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfGroupInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="GroupInfo" type="tns:GroupInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GroupInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGroupsForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetGroupsForUserResult" type="tns:GroupInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsForDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsForDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetGroupsForDepartmentResult" type="tns:GroupInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateAgent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateAgentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateAgentResult" type="tns:AgentRoleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AgentRoleInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Agent" type="tns:AgentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfShort" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AgentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfShort">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="short" type="s:short" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetQueueUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQueueUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetQueueUserResult" type="tns:AgentRoleInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAgents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllAgentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllAgentsResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AgentInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Agents" type="tns:ArrayOfAgentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAgentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AgentInfo" type="tns:AgentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAgentsForDepartment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DepartmentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentsForDepartmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAgentsForDepartmentResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveTicketAgentsForGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveTicketAgentsForGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActiveTicketAgentsForGroupResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveChatAgentsForGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveChatAgentsForGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActiveChatAgentsForGroupResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableChatAgentsForGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableChatAgentsForGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAvailableChatAgentsForGroupResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentsForGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="GroupID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAgentsForGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAgentsForGroupResult" type="tns:AgentInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestedValues" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUsersPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUsersPropertiesResult" type="tns:SettingsRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SettingsRequestResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequestResults" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUsersPropertiesbyUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestedValues" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersPropertiesbyUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUsersPropertiesbyUsernameResult" type="tns:SettingsRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUsersProperties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userPropertyValues" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUsersPropertiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetUsersPropertiesResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GenericResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateUser2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isEmailVerified" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUser2Result" type="tns:UserInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInfoResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isEmailVerified" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUserResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUserResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserCustomFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="customFieldValues" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserCustomFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetUserCustomFieldsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCustomFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestedCustomFields" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCustomFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserCustomFieldsResult" type="tns:SettingsRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCustomFieldsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserCustomFieldsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserCustomFieldsListResult" type="tns:SettingsRequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roleName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="employeeRole" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRoleResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveRoleResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllRolesResult" type="tns:RoleInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RoleInfoResultArray">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Roles" type="tns:ArrayOfRoleInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRoleInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoleInfo" type="tns:RoleInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoleInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsEmployee" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllUserRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllUserRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllUserRolesResult" type="tns:RoleInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRoleToUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddRoleToUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddRoleToUserResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRoleFromUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRoleFromUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveRoleFromUserResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetKBPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetKBPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetKBPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetNewsPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetNewsPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetNewsPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTicketPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTicketPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetTicketPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetLiveChatPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetLiveChatPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetLiveChatPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTaskPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTaskPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetTaskPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCallLogPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCallLogPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetCallLogPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetWhosOnPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetWhosOnPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetWhosOnPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReportPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReportPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetReportPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetManageAreaPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetManageAreaPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetManageAreaPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetEventPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetEventPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDistributionPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="allowedPermissions" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetDistributionPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetDistributionPermissionsResult" type="tns:GenericResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllReports">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllReportsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllReportsResult" type="tns:ReportInfoResultArray" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReportInfoResultArray">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reports" type="tns:ArrayOfReportInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReportInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReportInfo" type="tns:ReportInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReportInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReportID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllCustomFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCustomFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllCustomFieldsResult" type="tns:CustomFieldInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomFieldInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFields" type="tns:ArrayOfCustomFieldInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomFieldInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldInfo" type="tns:CustomFieldInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomFieldInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGlobal" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueOptions" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllTimeLogCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllTimeLogCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllTimeLogCategoriesResult" type="tns:TimeLogCategoryInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TimeLogCategoryInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeLogCategories" type="tns:ArrayOfTimeLogCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTimeLogCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TimeLogCategoryInfo" type="tns:TimeLogCategoryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeLogCategoryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CategoryName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetActiveItemCounts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="useAuthenticatedAgent" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActiveItemCountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActiveItemCountsResult" type="tns:ActiveItemArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActiveItemArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ActiveItems" type="tns:ArrayOfActiveItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfActiveItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActiveItem" type="tns:ActiveItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActiveItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Agent" type="tns:AgentInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActiveTicketsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActiveLiveChatsCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InProgressTasksCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDailyTotals">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="useAuthenticatedUser" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyTotalsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetDailyTotalsResult" type="tns:DailyStatItemArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DailyStatItemArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="StatItems" type="tns:ArrayOfDailyStatItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDailyStatItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DailyStatItem" type="tns:DailyStatItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DailyStatItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Agent" type="tns:AgentInfo" />
+          <s:element minOccurs="1" maxOccurs="1" name="DailyTicketCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DailyChatCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DailyCallLogCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AverageTicketResponseTime" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="values" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateOrganizationResult" type="tns:OrganizationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrganizationInfoResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Organization" type="tns:OrganizationInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Website" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrganizationID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EditOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="valuesToChange" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EditOrganizationResult" type="tns:OrganizationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMemberToOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddMemberToOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddMemberToOrganizationResult" type="tns:OrganizationInfoMemberResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrganizationInfoMemberResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrganizationByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrganizationByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetOrganizationByIDResult" type="tns:OrganizationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrganizationByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="organizationName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrganizationByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetOrganizationByNameResult" type="tns:OrganizationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllMembersInOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllMembersInOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllMembersInOrganizationResult" type="tns:OrganizationMemberInfoArrayResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrganizationMemberInfoArrayResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrganizationMembers" type="tns:ArrayOfOrganizationMemberInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrganizationMemberInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrganizationMemberInfo" type="tns:OrganizationMemberInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrganizationMemberInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoveMemberFromOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationMemberID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveMemberFromOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveMemberFromOrganizationResult" type="tns:OrganizationInfoMemberResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveOrganization">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="authUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="organizationID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveOrganizationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveOrganizationResult" type="tns:OrganizationInfoResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetServerNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServerName" />
+  </wsdl:message>
+  <wsdl:message name="GetServerNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServerNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrandsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllBrands" />
+  </wsdl:message>
+  <wsdl:message name="GetAllBrandsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllBrandsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeptsForUserTicketSubmissionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeptsForUserTicketSubmission" />
+  </wsdl:message>
+  <wsdl:message name="GetDeptsForUserTicketSubmissionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeptsForUserTicketSubmissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepartmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllDepartments" />
+  </wsdl:message>
+  <wsdl:message name="GetAllDepartmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllDepartmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartmentsForBrandSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsForBrand" />
+  </wsdl:message>
+  <wsdl:message name="GetDepartmentsForBrandSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDepartmentsForBrandResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetAllGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsForDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupsForDepartment" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsForDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsForDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateAgentSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateAgent" />
+  </wsdl:message>
+  <wsdl:message name="ValidateAgentSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQueueUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQueueUser" />
+  </wsdl:message>
+  <wsdl:message name="GetQueueUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQueueUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAgentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllAgents" />
+  </wsdl:message>
+  <wsdl:message name="GetAllAgentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllAgentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentsForDepartmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAgentsForDepartment" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentsForDepartmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAgentsForDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveTicketAgentsForGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveTicketAgentsForGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveTicketAgentsForGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveTicketAgentsForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveChatAgentsForGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveChatAgentsForGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveChatAgentsForGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveChatAgentsForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableChatAgentsForGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableChatAgentsForGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableChatAgentsForGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableChatAgentsForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentsForGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAgentsForGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetAgentsForGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAgentsForGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersProperties" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPropertiesbyUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersPropertiesbyUsername" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersPropertiesbyUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersPropertiesbyUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUsersPropertiesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUsersProperties" />
+  </wsdl:message>
+  <wsdl:message name="SetUsersPropertiesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUsersPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUser2SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser2" />
+  </wsdl:message>
+  <wsdl:message name="CreateUser2SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUser2Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserCustomFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserCustomFields" />
+  </wsdl:message>
+  <wsdl:message name="SetUserCustomFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserCustomFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCustomFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserCustomFields" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCustomFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserCustomFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCustomFieldsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserCustomFieldsList" />
+  </wsdl:message>
+  <wsdl:message name="GetUserCustomFieldsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserCustomFieldsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRole" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveRole" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetAllRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUserRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllUserRoles" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUserRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllUserRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleToUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRoleToUser" />
+  </wsdl:message>
+  <wsdl:message name="AddRoleToUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddRoleToUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRoleFromUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveRoleFromUser" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRoleFromUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveRoleFromUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetKBPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetKBPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetKBPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetKBPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetNewsPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetNewsPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetNewsPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetNewsPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTicketPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTicketPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetTicketPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTicketPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetLiveChatPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetLiveChatPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetLiveChatPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetLiveChatPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTaskPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTaskPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetTaskPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTaskPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCallLogPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCallLogPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetCallLogPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCallLogPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetWhosOnPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetWhosOnPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetWhosOnPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetWhosOnPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetReportPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetReportPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetReportPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetReportPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetManageAreaPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetManageAreaPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetManageAreaPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetManageAreaPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetEventPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetEventPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetEventPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetEventPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetDistributionPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetDistributionPermissions" />
+  </wsdl:message>
+  <wsdl:message name="SetDistributionPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetDistributionPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllReportsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllReports" />
+  </wsdl:message>
+  <wsdl:message name="GetAllReportsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllReportsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCustomFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCustomFields" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCustomFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCustomFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTimeLogCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllTimeLogCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetAllTimeLogCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllTimeLogCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveItemCountsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActiveItemCounts" />
+  </wsdl:message>
+  <wsdl:message name="GetActiveItemCountsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActiveItemCountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyTotalsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyTotals" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyTotalsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyTotalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrganization" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:EditOrganization" />
+  </wsdl:message>
+  <wsdl:message name="EditOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:EditOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddMemberToOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddMemberToOrganization" />
+  </wsdl:message>
+  <wsdl:message name="AddMemberToOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddMemberToOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrganizationByID" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrganizationByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrganizationByName" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrganizationByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMembersInOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllMembersInOrganization" />
+  </wsdl:message>
+  <wsdl:message name="GetAllMembersInOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllMembersInOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveMemberFromOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveMemberFromOrganization" />
+  </wsdl:message>
+  <wsdl:message name="RemoveMemberFromOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveMemberFromOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOrganizationSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveOrganization" />
+  </wsdl:message>
+  <wsdl:message name="RemoveOrganizationSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveOrganizationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="svcOrganizationSoap">
+    <wsdl:operation name="GetServerName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves the friendly name for this installation of SmarterTrack (Used with cross installation ticket transfers)</wsdl:documentation>
+      <wsdl:input message="tns:GetServerNameSoapIn" />
+      <wsdl:output message="tns:GetServerNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all Brands defined in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllBrandsSoapIn" />
+      <wsdl:output message="tns:GetAllBrandsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeptsForUserTicketSubmission">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get All Available Departments where Portal Ticket Submission Requires is set to anonymous or registered users.</wsdl:documentation>
+      <wsdl:input message="tns:GetDeptsForUserTicketSubmissionSoapIn" />
+      <wsdl:output message="tns:GetDeptsForUserTicketSubmissionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartments">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all departments defined in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllDepartmentsSoapIn" />
+      <wsdl:output message="tns:GetAllDepartmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentsForBrand">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all Departments for the given Brand.</wsdl:documentation>
+      <wsdl:input message="tns:GetDepartmentsForBrandSoapIn" />
+      <wsdl:output message="tns:GetDepartmentsForBrandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroups">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all groups defined in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllGroupsSoapIn" />
+      <wsdl:output message="tns:GetAllGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of Groups that the given user belongs to.</wsdl:documentation>
+      <wsdl:input message="tns:GetGroupsForUserSoapIn" />
+      <wsdl:output message="tns:GetGroupsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all Groups for the given Department</wsdl:documentation>
+      <wsdl:input message="tns:GetGroupsForDepartmentSoapIn" />
+      <wsdl:output message="tns:GetGroupsForDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAgent">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validates an agent's credentials.</wsdl:documentation>
+      <wsdl:input message="tns:ValidateAgentSoapIn" />
+      <wsdl:output message="tns:ValidateAgentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQueueUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the user account that is associated with the queue.</wsdl:documentation>
+      <wsdl:input message="tns:GetQueueUserSoapIn" />
+      <wsdl:output message="tns:GetQueueUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAgents">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of all users marked as agents in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllAgentsSoapIn" />
+      <wsdl:output message="tns:GetAllAgentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForDepartment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all agents in the department specified.</wsdl:documentation>
+      <wsdl:input message="tns:GetAgentsForDepartmentSoapIn" />
+      <wsdl:output message="tns:GetAgentsForDepartmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveTicketAgentsForGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of agents who are actively receiving tickets for the specified group.</wsdl:documentation>
+      <wsdl:input message="tns:GetActiveTicketAgentsForGroupSoapIn" />
+      <wsdl:output message="tns:GetActiveTicketAgentsForGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveChatAgentsForGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of agents who are marked as active for live chats for the specified group.</wsdl:documentation>
+      <wsdl:input message="tns:GetActiveChatAgentsForGroupSoapIn" />
+      <wsdl:output message="tns:GetActiveChatAgentsForGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableChatAgentsForGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of agents who are actively receiving live chats for the specified group.</wsdl:documentation>
+      <wsdl:input message="tns:GetAvailableChatAgentsForGroupSoapIn" />
+      <wsdl:output message="tns:GetAvailableChatAgentsForGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of agents that are members of the given Group.</wsdl:documentation>
+      <wsdl:input message="tns:GetAgentsForGroupSoapIn" />
+      <wsdl:output message="tns:GetAgentsForGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersProperties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of requested properties for a user.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersPropertiesSoapIn" />
+      <wsdl:output message="tns:GetUsersPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPropertiesbyUsername">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieves a list of requested properties for a user by username.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersPropertiesbyUsernameSoapIn" />
+      <wsdl:output message="tns:GetUsersPropertiesbyUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUsersProperties">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets specific property values of the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:SetUsersPropertiesSoapIn" />
+      <wsdl:output message="tns:SetUsersPropertiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a user to SmarterTrack with the Everyone and Registered User roles.  Typically, you would follow this function with one or more calls to the AddRoleToUser function.</wsdl:documentation>
+      <wsdl:input message="tns:CreateUser2SoapIn" />
+      <wsdl:output message="tns:CreateUser2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a user to SmarterTrack without any roles.  Typically, you should follow this function with one or more calls to the AddRoleToUser function.</wsdl:documentation>
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permanently removes an existing user from the system. The primary administrator, queue, and internal system users cannot be removed.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteUserSoapIn" />
+      <wsdl:output message="tns:DeleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserCustomFields">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets the values of the provided custom field properties for the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:SetUserCustomFieldsSoapIn" />
+      <wsdl:output message="tns:SetUserCustomFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFields">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of custom field values from the list of properties provided for the specified user</wsdl:documentation>
+      <wsdl:input message="tns:GetUserCustomFieldsSoapIn" />
+      <wsdl:output message="tns:GetUserCustomFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFieldsList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all custom field properties and values for the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserCustomFieldsListSoapIn" />
+      <wsdl:output message="tns:GetUserCustomFieldsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a role to SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:AddRoleSoapIn" />
+      <wsdl:output message="tns:AddRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRole">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Removes a role from SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveRoleSoapIn" />
+      <wsdl:output message="tns:RemoveRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all roles along with their IDs.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllRolesSoapIn" />
+      <wsdl:output message="tns:GetAllRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all roles of specified user.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllUserRolesSoapIn" />
+      <wsdl:output message="tns:GetAllUserRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoleToUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Assigns a role to the specified user.</wsdl:documentation>
+      <wsdl:input message="tns:AddRoleToUserSoapIn" />
+      <wsdl:output message="tns:AddRoleToUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRoleFromUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Unassigns a role from a specified user.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveRoleFromUserSoapIn" />
+      <wsdl:output message="tns:RemoveRoleFromUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetKBPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for KB Articles.</wsdl:documentation>
+      <wsdl:input message="tns:SetKBPermissionsSoapIn" />
+      <wsdl:output message="tns:SetKBPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNewsPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for News Items.</wsdl:documentation>
+      <wsdl:input message="tns:SetNewsPermissionsSoapIn" />
+      <wsdl:output message="tns:SetNewsPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTicketPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for Tickets.</wsdl:documentation>
+      <wsdl:input message="tns:SetTicketPermissionsSoapIn" />
+      <wsdl:output message="tns:SetTicketPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetLiveChatPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for Live Chats.</wsdl:documentation>
+      <wsdl:input message="tns:SetLiveChatPermissionsSoapIn" />
+      <wsdl:output message="tns:SetLiveChatPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTaskPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for Tasks.</wsdl:documentation>
+      <wsdl:input message="tns:SetTaskPermissionsSoapIn" />
+      <wsdl:output message="tns:SetTaskPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCallLogPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for Call Logs.</wsdl:documentation>
+      <wsdl:input message="tns:SetCallLogPermissionsSoapIn" />
+      <wsdl:output message="tns:SetCallLogPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWhosOnPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sets role permissions for Who's On.</wsdl:documentation>
+      <wsdl:input message="tns:SetWhosOnPermissionsSoapIn" />
+      <wsdl:output message="tns:SetWhosOnPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetReportPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set role permissions for Reports.</wsdl:documentation>
+      <wsdl:input message="tns:SetReportPermissionsSoapIn" />
+      <wsdl:output message="tns:SetReportPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetManageAreaPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set role permissions for Management Area.  This function has no effect.</wsdl:documentation>
+      <wsdl:input message="tns:SetManageAreaPermissionsSoapIn" />
+      <wsdl:output message="tns:SetManageAreaPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEventPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set role permissions for Events.</wsdl:documentation>
+      <wsdl:input message="tns:SetEventPermissionsSoapIn" />
+      <wsdl:output message="tns:SetEventPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDistributionPermissions">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set role permissions for item distribution (tickets, chats, etc).</wsdl:documentation>
+      <wsdl:input message="tns:SetDistributionPermissionsSoapIn" />
+      <wsdl:output message="tns:SetDistributionPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReports">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of all Report GUIDs and their titles.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllReportsSoapIn" />
+      <wsdl:output message="tns:GetAllReportsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomFields">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a list of all custom fields in the system</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCustomFieldsSoapIn" />
+      <wsdl:output message="tns:GetAllCustomFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTimeLogCategories">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a list of all time log categories defined in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllTimeLogCategoriesSoapIn" />
+      <wsdl:output message="tns:GetAllTimeLogCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveItemCounts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get All current Active Item counts for all Active Agents</wsdl:documentation>
+      <wsdl:input message="tns:GetActiveItemCountsSoapIn" />
+      <wsdl:output message="tns:GetActiveItemCountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyTotals">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns Daily counts per User for tickets, chats, call logs, and average response time</wsdl:documentation>
+      <wsdl:input message="tns:GetDailyTotalsSoapIn" />
+      <wsdl:output message="tns:GetDailyTotalsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a Organization to SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrganizationSoapIn" />
+      <wsdl:output message="tns:CreateOrganizationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Edit a Organization in SmarterTrack.</wsdl:documentation>
+      <wsdl:input message="tns:EditOrganizationSoapIn" />
+      <wsdl:output message="tns:EditOrganizationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberToOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Adds a member to an Organization.</wsdl:documentation>
+      <wsdl:input message="tns:AddMemberToOrganizationSoapIn" />
+      <wsdl:output message="tns:AddMemberToOrganizationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a Organization in SmarterTrack by ID.</wsdl:documentation>
+      <wsdl:input message="tns:GetOrganizationByIDSoapIn" />
+      <wsdl:output message="tns:GetOrganizationByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a Organization in SmarterTrack by Name.</wsdl:documentation>
+      <wsdl:input message="tns:GetOrganizationByNameSoapIn" />
+      <wsdl:output message="tns:GetOrganizationByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMembersInOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a list of all Organization Members in an Organization</wsdl:documentation>
+      <wsdl:input message="tns:GetAllMembersInOrganizationSoapIn" />
+      <wsdl:output message="tns:GetAllMembersInOrganizationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMemberFromOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove a Member from an Organization.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveMemberFromOrganizationSoapIn" />
+      <wsdl:output message="tns:RemoveMemberFromOrganizationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOrganization">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove an Organization.</wsdl:documentation>
+      <wsdl:input message="tns:RemoveOrganizationSoapIn" />
+      <wsdl:output message="tns:RemoveOrganizationSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="svcOrganizationSoap" type="tns:svcOrganizationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServerName">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetServerName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllBrands" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeptsForUserTicketSubmission">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDeptsForUserTicketSubmission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartments">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllDepartments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentsForBrand">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDepartmentsForBrand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroups">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetGroupsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForDepartment">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetGroupsForDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAgent">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/ValidateAgent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueueUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetQueueUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAgents">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllAgents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForDepartment">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAgentsForDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveTicketAgentsForGroup">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveTicketAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveChatAgentsForGroup">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveChatAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableChatAgentsForGroup">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAvailableChatAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForGroup">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersProperties">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUsersProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPropertiesbyUsername">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUsersPropertiesbyUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUsersProperties">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetUsersProperties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser2">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateUser2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserCustomFields">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetUserCustomFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFields">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUserCustomFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFieldsList">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUserCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRole">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserRoles">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllUserRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoleToUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddRoleToUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRoleFromUser">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveRoleFromUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetKBPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetKBPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewsPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetNewsPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTicketPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetTicketPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetLiveChatPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetLiveChatPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTaskPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetTaskPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCallLogPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetCallLogPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWhosOnPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetWhosOnPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetReportPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetReportPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetManageAreaPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetManageAreaPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetEventPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDistributionPermissions">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetDistributionPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReports">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllReports" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomFields">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllCustomFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTimeLogCategories">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllTimeLogCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveItemCounts">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveItemCounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyTotals">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDailyTotals" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/EditOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberToOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddMemberToOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByID">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetOrganizationByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByName">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetOrganizationByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMembersInOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllMembersInOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMemberFromOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveMemberFromOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOrganization">
+      <soap:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveOrganization" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="svcOrganizationSoap12" type="tns:svcOrganizationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServerName">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetServerName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllBrands">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllBrands" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeptsForUserTicketSubmission">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDeptsForUserTicketSubmission" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDepartments">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllDepartments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDepartmentsForBrand">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDepartmentsForBrand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllGroups">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetGroupsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsForDepartment">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetGroupsForDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAgent">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/ValidateAgent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQueueUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetQueueUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllAgents">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllAgents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForDepartment">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAgentsForDepartment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveTicketAgentsForGroup">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveTicketAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveChatAgentsForGroup">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveChatAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableChatAgentsForGroup">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAvailableChatAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsForGroup">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAgentsForGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersProperties">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUsersProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersPropertiesbyUsername">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUsersPropertiesbyUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUsersProperties">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetUsersProperties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser2">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateUser2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserCustomFields">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetUserCustomFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFields">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUserCustomFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserCustomFieldsList">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetUserCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRole">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRole">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRoles">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserRoles">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllUserRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoleToUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddRoleToUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRoleFromUser">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveRoleFromUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetKBPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetKBPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewsPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetNewsPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTicketPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetTicketPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetLiveChatPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetLiveChatPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTaskPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetTaskPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCallLogPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetCallLogPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWhosOnPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetWhosOnPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetReportPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetReportPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetManageAreaPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetManageAreaPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEventPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetEventPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDistributionPermissions">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/SetDistributionPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllReports">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllReports" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCustomFields">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllCustomFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTimeLogCategories">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllTimeLogCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveItemCounts">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetActiveItemCounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyTotals">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetDailyTotals" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/CreateOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/EditOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberToOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/AddMemberToOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByID">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetOrganizationByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationByName">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetOrganizationByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllMembersInOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/GetAllMembersInOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMemberFromOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveMemberFromOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveOrganization">
+      <soap12:operation soapAction="http://www.smartertools.com/SmarterTrack/Services2/svcOrganization.asmx/RemoveOrganization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="svcOrganization">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service contains methods that modify the configuration of departments, groups, users, etc within SmarterTrack.</wsdl:documentation>
+    <wsdl:port name="svcOrganizationSoap" binding="tns:svcOrganizationSoap">
+      <soap:address location="https://help.acmehouseco.com/Services2/svcOrganization.asmx" />
+    </wsdl:port>
+    <wsdl:port name="svcOrganizationSoap12" binding="tns:svcOrganizationSoap12">
+      <soap12:address location="https://help.acmehouseco.com/Services2/svcOrganization.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

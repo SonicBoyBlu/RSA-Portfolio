@@ -1,0 +1,156 @@
+﻿@model Acme.ViewModels.CRM.ContactDetailViewModel
+@*model Acme.Models.CRM.Contacts.Details.PotentialDetail*@
+@{
+    var c = Model.ContactDetail;
+    if (c.PotentialDetail.Count() == 0)
+    {
+        c.PotentialDetail.Add(new Acme.Models.CRM.Contacts.Details.PotentialDetail());
+    }
+    var pd = c.PotentialDetail.FirstOrDefault();
+}
+<div class="tab-pane fade" id="tab-contact-potential">
+    @if (c.ContactType != DataTypes.CRM.ContactType.Potential)
+    {
+        <div class="alert alert-warning mb-3">
+            This contact is a <strong>@(c.ContactType.ToString())</strong> and is no longer a <strong>Potential</strong>.
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $("input:visible, textarea, select", $("#tab-contact-potential")).attr("readonly", "readonly").addClass("readonly").attr("disabled", "disabled").addClass("disabled");
+            });
+        </script>
+    }
+
+    <form data-form-type="potential-details">
+        <h5>Potential Details</h5>
+        <input type="hidden" name="ExtendedPotentialID" value="@pd.ExtendedPotentialID" />
+        <input type="hidden" name="PersonID" value="@pd.PersonID" />
+        <div class="row">
+            <div class="col-sm-6">
+                <input type="text" maxlength="250" class="form-control" placeholder="Potential Name" name="PotentialName" value="@pd.PotentialName" />
+            </div>
+            <div class="col-sm-6">
+                <select class="form-control" data-placeholder="Stage" name="Stage">
+                    @foreach(var s in Model.Lists.PipelineStageTypes)
+                    {
+                        <option value="@s.PipelineStageID"@(c.PipelineStageID == s.PipelineStageID ? " selected='selected'" : "")>@s.PipelineStage</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-12">
+                Stage
+                <ul id="chart-pipeline-stage">
+                    <li><hr /></li>
+                    @foreach (var s in Model.Lists.PipelineStageTypes)
+                    {
+                        string css = string.Empty;
+                        if (s.PipelineStageID == 10) { css = "goal "; }
+                        if (s.PipelineStageID == c.PipelineStageID) { css += "active current"; }
+                        else if (s.PipelineStageID < c.PipelineStageID) { css += "active"; }
+                        if(s.PipelineStageID > 10) { css += "closed"; }
+                        <li><div data-value="@s.PipelineStageID" data-toggle="tooltip" data-placement="top" title="@s.PipelineStage" class="@css"></div></li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control" placeholder="Specific Needs" name="SpecificNeeds">@pd.SpecificNeeds</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control" placeholder="Next Step" name="NextStep">@pd.NextStep</textarea>
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="potential-weekly">
+        <h5>Weekly Details</h5>
+        <input type="hidden" name="ExtendedPotentialID" value="@pd.ExtendedPotentialID" />
+        <input type="hidden" name="PersonID" value="@pd.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" placeholder="Date Weekly Appt" name="DateWeeklyAppt" value="@GlobalUtilities.GetDateString(pd.DateWeeklyAppt)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control" placeholder="Weekly Notes" name="WeeklyNotes">@pd.WeeklyNotes</textarea>
+            </div>
+        </div>
+    </form>
+
+
+
+    <form data-form-type="potential-revenue">
+        <h5>Revenue</h5>
+        <input type="hidden" name="ExtendedPotentialID" value="@pd.ExtendedPotentialID" />
+        <input type="hidden" name="PersonID" value="@pd.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="number" class="form-control" placeholder="Expected Revenue" name="ExpectedRevenue" value="@pd.ExpectedRevenue" />
+            </div>
+            <div class="col-sm">
+                <input type="number" class="form-control" placeholder="Amount" name="Amount" value="@pd.Amount" />
+            </div>
+            <div class="col-sm">
+                <input type="text" date-picker class="form-control" placeholder="Date Closing" name="DateClosing" value="@GlobalUtilities.GetDateString(pd.DateClosing)" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <textarea class="form-control" placeholder="Offered" name="Offered">@pd.Offered</textarea>
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="potential-exterior">
+        <h5>Exterior</h5>
+        <input type="hidden" name="ExtendedPotentialID" value="@pd.ExtendedPotentialID" />
+        <input type="hidden" name="PersonID" value="@pd.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Exterior Curb Appeal" name="ExteriorCurbAppeal" value="@pd.ExteriorCurbAppeal" />
+            </div>
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Exterior Pool Area" name="ExteriorPoolArea" value="@pd.ExteriorPoolArea" />
+            </div>
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Exterior Additional Spaces" name="ExteriorAdditionalSpaces" value="@pd.ExteriorAdditionalSpaces" />
+            </div>
+        </div>
+    </form>
+
+    <form data-form-type="potential-interior">
+        <h5>Interior</h5>
+        <input type="hidden" name="ExtendedPotentialID" value="@pd.ExtendedPotentialID" />
+        <input type="hidden" name="PersonID" value="@pd.PersonID" />
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Interior Bedrooms" name="InteriorBedrooms" value="@pd.InteriorBedrooms" />
+            </div>
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Interior Bathrooms" name="InteriorBathrooms" value="@pd.InteriorBathrooms" />
+            </div>
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Interior Kitchen" name="InteriorKitchen" value="@pd.InteriorKitchen" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Interior Livingroom" name="InteriorLivingroom" value="@pd.InteriorLivingroom" />
+            </div>
+            <div class="col-sm">
+                <input type="text" maxlength="250" class="form-control" placeholder="Additional Interior Spaces" name="AdditionalInteriorSpaces" value="@pd.AdditionalInteriorSpaces" />
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+    </form>
+
+
+</div>
+

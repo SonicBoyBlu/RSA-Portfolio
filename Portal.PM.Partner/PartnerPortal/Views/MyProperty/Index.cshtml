@@ -1,0 +1,155 @@
+﻿@model Acme.ViewModels.MyProperty
+@{
+    ViewBag.Title = "My Property";
+    ViewBag.TitleIcon = "fa-home";
+    ViewBag.Nav = "my-account"; //"property";
+
+    var a = new Acme.Models.ExternalApplication.Escapia.Address();
+}
+
+<div ng-app="property" ng-controller="MyProperty as propCtl" ng-cloak>
+
+    <div class='text-center' ng-show="propCtl.loading"><i class='fa fa-cog fa-spin fa-5x'></i></div>
+
+    <div class="card" ng-repeat="unit in propCtl.units">
+        <h2 class="card-header">{{unit.unitName}}
+        <br>
+        <small class="text-muted">{{unit.unitHeadline}}</small>
+        </h2>
+
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div id="my-property-map"></div>
+
+                        <img ng-src="{{unit.thumbnailImageURL}}" alt="{{unit.unitName}}" class="img-fluid" style="width: 300px;"/>
+
+
+                        @*
+                            <div id="property-pics-slider" class="carousel slide" data-ride="carousel">
+
+                                <ol class="carousel-indicators">
+                                    @foreach (var p in Model.Photos)
+                                    {
+                                        <li data-target="#property-pics-slider" data-slide-to="@idxIndicator" @(idxIndicator == 0 ? "class='active'" : "")></li>
+                                        idxIndicator++;
+                                    }
+                                </ol>
+                                <div class="carousel-inner">
+                                    @*foreach (var p in Model.Photos)
+                                    {
+                                        <div class="carousel-item @(idxPhoto == 0 ? "active" : "")">
+                                            <img class="d-block w-100" src="@p" />
+                                        </div>
+                                        idxPhoto++;
+                                    }
+                                    * @
+                                </div>
+                                <a class="carousel-control-prev" href="#property-pics-slider" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#property-pics-slider" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        *@
+
+                        @*<img src="@Model.Photos.FirstOrDefault()" class="img-fluid" />*@
+                    </div>
+                    <div class="col bg-white">
+                        <blockquote class="well">
+                            <dl>
+                                @*
+                                    <dt>Avg Price/Night</dt>
+                                    <dd>@Model.Price.ToString("C")</dd>
+                                    <dt>People Interested</dt>
+                                    <dd>@Model.NumInterested</dd>
+
+                                    <dt>Type</dt>
+                                    <dd>@Model.Type</dd>
+                                *@
+
+
+                                <dt>Active</dt>
+                                <dd><i ng-class="getIconClass(unit.isActive)"></i></dd>
+
+                                <dt>Available</dt>
+                                <dd><i ng-class="getIconClass(unit.available)"></i></dd>
+
+                                <dt>Occupied</dt>
+                                <dd><i ng-class="getIconClass(unit.occupied)"></i></dd>
+
+                                <dt>Insurance (##/##/####)</dt>
+                                <dd><i ng-class="getIconClass(reservation.available)"></i></dd>
+
+                                <dt>Unit Code</dt><dd>&nbsp;{{unit.unitCode}}</dd>
+                                <dt>Key Code</dt><dd>&nbsp;{{unit.keycode}}</dd>
+
+                                <dt>Address</dt>
+                                <dd>
+                                    <address>
+                                        {{unit.address.street1}}
+                                        {{unit.address.street2}}
+                                        {{unit.address.city}},&nbsp;{{unit.address.state}}&nbsp;&nbsp;{{unit.address.zip}}
+                                    </address>
+                                </dd>
+
+                                <dt>Next Arrival</dt>
+                                <dd>&nbsp;{{unit.nextArrival}}</dd>
+
+                                @*
+                                    <dt>Allows Dogs</dt>
+                                    <dd><i class="fa @(Model.DogsAllowed ? "fa-check-circle text-success" : "fa-minus-circle text-danger")"></i></dd>
+                                *@
+                                <dt>Website</dt>
+                                <dd>
+                                    <a ng-href="{{unit.detailURL}}"target="_blank">View Listing</a>
+                                </dd>
+                            </dl>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+                <div class="container" ng-if="item.maintenanceNotes">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Maintenance Note: </strong>
+                            {{unit.maintenanceNotes}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container" ng-if="item.housekeepingNotes">
+                    <div class="row">
+                        <div class="col">
+                            <p><strong>Housekeeping Note: </strong>
+                            {{unit.housekeepingNotes}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Description: </strong></p>
+                        <p style="white-space: pre-wrap">
+                        {{unit.webDescription}}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,232 @@
+﻿$quick-icon: #007bff;
+$teal: #00b4b4;
+$greyMedium: #e1e1e1;
+$greyLight: rgb(238, 238, 238);
+
+body {
+    padding-top: 90px;
+    margin-top:65px !important;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 15px;
+    background-color: rgba(255,255,255,.85);
+    z-index:100;
+}
+
+.navbar.fixed-left {
+    position: fixed;
+    top: 0;
+    /*top: 133px;*/
+    /*top:46px;*/
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    padding: 0;
+    background-color: $greyLight !important;
+    color: #666;
+
+    li {
+        &:hover {
+            background-color: $greyMedium;
+        }
+
+        &.active {
+            background-color: $greyMedium;
+        }
+    }
+
+    .navbar-collapse {
+        padding: 5px 10px 0;
+        overflow-y: auto;
+    }
+
+    .navbar-brand {
+        margin: -5px 0 3px;
+        margin-right: 0rem;
+        max-width: 50%;
+    }
+
+    .fa {
+        margin-right: 5px;
+    }
+
+    .nav-link {
+        /*color: rgba(255,255,255,.9) !important;*/
+        color: #666;
+        font-weight: 300;
+        font-size: 16px;
+
+        .fa {
+            font-size: 19px;
+        }
+
+        .badge {
+            float: right;
+        }
+
+        &.btn {
+            margin: 25px 0;
+        }
+    }
+
+    .nav-item.bg-warning {
+        background-color: transparent !important;
+
+        &.active {
+            background-color: #e1e1e1 !important;
+        }
+
+        .nav-item, .dropdown-item {
+            &.active {
+                background-color: #ffc107 !important;
+            }
+        }
+    }
+
+    .nav-item.bg-success {
+        background-color: transparent !important;
+
+        &.active {
+            background-color: #e1e1e1 !important;
+        }
+
+        .nav-item, .dropdown-item {
+            &.active {
+                background-color: #5cb85c !important;
+            }
+        }
+    }
+}
+.navbar-toggler {
+    margin-right:20px;
+}
+@media(max-width:768px) {
+    body {
+        margin-top:5px !important;
+    }
+    .navbar {
+        &.bg-primary {
+            background-color: #fff !important;
+
+            .navbar-toggler {
+                border-color: #007bff !important;
+                color: #007bff !important;
+                padding:0.3rem .4rem 0.3rem .6rem;
+                .navbar-toggler-icon {
+                    height:auto;
+                    width:auto;
+                }
+            }
+
+            .navbar-collapse {
+                background-color: $teal !important;
+            }
+        }
+    }
+    .navbar-brand {
+        .img-fluid {
+            max-height: 50px;
+        }
+    }
+}
+
+@media (min-width:768px) {
+    body {
+        padding-top: 30px !important;
+        /*margin-top: -35px !important;*/
+        margin-left: 232px !important;
+    }
+
+    .navbar.fixed-left {
+        bottom: 0;
+        width: 232px !important;
+        flex-flow: column nowrap;
+        align-items: flex-start
+    }
+
+    .navbar-brand {
+        margin-bottom: 10px !important;
+        max-width: 100% !important;
+    }
+
+    .navbar.fixed-left .navbar-collapse {
+        flex-grow: 0;
+        flex-direction: column;
+        width: 100%
+    }
+
+    .navbar.fixed-left .navbar-collapse .navbar-nav {
+        flex-direction: column;
+        width: 100%
+    }
+
+    .navbar.fixed-left .navbar-collapse .navbar-nav .nav-item {
+        width: 100%
+    }
+
+    .navbar.fixed-left .navbar-collapse .navbar-nav .nav-item .dropdown-menu {
+        top: 0
+    }
+
+    .navbar.fixed-left {
+        right: auto
+    }
+
+    .navbar.fixed-left .navbar-nav .nav-item .dropdown-toggle:after {
+        border-top: .3em solid transparent;
+        border-left: .3em solid;
+        border-bottom: .3em solid transparent;
+        border-right: none;
+        vertical-align: baseline
+    }
+
+    .navbar.fixed-left .navbar-nav .nav-item .dropdown-menu {
+        left: 100%
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00b4b4;
+    border-top: 1px solid #cecece;
+
+    ul {
+        list-style: none;
+        margin-left: -2rem;
+
+        li {
+            float: left;
+            font-size: 1.5rem;
+            /*color: $quick-icon;*/
+            color: #fff;
+            width: 20%;
+            text-align: center;
+            padding: .52rem 0;
+
+            &:nth-child(3) {
+                /*color:red;*/
+            }
+        }
+    }
+}
+
+#welcome-owner-message {
+    background-size: cover;
+    background-color: #2a2f4c;
+    color: #fff;
+    padding: 5px 15px;
+    margin: -15px -15px 10px;
+}
+
+#nav-main-wrapper {
+    width: 100%;
+    margin-right: -20px;
+}

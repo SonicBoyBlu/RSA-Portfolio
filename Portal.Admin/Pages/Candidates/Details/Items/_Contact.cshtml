@@ -1,0 +1,45 @@
+﻿@model Global.Candidates.Details.Models.CandidateEventItem
+@{
+    var i = Model;
+}
+<div class="text-info row">
+    <strong>
+        <i class="fa-regular fa-envelope"></i> @i.SystemEventName - @i.DateOccurred.ToString("MM/dd/yyyy hh:mmtt").ToLower()
+    </strong>
+</div>
+@switch (i.SystemEventTypeID)
+{
+    case 25:
+        // Signup sheet email sent
+        <div class='row'>
+            <div class='col-sm-7'><strong>Event:</strong> @i.CompanyName</div>
+            <div class='col-sm-5'><strong>Sent:</strong> @i.DateOccurred.ToString("D")</div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'><strong>Type:</strong> @i.JobName</div>
+        </div>
+    break;
+    case 37:
+    // Mass email
+        <div class='row'>
+            <div class='col-sm-7'><strong>Subject:</strong> @i.JobName</div>
+            <div class='col-sm-5'><strong>From:</strong> @i.ActionTakenByName (@i.InterviewContactName)</div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'><strong>Jobs:</strong> i.OptNotes</div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'><strong>Companies:</strong> @i.OtherVisaNotes</div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'><strong>Message:</strong> @Html.Raw(i.Notes)</div>
+        </div>
+    break;
+    default:
+        <div class='col-sm-12'>
+            <strong>By:</strong> @(string.IsNullOrEmpty(i.ActionTakenByName) ? "System" : i.ActionTakenByName)
+            <br />
+            <strong>Notes:</strong> @Html.Raw(i.Notes)
+        </div>
+    break;
+}

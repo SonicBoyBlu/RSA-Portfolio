@@ -1,0 +1,24 @@
+﻿@model List<Acme.Models.Breezeway.ImportErrors>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Task ID</th>
+            <th>Source</th>
+            <th>Error</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var e in Model)
+        {
+        <tr>
+            <td>@e.ErrorID</td>
+            <td>@e.TaskID</td>
+            <td>@e.Source</td>
+            <td>@e.Error</td>
+            <td>@e.DateLogged.ToString("G")</td>
+        </tr>
+        }
+    </tbody>
+</table>

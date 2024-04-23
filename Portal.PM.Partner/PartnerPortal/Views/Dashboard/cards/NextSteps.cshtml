@@ -1,0 +1,26 @@
+﻿@model List<Acme.Models.KnowledgeBaseItem>
+@{ 
+    var me = Identity.Current;
+}
+<dl>
+    @foreach (var m in Model.Take(3))
+    {
+        <dt>@m.Title</dt>
+        <dd><div class="btn btn-success btn-sm" data-lesson-id="@m.KbID">View</div></dd>
+
+    }
+</dl>
+<div class="text-right">
+    <a href="@Url.Action("Index", "Education")" class="btn btn-link">
+        View All
+    </a>
+</div>
+@if (me.UserType == DataTypes.UserType.Owner)
+{
+<div class="row">
+    <div class="col-10">Insurance Expiration (10/2019)</div>
+    <div class="col-2 text-right"><i class="fa fa-check-circle text-success"></i></div>
+</div>
+}
+
+
