@@ -1,0 +1,135 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Admin
+build_property.RootNamespace = Admin
+build_property.ProjectDir = C:\Projects\_Portfolio\Portal.Admin\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Projects\_Portfolio\Portal.Admin
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Account.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Apps.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEFwcHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Bulletins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEJ1bGxldGlucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Contacts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXENvbnRhY3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/FSI.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEZTSS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEhlYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Hires.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEhpcmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Interviews.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEludGVydmlld3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Items/_Account.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEl0ZW1zXF9BY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Items/_Application.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEl0ZW1zXF9BcHBsaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Items/_Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEl0ZW1zXF9Db250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Items/_Generic.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEl0ZW1zXF9HZW5lcmljLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Journal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXEpvdXJuYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/Resume.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXFJlc3VtZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Details/_JournalLogs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xEZXRhaWxzXF9Kb3VybmFsTG9ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/List/CandidateList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xMaXN0XENhbmRpZGF0ZUxpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Candidates/_partials/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FuZGlkYXRlc1xfcGFydGlhbHNcU2VhcmNoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Locations/List/States.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25zXExpc3RcU3RhdGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Locations/States.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25zXFN0YXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Shared/Modals/Modals.Candidates.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXE1vZGFsc1xNb2RhbHMuQ2FuZGlkYXRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Shared/Wigets/connect.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXFdpZ2V0c1xjb25uZWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Projects/_Portfolio/Portal.Admin/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-0jgo2nsks0
