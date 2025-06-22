@@ -1,0 +1,106 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\Projects\\__Portfolio\\API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B03B19FF-84BE-4699-AA0F-5D5EB006BE54}|API.csproj|c:\\projects\\projects\\__portfolio\\api\\repositories\\stockrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03B19FF-84BE-4699-AA0F-5D5EB006BE54}|API.csproj|solutionrelative:repositories\\stockrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B03B19FF-84BE-4699-AA0F-5D5EB006BE54}|API.csproj|c:\\projects\\projects\\__portfolio\\api\\models\\searchfilers\\stockseachfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B03B19FF-84BE-4699-AA0F-5D5EB006BE54}|API.csproj|solutionrelative:models\\searchfilers\\stockseachfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 13,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{f5cd1b51-c771-5648-966f-646d419b1e7c}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1726887629:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:968709572:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2021652727:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StockRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\Projects\\__Portfolio\\API\\Repositories\\StockRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\StockRepository.cs",
+              "ToolTip": "C:\\Projects\\Projects\\__Portfolio\\API\\Repositories\\StockRepository.cs*",
+              "RelativeToolTip": "Repositories\\StockRepository.cs*",
+              "ViewState": "AgIAADEAAAAAAAAAAAAQwDsAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T04:52:08.148Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StockSeachFilter.cs",
+              "DocumentMoniker": "C:\\Projects\\Projects\\__Portfolio\\API\\Models\\SearchFilers\\StockSeachFilter.cs",
+              "RelativeDocumentMoniker": "Models\\SearchFilers\\StockSeachFilter.cs",
+              "ToolTip": "C:\\Projects\\Projects\\__Portfolio\\API\\Models\\SearchFilers\\StockSeachFilter.cs",
+              "RelativeToolTip": "Models\\SearchFilers\\StockSeachFilter.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwCkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T04:47:56.698Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,619 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Stock Tool Demo",
+    "description": "This is a demo of .Net Core 8.0 WebApi using React and TypeScript UI front-end",
+    "termsOfService": "/TermsOfService",
+    "contact": {
+      "name": "Contact Us",
+      "url": "/Contact"
+    },
+    "license": {
+      "name": "EULA",
+      "url": "/EULA"
+    },
+    "version": "v1.3c"
+  },
+  "paths": {
+    "/comments": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Get all Comments as specified by query parameters",
+        "parameters": [
+          {
+            "name": "ShowInactive",
+            "in": "query",
+            "description": "Default: only show active comments. When set to 'false' ONLY 'inactive' comments will be provided.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "StockID",
+            "in": "query",
+            "description": "Search comments associated by StockID.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Content",
+            "in": "query",
+            "description": "Search comments by content keyword.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments/{commentId}": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Get a single Comment by ID",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments/add": {
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Create a new Comment",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreateRequestDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentCreateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments/update": {
+      "put": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Update an existing Comment",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentUpdateRequestDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentUpdateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentUpdateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentUpdateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments/x": {
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Delete an existing Comment",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/stocks": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Get all stocks as specified by query parameters",
+        "parameters": [
+          {
+            "name": "ShowInactive",
+            "in": "query",
+            "description": "Default: true. Only show active stocks. When set to 'false' ONLY 'inactive' stocks will be provided.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ShowComments",
+            "in": "query",
+            "description": "Default: false. Show comments related to this Stock the associated object.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Symbol",
+            "in": "query",
+            "description": "Search stocks by ticker symbol.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CompanyName",
+            "in": "query",
+            "description": "Search stocks by company name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "SortBy",
+            "in": "query",
+            "description": "Metric value of sort order result display set.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "IsDescending",
+            "in": "query",
+            "description": "Ordinal directional value of result display set.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "description": "Number of reults to return.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "PageNumber",
+            "in": "query",
+            "description": "Paginated return of result set.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/stocks/{stockId}": {
+      "get": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Get a specific stock by its ID",
+        "parameters": [
+          {
+            "name": "stockId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/stocks/add": {
+      "post": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Create a new definition for a stock",
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockCreateRequestDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockCreateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockCreateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockCreateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/stocks/update": {
+      "put": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Update the values for a specific stock",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockUpdateRequestDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockUpdateRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockUpdateRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StockUpdateRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/stocks/x": {
+      "delete": {
+        "tags": [
+          "Stock"
+        ],
+        "summary": "Delete a single specific stock by ID",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CommentCreateRequestDto": {
+        "required": [
+          "content",
+          "stockID",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "commentID": {
+            "type": "integer",
+            "description": "ID of the Comment context",
+            "format": "int32"
+          },
+          "stockID": {
+            "type": "integer",
+            "description": "StockID of the related comment.",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 280,
+            "minLength": 5,
+            "type": "string",
+            "description": "Title for this Comment"
+          },
+          "content": {
+            "maxLength": 4000,
+            "minLength": 5,
+            "type": "string",
+            "description": "Content body of this Comment"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Create a new Comment"
+      },
+      "CommentUpdateRequestDto": {
+        "required": [
+          "commentID",
+          "content",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "commentID": {
+            "type": "integer",
+            "description": "ID of the Comment context",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 250,
+            "minLength": 5,
+            "type": "string",
+            "description": "Updated title for this Comment."
+          },
+          "content": {
+            "maxLength": 4000,
+            "minLength": 5,
+            "type": "string",
+            "description": "Updated body for this Comment."
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Is current conmnent active?"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Update a Comment"
+      },
+      "StockCreateRequestDto": {
+        "required": [
+          "companyName",
+          "industry",
+          "lastDiv",
+          "purchase",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "companyName": {
+            "maxLength": 280,
+            "minLength": 1,
+            "type": "string"
+          },
+          "purchase": {
+            "maximum": 1000000000,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "lastDiv": {
+            "maximum": 100,
+            "minimum": 0.001,
+            "type": "number",
+            "format": "double"
+          },
+          "industry": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "marketCap": {
+            "maximum": 5000000000,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "isActive": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request object for creating a new Stock entry"
+      },
+      "StockUpdateRequestDto": {
+        "required": [
+          "industry",
+          "lastDiv",
+          "purchase",
+          "stockID",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "stockID": {
+            "type": "integer",
+            "description": "ID of the Stock object to update",
+            "format": "int32"
+          },
+          "symbol": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string",
+            "description": "Exchange symbol of the Stock object to update"
+          },
+          "companyName": {
+            "maxLength": 280,
+            "type": "string",
+            "description": "Company Name of the Stock object to update",
+            "nullable": true
+          },
+          "purchase": {
+            "maximum": 1000000000,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "lastDiv": {
+            "maximum": 100,
+            "minimum": 0.001,
+            "type": "number",
+            "format": "double"
+          },
+          "industry": {
+            "maxLength": 10,
+            "minLength": 1,
+            "type": "string"
+          },
+          "marketCap": {
+            "maximum": 5000000000,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int64"
+          },
+          "dateUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isActive": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request object for updating an existing Stock entry"
+      }
+    }
+  }
+}

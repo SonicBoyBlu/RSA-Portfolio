@@ -1,0 +1,6 @@
+﻿.swagger-ui .opblock .opblock-summary-description {
+    font-style: italic;
+}
+.swagger-ui .opblock .opblock-summary-description:before {
+    content: " - "
+}

@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="T:API.Controllers.CommentController">
+            <summary>General controller for Comment objects</summary>
+            <remarks>Controller for Comments</remarks>
+            <param name="commentRepository"></param>
+        </member>
+        <member name="M:API.Controllers.CommentController.#ctor(API.Interfaces.ICommentRepository,API.Interfaces.IStockRepository)">
+            <summary>General controller for Comment objects</summary>
+            <remarks>Controller for Comments</remarks>
+            <param name="commentRepository"></param>
+        </member>
+        <member name="M:API.Controllers.CommentController.GetAllAsync(API.Models.SearchFilers.CommentSearchFilter)">
+            <summary>Get all Comments as specified by query parameters</summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.CommentController.GetCommentById(System.Int32)">
+            <summary>Get a single Comment by ID</summary>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.CommentController.CreateAsync(API.Models.DTO.Comments.CommentCreateRequestDto)">
+            <summary>Create a new Comment</summary>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.CommentController.UpdateAsync(API.Models.DTO.Comments.CommentUpdateRequestDto)">
+            <summary>Update an existing Comment</summary>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.CommentController.DeleteAsync(System.Int32)">
+            <summary>Delete an existing Comment</summary>
+            <param name="commentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.StockController.GetAll(API.Models.SearchFilers.StockSeachFilter)">
+            <summary>
+            Get all stocks as specified by query parameters
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.StockController.GetById(System.Int32)">
+            <summary>
+            Get a specific stock by its ID
+            </summary>
+            <param name="stockId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.StockController.AddItem(API.Models.DTO.Stocks.StockCreateRequestDto)">
+            <summary>
+            Create a new definition for a stock
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.StockController.Update(API.Models.DTO.Stocks.StockUpdateRequestDto)">
+            <summary>
+            Update the values for a specific stock
+            </summary>
+            <param name="stock"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.StockController.Delete(System.Int32)">
+            <summary>
+            Delete a single specific stock by ID
+            </summary>
+            <param name="stockId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Interfaces.ICommentRepository">
+            <summary>
+             Comments repository
+            </summary>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.GetAllAsync(API.Models.SearchFilers.CommentSearchFilter)">
+            <summary>
+            Get all Comments as spicified by filter(s)
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.GetByIdAsync(System.Int32)">
+            <summary>
+            Get a single Comment by ID
+            </summary>
+            <param name="commentID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.CreateAsync(API.Models.DTO.Comments.CommentCreateRequestDto)">
+            <summary>
+            Create a new Comment
+            </summary>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.UpdateAsync(API.Models.DTO.Comments.CommentUpdateRequestDto)">
+            <summary>
+            Update an existing Comment
+            </summary>
+            <param name="commentID"></param>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.DeleteAsync(System.Int32)">
+            <summary>
+            Delete a specific Comment by ID
+            </summary>
+            <param name="commentID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Interfaces.ICommentRepository.CheckExists(System.Int32)">
+            <summary>
+            Check to see if the comment exists by ID
+            </summary>
+            <param name="commentID"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Mappers.CommentMapper">
+            <summary>Model/DTO mappings</summary>
+        </member>
+        <member name="M:API.Mappers.CommentMapper.CommentModleToDto(API.Models.Comment)">
+            <summary>Comment list result</summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:API.Migrations.init">
+            <inheritdoc />
+        </member>
+        <member name="M:API.Migrations.init.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:API.Migrations.init.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:API.Migrations.init.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="P:API.Models.Comment.CommentID">
+            <summary>Unique ID for this Comment</summary>
+        </member>
+        <member name="P:API.Models.Comment.Title">
+            <summary>Title for this Comment</summary>
+        </member>
+        <member name="P:API.Models.Comment.Content">
+            <summary>Content body of this Comment</summary>
+        </member>
+        <member name="P:API.Models.Comment.DateCreated">
+            <summary>Date Comment was created</summary>
+        </member>
+        <member name="P:API.Models.Comment.DateUpdated">
+            <summary>Date Comment was updated</summary>
+        </member>
+        <member name="P:API.Models.Comment.StockID">
+            <summary>ID of the Stock associated with this Comment</summary>
+        </member>
+        <member name="P:API.Models.Comment.Stock">
+            <summary>Stock details for the associated Comment</summary>
+        </member>
+        <member name="P:API.Models.Comment.IsActive">
+            <summary>Is Comment Active</summary>
+        </member>
+        <member name="T:API.Models.DTO.Comments.CommentCreateRequestDto">
+            <summary>Create a new Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentCreateRequestDto.CommentID">
+            <summary>
+            ID of the Comment context
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentCreateRequestDto.StockID">
+            <summary>
+            StockID of the related comment.
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentCreateRequestDto.Title">
+            <summary>Title for this Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentCreateRequestDto.Content">
+            <summary>Content body of this Comment</summary>
+        </member>
+        <member name="T:API.Models.DTO.Comments.CommentListResultDto">
+            <summary>Comment DTO object from the Comment model</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.CommentID">
+            <summary>Unique ID for this Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.Title">
+            <summary>Title for this Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.Content">
+            <summary>Content body of this Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.DateCreated">
+            <summary>Date Comment was created</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.DateUpdated">
+            <summary>Date Comment was updated</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.StockID">
+            <summary>ID of the Stock associated with this Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentListResultDto.IsActive">
+            <summary>Is Comment Active</summary>
+        </member>
+        <member name="T:API.Models.DTO.Comments.CommentUpdateRequestDto">
+            <summary>Update a Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentUpdateRequestDto.CommentID">
+            <summary>
+            ID of the Comment context
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentUpdateRequestDto.Title">
+            <summary>Updated title for this Comment.</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentUpdateRequestDto.Content">
+            <summary>Updated body for this Comment.</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentUpdateRequestDto.IsActive">
+            <summary>Is current conmnent active?</summary>
+        </member>
+        <member name="T:API.Models.DTO.Comments.CommentDeleteRequestDto">
+            <summary>Create a new Comment</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentDeleteRequestDto.CommentID">
+            <summary>
+            ID of the Comment context
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentDeleteRequestDto.UserID">
+            <summary>UserID executing delete function</summary>
+        </member>
+        <member name="P:API.Models.DTO.Comments.CommentDeleteRequestDto.DateUpdated">
+            <summary>Deate stammp of executed delete function</summary>
+        </member>
+        <member name="T:API.Models.DTO.Stocks.StockListResultDto">
+            <summary>
+            List of Stock entities
+            </summary>
+        </member>
+        <member name="T:API.Models.DTO.Stocks.StockCreateRequestDto">
+            <summary>
+            Request object for creating a new Stock entry
+            </summary>
+        </member>
+        <member name="T:API.Models.DTO.Stocks.StockUpdateRequestDto">
+            <summary>
+            Request object for updating an existing Stock entry
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockUpdateRequestDto.StockID">
+            <summary>
+            ID of the Stock object to update
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockUpdateRequestDto.Symbol">
+            <summary>
+            Exchange symbol of the Stock object to update
+            </summary>        [Required]
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockUpdateRequestDto.CompanyName">
+            <summary>
+            Company Name of the Stock object to update
+            </summary>        [Required]
+        </member>
+        <member name="T:API.Models.DTO.Stocks.StockDeleteRequesttDto">
+            <summary>
+            Stock entry delete request
+            </summary>
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockDeleteRequesttDto.StockID">
+            <summary>Stock ID</summary>
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockDeleteRequesttDto.UserID">
+            <summary>UserID executing delete function</summary>
+        </member>
+        <member name="P:API.Models.DTO.Stocks.StockDeleteRequesttDto.DateUpdated">
+            <summary>Deate stammp of executed delete function</summary>
+        </member>
+        <member name="T:API.Models.SearchFilers.CommentSearchFilter">
+            <summary>
+            Search filter for comments.
+            </summary>    
+        </member>
+        <member name="P:API.Models.SearchFilers.CommentSearchFilter.ShowInactive">
+            <summary>
+            Default: only show active comments. When set to 'false' ONLY 'inactive' comments will be provided.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.CommentSearchFilter.StockID">
+            <summary>
+            Search comments associated by StockID.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.CommentSearchFilter.Content">
+            <summary>
+            Search comments by content keyword.
+            </summary>
+        </member>
+        <member name="T:API.Models.SearchFilers.StockSeachFilter">
+            <summary>
+            Search filer for stocks or companies.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.ShowInactive">
+            <summary>
+            Default: true. Only show active stocks. When set to 'false' ONLY 'inactive' stocks will be provided.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.ShowComments">
+            <summary>
+            Default: false. Show comments related to this Stock the associated object. 
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.Symbol">
+            <summary>
+            Search stocks by ticker symbol.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.CompanyName">
+            <summary>
+            Search stocks by company name.
+            </summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.SortBy">
+            <summary>Metric value of sort order result display set.</summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.IsDescending">
+            <summary>Ordinal directional value of result display set.</summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.PageSize">
+            <summary>Number of reults to return.</summary>
+        </member>
+        <member name="P:API.Models.SearchFilers.StockSeachFilter.PageNumber">
+            <summary>Paginated return of result set.</summary>
+        </member>
+        <member name="P:API.Models.Stock.Comments">
+            <summary>List of associated Comments to this Stock</summary>
+        </member>
+        <member name="P:API.Models.Stock.DateCreated">
+            <summary>
+            Date Stock entry was entered
+            </summary>
+        </member>
+        <member name="P:API.Models.Stock.DateUpdated">
+            <summary>Date Stock entry was last updated</summary>
+        </member>
+        <member name="P:API.Models.Stock.IsActive">
+            <summary>Is the Stock Active</summary>
+        </member>
+        <member name="T:API.Repositories.CommentRepository">
+            <summary>
+            Comments Repository
+            </summary>
+        </member>
+        <member name="M:API.Repositories.CommentRepository.#ctor(API.Data.ApplicationDBContext)">
+            <summary>
+            Comments Repository
+            </summary>
+        </member>
+    </members>
+</doc>

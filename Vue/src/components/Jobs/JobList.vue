@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import JobListingItem from "@/components/Jobs/JobListingItem.vue";
 import { RouterLink } from "vue-router";
 import Loading from "vue-spinner/src/PulseLoader.vue";

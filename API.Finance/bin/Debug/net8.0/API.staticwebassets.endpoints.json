@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "ManifestType": "Build",
+  "Endpoints": [
+    {
+      "Route": "swagger/Assets/Style/swagger.css",
+      "AssetFile": "swagger/Assets/Style/swagger.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Feb 2025 05:20:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI="
+        }
+      ]
+    },
+    {
+      "Route": "swagger/Assets/Style/swagger.ougc321v30.css",
+      "AssetFile": "swagger/Assets/Style/swagger.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Feb 2025 05:20:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ougc321v30"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI="
+        },
+        {
+          "Name": "label",
+          "Value": "swagger/Assets/Style/swagger.css"
+        }
+      ]
+    }
+  ]
+}

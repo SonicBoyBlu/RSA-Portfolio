@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "Hash": "UJKBkkDyOi5XjBOBPIiU1051DoS/7Z5xPcZa0he9s18=",
+  "Source": "API",
+  "BasePath": "_content/API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "API\\wwwroot",
+      "Source": "API",
+      "ContentRoot": "C:\\Projects\\Projects\\__Portfolio\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Projects\\Projects\\__Portfolio\\API\\wwwroot\\swagger\\Assets\\Style\\swagger.css",
+      "SourceId": "API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projects\\Projects\\__Portfolio\\API\\wwwroot\\",
+      "BasePath": "_content/API",
+      "RelativePath": "swagger/Assets/Style/swagger#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ougc321v30",
+      "Integrity": "UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\swagger\\Assets\\Style\\swagger.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "swagger/Assets/Style/swagger.css",
+      "AssetFile": "C:\\Projects\\Projects\\__Portfolio\\API\\wwwroot\\swagger\\Assets\\Style\\swagger.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Feb 2025 05:20:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI="
+        }
+      ]
+    },
+    {
+      "Route": "swagger/Assets/Style/swagger.ougc321v30.css",
+      "AssetFile": "C:\\Projects\\Projects\\__Portfolio\\API\\wwwroot\\swagger\\Assets\\Style\\swagger.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Feb 2025 05:20:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ougc321v30"
+        },
+        {
+          "Name": "label",
+          "Value": "swagger/Assets/Style/swagger.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UNumRvhnwBMH39tK0GpxADZs76Ax6UuehceJ2ux/VEI="
+        }
+      ]
+    }
+  ]
+}
