@@ -1,0 +1,272 @@
+// Example scale factors (not to scale with each other, but visually improved)
+$planet-size-scale: 0.08; // arbitrary for display
+$orbit-scale: 2.5; // arbitrary for display
+
+// Realistic planet diameters (in 1000 km)
+$diameters: (
+  mercury: 4.8,
+  venus: 12.1,
+  earth: 12.7,
+  mars: 6.8,
+  jupiter: 142.9,
+  saturn: 120.5,
+  uranus: 51.1,
+  neptune: 49.5,
+  pluto: 2.4,
+);
+
+// Reduced orbital distances for outer planets to fit in viewport
+$orbits: (
+  mercury: 5.8,
+  venus: 10.8,
+  earth: 15,
+  mars: 22.8,
+  jupiter: 35,
+  // reduced from 77.8
+  saturn: 45,
+  // reduced from 143.4
+  uranus: 55,
+  // reduced from 287.1
+  neptune: 65,
+  // reduced from 449.5
+  pluto: 75,
+  // reduced from 590.6
+);
+
+// Realistic orbital eccentricities (0 = circle, >0 = ellipse)
+$eccentricities: (
+  mercury: 0.206,
+  venus: 0.007,
+  earth: 0.017,
+  mars: 0.093,
+  jupiter: 0.048,
+  saturn: 0.056,
+  uranus: 0.047,
+  neptune: 0.009,
+  pluto: 0.249,
+);
+
+// Realistic orbital periods (in Earth years, for animation duration)
+$periods: (
+  mercury: 0.24,
+  venus: 0.62,
+  earth: 1,
+  mars: 1.88,
+  jupiter: 11.86,
+  saturn: 29.46,
+  uranus: 84.01,
+  neptune: 164.8,
+  pluto: 248,
+);
+
+// Optional: planet colors for ::before
+$planet-colors: (
+  mercury: #ae9393,
+  venus: #abe67b,
+  earth: #3a97d5,
+  mars: #641400,
+  jupiter: #fd8106,
+  saturn: #a7966f,
+  uranus: #7ad7f0,
+  neptune: #4062bb,
+  pluto: #51b4fb,
+);
+
+// More realistic planet colors, gradients, and effects
+$planet-gradients: (
+  mercury: linear-gradient(135deg, #b1b1b1 60%, #888 100%),
+  venus: linear-gradient(135deg, #e6c07b 60%, #bfa14a 100%),
+  earth: radial-gradient(circle at 60% 40%, #3a7bd5 60%, #153959 100%),
+  mars: linear-gradient(135deg, #c1440e 60%, #641400 100%),
+  jupiter: linear-gradient(135deg, #e1b07e 60%, #b97d3f 100%),
+  saturn: linear-gradient(135deg, #e7d3a6 60%, #a7966f 100%),
+  uranus: linear-gradient(135deg, #7ad7f0 60%, #3e9db3 100%),
+  neptune: linear-gradient(135deg, #4062bb 60%, #1a2a6c 100%),
+  pluto: linear-gradient(135deg, #d3cfcf 60%, #b0b0b0 100%),
+);
+
+// Add a photo-realistic Jupiter texture (public domain, e.g. NASA)
+// Place your Jupiter texture in assets/img/jupiter.jpg or use a direct URL
+
+$planet-images: (
+  jupiter: "../img/jupiter.jpg",
+  saturn: "../img/saturn.jpg",
+);
+
+// Animation for orbiting
+@keyframes orbit {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Solar system container with star field background
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.solar-system {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  background:
+    /* Star field: multiple layers for depth */ url("data:image/svg+xml;utf8,<svg width='1000' height='1000' xmlns='http://www.w3.org/2000/svg'><circle cx='100' cy='200' r='1.2' fill='white' opacity='0.8'/><circle cx='400' cy='800' r='1.5' fill='white' opacity='0.7'/><circle cx='700' cy='300' r='0.8' fill='white' opacity='0.5'/><circle cx='900' cy='900' r='1.1' fill='white' opacity='0.6'/><circle cx='200' cy='600' r='0.9' fill='white' opacity='0.7'/><circle cx='800' cy='100' r='1.3' fill='white' opacity='0.8'/><circle cx='600' cy='500' r='1.0' fill='white' opacity='0.6'/><circle cx='300' cy='300' r='0.7' fill='white' opacity='0.5'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg width='1000' height='1000' xmlns='http://www.w3.org/2000/svg'><circle cx='150' cy='900' r='0.9' fill='white' opacity='0.4'/><circle cx='850' cy='200' r='1.1' fill='white' opacity='0.6'/><circle cx='500' cy='100' r='0.7' fill='white' opacity='0.5'/><circle cx='900' cy='100' r='1.2' fill='white' opacity='0.7'/><circle cx='100' cy='900' r='1.0' fill='white' opacity='0.5'/><circle cx='700' cy='700' r='1.3' fill='white' opacity='0.8'/><circle cx='300' cy='800' r='1.0' fill='white' opacity='0.6'/><circle cx='800' cy='300' r='0.8' fill='white' opacity='0.5'/></svg>"),
+    radial-gradient(ellipse at center, #222 0%, #000 100%);
+  background-size: 1000px 1000px, 1000px 1000px, 100vw 100vh;
+  background-repeat: repeat, repeat, no-repeat;
+  overflow: hidden;
+}
+
+// Sun in the center
+.sun {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4em;
+  height: 4em;
+  margin-left: -2em;
+  margin-top: -2em;
+  background: radial-gradient(circle, #ffe066 60%, #ffb700 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px 30px #ffe06688;
+  z-index: 10;
+  border: 0.15em solid #fffbe6;
+  box-shadow: 0 0 60px 30px #ffe06688, 0 0 120px 60px #ffb70044;
+}
+
+// Mixin for planet orbit and size
+@mixin planet-orbit($name) {
+  $diam: map-get($diameters, $name) * $planet-size-scale;
+  $orbit: map-get($orbits, $name) * $orbit-scale;
+  $ecc: map-get($eccentricities, $name);
+  $period: map-get($periods, $name) * 2s;
+  $color: map-get($planet-colors, $name);
+  $gradient: map-get($planet-gradients, $name);
+  $image: map-get($planet-images, $name);
+
+  // Elliptical orbit: width = orbit, height = orbit * (1 - eccentricity)
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: #{$orbit}em;
+  height: #{$orbit * (1 - $ecc)}em;
+  margin-left: -#{$orbit / 2}em;
+  margin-top: -#{($orbit * (1 - $ecc)) / 2}em;
+  border-style: dotted;
+  border-color: lightblue transparent transparent transparent;
+  border-width: 0.3em 0;
+  border-radius: 50%;
+  animation: orbit #{($period * 2)} linear infinite;
+
+  // Planet itself
+  & > .planet,
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: #{$diam}em;
+    height: #{$diam}em;
+    margin-left: -#{$diam / 2}em;
+    background: if($image, url(#{$image}) center/cover no-repeat, $gradient);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px rgba($color, 0.5),
+      0 0 0.5em 0.1em rgba(0, 0, 0, 0.15) inset;
+    border: 0.1em solid rgba(255, 255, 255, 0.08);
+    //z-index: 2;
+    // Subtle highlight
+    &::after {
+      content: "";
+      position: absolute;
+      left: 20%;
+      top: 18%;
+      width: 40%;
+      height: 30%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.35) 0%,
+        transparent 80%
+      );
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      filter: blur(0.5px);
+    }
+  }
+  &::before {
+    top: 0;
+    margin-top: 0;
+  }
+  & > .planet {
+    top: 0;
+    margin-top: 0;
+  }
+}
+
+// Usage for each planet:
+.mercury {
+  z-index: 9; // Mercury is closest to the Sun
+  @include planet-orbit(mercury);
+}
+.venus {
+  z-index: 8; // Venus is second closest
+  @include planet-orbit(venus);
+}
+.earth {
+  z-index: 7; // Earth is third closest
+  @include planet-orbit(earth);
+}
+.mars {
+  z-index: 6; // Mars is fourth closest
+  @include planet-orbit(mars);
+}
+.jupiter {
+  z-index: 5; // Jupiter is fifth closest
+  @include planet-orbit(jupiter);
+}
+.saturn {
+  z-index: 4; // Saturn is sixth closest
+  @include planet-orbit(saturn);
+  // Saturn's rings (only on Saturn)
+  .ring {
+    position: absolute;
+    left: 49%;
+    top: -134px;
+    width: 1.8em;
+    height: 12em;
+    margin-left: -1.4em;
+    margin-top: 5.85em;
+    border-radius: 50%;
+    border: 2.18em solid rgba(231, 212, 166, 0.3);
+    z-index: 6;
+    pointer-events: none;
+    transform: rotate(-20deg);
+    box-shadow: 0em 1em 4em 1em rgba(231, 211, 166, 0.3);
+  }
+  &::before {
+    left: 50%;
+  }
+}
+.uranus {
+  z-index: 3; // Uranus is seventh closest
+  @include planet-orbit(uranus);
+}
+.neptune {
+  z-index: 2; // Neptune is eighth closest
+  @include planet-orbit(neptune);
+}
+.pluto {
+  z-index: 1; // Pluto is ninth closest (dwarf planet)
+  @include planet-orbit(pluto);
+}
