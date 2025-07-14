@@ -5322,11 +5322,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\_Portfolio\\API.Finance\\API.csproj",
+      "projectUniqueName": "C:\\Projects\\_Portfolio\\C#\\API.Finance\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Projects\\_Portfolio\\API.Finance\\API.csproj",
+      "projectPath": "C:\\Projects\\_Portfolio\\C#\\API.Finance\\API.csproj",
       "packagesPath": "C:\\Users\\sonic\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\_Portfolio\\API.Finance\\obj\\",
+      "outputPath": "C:\\Projects\\_Portfolio\\C#\\API.Finance\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sonic\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -5422,19 +5422,19 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           }
         ],
         "frameworkReferences": {
@@ -5445,7 +5445,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
