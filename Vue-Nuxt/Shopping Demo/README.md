@@ -4,7 +4,7 @@ A modern, cyberpunk-inspired shopping demo built with Nuxt 3 and FakeStoreAPI.
 
 ## Live Demo
 
-👉 [View the Live Shop](https://master.d10ym6o28kp1nb.amplifyapp.com/Shop)
+👉 [View the Live Demo](https://master.d10ym6o28kp1nb.amplifyapp.com/)
 
 ---
 
