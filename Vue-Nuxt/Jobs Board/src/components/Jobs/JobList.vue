@@ -30,8 +30,10 @@ onMounted(async () => {
   // simulate loading
   setTimeout(async () => {
     try {
-      const res = await axios.get("/api/jobs");
-      context.jobs = res.data;
+      //const res = await axios.get("/api/jobs");
+      const res = await axios.get("/json/jobs.json");
+      //debugger;
+      context.jobs = res.data.jobs;
     } catch (ex) {
       console.error("Jobs fetch error: " + ex);
     } finally {

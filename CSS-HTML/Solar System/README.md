@@ -35,6 +35,11 @@ It demonstrates relative orbital speeds, elliptical orbits, and planet sizes for
 - [`assets/img/`](assets/img/): Planet textures (Jupiter, Saturn)
 - [`_Screenshots/`](./_Screenshots/): Example screenshots
 
+## License
+
+This project is open source for non-commercial use only.  
+See [`LICENSE.txt`](LICENSE.txt) for details.
+
 ## Credits
 
 - Planet textures: NASA (public domain)

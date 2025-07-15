@@ -70,11 +70,14 @@ onMounted(async () => {
   // simulate loading
   setTimeout(async () => {
     try {
+      /*
       const types = await axios.get("/api/types");
       const salaries = await axios.get("/api/salaries");
+    */
+      const res = await axios.get("/json/jobs.json");
 
-      context.types = types.data;
-      context.salaries = salaries.data;
+      context.types = res.data.types;
+      context.salaries = res.data.salaries;
 
       if (jobId) {
         context.action = "Update";

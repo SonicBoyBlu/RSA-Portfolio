@@ -1,75 +1,40 @@
-# Nuxt Minimal Starter
+# Haute Sucre – Nuxt 3 Shopping Demo
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern, cyberpunk-inspired shopping demo built with Nuxt 3 and FakeStoreAPI.
+
+## Live Demo
+
+👉 [View the Live Shop](https://master.d10ym6o28kp1nb.amplifyapp.com/Shop)
+
+---
+
+## Screenshots
+
+| Home                                    | Shop                                    | Item Detail                                    |
+| --------------------------------------- | --------------------------------------- | ---------------------------------------------- |
+| ![](_screenshots/Vue-Shopping-Home.png) | ![](_screenshots/Vue-Shopping-Shop.png) | ![](_screenshots/Vue-Shopping-Item-Detail.png) |
+
+| Lookbook                                    | Checkout                                    | Checkout Processing                                    | About                                    |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ | ---------------------------------------- |
+| ![](_screenshots/Vue-Shopping-Lookbook.png) | ![](_screenshots/Vue-Shopping-Checkout.png) | ![](_screenshots/Vue-Shopping-Checkout-Processing.png) | ![](_screenshots/Vue-Shopping-About.png) |
+
+---
+
+## Features
+
+- Nuxt 3 + TypeScript
+- FakeStoreAPI integration
+- Modern UI with Tailwind CSS
+- Product search, categories, and detail pages
+- Cart, checkout, and order history
+- Responsive and mobile-friendly
+
+---
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
-```bash
-# npm
+```sh
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

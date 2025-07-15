@@ -18,8 +18,17 @@ onMounted(async () => {
   // simulate loading
   setTimeout(async () => {
     try {
-      const res = await axios.get(`/api/jobs/${jobId}`);
-      context.job = res.data;
+      //const res = await axios.get(`/api/jobs/${jobId}`);
+      const res = await axios.get("/json/jobs.json");
+      /* Uncomment for debugging
+      console.log("Jobs response:", res.data.jobs);
+      console.log(
+        "Job detail response:",
+        res.data.jobs.find((j) => j.id == jobId)
+      );
+      debugger;
+      */
+      context.job = res.data.jobs.find((j) => j.id == jobId);
     } catch (ex) {
       console.error("Job detail fetch error: " + ex);
     } finally {

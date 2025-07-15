@@ -6,7 +6,7 @@ const store = useStore();
 
 store.commit("loadState");
 </script>
-<template>
+<template class="bg-sky-100">
   <Navbar />
   <RouterView />
 </template>

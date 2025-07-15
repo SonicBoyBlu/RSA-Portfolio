@@ -1,33 +1,32 @@
-# ./
+# Vue Jobs Board
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern job board application built with Vue 3, Vite, Tailwind CSS, and Vuex.
 
-## Recommended IDE Setup
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-green)](https://main.d1s9mwdqfzhl92.amplifyapp.com/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Live Demo
 
-## Type Support for `.vue` Imports in TS
+Check out the live demo:  
+👉 [https://main.d1s9mwdqfzhl92.amplifyapp.com/](https://main.d1s9mwdqfzhl92.amplifyapp.com/)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Screenshots
 
-## Customize configuration
+### Home Page
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+![Home Screenshot](./_screenshots/Screenshot-Home.png)
 
-## Project Setup
+### Job Listings
 
-```sh
-npm install
-```
+![Jobs Screenshot](./_screenshots/Screenshot-Jobs.png)
 
-### Compile and Hot-Reload for Development
+### Job Detail
 
-```sh
-npm run dev
-```
+![Job Detail Screenshot](./_screenshots/Screenshot-Job-Detail.png)
 
-### Type-Check, Compile and Minify for Production
+### Job Modify
 
-```sh
-npm run build
-```
+![Job Modify Screenshot](./_screenshots/Screenshot-Job-Modify.png)
+
+## License
+
+This project is released under the [CC0 License](license.txt).

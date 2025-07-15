@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "json-server": "json-server --watch src/assets/json/jobs.json --port 3999",
+    "json-server": "json-server --watch /json/jobs.json --port 3000",
     "start": "concurrently \"npm run dev\" \"npm run json-server\""
   },
   "dependencies": {
