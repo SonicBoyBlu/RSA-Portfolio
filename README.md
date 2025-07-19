@@ -1,3 +1,8 @@
+![License: Personal Use Only](https://img.shields.io/badge/license-personal--use--only-blue.svg)
+![No Contributions](https://img.shields.io/badge/contributions-closed-red.svg)
+![Production Use](https://img.shields.io/badge/production%20use-not%20authorized-lightgrey.svg)
+![Status: Portfolio](https://img.shields.io/badge/status-portfolio-brightgreen.svg)
+
 # Portfolio Monorepo
 
 This repository contains multiple projects and demos across different technologies, including C#, Vue/Nuxt, React, and more.
