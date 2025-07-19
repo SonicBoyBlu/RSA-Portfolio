@@ -5,76 +5,79 @@
 
 # Portfolio Monorepo
 
-This repository contains multiple projects and demos across different technologies, including C#, Vue/Nuxt, React, and more.
+This repository contains a collection of projects and demos across different technologies, including C#, Vue/Nuxt, React, and more.  
+**All code is for personal portfolio and demonstration purposes only. Not authorized for production use or external contribution.**
 
-## Project Structure
+---
+
+## Project Structure & Descriptions
 
 ```
-.vs/                       # Visual Studio workspace state
-C#/                        # .NET/C# backend and API projects
-  API.Finance/
-  API.Global/
-  API.v3/
-  Blazor.Comms/
-  Micro.Jobs/
-  Micro.Signup/
-  Portal.Admin/
-  Portal.PM.Partner/
-CSS-HTML/                  # HTML/CSS demos
-  Solar System/
-React/                     # React demos
-  Stocks Portfolio/
-Vue-Nuxt/                  # Vue/Nuxt demos
-  Jobs Board/
-  Shopping Demo/
+.vs/
+C#/
+  API.Finance/         # .NET REST API for financial data and portfolio management
+  API.Global/          # Shared .NET library for core business logic and data types
+  API.v3/              # ASP.NET Core MVC web app (v3) with Razor views and static assets
+  Blazor.Comms/        # Real-time Blazor Server app for messaging, notifications, and telemetry
+  Micro.Jobs/          # Job listings and management app with Blazor and Razor Pages
+  Micro.Signup/        # Event/career fair signup app with carousel-style forms
+  Portal.Admin/        # Admin portal for users, candidates, locations, and settings
+  Portal.PM.Partner/   # Partner/project management portal with BambooHR integration
+CSS-HTML/
+  Solar System/        # Solar system demo using HTML/CSS animations
+React/
+  Stocks Portfolio/    # React demo for tracking and visualizing stock portfolios
+Vue-Nuxt/
+  Jobs Board/          # Nuxt.js job board demo with search and filters
+  Shopping Demo/       # Nuxt.js shopping cart demo
 ```
 
-## Getting Started
+---
+
+## Subfolder Descriptions
 
 ### C# Projects
 
-1. Open the `.sln` file in [C#/API.Finance/API.sln](C#/API.Finance/API.sln) or other solution files in Visual Studio.
-2. Restore NuGet packages and build the solution.
-3. Run the desired project (e.g., API, Blazor, etc.).
+- **API.Finance**: RESTful API for financial data and portfolio management.
+- **API.Global**: Shared library with core business logic and data types for .NET projects.
+- **API.v3**: ASP.NET Core MVC web application with Razor views and static assets.
+- **Blazor.Comms**: Real-time messaging, notifications, and telemetry using Blazor Server.
+- **Micro.Jobs**: Job listings and management app using Blazor and Razor Pages.
+- **Micro.Signup**: Event/career fair signup app with carousel-style forms and admin review.
+- **Portal.Admin**: Admin portal for managing users, candidates, locations, and settings.
+- **Portal.PM.Partner**: Partner/project management portal with BambooHR integration.
 
-### Vue/Nuxt Projects
+### CSS-HTML
 
-#### Jobs Board
+- **Solar System**: Animated solar system demo using only HTML and CSS.
 
-```sh
-cd "Vue-Nuxt/Jobs Board"
-npm install
-npm run dev
-```
+### React
 
-#### Shopping Demo
+- **Stocks Portfolio**: React demo for tracking and visualizing stock portfolios.
 
-```sh
-cd "Vue-Nuxt/Shopping Demo"
-npm install
-npm run dev
-```
+### Vue-Nuxt
 
-### React Projects
+- **Jobs Board**: Nuxt.js job board demo with search and filters.
+- **Shopping Demo**: Nuxt.js shopping cart demo with product listing and cart management.
 
-```sh
-cd "React/Stocks Portfolio"
-npm install
-npm start
-```
+---
 
-## Scripts
+## Licensing
 
-- Each frontend project contains its own `package.json` with scripts for development, build, and testing.
-- C# projects use standard .NET CLI commands (`dotnet build`, `dotnet run`, etc.).
+> **Personal Use Only:**  
+> All code in this repository is open source for personal learning and demonstration.  
+> **Not authorized for production use, redistribution, or external contribution.**  
+> See the [LICENSE.md](LICENSE.md) file in the root and each subfolder for details.
 
-## Contributing
+---
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Make your changes and commit them.
-4. Open a pull request.
+## Screenshots
 
-## License
+Screenshots for select projects are available in the "\_screenshots" folder of each project.
 
-This repository contains multiple projects, each with its own license. Please refer to the respective project folders for license details.
+---
+
+## Contact
+
+For questions or professional inquiries, please contact "ryan.sugar.alexander@gmail.com".  
+**Note:** This repository is not open for contributions or production use.
