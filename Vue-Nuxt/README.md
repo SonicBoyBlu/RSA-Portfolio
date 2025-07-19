@@ -73,12 +73,12 @@ A Nuxt.js demo project showcasing a simple shopping cart application.
   ```
 
 - **Screenshots:**  
-  ![Home Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-home.png)
-  ![Shop Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-shop.png)  
-  ![Checkout Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-checkout.png)
-  ![About Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-about.png)
-  ![Lookbook Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-lookbook.png)
-  ![Item Detail Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-item-detail.png)
+  ![Home Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-Home.png)
+  ![Shop Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-Shop.png)  
+  ![Checkout Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-Checkout.png)
+  ![About Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-About.png)
+  ![Lookbook Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-Lookbook.png)
+  ![Item Detail Screenshot](Shopping%20Demo/_screenshots/Vue-Shopping-Item-Detail.png)
 
 - **Live Demo:**  
   👉 [View the Live Demo](https://master.d10ym6o28kp1nb.amplifyapp.com/)
