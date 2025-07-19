@@ -1,8 +1,3 @@
-![License: Personal Use Only](https://img.shields.io/badge/license-personal--use--only-blue.svg)
-![No Contributions](https://img.shields.io/badge/contributions-closed-red.svg)
-![Production Use](https://img.shields.io/badge/production%20use-not%20authorized-lightgrey.svg)
-![Status: Portfolio](https://img.shields.io/badge/status-portfolio-brightgreen.svg)
-
 # Haute Sucre – Nuxt 3 Shopping Demo
 
 A modern, cyberpunk-inspired shopping demo built with Nuxt 3 and FakeStoreAPI.
