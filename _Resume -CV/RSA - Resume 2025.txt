@@ -1,37 +1,19 @@
 ﻿Ryan S. Alexander
-________________
 
-Location: Alabama,  USA
+Location: Alabama,  USA                                 
 Email: ryan.sugar.alexander@gmail.com
 LinkedIn: linkedin.com/in/ryansalexander
 GitHub: github.com/SonicBoyBlu/RSA-Portfolio
 
-Professional Summary:
-Innovative Information Architect and Web Developer with a proven track record in end-to-end solution design, integrating legacy infrastructure with modern technologies, and enhancing web application performance. Skilled in UI/UX design, full project lifecycle management, version control systems, and streamlined release strategies. Passionate about crafting user-centered digital experiences that improve usability and drive measurable business results.
 
-Core Competencies:
-	* Web Application Architecture
-	* UI/UX Design
-	* End-to-End Development 
-	* Azure Cloud Services
-	* API Integration & Development
-	* .NET Core & MVC Frameworks
-	* SQL Server Optimization
-	* Data Modeling
-	* Agile & Scrum Methodologies
-	* Project Lifecycle Management
-	* Release & Version Control (Git, SVN, Mercurial)
-	* Responsive Design
-	* DevOps Workflows
-	* Stakeholder Collaboration
-	* Technical Leadership
-	* Performance Tuning
-	* Business Process Automation
-	* Cross-Functional Communication
-	* Continuous Learning & Mentorship
+Professional Summary
+Innovative Information Architect and Web Developer with a proven track record in end-to-end solution design, integrating legacy infrastructure with modern technologies, and enhancing web application performance. Skilled in UI/UX design, full project lifecycle management, version control systems, CRMs/ticketing systems, and streamlined release strategies. Passionate about crafting user-centric digital experiences that improve usability and drive measurable business results.
 
-Professional Experience:
+Core Competencies
+Web Application Architecture, UI/UX Design, End-to-End Development, CRM Integration, CRM Customization, Azure Cloud Services, API Integration & Development, .NET Core & MVC Frameworks, SQL Server Optimization, Data Modeling, Agile & Scrum Methodologies, Project Lifecycle Management, Release & Version Control (Git, SVN, Mercurial), Responsive Design, DevOps Workflows, Stakeholder Collaboration, Technical Leadership, Performance Tuning, Business Process Automation, Cross-Functional Communication, Continuous Learning & Mentorship
+Professional Experience
 
+Professional Experience
 CampusPoint
 Information Architect | 2020 - 2024
 * Release Management & Web Ecosystem Development: Led the release management, deployment, and development of web app ecosystems.
@@ -42,6 +24,7 @@ Information Architect | 2020 - 2024
 * Strategic Cost Reallocation: Redirected savings from migration and reduced maintenance to support staffing, training, and improved marketing efforts.
 * Data Model Optimization: Collaborated with the owner to design and implement a normalized, UTC-compliant MSSQL data model, streamlining data management and eliminating non-essential data points.
 
+
 Acme House Company
 Information Architect | 2018 – 2020
 * Azure Cloud Integration: Led the integration of various on-prem systems and APIs into a centralized Azure-based portal, significantly improving operational efficiency for internal and external clients.
@@ -49,6 +32,7 @@ Information Architect | 2018 – 2020
 * Data Management & SQL Development: Created and optimized SQL tables, views, stored procedures, and custom functions for proprietary data storage, API consumption, and system journaling.
 * Custom UI/UX Design: Designed bespoke interfaces for three departments, incorporating user feedback mechanisms that increased feature utilization by 20% and reduced task completion times by 30-40%, enhancing workflow efficiency and user satisfaction.
 * API Integrations: Augmented detail reporting via API integrations with platforms such as ZoHo, Breezeway, BambooHR, QuickBooks, and Google Data Studio to streamline data flow and enhance system capabilities.
+
 
 CampusPoint
 Principal Developer/Architect | 2015 – 2019
@@ -59,11 +43,13 @@ Principal Developer/Architect | 2015 – 2019
 * Database Modernization: Updated 20+-year-old T-SQL stored procedures and functions to modern standards, including views for commonly joined tables, updated column data types, computed columns, and regimented maintenance schedules for keys and indexing.
 * MSSQL Server Management: Managed on-prem MSSQL Server, including maintenance plans, indexing, and enforcement of foreign-key constraints and primary keys.
 
+
 Spot Color Marketing
 Director of Technology / Information Architect | 2015 - 2015
 * Project Manager: Successfully managed multiple projects simultaneously by prioritizing tasks according to urgency, resource availability, and alignment with organizational goals.
 * Team Leadership: Established effective communication among team members for enhanced collaboration and successful project completion.
 * Strategic Transition: Successfully transitioned TitanCoding clients to Spot Color, increasing revenue by 45% and expanding the company’s offerings from digital marketing to full-featured web applications and user portals.
+
 
 TitanCoding, Inc.
 Sr Web Developer / Owner | 2011 - 2015
@@ -72,6 +58,8 @@ Sr Web Developer / Owner | 2011 - 2015
 * API Integrations: Integrated third-party APIs for analytics (Google Analytics, LinkedIn), logistics (USPS, FedEx, UPS, ShipWorks), and invoicing (QuickBooks Online, FreshBooks).
 * Custom Data Solutions: Developed custom data connectors to enhance operational efficiency and improve system interoperability.
 
+
+
 Kelley Blue Book
 Prototype Developer - Classifieds | 2010 - 2011
 * Prototype Development: Partnered with AutoTrader.com to design and prototype innovative UI/UX features for a new car buying experience, refining functionality and design specifications.
@@ -79,21 +67,11 @@ Prototype Developer - Classifieds | 2010 - 2011
 * User Testing & Insights: Led beta testing with 200+ participants, translating qualitative and quantitative feedback into actionable insights that boosted user engagement by over 45%.
 * Strategic Product Refinement: Provided key recommendations for project scope adjustments based on beta testing results, driving the enhancement of product features.
 
+
 Stemtech International, Inc.
 Sr. Web Developer | 2008 - 2010
 * Global Web Architecture: Designed and implemented a scalable web architecture supporting operations across 17+ countries.
 * International Compliance: Enhanced security protocols and developed localization features to meet international standards and regulations.
-
-
-Skills & Tools:
-* Productivity
-   * Microsoft Office Suite (MS Word, MS Excel, MS PowerPoint, MS Access, MS Outlook), Google Workspace (GDocs, GSheets), Libre Office Suite
-* Coding Languages
-   * ASP.Net/Core C#, MVC, VBScript, Classic ASP, AJAX, JSON, jQuery, Vue.js, Nuxt, React.js, Next, Node.js, Angular.js, CSS, Bootstrap, OData, LINQ, SOAP, XML, CSV, JavaScript, HTML5, CSS, WebAPI, Swagger, Entity Framework
-* Platforms
-   * Microsoft Full-Stack, MSSQL Server, MySQL Server, Azure Portal, Microsoft DevOps, GitHub, AWS, Google Analytics, Breezeway API, BambooHR API, Windows Server, IIS, DOS, Windows OS (all versions since 2.1), OS/2 Warp
-* Tools
-   * Visual Studio, VS Code, SQL Server Management Studio (SSMS),  Azure Data Studio, NPM, JSON-Server, Git, GitHub, WinMerge, Notepad++,  SVN, Mercurial, TSQL, Powershell, Google Data Studio, Database connectors, Wireframing, Design Thinking, Interactive Design, Responsive Design, Web Analytics, Prototyping, APIs, Vite
 Soft Skills
 * Maintain a friendly, professional demeanor across all interactions 
 * Communicate effectively in written, verbal, and digital environments
@@ -103,12 +81,25 @@ Soft Skills
 * Excel in leadership and mentoring roles, fostering collaboration and growth
 
 
-Achievements:
+Skills & Tools
+* Productivity
+   * Microsoft Office Suite (MS Word, MS Excel, MS PowerPoint, MS Access, MS Outlook), Google Workspace (GDocs, GSheets), Libre Office Suite, Monday, custom ticketing systems, Breezway, BambooHR, Sugar CRM, Zoho, QBO
+* Coding Languages
+   * ASP.Net/Core C#, MVC, VBScript, Classic ASP, AJAX, JSON, jQuery, Vue.js, Nuxt, Python, React.js, Next, Node.js, Angular.js, CSS, Bootstrap, OData, LINQ, SOAP, XML, CSV, JavaScript, HTML5, CSS, WebAPI, Swagger, Entity Framework
+* Platforms
+   * Microsoft Full-Stack, MSSQL Server, MySQL Server, Azure Portal, Microsoft DevOps, GitHub, AWS, Google Analytics, Google Chart API, Breezeway API, BambooHR API, Windows Server, IIS, DOS, Windows OS (all versions since 2.1), OS/2 Warp, QBO API, Zoho API, custom CRM build/integration/implementation
+* AI Frameworks
+   * Ollama, Copilot, GitHub Copilot, Gemini, ChatGPT, Grammarly, Claude
+* Tools
+   * Visual Studio, VS Code, SQL Server Management Studio (SSMS),  Azure Data Studio, NPM, JSON-Server, Git, GitHub, WinMerge, Notepad++,  SVN, Mercurial, TSQL, Powershell, Google Data Studio, Database connectors, Wireframing, Design Thinking, Interactive Design, Responsive Design, Web Analytics, Prototyping, APIs, Vite
+Achievements
 * Strategic IT Leadership and Project Management
    * Azure Migration Strategy
 Designed and executed an Azure migration plan, reducing operational costs and reallocating savings to enhance investment in staffing, training, and marketing, thus boosting overall efficiency.
    * Platform Modernization
 Upgraded legacy platforms to .NET Core, significantly improving UI/UX, performance, and user experience.
+   * CRM Solutions
+Led planning, design, integration and implementation of both off-the-shelf and custom CRM platforms—including CampusPoint’s proprietary system—leveraging APIs from providers such Salesforce, Zoho, SugarCRM, QuickBooks, BambooHR, and various ticketing systems to enhance functionality, automate workflows, and centralize business operations.
    * Communications API Integration
 Overhauled and streamlined a branded communications API using Web API, MVC, and JavaScript frameworks, ensuring seamless messaging and alignment with strategic goals.
    * Version Control Implementation
@@ -118,15 +109,15 @@ Led the deployment of version control systems (Mercurial, GitHub, SVN), enhancin
 Utilized SQL for advanced data analysis, statistical reporting, and visualization, identifying and recovering $2.5M in unpaid claims, thereby increasing overall revenue.
 
 
-Demos:
-	* Jobs Board (Vue.js pure): https://main.d1s9mwdqfzhl92.amplifyapp.com/
-	* Shopping (Vue/Nux/Tailwind): https://master.d10ym6o28kp1nb.amplifyapp.com/
-	* Recruiting Jobseeker App (C#/jQuery/Bootstrap): https://beta.candidates.campuspoint.com/
-	* Solar System (CSS/HTML5): https://main.d9k115eqhfyxx.amplifyapp.com/
+Demos
+         * Jobs Board (Vue.js pure): https://main.d1s9mwdqfzhl92.amplifyapp.com/
+         * Shopping (Vue/Nux/Tailwind): https://master.d10ym6o28kp1nb.amplifyapp.com/
+         * Recruiting Jobseeker App (C#/jQuery/Bootstrap): https://beta.candidates.campuspoint.com/
+         * Solar System (CSS/HTML5): https://main.d9k115eqhfyxx.amplifyapp.com/
 
 
-Contact:
-	* Location: Alabama,  USA
-	* Email: ryan.sugar.alexander@gmail.com
-	* LinkedIn: linkedin.com/in/ryansalexander
-	* GitHub: github.com/SonicBoyBlu/RSA-Portfolio
+Contact
+         * Location: Alabama,  USA
+         * Email: ryan.sugar.alexander@gmail.com
+         * LinkedIn: linkedin.com/in/ryansalexander
+         * GitHub: github.com/SonicBoyBlu/RSA-Portfolio
